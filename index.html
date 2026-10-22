@@ -1031,6 +1031,14 @@ $('#form-contato').addEventListener('submit', (e) => {
   });
   if (!jaVisto) setTimeout(abrir, 7000);
 })();
+
+// Link direto para uma seção (ex.: .../#destaques): rola de novo quando a página termina de montar
+window.addEventListener('load', () => {
+  const alvo = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (!alvo) return;
+  const pronto = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  pronto.then(() => setTimeout(() => alvo.scrollIntoView({ behavior: 'instant', block: 'start' }), 50));
+});
 </script>
 </body>
 </html>
