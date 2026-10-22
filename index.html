@@ -218,15 +218,35 @@ p{margin:0 0 1em}
 }
 .filtro:hover{border-color:var(--tinta)}
 .filtro[aria-pressed="true"]{background:var(--tinta);color:var(--creme);border-color:var(--tinta)}
-.trabalhos-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.trabalho{margin:0;transition:opacity .35s ease, transform .35s ease}
-.trabalho.saindo{opacity:0;transform:scale(.97)}
-.trabalho[hidden]{display:none}
-.trabalho .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
-.trabalho figcaption{padding:14px 2px 0}
-.trabalho .nicho-tag{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--azul)}
-.trabalho h3{font-size:1.15rem;margin:4px 0 2px;line-height:1.25}
-.trabalho .marca{font-size:.85rem;color:var(--tinta-2)}
+.filtro-n{font-size:.75em;opacity:.6;margin-left:2px}
+.trabalhos-grade{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.trabalho{margin:0}
+.trabalho.entra{animation:entraCard .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes entraCard{from{opacity:0;transform:translateY(14px)}}
+.trabalho-link{display:block;text-decoration:none;color:inherit;border-radius:var(--raio)}
+.trabalho .midia{aspect-ratio:9/16;box-shadow:var(--sombra);transition:box-shadow .35s ease, transform .35s ease}
+.trabalho-link:hover .midia{box-shadow:var(--sombra-forte);transform:translateY(-4px)}
+.trabalho-link:hover .play{transform:scale(1.08);background:var(--azul)}
+.trabalho-link:hover .play svg{fill:#fff}
+.play.play-p{width:52px;height:52px}
+.play.play-p svg{width:20px;height:20px;margin-left:3px}
+.trabalho figcaption{padding:12px 2px 0}
+.trabalho .nicho-tag{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--azul)}
+.trabalho h3{font-size:1.1rem;margin:3px 0 0;line-height:1.25}
+.midia.tem-foto{background:#1d1915}
+.midia.tem-foto::after{display:none}
+.mais-wrap{text-align:center;margin-top:44px}
+.mais-wrap .btn[hidden]{display:none}
+
+/* Player de vídeo */
+.video-caixa{position:relative;width:min(380px, calc((100vh - 150px) * 9 / 16), 100%);animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
+.video-player{aspect-ratio:9/16;border-radius:var(--raio);overflow:hidden;background:#000;box-shadow:var(--sombra-forte)}
+.video-player iframe{width:100%;height:100%;border:0;display:block}
+.video-fechar{top:-50px;right:0;background:var(--creme)}
+.video-fechar:hover{background:#fff}
+.video-legenda{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:14px 2px 0;color:var(--creme);font-size:.9rem}
+.video-legenda strong{font-family:var(--serif);font-weight:400;font-size:1.2rem}
+.video-legenda a{color:var(--creme);white-space:nowrap}
 
 /* =========================================================
    5. SERVIÇOS
@@ -341,7 +361,7 @@ p{margin:0 0 1em}
    RESPONSIVO
    ========================================================= */
 @media (max-width:1024px){
-  .trabalhos-grade{grid-template-columns:repeat(3,1fr)}
+  .trabalhos-grade{grid-template-columns:repeat(4,1fr)}
   .metricas{grid-template-columns:repeat(2,1fr)}
   .servicos-grade{grid-template-columns:repeat(2,1fr)}
   .servico,.servico:not(:nth-child(3n+1)){padding:36px 28px 40px 0;border-left:0}
@@ -374,7 +394,7 @@ p{margin:0 0 1em}
   .destaques-grade{grid-template-columns:1fr;max-width:420px;margin:0 auto;gap:56px}
   .resultados{grid-template-columns:1fr}
   .depoimentos{grid-template-columns:1fr}
-  .trabalhos-grade{grid-template-columns:repeat(2,1fr);gap:18px}
+  .trabalhos-grade{grid-template-columns:repeat(3,1fr);gap:16px}
 }
 @media (max-width:600px){
   body{font-size:1rem}
@@ -386,6 +406,8 @@ p{margin:0 0 1em}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
+  .trabalhos-grade{grid-template-columns:repeat(2,1fr);gap:14px}
+  .filtro{padding:8px 14px;font-size:.85rem}
   .metricas{gap:14px}
   .metrica{padding:24px 18px}
   .contato{margin:0 8px;padding:72px 0;border-radius:20px}
@@ -395,7 +417,6 @@ p{margin:0 0 1em}
   .capa-selo{top:16px;right:8px;padding:10px 14px}
 }
 @media (max-width:380px){
-  .trabalhos-grade{grid-template-columns:1fr}
   .metricas{grid-template-columns:1fr}
 }
 
@@ -495,7 +516,7 @@ p{margin:0 0 1em}
         <p class="sobretitulo revelar">Sobre mim</p>
         <h2 id="titulo-sobre" class="revelar">Prazer, eu sou a <em>Tati</em>.</h2>
         <p class="revelar">Moro em Curitiba e transformo produtos em histórias que as pessoas querem assistir até o fim. Meu jeito de criar é simples: gravo como se estivesse indicando para uma amiga, com verdade, luz bonita e um roteiro pensado para o seu objetivo.</p>
-        <p class="revelar">Já entreguei mais de 200 vídeos para 40 marcas de beleza, skincare, moda, comida, casa e decoração e tech. Cada projeto é tratado com o mesmo carinho, do briefing à entrega final.</p>
+        <p class="revelar">Já entreguei mais de 200 vídeos para 40 marcas de cabelo, beleza, moda, gastronomia, casa e decoração, e-commerce, acessórios e educação. Cada projeto é tratado com o mesmo carinho, do briefing à entrega final.</p>
         <ul class="promessas revelar" aria-label="Minhas promessas">
           <li><span class="num">01</span>Roteiro aprovado antes de gravar</li>
           <li><span class="num">02</span>Uma rodada de ajuste inclusa</li>
@@ -525,9 +546,12 @@ p{margin:0 0 1em}
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Trabalhos por nicho</p>
         <h2 id="titulo-trabalhos" class="revelar">Um pouco de tudo, sempre com <em>a cara</em> da marca.</h2>
+        <p class="revelar">Escolha um nicho e toque em um vídeo para assistir aqui mesmo.</p>
       </div>
+      <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
       <div class="filtros revelar" id="filtros" role="group" aria-label="Filtrar trabalhos por nicho"></div>
       <div class="trabalhos-grade" id="trabalhos-grade" aria-live="polite"></div>
+      <div class="mais-wrap"><button type="button" class="btn btn-linha" id="ver-mais" hidden>Ver mais vídeos</button></div>
     </div>
   </section>
 
@@ -625,6 +649,18 @@ p{margin:0 0 1em}
   </div>
 </footer>
 
+<!-- ======================= PLAYER DE VÍDEO ======================= -->
+<div class="modal" id="modal-video" hidden>
+  <div class="modal-fundo" data-fechar-video></div>
+  <div class="video-caixa" role="dialog" aria-modal="true" aria-labelledby="video-titulo">
+    <button class="modal-fechar video-fechar" id="video-fechar" data-fechar-video aria-label="Fechar vídeo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="video-player" id="video-player"></div>
+    <p class="video-legenda"><strong id="video-titulo"></strong><a id="video-link" href="#" target="_blank" rel="noopener">Abrir no YouTube <span aria-hidden="true">↗</span></a></p>
+  </div>
+</div>
+
 <!-- ======================= CARD DE CAPTURA ======================= -->
 <div class="modal" id="modal-kit" hidden>
   <div class="modal-fundo" data-fechar></div>
@@ -708,29 +744,72 @@ const DESTAQUES = [
 
 // Nichos que aparecem como botões de filtro (o "id" precisa bater com o campo "nicho" dos trabalhos)
 const NICHOS = [
-  { id: 'beleza',   nome: 'Beleza' },
-  { id: 'skincare', nome: 'Skincare' },
-  { id: 'moda',     nome: 'Moda' },
-  { id: 'comida',   nome: 'Comida' },
-  { id: 'casa',     nome: 'Casa e decoração' },
-  { id: 'tech',     nome: 'Tech' }
+  { id: 'cabelo',      nome: 'Cabelo' },
+  { id: 'casa',        nome: 'Casa & Decor' },
+  { id: 'gastronomia', nome: 'Gastronomia' },
+  { id: 'beleza',      nome: 'Beleza & Cuidado' },
+  { id: 'moda',        nome: 'Moda' },
+  { id: 'ecommerce',   nome: 'E-Commerce' },
+  { id: 'casal',       nome: 'Casal' },
+  { id: 'acessorios',  nome: 'Acessórios' },
+  { id: 'estudo',      nome: 'Estudo' }
 ];
 
-// Galeria de trabalhos. capa: caminho da imagem 4:5 (vazio = degradê). link: opcional, abre o trabalho.
+// Galeria de trabalhos (vídeos do YouTube Shorts)
+// Para adicionar um vídeo: copie uma linha, troque o nicho, a marca e cole o link do Shorts.
+// A capa vem sozinha do YouTube. Se quiser outra capa, adicione capa: 'imagens/arquivo.jpg' na linha.
 const TRABALHOS = [
-  { nicho: 'beleza',   titulo: 'Tutorial de make rápida',      marca: 'Marca 01', formato: 'Reels 9:16', capa: '', link: '' },
-  { nicho: 'beleza',   titulo: 'Teste de batom na rotina',      marca: 'Marca 02', formato: 'TikTok 9:16', capa: '', link: '' },
-  { nicho: 'skincare', titulo: 'Rotina de skincare noturna',    marca: 'Marca 03', formato: 'Reels 9:16', capa: '', link: '' },
-  { nicho: 'skincare', titulo: 'Antes e depois do sérum',       marca: 'Marca 04', formato: 'Anúncio 9:16', capa: '', link: '' },
-  { nicho: 'moda',     titulo: 'Provador com três looks',       marca: 'Marca 05', formato: 'Reels 9:16', capa: '', link: '' },
-  { nicho: 'moda',     titulo: 'Look do dia em Curitiba',       marca: 'Marca 06', formato: 'Fotos 4:5', capa: '', link: '' },
-  { nicho: 'comida',   titulo: 'Receita fácil com o produto',   marca: 'Marca 07', formato: 'Reels 9:16', capa: '', link: '' },
-  { nicho: 'comida',   titulo: 'Primeira mordida sincera',      marca: 'Marca 08', formato: 'TikTok 9:16', capa: '', link: '' },
-  { nicho: 'casa',     titulo: 'Cantinho renovado em um dia',   marca: 'Marca 09', formato: 'Reels 9:16', capa: '', link: '' },
-  { nicho: 'casa',     titulo: 'Unboxing de decoração',         marca: 'Marca 10', formato: 'Unboxing 9:16', capa: '', link: '' },
-  { nicho: 'tech',     titulo: 'Review honesto do fone',        marca: 'Marca 11', formato: 'Anúncio 9:16', capa: '', link: '' },
-  { nicho: 'tech',     titulo: 'Setup de home office',          marca: 'Marca 12', formato: 'Fotos 4:5', capa: '', link: '' }
+  // Cabelo
+  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
+  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
+  { nicho: 'cabelo', marca: "L'Oréal Keratin Alpha Sleek",     video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
+  // Casa & Decor
+  { nicho: 'casa', marca: 'Mais Memórias',                     video: 'https://youtube.com/shorts/54YBQfUVYPE' },
+  { nicho: 'casa', marca: 'Duoflex',                           video: 'https://youtube.com/shorts/9M-Eut_Q8Ns' },
+  { nicho: 'casa', marca: 'Hoomy',                             video: 'https://youtube.com/shorts/Ov6WU1X_j-Q' },
+  { nicho: 'casa', marca: 'Sterily',                           video: 'https://youtube.com/shorts/b0lKPzH7Ufo' },
+  { nicho: 'casa', marca: 'Sterily',                           video: 'https://youtube.com/shorts/DEnQrRwxmCM' },
+  { nicho: 'casa', marca: 'Cei Norte Decorações',              video: 'https://youtube.com/shorts/Vv2fJ0v_9iw' },
+  { nicho: 'casa', marca: 'Downy',                             video: 'https://youtube.com/shorts/Uy_H85bOkPQ' },
+  // Gastronomia
+  { nicho: 'gastronomia', marca: 'Kit Kat',                    video: 'https://youtube.com/shorts/JSzfhFMSGXs' },
+  { nicho: 'gastronomia', marca: 'Tropical Especiarias',       video: 'https://youtube.com/shorts/qCshgPpGZEQ' },
+  { nicho: 'gastronomia', marca: 'Dr. Oetker',                 video: 'https://youtube.com/shorts/EFbMhwS5Qpg' },
+  { nicho: 'gastronomia', marca: 'Café 3corações',             video: 'https://youtube.com/shorts/cYMIL1F6yIQ' },
+  { nicho: 'gastronomia', marca: 'Thermo Coffee',              video: 'https://youtube.com/shorts/m_Ba2y8Sd2I' },
+  { nicho: 'gastronomia', marca: 'Vitao',                      video: 'https://youtube.com/shorts/nV4GONymwuk' },
+  // Beleza & Cuidado
+  { nicho: 'beleza', marca: 'Natura',                          video: 'https://youtube.com/shorts/LjKZr1OayUI' },
+  { nicho: 'beleza', marca: 'Monange',                         video: 'https://youtube.com/shorts/y4i82Shw4S0' },
+  { nicho: 'beleza', marca: 'Nívea',                           video: 'https://youtube.com/shorts/vt4UYAHjS34' },
+  { nicho: 'beleza', marca: "L'Oréal Paris Água Micelar Bifásica", video: 'https://youtube.com/shorts/baxYOccN4sQ' },
+  { nicho: 'beleza', marca: 'Legée',                           video: 'https://youtube.com/shorts/KvK2cBEktiU' },
+  // Moda
+  { nicho: 'moda', marca: 'Shein',                             video: 'https://youtube.com/shorts/SzWQKlo5TWM' },
+  { nicho: 'moda', marca: 'Basicamente',                       video: 'https://youtube.com/shorts/RGK2LBfytsc' },
+  { nicho: 'moda', marca: 'Plume',                             video: 'https://youtube.com/shorts/IrChI5IJue0' },
+  { nicho: 'moda', marca: 'Basicamente',                       video: 'https://youtube.com/shorts/4CbJZ_uXZ_k' },
+  { nicho: 'moda', marca: 'Boobíe',                            video: 'https://youtube.com/shorts/66sn7mjPjtA' },
+  // E-Commerce
+  { nicho: 'ecommerce', marca: 'Shopee',                       video: 'https://youtube.com/shorts/HgdVW7Iipp8' },
+  { nicho: 'ecommerce', marca: 'Shopee',                       video: 'https://youtube.com/shorts/3_Hnp2MOuf8' },
+  { nicho: 'ecommerce', marca: 'Mercado Livre',                video: 'https://youtube.com/shorts/X3DHLcdh3XU' },
+  { nicho: 'ecommerce', marca: 'Magalu',                       video: 'https://youtube.com/shorts/tFFsRExup-s' },
+  // Casal
+  { nicho: 'casal', marca: 'Coca-Cola',                        video: 'https://youtube.com/shorts/eTMZDPWqE8s' },
+  { nicho: 'casal', marca: 'Crepes Èze',                       video: 'https://youtube.com/shorts/5e5Et9q9htY' },
+  { nicho: 'casal', marca: 'Mais Memórias',                    video: 'https://youtube.com/shorts/YIfxnr7WsNE' },
+  // Acessórios
+  { nicho: 'acessorios', marca: 'Relicário Dacas',             video: 'https://youtube.com/shorts/4EsfW3noffU' },
+  { nicho: 'acessorios', marca: 'Pimenta Rosa',                video: 'https://youtube.com/shorts/sOmxQuY3p5U' },
+  { nicho: 'acessorios', marca: 'Pimenta Rosa',                video: 'https://youtube.com/shorts/4k9eo5oJuZc' },
+  // Estudo
+  { nicho: 'estudo', marca: 'Positivo',                        video: 'https://youtube.com/shorts/ysdSdmDDV_c' },
+  { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' }
 ];
+
+// Quantos vídeos aparecem em "Todos" antes do botão "Ver mais vídeos"
+const VIDEOS_POR_PAGINA = 10;
 
 // Serviços (número, título e descrição curta)
 const SERVICOS = [
@@ -747,7 +826,7 @@ const METRICAS = [
   { valor: 200,  casas: 0, prefixo: '',  sufixo: '',  rotulo: 'vídeos entregues' },
   { valor: 40,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'marcas atendidas' },
   { valor: 53.2, casas: 1, prefixo: '+', sufixo: 'M', rotulo: 'views somadas nos destaques' },
-  { valor: 6,    casas: 0, prefixo: '',  sufixo: '',  rotulo: 'nichos atendidos' }
+  { valor: NICHOS.length, casas: 0, prefixo: '', sufixo: '', rotulo: 'nichos atendidos' } // conta sozinho pelos nichos acima
 ];
 
 // Resultados de campanha (troque marca e descrição pelos dados reais)
@@ -775,7 +854,7 @@ const pad = (n) => String(n).padStart(2, '0');
 
 // Monta um bloco de mídia: imagem real se houver caminho, senão degradê com legenda
 function midia(capa, legenda, alt, extra = '') {
-  if (capa) return `<div class="midia">${extra}<img src="${esc(capa)}" alt="${esc(alt)}" loading="lazy"></div>`;
+  if (capa) return `<div class="midia tem-foto">${extra}<img src="${esc(capa)}" alt="${esc(alt)}" loading="lazy" decoding="async"></div>`;
   return `<div class="midia" role="img" aria-label="${esc(alt)}">${extra}<span class="midia-legenda">${esc(legenda)}</span></div>`;
 }
 
@@ -802,42 +881,102 @@ function midia(capa, legenda, alt, extra = '') {
     </a>`).join('');
 })();
 
-// Trabalhos + filtros
+// Pega o código de 11 letras de um link do YouTube (shorts, watch, youtu.be ou embed)
+const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/); return m ? m[1] : ''; };
+
+// Trabalhos + filtros + "ver mais"
 (function trabalhos() {
   const nomeNicho = Object.fromEntries(NICHOS.map(n => [n.id, n.nome]));
   const grade = $('#trabalhos-grade');
-  grade.innerHTML = TRABALHOS.map(t => {
-    const corpo = `
-      ${midia(t.capa, t.formato, t.titulo + ' para ' + t.marca)}
-      <figcaption>
-        <span class="nicho-tag">${esc(nomeNicho[t.nicho] || t.nicho)}</span>
-        <h3>${esc(t.titulo)}</h3>
-        <span class="marca">${esc(t.marca)} · ${esc(t.formato)}</span>
-      </figcaption>`;
-    const conteudo = t.link ? `<a href="${esc(t.link)}" target="_blank" rel="noopener" style="text-decoration:none">${corpo}</a>` : corpo;
-    return `<figure class="trabalho revelar" data-nicho="${esc(t.nicho)}">${conteudo}</figure>`;
-  }).join('');
-
   const filtros = $('#filtros');
-  filtros.innerHTML = [{ id: 'todos', nome: 'Todos' }, ...NICHOS]
-    .map(n => `<button type="button" class="filtro" data-filtro="${esc(n.id)}" aria-pressed="${n.id === 'todos'}">${esc(n.nome)}</button>`).join('');
+  const botaoMais = $('#ver-mais');
+  const play = '<span class="play play-p" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
+
+  // Em "Todos", intercala os nichos para a primeira página já mostrar variedade
+  const porNicho = NICHOS.map(n => TRABALHOS.filter(t => t.nicho === n.id));
+  const todosIntercalados = [];
+  for (let i = 0; porNicho.some(l => i < l.length); i++) porNicho.forEach(l => { if (l[i]) todosIntercalados.push(l[i]); });
+
+  let filtro = 'todos', mostrando = VIDEOS_POR_PAGINA;
+
+  function card(t, novo) {
+    const id = idDoVideo(t.video);
+    const capa = t.capa || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : '');
+    const nicho = nomeNicho[t.nicho] || t.nicho;
+    return `<figure class="trabalho${novo ? ' entra' : ''}">
+      <a class="trabalho-link" href="https://youtube.com/shorts/${esc(id)}" target="_blank" rel="noopener"
+         data-video="${esc(id)}" data-titulo="${esc(t.marca)}" aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
+        ${midia(capa, 'vídeo 9:16', 'Capa do vídeo para ' + t.marca, play)}
+        <figcaption>
+          <span class="nicho-tag">${esc(nicho)}</span>
+          <h3>${esc(t.marca)}</h3>
+        </figcaption>
+      </a>
+    </figure>`;
+  }
+
+  function desenhar(antes = 0) {
+    const lista = filtro === 'todos' ? todosIntercalados : TRABALHOS.filter(t => t.nicho === filtro);
+    const visiveis = filtro === 'todos' ? lista.slice(0, mostrando) : lista;
+    grade.innerHTML = visiveis.map((t, i) => card(t, i >= antes)).join('');
+    const faltam = lista.length - visiveis.length;
+    botaoMais.hidden = faltam <= 0;
+    botaoMais.textContent = `Ver mais vídeos (${faltam})`;
+  }
+
+  filtros.innerHTML = [{ id: 'todos', nome: 'Todos' }, ...NICHOS].map(n => {
+    const total = n.id === 'todos' ? TRABALHOS.length : TRABALHOS.filter(t => t.nicho === n.id).length;
+    return `<button type="button" class="filtro" data-filtro="${esc(n.id)}" aria-pressed="${n.id === 'todos'}">${esc(n.nome)} <span class="filtro-n">${total}</span></button>`;
+  }).join('');
 
   filtros.addEventListener('click', (e) => {
     const botao = e.target.closest('.filtro');
-    if (!botao) return;
-    const alvo = botao.dataset.filtro;
+    if (!botao || botao.dataset.filtro === filtro) return;
+    filtro = botao.dataset.filtro;
+    mostrando = VIDEOS_POR_PAGINA;
     filtros.querySelectorAll('.filtro').forEach(b => b.setAttribute('aria-pressed', b === botao));
-    const itens = grade.querySelectorAll('.trabalho');
-    itens.forEach(el => el.classList.add('saindo'));
-    setTimeout(() => {
-      itens.forEach(el => {
-        const mostra = alvo === 'todos' || el.dataset.nicho === alvo;
-        el.hidden = !mostra;
-        el.classList.add('visivel');
-      });
-      requestAnimationFrame(() => itens.forEach(el => el.classList.remove('saindo')));
-    }, reduzMovimento ? 0 : 220);
+    desenhar();
   });
+
+  botaoMais.addEventListener('click', () => {
+    const antes = mostrando;
+    mostrando += VIDEOS_POR_PAGINA;
+    desenhar(antes);
+    const primeiroNovo = grade.children[antes] && grade.children[antes].querySelector('a');
+    if (primeiroNovo) primeiroNovo.focus({ preventScroll: true });
+  });
+
+  desenhar();
+})();
+
+// Player de vídeo: abre o Shorts aqui mesmo no site, sem sair da página
+(function playerVideo() {
+  const modal = $('#modal-video'), player = $('#video-player');
+  let focoAnterior = null;
+  function abrir(id, titulo) {
+    focoAnterior = document.activeElement;
+    player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
+      title="Vídeo para ${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    $('#video-titulo').textContent = titulo;
+    $('#video-link').href = `https://youtube.com/shorts/${id}`;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('#video-fechar').focus();
+  }
+  function fechar() {
+    player.innerHTML = ''; // para o vídeo
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
+  }
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[data-video]');
+    if (!link || !link.dataset.video || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    abrir(link.dataset.video, link.dataset.titulo || '');
+  });
+  modal.addEventListener('click', (e) => { if (e.target.closest('[data-fechar-video]')) fechar(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) fechar(); });
 })();
 
 // Serviços
@@ -999,6 +1138,7 @@ $('#form-contato').addEventListener('submit', (e) => {
   try { jaVisto = sessionStorage.getItem(CHAVE) === '1'; } catch (e) {}
 
   function abrir() {
+    if (!$('#modal-video').hidden) { setTimeout(abrir, 5000); return; } // espera a pessoa terminar o vídeo
     focoAnterior = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
