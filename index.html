@@ -1032,12 +1032,24 @@ $('#form-contato').addEventListener('submit', (e) => {
   if (!jaVisto) setTimeout(abrir, 7000);
 })();
 
-// Link direto para uma seção (ex.: .../#destaques): rola de novo quando a página termina de montar
+// Links do menu e botões: rolam até a seção sem colocar #secao no endereço
+const enderecoLimpo = () => history.replaceState(null, '', location.pathname + location.search);
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link || link.classList.contains('pular')) return;
+  const alvo = document.getElementById(link.getAttribute('href').slice(1));
+  if (!alvo) return;
+  e.preventDefault();
+  alvo.scrollIntoView({ behavior: reduzMovimento ? 'auto' : 'smooth', block: 'start' });
+  if (location.hash) enderecoLimpo();
+});
+
+// Se alguém abrir um link antigo com # (ex.: .../#destaques): rola até a seção quando a página termina de montar e limpa o endereço
 window.addEventListener('load', () => {
   const alvo = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (!alvo) return;
   const pronto = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-  pronto.then(() => setTimeout(() => alvo.scrollIntoView({ behavior: 'instant', block: 'start' }), 50));
+  pronto.then(() => setTimeout(() => { alvo.scrollIntoView({ behavior: 'instant', block: 'start' }); enderecoLimpo(); }, 50));
 });
 </script>
 </body>
