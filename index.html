@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#f4eee6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter+Tight:wght@700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================================
@@ -372,6 +372,7 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
+#numeros{padding-top:56px}
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:min(4.25rem,calc(6.3vw - 5px));white-space:nowrap}
 @media (max-width:600px){#numeros .secao-cabeca h2{font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:normal}}
@@ -393,12 +394,12 @@ p{margin:0 0 1em}
 .rede-card-link:hover{color:var(--vinho);border-color:var(--vinho)}
 .publico-dados{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px}
 .divisor-depo{margin:64px auto 56px} /* linha entre as métricas e os depoimentos */
-.dado-card h3{font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vinho);margin:0 0 20px}
+.dado-card h3{font-family:inherit;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--vinho);margin:0 0 20px}
 .localidades{list-style:none;margin:0;padding:0;display:grid;gap:16px}
-.localidades li{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--tinta-2)}
+.localidades li{display:flex;align-items:center;gap:12px;font-size:.92rem;font-weight:500;color:var(--tinta)}
 .localidades li svg{width:22px;height:12px;flex-shrink:0;color:var(--vinho)}
 .barra + .barra{margin-top:14px}
-.barra-rotulo{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--tinta-2);margin-bottom:7px}
+.barra-rotulo{display:flex;justify-content:space-between;align-items:baseline;font-size:.92rem;font-weight:500;color:var(--tinta);margin-bottom:7px}
 .barra-rotulo strong{font-weight:700;color:var(--tinta)}
 .barra-trilho{height:7px;border-radius:99px;background:rgba(140,29,36,.1);overflow:hidden}
 .barra-trilho span{display:block;height:100%;width:0;border-radius:inherit;background:var(--vinho);transition:width 1.4s cubic-bezier(.2,.7,.2,1) .2s}
@@ -599,8 +600,8 @@ p{margin:0 0 1em}
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#destaques">Destaques</a></li>
         <li><a href="#trabalhos">Nichos</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
         <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#numeros">Métricas</a></li>
         <li><a href="#contato">Contato</a></li>
         <li class="menu-cta"><a href="#contato">Trabalhe comigo</a></li>
       </ul>
@@ -1074,8 +1075,7 @@ const REDES = [
   ] },
   { rede: 'TikTok', usuario: 'tatielemilani', link: 'https://www.tiktok.com/@tatielemilani', numeros: [
     { valor: 10,   casas: 0, sufixo: ' mil', rotulo: 'seguidores' },
-    { valor: 7,    casas: 0, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' },
-    { valor: 18.3, casas: 1, sufixo: ' mil', rotulo: 'curtidas' }
+    { valor: 7,    casas: 0, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' }
   ] }
 ];
 
@@ -1450,8 +1450,7 @@ const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits:
 // Sublinha no menu a seção que está na tela
 (function menuAtivo() {
   const links = [...document.querySelectorAll('#menu li:not(.menu-cta) a')];
-  // "Depoimentos" fica dentro da seção de números, então ela acende esse link
-  const alvoDo = (a) => document.getElementById(a.getAttribute('href') === '#depoimentos' ? 'numeros' : a.getAttribute('href').slice(1));
+  const alvoDo = (a) => document.getElementById(a.getAttribute('href').slice(1));
   const pares = links.map(a => [a, alvoDo(a)]).filter(p => p[1]);
   function atualizar() {
     const linha = window.innerHeight * 0.35;
