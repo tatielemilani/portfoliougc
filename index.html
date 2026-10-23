@@ -246,10 +246,11 @@ p{margin:0 0 1em}
 #destaques{padding:48px 0 40px} /* mais junto das marcas e dos nichos */
 #trabalhos{padding-top:64px}
 .destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.destaques-sub{font-size:1.1rem;color:#fff!important;margin:-12px 0 26px!important}
+.destaques-sub{font-size:1.2rem!important;color:#fff!important;margin:-12px 0 28px!important}
 .destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
 .destaques-texto h2 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--rosa-claro);margin-top:.05em}
-.destaques-texto p{color:#fff;max-width:440px;margin:0 0 14px}
+.destaques-texto{margin-top:-36px} /* texto um pouco acima do centro dos vídeos */
+.destaques-texto p{color:#fff;max-width:500px;font-size:1.14rem;line-height:1.65;margin:0 0 16px}
 .destaques-texto strong{color:var(--rosa-claro);font-weight:600}
 .destaques{overflow:hidden} /* os vídeos dos lados não podem passar da largura da tela */
 .destaques-palco{display:flex;flex-direction:column;align-items:center;min-width:0}
@@ -290,37 +291,44 @@ p{margin:0 0 1em}
 .play svg{width:26px;height:26px;margin-left:4px;fill:var(--vinho);transition:fill .35s}
 
 /* =========================================================
-   4. TRABALHOS POR NICHO
+   4. NICHOS
    ========================================================= */
-.filtros{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.filtros{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
 .filtro{
-  font-family:var(--sans);font-size:.9rem;font-weight:500;padding:10px 20px;border-radius:999px;
-  border:1px solid var(--linha);background:transparent;color:var(--tinta);cursor:pointer;transition:all .25s ease
+  font-family:var(--sans);font-size:.92rem;font-weight:500;padding:10px 20px;border-radius:999px;
+  border:1px solid var(--linha);background:rgba(255,255,255,.45);color:var(--tinta);cursor:pointer;transition:all .25s ease
 }
 .filtro:hover{border-color:var(--tinta)}
 .filtro[aria-pressed="true"]{background:var(--vinho);color:#fff;border-color:var(--vinho)}
-.filtro-n{font-size:.75em;opacity:.6;margin-left:2px}
-.trabalhos-grade{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
-.trabalho{margin:0}
-.trabalho.entra{animation:entraCard .5s cubic-bezier(.2,.7,.2,1) both}
-@keyframes entraCard{from{opacity:0;transform:translateY(14px)}}
-.trabalho-link{display:block;text-decoration:none;color:inherit;border-radius:var(--raio)}
-.trabalho .midia{aspect-ratio:9/16;box-shadow:var(--sombra);transition:box-shadow .35s ease, transform .35s ease}
-.trabalho-link:hover .midia{box-shadow:var(--sombra-forte);transform:translateY(-4px)}
-.trabalho-link:hover .play{transform:scale(1.08);background:var(--vinho)}
-.trabalho-link:hover .play svg{fill:#fff}
-.play.play-p{width:52px;height:52px}
+.nicho-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.nicho-nome{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.02em;margin:0}
+.nicho-desc{font-family:var(--italico);font-style:italic;color:var(--tinta-2);margin:6px 0 0}
+.nicho-setas{display:flex;gap:10px;flex-shrink:0}
+.nicho-setas .palco-seta{border-color:var(--linha);color:var(--tinta)}
+.nicho-setas .palco-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
+.nicho-setas .palco-seta:disabled{opacity:.35;cursor:default;background:transparent;color:var(--tinta);border-color:var(--linha)}
+/* Carrossel horizontal com os vídeos do nicho */
+.nicho-trilho{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 4 * 20px) / 5);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0 10px}
+.nicho-trilho::-webkit-scrollbar{display:none}
+.trabalho{margin:0;scroll-snap-align:start}
+.trabalho-link{position:relative;display:block;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--creme-2);text-decoration:none;color:#fff;box-shadow:var(--sombra);transition:transform .35s ease, box-shadow .35s ease}
+.trabalho-link:hover{transform:translateY(-4px);box-shadow:var(--sombra-forte)}
+.trabalho-capa{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.trabalho-link::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 22%,transparent 55%,rgba(0,0,0,.65) 100%);pointer-events:none}
+.trabalho-marca{position:absolute;z-index:2;top:12px;left:12px;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.trabalho-rodape{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;display:flex;flex-direction:column;gap:2px}
+.trabalho-rodape strong{font-family:var(--serif);font-weight:600;font-size:1.25rem;line-height:1.15}
+.trabalho-rodape small{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.trabalho-link .play{background:var(--vinho)}
+.trabalho-link .play svg{fill:#fff}
+.trabalho-link:hover .play{transform:scale(1.08)}
+.play.play-p{width:54px;height:54px}
 .play.play-p svg{width:20px;height:20px;margin-left:3px}
-.trabalho figcaption{padding:12px 2px 0}
-.trabalho .nicho-tag{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho)}
-.trabalho h3{font-size:1.1rem;margin:3px 0 0;line-height:1.25}
 .midia.tem-foto{background:var(--creme-2)}
 .midia.tem-foto::after{display:none}
-.mais-wrap{text-align:center;margin-top:44px}
-.mais-wrap .btn[hidden]{display:none}
 
 /* Player de vídeo */
-.video-caixa{position:relative;width:min(380px, calc((100vh - 150px) * 9 / 16), 100%);animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
+.video-caixa{position:relative;width:min(470px, calc((100vh - 140px) * 9 / 16), 100%);animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
 .video-player{aspect-ratio:9/16;border-radius:var(--raio);overflow:hidden;background:#000;box-shadow:var(--sombra-forte)}
 .video-player iframe{width:100%;height:100%;border:0;display:block}
 .video-fechar{top:-50px;right:0;background:var(--creme)}
@@ -438,7 +446,7 @@ p{margin:0 0 1em}
    RESPONSIVO
    ========================================================= */
 @media (max-width:1024px){
-  .trabalhos-grade{grid-template-columns:repeat(4,1fr)}
+  .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
   .metricas{grid-template-columns:repeat(2,1fr)}
   .servicos-grade{grid-template-columns:repeat(2,1fr)}
   .servico,.servico:not(:nth-child(3n+1)){padding:36px 28px 40px 0;border-left:0}
@@ -475,11 +483,11 @@ p{margin:0 0 1em}
   .rede-ig,.rede-tt{right:4px;width:44px;height:44px} .rede-ig{top:12%} .rede-tt{top:24%} .rede::after{display:none}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .secao{padding:88px 0}
-  .destaques-grade{grid-template-columns:1fr;gap:40px}
+  .destaques-grade{grid-template-columns:1fr;gap:40px} .destaques-texto{margin-top:0}
   .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
   .resultados{grid-template-columns:1fr}
   .depoimentos{grid-template-columns:1fr}
-  .trabalhos-grade{grid-template-columns:repeat(3,1fr);gap:16px}
+  .nicho-trilho{grid-auto-columns:calc((100% - 2 * 16px) / 3);gap:16px}
 }
 @media (max-width:600px){
   body{font-size:1rem}
@@ -492,7 +500,7 @@ p{margin:0 0 1em}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
-  .trabalhos-grade{grid-template-columns:repeat(2,1fr);gap:14px}
+  .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .trabalho-rodape strong{font-size:1.1rem} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
@@ -635,18 +643,27 @@ p{margin:0 0 1em}
     </div>
   </section>
 
-  <!-- ======================= 4. TRABALHOS POR NICHO ======================= -->
+  <!-- ======================= 4. NICHOS ======================= -->
   <section class="secao" id="trabalhos" aria-labelledby="titulo-trabalhos">
     <div class="container">
       <div class="secao-cabeca">
-        <p class="sobretitulo revelar">Trabalhos por nicho</p>
-        <h2 id="titulo-trabalhos" class="revelar">Um pouco de tudo, sempre com <em>a cara</em> da marca.</h2>
-        <p class="revelar">Escolha um nicho e toque em um vídeo para assistir aqui mesmo.</p>
+        <p class="sobretitulo revelar">Nichos</p>
+        <h2 id="titulo-trabalhos" class="revelar">Que tipo de <em>conteúdo</em> você busca hoje?</h2>
+        <p class="revelar">Escolha um nicho e assista aos vídeos que criei para cada marca, aqui mesmo.</p>
       </div>
       <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
-      <div class="filtros revelar" id="filtros" role="group" aria-label="Filtrar trabalhos por nicho"></div>
-      <div class="trabalhos-grade" id="trabalhos-grade" aria-live="polite"></div>
-      <div class="mais-wrap"><button type="button" class="btn btn-linha" id="ver-mais" hidden>Ver mais vídeos</button></div>
+      <div class="filtros revelar" id="filtros" role="group" aria-label="Escolher nicho"></div>
+      <div class="nicho-topo">
+        <div>
+          <h3 class="nicho-nome" id="nicho-nome"></h3>
+          <p class="nicho-desc" id="nicho-desc"></p>
+        </div>
+        <div class="nicho-setas">
+          <button type="button" class="palco-seta" id="nicho-anterior" aria-label="Vídeos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="palco-seta" id="nicho-proximo" aria-label="Próximos vídeos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="nicho-trilho" id="trabalhos-grade" aria-live="polite"></div>
     </div>
   </section>
 
@@ -857,16 +874,17 @@ const DESTAQUES = [
 ];
 
 // Nichos que aparecem como botões de filtro (o "id" precisa bater com o campo "nicho" dos trabalhos)
+// desc: frase curta em itálico que aparece embaixo do nome do nicho
 const NICHOS = [
-  { id: 'cabelo',      nome: 'Cabelo' },
-  { id: 'casa',        nome: 'Casa & Decor' },
-  { id: 'gastronomia', nome: 'Gastronomia' },
-  { id: 'beleza',      nome: 'Beleza & Cuidado' },
-  { id: 'moda',        nome: 'Moda' },
-  { id: 'ecommerce',   nome: 'E-Commerce' },
-  { id: 'casal',       nome: 'Casal' },
-  { id: 'acessorios',  nome: 'Acessórios' },
-  { id: 'estudo',      nome: 'Estudo' }
+  { id: 'cabelo',      nome: 'Cabelo',           desc: 'Cuidado e finalização dos fios na rotina real' },
+  { id: 'casa',        nome: 'Casa & Decor',     desc: 'Organização, limpeza e decoração do dia a dia' },
+  { id: 'gastronomia', nome: 'Gastronomia',      desc: 'Receitas e sabores que dão vontade de provar' },
+  { id: 'beleza',      nome: 'Beleza & Cuidado', desc: 'Skincare, make e autocuidado sem filtro' },
+  { id: 'moda',        nome: 'Moda',             desc: 'Looks, provadores e estilo de verdade' },
+  { id: 'ecommerce',   nome: 'E-Commerce',       desc: 'Achados e compras online mostrados na prática' },
+  { id: 'casal',       nome: 'Casal',            desc: 'Momentos a dois que viram conteúdo' },
+  { id: 'acessorios',  nome: 'Acessórios',       desc: 'Detalhes que completam o visual' },
+  { id: 'estudo',      nome: 'Estudo',           desc: 'Educação e rotina de estudos' }
 ];
 
 // Galeria de trabalhos (vídeos do YouTube Shorts)
@@ -922,8 +940,6 @@ const TRABALHOS = [
   { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' }
 ];
 
-// Quantos vídeos aparecem em "Todos" antes do botão "Ver mais vídeos"
-const VIDEOS_POR_PAGINA = 10;
 
 // Serviços (número, título e descrição curta)
 const SERVICOS = [
@@ -1053,67 +1069,63 @@ function midia(capa, legenda, alt, extra = '') {
 // Pega o código de 11 letras de um link do YouTube (shorts, watch, youtu.be ou embed)
 const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/); return m ? m[1] : ''; };
 
-// Trabalhos + filtros + "ver mais"
+// Nichos: botões só com os nichos e um carrossel com os vídeos do nicho escolhido
 (function trabalhos() {
-  const nomeNicho = Object.fromEntries(NICHOS.map(n => [n.id, n.nome]));
-  const grade = $('#trabalhos-grade');
+  const trilho = $('#trabalhos-grade');
   const filtros = $('#filtros');
-  const botaoMais = $('#ver-mais');
   const play = '<span class="play play-p" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
+  // Capa vertical em Full HD do YouTube; se não existir, cai para a versão menor
+  const capas = (id) => [`https://i.ytimg.com/vi/${id}/oardefault.jpg`, `https://i.ytimg.com/vi/${id}/hqdefault.jpg`];
+  let atual = NICHOS[0].id;
 
-  // Em "Todos", intercala os nichos para a primeira página já mostrar variedade
-  const porNicho = NICHOS.map(n => TRABALHOS.filter(t => t.nicho === n.id));
-  const todosIntercalados = [];
-  for (let i = 0; porNicho.some(l => i < l.length); i++) porNicho.forEach(l => { if (l[i]) todosIntercalados.push(l[i]); });
-
-  let filtro = 'todos', mostrando = VIDEOS_POR_PAGINA;
-
-  function card(t, novo) {
+  function card(t, nicho) {
     const id = idDoVideo(t.video);
-    const capa = t.capa || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : '');
-    const nicho = nomeNicho[t.nicho] || t.nicho;
-    return `<figure class="trabalho${novo ? ' entra' : ''}">
+    const [capa, reserva] = capas(id);
+    return `<figure class="trabalho">
       <a class="trabalho-link" href="https://youtube.com/shorts/${esc(id)}" target="_blank" rel="noopener"
          data-video="${esc(id)}" data-titulo="${esc(t.marca)}" aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
-        ${midia(capa, 'vídeo 9:16', 'Capa do vídeo para ' + t.marca, play)}
-        <figcaption>
-          <span class="nicho-tag">${esc(nicho)}</span>
-          <h3>${esc(t.marca)}</h3>
-        </figcaption>
+        <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" loading="lazy" decoding="async" width="1080" height="1920">
+        <span class="trabalho-marca">${esc(t.marca)}</span>
+        ${play}
+        <span class="trabalho-rodape"><strong>${esc(t.marca)}</strong><small>${esc(nicho)}</small></span>
       </a>
     </figure>`;
   }
 
-  function desenhar(antes = 0) {
-    const lista = filtro === 'todos' ? todosIntercalados : TRABALHOS.filter(t => t.nicho === filtro);
-    const visiveis = filtro === 'todos' ? lista.slice(0, mostrando) : lista;
-    grade.innerHTML = visiveis.map((t, i) => card(t, i >= antes)).join('');
-    const faltam = lista.length - visiveis.length;
-    botaoMais.hidden = faltam <= 0;
-    botaoMais.textContent = `Ver mais vídeos (${faltam})`;
+  function desenhar() {
+    const n = NICHOS.find(x => x.id === atual);
+    $('#nicho-nome').textContent = n.nome;
+    $('#nicho-desc').textContent = n.desc || '';
+    trilho.innerHTML = TRABALHOS.filter(t => t.nicho === atual).map(t => card(t, n.nome)).join('');
+    trilho.scrollLeft = 0;
+    trilho.querySelectorAll('.trabalho-capa').forEach(img => img.addEventListener('error', () => {
+      if (img.dataset.reserva && img.src !== img.dataset.reserva) img.src = img.dataset.reserva;
+    }));
+    atualizarSetas();
   }
 
-  filtros.innerHTML = [{ id: 'todos', nome: 'Todos' }, ...NICHOS].map(n => {
-    const total = n.id === 'todos' ? TRABALHOS.length : TRABALHOS.filter(t => t.nicho === n.id).length;
-    return `<button type="button" class="filtro" data-filtro="${esc(n.id)}" aria-pressed="${n.id === 'todos'}">${esc(n.nome)} <span class="filtro-n">${total}</span></button>`;
-  }).join('');
+  function atualizarSetas() {
+    const fim = trilho.scrollWidth - trilho.clientWidth - 2;
+    $('#nicho-anterior').disabled = trilho.scrollLeft <= 2;
+    $('#nicho-proximo').disabled = trilho.scrollLeft >= fim;
+  }
+
+  filtros.innerHTML = NICHOS.map(n =>
+    `<button type="button" class="filtro" data-filtro="${esc(n.id)}" aria-pressed="${n.id === atual}">${esc(n.nome)}</button>`).join('');
 
   filtros.addEventListener('click', (e) => {
     const botao = e.target.closest('.filtro');
-    if (!botao || botao.dataset.filtro === filtro) return;
-    filtro = botao.dataset.filtro;
-    mostrando = VIDEOS_POR_PAGINA;
+    if (!botao || botao.dataset.filtro === atual) return;
+    atual = botao.dataset.filtro;
     filtros.querySelectorAll('.filtro').forEach(b => b.setAttribute('aria-pressed', b === botao));
     desenhar();
   });
 
-  botaoMais.addEventListener('click', () => {
-    const antes = mostrando;
-    mostrando += VIDEOS_POR_PAGINA;
-    desenhar(antes);
-    const primeiroNovo = grade.children[antes] && grade.children[antes].querySelector('a');
-    if (primeiroNovo) primeiroNovo.focus({ preventScroll: true });
-  });
+  const passo = () => { const c = trilho.querySelector('.trabalho'); return c ? (c.offsetWidth + 20) * 2 : 300; };
+  $('#nicho-anterior').addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
+  $('#nicho-proximo').addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
+  trilho.addEventListener('scroll', atualizarSetas, { passive: true });
+  window.addEventListener('resize', atualizarSetas);
 
   desenhar();
 })();
