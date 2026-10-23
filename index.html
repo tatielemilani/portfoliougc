@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tatiele Milani · Portfólio UGC Creator & Influencer</title>
 <meta name="description" content="Portfólio de Tatiele Milani, UGC creator e influencer em Curitiba/PR. Vídeos que fazem sua marca parecer recomendação de amiga e vendem como anúncio.">
-<meta name="theme-color" content="#f7f1ec">
+<meta name="theme-color" content="#8c1d24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
    PALETA E BASE
    ========================================================= */
 :root{
-  --creme:#f7f1ec;
-  --creme-2:#efe4dd;
-  --papel:#fdfaf7;
+  --creme:#f7f5f2; /* gelo: fundo principal */
+  --creme-2:#eeeae5;
+  --papel:#ffffff;
   --tinta:#2a1a18;
   --tinta-2:#5e4b47;
   --vinho:#8c1d24;
   --vinho-escuro:#6c141a;
-  --blush:#f2e2db;
+  --rosa-claro:#f6cfc6; /* destaque sobre o vinho */
   --nude:#d9a79c;
   --nude-texto:#a14a45; /* versão mais escura do nude, para texto pequeno com bom contraste */
   --linha:rgba(42,26,24,.12);
@@ -94,7 +94,7 @@ p{margin:0 0 1em}
 .midia-legenda{
   position:absolute;left:14px;bottom:14px;z-index:2;
   font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  background:rgba(253,250,247,.88);color:var(--tinta);padding:6px 11px;border-radius:999px;
+  background:rgba(255,255,255,.88);color:var(--tinta);padding:6px 11px;border-radius:999px;
 }
 
 /* =========================================================
@@ -102,23 +102,24 @@ p{margin:0 0 1em}
    ========================================================= */
 .topo{
   position:fixed;inset:0 0 auto 0;z-index:100;height:var(--topo);
-  background:rgba(247,241,236,.82);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
-  border-bottom:1px solid transparent;transition:border-color .3s ease, background .3s ease;
+  background:var(--vinho);color:#fff;
+  box-shadow:0 1px 0 rgba(255,255,255,.06);transition:box-shadow .3s ease;
 }
-.topo.rolou{border-bottom-color:var(--linha);background:rgba(247,241,236,.94)}
+.topo.rolou{box-shadow:0 8px 24px -14px rgba(42,26,24,.45)}
+.topo :focus-visible{outline-color:#fff}
 .topo .container{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px}
-.marca-nome{font-family:var(--serif);font-size:1.35rem;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
-.marca-nome em{font-style:italic;color:var(--vinho)}
+.marca-nome{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:#fff;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.marca-nome em{font-style:italic;color:#fff}
 .menu{display:flex;align-items:center;gap:30px;list-style:none;margin:0;padding:0}
-.menu a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--tinta-2);position:relative;padding:6px 0;transition:color .2s}
-.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--nude);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
-.menu a:hover{color:var(--tinta)}
+.menu a{text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;padding:6px 0;transition:color .2s}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--rosa-claro);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.menu a:hover{color:#fff}
 .menu a:hover::after{transform:scaleX(1)}
-.menu .menu-cta a{background:var(--vinho);color:var(--creme);padding:10px 18px;border-radius:999px}
+.menu .menu-cta a{background:#fff;color:var(--vinho);padding:11px 20px;border-radius:10px;font-weight:600}
 .menu .menu-cta a::after{display:none}
-.menu .menu-cta a:hover{background:var(--vinho-escuro)}
+.menu .menu-cta a:hover{background:var(--rosa-claro);color:var(--vinho-escuro)}
 .sanduiche{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;border-radius:8px}
-.sanduiche span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--tinta);transition:transform .3s ease, opacity .2s}
+.sanduiche span{position:absolute;left:11px;right:11px;height:1.5px;background:#fff;transition:transform .3s ease, opacity .2s}
 .sanduiche span:nth-child(1){top:15px}
 .sanduiche span:nth-child(2){top:21px}
 .sanduiche span:nth-child(3){top:27px}
@@ -129,39 +130,41 @@ p{margin:0 0 1em}
 /* =========================================================
    1. CAPA
    ========================================================= */
-.capa{padding:calc(var(--topo) + 64px) 0 0;position:relative}
-.capa-grade{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
-.capa h1{font-size:clamp(3rem,8.4vw,7.2rem);line-height:.95;overflow-wrap:break-word;color:var(--vinho)}
-.capa h1 .linha{display:block}
-.capa h1 .menor{font-size:.62em;color:var(--tinta-2)}
-.capa-frase{font-size:clamp(1.1rem,1.6vw,1.3rem);color:var(--tinta-2);max-width:520px;margin:32px 0 36px}
-.capa-frase strong{color:var(--tinta);font-weight:600}
-.capa-botoes{display:flex;flex-wrap:wrap;gap:14px}
-.capa-numeros{display:flex;flex-wrap:wrap;gap:40px;margin-top:56px;padding-top:28px;border-top:1px solid var(--linha)}
-.capa-numeros div{min-width:0}
-.capa-numeros strong{display:block;font-family:var(--serif);font-size:2.2rem;font-weight:400;line-height:1;color:var(--vinho)}
-.capa-numeros span{font-size:.82rem;color:var(--tinta-2)}
-.capa-foto{position:relative}
-.capa-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra-forte)}
-.capa-selo{
-  position:absolute;right:-18px;top:36px;z-index:3;
-  background:var(--papel);border-radius:var(--raio);padding:14px 18px;box-shadow:var(--sombra);
-  font-size:.82rem;line-height:1.35;
+.capa{padding:calc(var(--topo) + 48px) 0 0;position:relative}
+.capa-grade{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
+.capa-texto{padding-bottom:72px}
+.check{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:#fff;flex-shrink:0}
+.check svg{width:16px;height:16px}
+.capa-selo-topo{display:flex;align-items:center;gap:12px;font-size:.95rem;font-weight:500;color:var(--tinta-2);margin-bottom:28px}
+.capa h1{font-size:clamp(2.8rem,6.2vw,5.4rem);font-weight:600;line-height:1.02;letter-spacing:-.035em;color:var(--tinta);overflow-wrap:break-word;font-variation-settings:"opsz" 144}
+.capa h1 em{font-style:normal;color:var(--vinho)}
+.capa-frase{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--tinta-2);max-width:520px;margin:28px 0 10px}
+.capa-numeros{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:clamp(1rem,1.4vw,1.15rem);margin:0 0 40px}
+.capa-numeros strong{font-weight:600;color:var(--tinta)}
+.capa-numeros .sep{color:var(--vinho)}
+.capa-botoes{display:flex;flex-wrap:wrap;align-items:center;gap:28px}
+.capa-botoes .btn-primario{padding:18px 34px;font-size:1rem;border-radius:14px}
+.link-seta{font-weight:600;color:var(--tinta);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.link-seta span{transition:transform .25s ease}
+.link-seta:hover span{transform:translateX(4px)}
+.capa-foto{position:relative;align-self:end;max-width:540px;width:100%;justify-self:end}
+.capa-foto img{width:100%;height:auto;display:block}
+.capa-card{
+  position:absolute;z-index:3;display:flex;align-items:center;gap:12px;
+  background:#fff;border-radius:16px;padding:14px 20px 14px 14px;box-shadow:0 14px 34px -12px rgba(42,26,24,.28);
+  font-size:.85rem;line-height:1.35;color:var(--tinta-2);white-space:nowrap
 }
-.capa-selo strong{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:500}
-.capa-selo .ponto{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--vinho);margin-right:6px;vertical-align:middle}
-.capa-foto .rabisco{
-  position:absolute;left:-26px;bottom:48px;z-index:3;background:var(--vinho);color:#fff;
-  font-family:var(--serif);font-style:italic;font-size:1.05rem;padding:10px 18px;border-radius:999px;transform:rotate(-4deg);box-shadow:var(--sombra)
-}
+.capa-card strong{display:block;font-size:.95rem;font-weight:600;color:var(--tinta)}
+.capa-card-1{right:-12px;top:30%}
+.capa-card-2{left:-28px;bottom:14%}
 
 /* Faixa de marcas */
-.faixa{margin-top:96px;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);overflow:hidden;padding:20px 0;background:var(--papel)}
+.faixa{overflow:hidden;padding:22px 0;background:var(--vinho)}
 .faixa-trilho{display:flex;width:max-content;animation:desliza 40s linear infinite}
 .faixa:hover .faixa-trilho{animation-play-state:paused}
 .faixa ul{display:flex;gap:56px;list-style:none;margin:0;padding:0 28px}
-.faixa li{font-family:var(--serif);font-size:1.25rem;color:var(--tinta-2);white-space:nowrap;display:flex;align-items:center;gap:56px}
-.faixa li::after{content:"✦";font-size:.7rem;color:var(--nude)}
+.faixa li{font-family:var(--serif);font-size:1.25rem;color:#fff;white-space:nowrap;display:flex;align-items:center;gap:56px}
+.faixa li::after{content:"✦";font-size:.7rem;color:var(--rosa-claro)}
 @keyframes desliza{to{transform:translateX(-50%)}}
 
 /* =========================================================
@@ -184,7 +187,19 @@ p{margin:0 0 1em}
 /* =========================================================
    3. DESTAQUES
    ========================================================= */
-.destaques{background:var(--papel)}
+/* As seções com a classe .secao-vinho (destaques e serviços) usam fundo vinho e texto claro */
+.secao-vinho{background:var(--vinho);color:#fff}
+.secao-vinho :focus-visible{outline-color:#fff}
+.secao-vinho .sobretitulo{color:rgba(255,255,255,.78)}
+.secao-vinho .sobretitulo::before{background:var(--rosa-claro)}
+.secao-vinho h2,.secao-vinho h3{color:#fff}
+.secao-vinho h2 em{color:var(--rosa-claro)}
+.secao-vinho .secao-cabeca p{color:rgba(255,255,255,.82)}
+.secao-vinho .destaque-numero{color:#fff}
+.secao-vinho .destaque-rotulo{color:var(--rosa-claro)}
+.secao-vinho .destaque p{color:rgba(255,255,255,.8)}
+.secao-vinho .destaque .ver{color:#fff;border-color:var(--rosa-claro)}
+.secao-vinho .midia{box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
 .destaques-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
 .destaque{
   display:block;text-decoration:none;color:inherit;border-radius:calc(var(--raio) + 4px);
@@ -197,7 +212,7 @@ p{margin:0 0 1em}
 .destaque:hover .midia{box-shadow:var(--sombra-forte)}
 .play{
   position:absolute;inset:0;margin:auto;z-index:2;width:76px;height:76px;border-radius:50%;
-  background:rgba(253,250,247,.92);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(42,26,24,.35);
+  background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(42,26,24,.35);
   transition:transform .35s ease, background .35s ease;
 }
 .play svg{width:26px;height:26px;margin-left:4px;fill:var(--vinho);transition:fill .35s}
@@ -253,13 +268,12 @@ p{margin:0 0 1em}
 /* =========================================================
    5. SERVIÇOS
    ========================================================= */
-.servicos{background:var(--blush);color:var(--tinta)}
-.servicos-grade{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(140,29,36,.18)}
-.servico{padding:40px 32px 44px 0;border-bottom:1px solid rgba(140,29,36,.18);transition:background .3s}
-.servico:not(:nth-child(3n+1)){padding-left:32px;border-left:1px solid rgba(140,29,36,.18)}
-.servico-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--vinho)}
+.servicos-grade{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.2)}
+.servico{padding:40px 32px 44px 0;border-bottom:1px solid rgba(255,255,255,.2);transition:background .3s}
+.servico:not(:nth-child(3n+1)){padding-left:32px;border-left:1px solid rgba(255,255,255,.2)}
+.servico-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--rosa-claro)}
 .servico h3{font-size:1.75rem;margin:18px 0 12px}
-.servico p{color:var(--tinta-2);font-size:.97rem;margin:0}
+.servico p{color:rgba(255,255,255,.8);font-size:.97rem;margin:0}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
@@ -364,7 +378,7 @@ p{margin:0 0 1em}
   .metricas{grid-template-columns:repeat(2,1fr)}
   .servicos-grade{grid-template-columns:repeat(2,1fr)}
   .servico,.servico:not(:nth-child(3n+1)){padding:36px 28px 40px 0;border-left:0}
-  .servico:nth-child(2n){padding-left:28px;border-left:1px solid rgba(140,29,36,.18)}
+  .servico:nth-child(2n){padding-left:28px;border-left:1px solid rgba(255,255,255,.2)}
 }
 @media (max-width:900px){
   :root{--topo:64px}
@@ -372,21 +386,23 @@ p{margin:0 0 1em}
   .topo nav{position:absolute}
   .menu{
     position:fixed;top:var(--topo);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
-    background:var(--creme);border-bottom:1px solid var(--linha);padding:8px 24px 24px;
+    background:var(--vinho);border-top:1px solid rgba(255,255,255,.15);padding:8px 24px 24px;box-shadow:0 18px 30px -18px rgba(42,26,24,.5);
     transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s ease, transform .25s ease, visibility .25s;
     max-height:calc(100vh - var(--topo));overflow:auto
   }
   .menu.aberto{transform:none;opacity:1;visibility:visible}
-  .menu li{border-bottom:1px solid var(--linha)}
-  .menu a{display:block;padding:16px 0;font-size:1.05rem}
+  .menu li{border-bottom:1px solid rgba(255,255,255,.15)}
+  .menu a{display:block;padding:16px 0;font-size:.95rem}
   .menu a::after{display:none}
   .menu .menu-cta{border:0;margin-top:16px}
   .menu .menu-cta a{text-align:center;padding:14px 18px}
   .capa{padding-top:calc(var(--topo) + 40px)}
   .capa-grade,.sobre-grade,.contato-grade{grid-template-columns:1fr;gap:48px}
-  .capa-foto{max-width:420px;width:100%;margin:0 auto}
-  .capa-selo{right:12px}
-  .capa-foto .rabisco{left:12px}
+  .capa-grade{gap:8px}
+  .capa-texto{padding-bottom:0}
+  .capa-foto{max-width:440px;margin:0 auto;justify-self:center}
+  .capa-card-1{right:0}
+  .capa-card-2{left:0}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .sobre-foto::before{inset:16px -12px -16px 12px}
   .secao{padding:88px 0}
@@ -398,10 +414,13 @@ p{margin:0 0 1em}
 @media (max-width:600px){
   body{font-size:1rem}
   .container{padding:0 16px}
-  .capa-numeros{gap:24px}
-  .capa-numeros strong{font-size:1.8rem}
+  .capa-numeros{gap:8px}
+  .capa-botoes{gap:18px}
   .capa-botoes .btn{flex:1 1 100%}
-  .faixa{margin-top:64px}
+  .capa-botoes .link-seta{margin:0 auto}
+  .capa-card{padding:10px 14px 10px 10px;font-size:.78rem}
+  .capa-card strong{font-size:.85rem}
+  .capa-card .check{width:28px;height:28px}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
@@ -413,7 +432,6 @@ p{margin:0 0 1em}
   .formulario{padding:28px 20px}
   .depoimento{padding:28px 22px}
   .modal-card{padding:40px 22px 26px}
-  .capa-selo{top:16px;right:8px;padding:10px 14px}
 }
 @media (max-width:380px){
   .metricas{grid-template-columns:1fr}
@@ -458,35 +476,30 @@ p{margin:0 0 1em}
   <section class="capa" id="inicio" aria-labelledby="titulo-capa">
     <div class="container capa-grade">
       <div class="capa-texto">
-        <p class="sobretitulo revelar">UGC Creator &amp; Influencer · Curitiba/PR</p>
-        <h1 id="titulo-capa" class="revelar">
-          <span class="linha">Tatiele</span>
-          <span class="linha"><em>Milani</em></span>
-        </h1>
-        <p class="capa-frase revelar">Crio vídeos que fazem a sua marca parecer <strong>recomendação de amiga</strong> e vender como anúncio. Roteiro, gravação e edição pensados para gerar desejo de verdade.</p>
+        <p class="capa-selo-topo revelar"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>UGC Creator &amp; Influencer · Curitiba/PR</p>
+        <h1 id="titulo-capa" class="revelar">Criando conteúdo que gera <em>conexão e vendas</em></h1>
+        <p class="capa-frase revelar">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</p>
+        <p class="capa-numeros revelar"><strong>200 vídeos</strong><span class="sep" aria-hidden="true">|</span><strong>40 marcas</strong><span class="sep" aria-hidden="true">|</span><strong>+53,2M views</strong></p>
         <div class="capa-botoes revelar">
-          <a href="#contato" class="btn btn-primario">Falar comigo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#trabalhos" class="btn btn-linha">Ver os trabalhos</a>
-        </div>
-        <div class="capa-numeros revelar" aria-label="Números em destaque">
-          <div><strong>200</strong><span>vídeos entregues</span></div>
-          <div><strong>40</strong><span>marcas atendidas</span></div>
-          <div><strong>+53,2M</strong><span>views somadas</span></div>
+          <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
+          <a href="#sobre" class="link-seta">Saiba mais <span aria-hidden="true">→</span></a>
         </div>
       </div>
 
       <div class="capa-foto revelar">
         <!--
-          FOTO DA CAPA: para trocar, salve a nova foto na pasta imagens e mude o src abaixo.
-          Dica: .jpg com no máximo 200 KB para o site abrir rápido.
+          FOTO DA CAPA: recorte sem fundo, já aplicado sobre a cor de fundo da página (gelo).
+          Se mudar a cor --creme, gere a foto de novo com a mesma cor para não aparecer emenda.
         -->
-        <div class="midia tem-foto">
-          <img src="imagens/tatiele-capa-sem-fundo.jpg" alt="Tatiele Milani sorrindo, de blusa vinho ombro a ombro" width="900" height="1125" fetchpriority="high" decoding="async">
+        <img src="imagens/tatiele-capa-sem-fundo.jpg" alt="Tatiele Milani sorrindo, de blusa vinho ombro a ombro" width="900" height="1125" fetchpriority="high" decoding="async">
+        <div class="capa-card capa-card-1">
+          <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span><strong>Agenda aberta</strong>novos projetos</span>
         </div>
-        <div class="capa-selo"><strong>Agenda aberta</strong><span class="ponto" aria-hidden="true"></span>novos projetos</div>
-        <span class="rabisco">conteúdo que converte</span>
+        <div class="capa-card capa-card-2">
+          <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span><strong>+28,5M views</strong>no Reels de destaque</span>
+        </div>
       </div>
     </div>
 
@@ -508,8 +521,9 @@ p{margin:0 0 1em}
       <div class="sobre-texto">
         <p class="sobretitulo revelar">Sobre mim</p>
         <h2 id="titulo-sobre" class="revelar">Prazer, eu sou a <em>Tati</em>.</h2>
-        <p class="revelar">Moro em Curitiba e transformo produtos em histórias que as pessoas querem assistir até o fim. Meu jeito de criar é simples: gravo como se estivesse indicando para uma amiga, com verdade, luz bonita e um roteiro pensado para o seu objetivo.</p>
-        <p class="revelar">Já entreguei mais de 200 vídeos para 40 marcas de cabelo, beleza, moda, gastronomia, casa e decoração, e-commerce, acessórios e educação. Cada projeto é tratado com o mesmo carinho, do briefing à entrega final.</p>
+        <p class="revelar">Tenho 27 anos, moro em Curitiba e sou UGC Creator e influencer. Minha rotina de beleza, moda, lifestyle e os lugares gostosos que descubro por aí viram vídeos que conversam com quem assiste e despertam aquela vontade de ter.</p>
+        <p class="revelar">Já são mais de 200 vídeos para 40 marcas. Como estudante de marketing digital, olho para cada produto com estratégia, mas gravo com o coração: é essa mistura de análise e autenticidade que gera autoridade para a marca e resultado de verdade.</p>
+        <p class="revelar">Fora dos roteiros, gosto de criar conteúdos leves e intencionais, que valorizam a autoestima feminina e inspiram outras mulheres a se sentirem confiantes e incríveis do jeitinho que são.</p>
         <ul class="promessas revelar" aria-label="Minhas promessas">
           <li><span class="num">01</span>Roteiro aprovado antes de gravar</li>
           <li><span class="num">02</span>Uma rodada de ajuste inclusa</li>
@@ -521,7 +535,7 @@ p{margin:0 0 1em}
   </section>
 
   <!-- ======================= 3. CONTEÚDOS DE DESTAQUE ======================= -->
-  <section class="secao destaques" id="destaques" aria-labelledby="titulo-destaques">
+  <section class="secao secao-vinho destaques" id="destaques" aria-labelledby="titulo-destaques">
     <div class="container">
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Conteúdos de destaque</p>
@@ -549,7 +563,7 @@ p{margin:0 0 1em}
   </section>
 
   <!-- ======================= 5. COMO EU TE AJUDO ======================= -->
-  <section class="secao servicos" id="servicos" aria-labelledby="titulo-servicos">
+  <section class="secao secao-vinho servicos" id="servicos" aria-labelledby="titulo-servicos">
     <div class="container">
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Como eu te ajudo</p>
