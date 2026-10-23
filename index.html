@@ -220,7 +220,7 @@ p{margin:0 0 1em}
 /* Linha discreta entre o Sobre mim e as marcas */
 .divisor{border:0;height:1px;margin:48px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
 .marcas-titulo{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-2);text-align:center;margin:0 0 34px}
-.marcas-titulo::before,.marcas-titulo::after{content:"";width:48px;height:1px;background:var(--nude);flex-shrink:0}
+.marcas-titulo::before,.marcas-titulo::after{content:none} /* sem os tracinhos dos lados */
 .marcas-faixa{overflow:hidden} /* sem esmaecer nas pontas, igual aos depoimentos */
 .marcas-trilho{display:flex;width:max-content;padding:10px 0;animation:desliza 110s linear infinite}
 .marcas-faixa:hover .marcas-trilho{animation-play-state:paused}
@@ -403,7 +403,7 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding:40px 0 64px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 210px no-repeat} /* sombreado nasce por trás dos depoimentos (que ficam na frente) e vira o vinho do contato */
+#numeros{padding:40px 0 44px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 190px no-repeat} /* sombreado nasce por trás dos depoimentos (que ficam na frente) e vira o vinho do contato */
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -461,12 +461,12 @@ p{margin:0 0 1em}
 /* =========================================================
    7. CONTATO
    ========================================================= */
-.contato{background:var(--vinho);color:#fff;padding:56px 0 72px}
+.contato{background:var(--vinho);color:#fff;padding:36px 0 72px}
 .contato-grade{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
 .contato h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.02;font-size:clamp(2.4rem,4.6vw,3.8rem);color:#fff}
 .contato h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
-.contato .sobretitulo{color:rgba(255,255,255,.8)}
-.contato-intro p{color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 36px;max-width:460px}
+.contato .sobretitulo{display:flex;color:rgba(255,255,255,.85);font-size:.72rem;letter-spacing:.14em;font-weight:700;margin:0 0 18px;line-height:19px} /* mesma altura e tamanho do "Nome" do formulário */
+.contato-intro p:not(.sobretitulo){color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 36px;max-width:460px}
 .canais{display:flex;flex-direction:column;gap:14px}
 .canais-linha{display:flex;flex-wrap:wrap;gap:14px 32px}
 .canal{display:inline-flex;align-items:center;gap:14px;align-self:flex-start;text-decoration:none;color:#fff;font-size:1rem;transition:color .2s}
@@ -594,7 +594,7 @@ p{margin:0 0 1em}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:0}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
-  .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
+  .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
   .publico-texto{font-size:1rem} .divisor-depo{margin:48px auto 44px}
   .contato{padding:48px 0 56px} .campos-dupla{grid-template-columns:1fr;gap:0} .rodape-linha{flex-direction:column;align-items:flex-start} .rodape-direitos{text-align:left}
@@ -990,7 +990,7 @@ document.documentElement.classList.add('js');
 // Contatos (aparecem nos botões de contato e no rodapé)
 const CONTATO = {
   whatsapp: '5541996281188',            // só números, com 55 + DDD
-  whatsappTexto: '(41) 99628-1188',
+  whatsappTexto: '+55 (41) 99628-1188',
   email: 'ugctatielemilani@gmail.com',
   instagram: 'tatielemilani',           // sem o @
   tiktok: 'tatielemilani'               // @ do TikTok (usado no ícone da capa e no rodapé)
