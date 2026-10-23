@@ -387,19 +387,16 @@ p{margin:0 0 1em}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(1.6rem,2.9vw,2.2rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
-.depo-carrossel{position:relative}
-.depoimentos{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:4px;scrollbar-width:none;padding:40px 4px 18px}
-.depoimentos::-webkit-scrollbar{display:none}
-.depoimento{flex:0 0 calc((100% - 40px) / 3);scroll-snap-align:start;margin:0;background:var(--papel);border-radius:14px;padding:40px 30px 22px;box-shadow:var(--sombra);text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
+.depo-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.depoimentos{display:flex;width:max-content;padding:40px 0 18px;animation:desliza 90s linear infinite}
+.depo-faixa:hover .depoimentos{animation-play-state:paused}
+.depo-grupo{display:flex;gap:20px;padding-right:20px}
+.depoimento{flex:0 0 340px;margin:0;background:var(--papel);border-radius:14px;padding:40px 30px 22px;box-shadow:var(--sombra);text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
 .depoimento figcaption{order:-1;display:flex;flex-direction:column;align-items:center;gap:6px}
 .depoimento .depo-logo{position:absolute;top:-30px;left:calc(50% - 30px);width:60px;height:60px;border-width:2px}
 .depo-letra{display:grid;place-items:center;background:var(--vinho);color:#fff;font-family:var(--serif);font-size:1.5rem}
 .depoimento figcaption strong{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta)}
 .depoimento blockquote{margin:8px 0 0;font-size:.78rem;line-height:1.55;color:var(--tinta-2)}
-.depo-seta{position:absolute;top:calc(50% + 14px);transform:translateY(-50%);z-index:2;background:#fff;color:var(--tinta);border:1px solid var(--linha);box-shadow:var(--sombra)}
-.depo-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
-.depo-seta:disabled{opacity:0;pointer-events:none}
-#depo-anterior{left:-22px} #depo-proximo{right:-22px}
 
 /* =========================================================
    7. CONTATO
@@ -516,9 +513,7 @@ p{margin:0 0 1em}
   .destaques-grade{grid-template-columns:1fr;gap:40px} .destaques-texto{margin-top:0}
   .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
   .resultados{grid-template-columns:1fr}
-  .depoimento{flex-basis:calc((100% - 20px) / 2)}
   .depo-cabeca{flex-direction:column;align-items:flex-start;gap:14px}
-  #depo-anterior{left:-8px} #depo-proximo{right:-8px}
   .nicho-trilho{grid-auto-columns:calc((100% - 2 * 16px) / 3);gap:16px}
 }
 @media (max-width:600px){
@@ -541,9 +536,8 @@ p{margin:0 0 1em}
   .metrica{padding:24px 18px}
   .contato{margin:0 8px;padding:72px 0;border-radius:20px}
   .formulario{padding:28px 20px}
-  .depoimento{flex-basis:84%;padding:38px 20px 18px}
-  .depoimentos{gap:14px}
-  .depo-seta{display:none}
+  .depoimento{flex-basis:270px;padding:38px 20px 18px}
+  .depo-grupo{gap:14px;padding-right:14px}
   .modal-card{padding:40px 22px 26px}
 }
 @media (max-width:380px){
@@ -557,6 +551,7 @@ p{margin:0 0 1em}
   .js .revelar{opacity:1;transform:none}
   .faixa-trilho{animation:none;flex-wrap:wrap}
   .fotos-trilho.andando{animation:none;width:auto;overflow-x:auto} .fotos-trilho.andando .fotos-grupo[aria-hidden]{display:none}
+  .depoimentos{animation:none;width:auto;overflow-x:auto} .depo-grupo[aria-hidden]{display:none}
   .marcas-trilho{animation:none;width:auto;justify-content:center;flex-wrap:wrap} .marcas-grupo{flex-wrap:wrap;justify-content:center;padding:0} .marcas-grupo[aria-hidden]{display:none} .marcas-faixa{-webkit-mask-image:none;mask-image:none}
 }
 </style>
@@ -746,10 +741,8 @@ p{margin:0 0 1em}
         <p class="revelar">Feedback de marcas que confiaram no meu trabalho.</p>
       </div>
       <!-- Os depoimentos vêm do array DEPOIMENTOS no script -->
-      <div class="depo-carrossel">
-        <button type="button" class="palco-seta depo-seta" id="depo-anterior" aria-label="Depoimentos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="depo-faixa">
         <div class="depoimentos" id="depoimentos-trilho"></div>
-        <button type="button" class="palco-seta depo-seta" id="depo-proximo" aria-label="Próximos depoimentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </section>
@@ -1048,7 +1041,7 @@ const DEPOIMENTOS = [
   { marca: 'Èze Congelados', logo: 'marca-03.webp', texto: 'Amei o vídeo, ficou muito lindo e muito boom 💙' },
   { marca: 'Tropical Especiarias', logo: 'marca-36.webp', texto: 'Amamos a experiência de trabalhar com a Tatiele. Entregou um conteúdo excelente.' },
   { marca: 'Mais Memórias', logo: 'marca-30.webp', texto: 'Sua edição é maravilhosa.' },
-  { marca: 'Sterily', texto: 'Todos aprovadíssimos! Ficaram excelentes.' }
+  { marca: 'Sterily', logo: 'marca-40.webp', texto: 'Todos aprovadíssimos! Ficaram excelentes.' }
 ];
 
 /* =========================================================
@@ -1278,8 +1271,7 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
   </article>`).join('');
 
 (function depoimentos() {
-  const trilho = $('#depoimentos-trilho');
-  trilho.innerHTML = DEPOIMENTOS.map(d => `
+  const cards = DEPOIMENTOS.map(d => `
     <figure class="depoimento">
       <blockquote>${esc(d.texto)}</blockquote>
       <figcaption>
@@ -1289,18 +1281,9 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
         <strong>${esc(d.marca)}</strong>
       </figcaption>
     </figure>`).join('');
-
-  const anterior = $('#depo-anterior'), proximo = $('#depo-proximo');
-  const passo = () => { const c = trilho.querySelector('.depoimento'); return c ? c.offsetWidth + 20 : 300; };
-  const atualizar = () => {
-    anterior.disabled = trilho.scrollLeft <= 8;
-    proximo.disabled = trilho.scrollLeft >= trilho.scrollWidth - trilho.clientWidth - 8;
-  };
-  anterior.addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
-  proximo.addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
-  trilho.addEventListener('scroll', atualizar, { passive: true });
-  window.addEventListener('resize', atualizar);
-  atualizar();
+  // Passa sozinho bem devagar, repetido para o giro não ter emenda (para quando o mouse está em cima)
+  const copia = cards.replace(/alt="[^"]*"/g, 'alt=""').replace(/<span class="marca-circ/g, '<span aria-hidden="true" class="marca-circ');
+  $('#depoimentos-trilho').innerHTML = `<div class="depo-grupo">${cards}</div><div class="depo-grupo" aria-hidden="true">${copia}</div>`;
 })();
 
 // Contatos e rodapé
