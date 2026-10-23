@@ -1163,7 +1163,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     focoAnterior = document.activeElement;
     linkAtual = `https://youtube.com/shorts/${id}`;
     player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
-      title="Vídeo para ${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+      title="Vídeo para ${esc(titulo)}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
