@@ -1136,8 +1136,9 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
   const trilho = $('#trabalhos-grade');
   const filtros = $('#filtros');
   const play = '<span class="play play-p" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
-  // Capa vertical em Full HD do YouTube; se não existir, cai para a versão menor
-  const capas = (id) => [`https://i.ytimg.com/vi/${id}/oardefault.jpg`, `https://i.ytimg.com/vi/${id}/hqdefault.jpg`];
+  // Capa salva no próprio site (imagens/capas/ID.jpg); se faltar, busca a vertical do YouTube
+  // Para um vídeo novo, salve a capa em imagens/capas com o código do vídeo no nome
+  const capas = (id) => [`imagens/capas/${id}.jpg`, `https://i.ytimg.com/vi/${id}/oar2.jpg`];
   let atual = NICHOS[0].id;
 
   function card(t, nicho) {
@@ -1146,7 +1147,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     return `<figure class="trabalho">
       <a class="trabalho-link" href="https://youtube.com/shorts/${esc(id)}" target="_blank" rel="noopener"
          data-video="${esc(id)}" data-titulo="${esc(t.marca)}"${t.arquivo ? ` data-arquivo="${esc(t.arquivo)}"` : ""} aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
-        <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" loading="lazy" decoding="async" width="1080" height="1920">
+        <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" decoding="async" width="540" height="960">
         <span class="trabalho-marca">${esc(t.marca)}</span>
         ${play}
       </a>
@@ -1200,7 +1201,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     focoAnterior = document.activeElement;
     player.innerHTML = arquivo
       ? `<video src="${esc(arquivo)}" controls autoplay playsinline aria-label="Vídeo para ${esc(titulo)}"></video>`
-      : `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
+      : `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1&vq=hd1080"
       title="Vídeo para ${esc(titulo)}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
     modal.hidden = false;
