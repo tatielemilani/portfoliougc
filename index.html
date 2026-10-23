@@ -103,10 +103,9 @@ p{margin:0 0 1em}
 .topo{
   position:fixed;inset:0 0 auto 0;z-index:100;height:var(--topo);
   background:rgba(244,238,230,.9);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
-  border-bottom:1px solid transparent;transition:border-color .3s ease, box-shadow .3s ease;
+  border-bottom:1px solid var(--linha);box-shadow:0 6px 22px -10px rgba(42,26,24,.22);
 }
-.topo.rolou{border-bottom-color:var(--linha);box-shadow:0 8px 24px -18px rgba(42,26,24,.35)}
-.topo .container{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px}
+.topo .container{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px;max-width:1400px}
 .topo nav{flex:1}
 .marca-nome{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--vinho);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .marca-nome em{font-style:italic;color:var(--vinho)}
@@ -117,7 +116,7 @@ p{margin:0 0 1em}
 .menu a:hover,.menu a.ativo{color:var(--vinho)}
 .menu a:hover::after,.menu a.ativo::after{transform:scaleX(1)}
 .menu .menu-cta{margin-left:auto}
-.menu .menu-cta a{background:var(--vinho);color:#fff;padding:12px 24px;border-radius:6px;font-weight:600;font-size:.92rem}
+.menu .menu-cta a{background:var(--vinho);color:#fff;padding:9px 18px;border-radius:6px;font-weight:600;font-size:.84rem}
 .menu .menu-cta a::after{display:none}
 .menu .menu-cta a:hover{background:var(--vinho-escuro);color:#fff}
 .sanduiche{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;border-radius:8px}
@@ -138,7 +137,7 @@ p{margin:0 0 1em}
 .check{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:#fff;flex-shrink:0}
 .check svg{width:16px;height:16px}
 .capa-selo-topo{display:flex;align-items:center;gap:12px;font-size:.95rem;font-weight:500;color:var(--tinta-2);margin-bottom:28px}
-.capa h1{font-size:clamp(2.8rem,6.2vw,5.4rem);font-weight:600;line-height:1.02;letter-spacing:-.035em;color:var(--tinta);overflow-wrap:break-word;font-variation-settings:"opsz" 144}
+.capa h1{font-size:clamp(2.4rem,4.4vw,3.9rem);font-weight:600;line-height:1.06;letter-spacing:-.03em;color:var(--tinta);max-width:13ch;overflow-wrap:break-word;font-variation-settings:"opsz" 144}
 .capa h1 em{font-style:normal;color:var(--vinho)}
 .capa-frase{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--tinta-2);max-width:520px;margin:28px 0 10px}
 .capa-numeros{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:clamp(1rem,1.4vw,1.15rem);margin:0 0 40px}
@@ -146,19 +145,25 @@ p{margin:0 0 1em}
 .capa-numeros .sep{color:var(--vinho)}
 .capa-botoes{display:flex;flex-wrap:wrap;align-items:center;gap:28px}
 .capa-botoes .btn-primario{padding:18px 34px;font-size:1rem;border-radius:14px}
-.link-seta{font-weight:600;color:var(--tinta);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
-.link-seta span{transition:transform .25s ease}
-.link-seta:hover span{transform:translateX(4px)}
 .capa-foto{position:relative;align-self:end;max-width:min(450px, calc((100vh - var(--topo) - 40px) * 760 / 1158));width:100%;justify-self:end}
 .capa-foto img{width:100%;height:auto;display:block}
+/* Cards que flutuam de leve ao lado da foto */
 .capa-card{
-  position:absolute;z-index:3;display:flex;align-items:center;gap:12px;
-  background:#fff;border-radius:16px;padding:14px 20px 14px 14px;box-shadow:0 14px 34px -12px rgba(42,26,24,.28);
-  font-size:.85rem;line-height:1.35;color:var(--tinta-2);white-space:nowrap
+  position:absolute;z-index:3;display:flex;align-items:center;gap:10px;text-decoration:none;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:10px 16px 10px 10px;
+  box-shadow:0 12px 28px -14px rgba(42,26,24,.25);
+  font-size:.78rem;line-height:1.35;color:var(--tinta-2);white-space:nowrap;
+  animation:flutua 6s ease-in-out infinite
 }
-.capa-card strong{display:block;font-size:.95rem;font-weight:600;color:var(--tinta)}
-.capa-card-1{right:-12px;top:30%}
-.capa-card-2{left:-28px;bottom:14%}
+.capa-card .check{width:28px;height:28px}
+.capa-card .check svg{width:14px;height:14px}
+.capa-card strong{display:block;font-size:.86rem;font-weight:600;color:var(--tinta)}
+a.capa-card:hover strong{color:var(--vinho)}
+.capa-card-1{right:-56px;top:13%}
+.capa-card-2{left:-36px;bottom:16%;animation-delay:-3s}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (max-width:1240px){ .capa-card-1{right:-10px} .capa-card-2{left:-10px} }
 
 /* Faixa de marcas */
 .faixa{overflow:hidden;padding:13px 0;background:var(--vinho)}
@@ -172,19 +177,17 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-.sobre-grade{display:grid;grid-template-columns:.85fr 1.15fr;gap:88px;align-items:center}
+#sobre{padding-top:72px}
+.sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 .sobre-foto{position:relative}
 .sobre-foto::before{content:"";position:absolute;inset:24px -24px -24px 24px;border:1px solid var(--vinho);border-radius:var(--raio);z-index:-1}
 .sobre-texto h2{font-size:clamp(2.3rem,4.8vw,3.75rem);margin-bottom:28px}
 .sobre-texto p{color:var(--tinta-2);max-width:560px}
-.promessas{list-style:none;padding:0;margin:36px 0;display:grid;gap:14px}
-.promessas li{
-  display:flex;align-items:center;gap:16px;background:var(--papel);padding:16px 20px;border-radius:var(--raio-p);box-shadow:var(--sombra);font-weight:500
-}
-.promessas .num{font-family:var(--serif);font-style:italic;color:var(--nude-texto);font-size:1.15rem;min-width:28px}
-.assinatura{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--vinho);margin:0;line-height:1.1}
-.assinatura small{display:block;font-family:var(--sans);font-style:normal;font-size:.8rem;color:var(--tinta-2);letter-spacing:.06em;margin-top:6px}
+.sobre-texto p:last-of-type{margin-bottom:0}
+.selos{list-style:none;padding:0;margin:32px 0 0;display:flex;flex-wrap:wrap;gap:12px}
+.selos li{padding:13px 24px;border-radius:999px;border:1px solid var(--linha);background:rgba(255,255,255,.55);font-size:.95rem;color:var(--tinta-2)}
+.selos .selo-cheio{background:var(--creme-2);border-color:transparent;font-weight:600;color:var(--tinta)}
 
 /* =========================================================
    3. DESTAQUES
@@ -252,7 +255,7 @@ p{margin:0 0 1em}
 .trabalho figcaption{padding:12px 2px 0}
 .trabalho .nicho-tag{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho)}
 .trabalho h3{font-size:1.1rem;margin:3px 0 0;line-height:1.25}
-.midia.tem-foto{background:#1d1915}
+.midia.tem-foto{background:var(--creme-2)}
 .midia.tem-foto::after{display:none}
 .mais-wrap{text-align:center;margin-top:44px}
 .mais-wrap .btn[hidden]{display:none}
@@ -410,8 +413,8 @@ p{margin:0 0 1em}
   .capa-grade{gap:8px}
   .capa-texto{padding-bottom:0}
   .capa-foto{max-width:440px;margin:0 auto;justify-self:center}
-  .capa-card-1{right:0}
-  .capa-card-2{left:0}
+  .capa-card-1{right:-4px;top:5%}
+  .capa-card-2{left:-4px}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .sobre-foto::before{inset:16px -12px -16px 12px}
   .secao{padding:88px 0}
@@ -426,10 +429,6 @@ p{margin:0 0 1em}
   .capa-numeros{gap:8px}
   .capa-botoes{gap:18px}
   .capa-botoes .btn{flex:1 1 100%}
-  .capa-botoes .link-seta{margin:0 auto}
-  .capa-card{padding:10px 14px 10px 10px;font-size:.78rem}
-  .capa-card strong{font-size:.85rem}
-  .capa-card .check{width:28px;height:28px}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
@@ -489,20 +488,19 @@ p{margin:0 0 1em}
         <p class="capa-selo-topo revelar"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>UGC Creator &amp; Influencer · Curitiba/PR</p>
         <h1 id="titulo-capa" class="revelar">Criando conteúdo que gera <em>conexão e vendas</em></h1>
         <p class="capa-frase revelar">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</p>
-        <p class="capa-numeros revelar"><strong>200 vídeos</strong><span class="sep" aria-hidden="true">|</span><strong>40 marcas</strong><span class="sep" aria-hidden="true">|</span><strong>+53,2M views</strong></p>
+        <p class="capa-numeros revelar"><strong>50 vídeos</strong><span class="sep" aria-hidden="true">|</span><strong>40 marcas</strong><span class="sep" aria-hidden="true">|</span><strong>+53,2M views</strong></p>
         <div class="capa-botoes revelar">
           <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
-          <a href="#sobre" class="link-seta">Saiba mais <span aria-hidden="true">→</span></a>
         </div>
       </div>
 
       <div class="capa-foto revelar">
         <!-- FOTO DA CAPA: recorte com fundo transparente (WebP), combina com qualquer cor de fundo -->
         <img src="imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo, de blusa vinho ombro a ombro" width="760" height="1158" fetchpriority="high" decoding="async">
-        <div class="capa-card capa-card-1">
-          <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-          <span><strong>Agenda aberta</strong>novos projetos</span>
-        </div>
+        <a class="capa-card capa-card-1" href="https://www.instagram.com/tatielemilani/" target="_blank" rel="noopener" aria-label="Redes sociais: @tatielemilani no Instagram (abre em nova aba)">
+          <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg></span>
+          <span><strong>Redes sociais</strong>@tatielemilani</span>
+        </a>
         <div class="capa-card capa-card-2">
           <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <span><strong>+28,5M views</strong>no Reels de destaque</span>
@@ -528,14 +526,12 @@ p{margin:0 0 1em}
       <div class="sobre-texto">
         <p class="sobretitulo revelar">Sobre mim</p>
         <h2 id="titulo-sobre" class="revelar">Prazer, eu sou a <em>Tati</em>.</h2>
-        <p class="revelar">Tenho 27 anos, sou formada em Marketing Digital e transformo minha rotina de beleza, moda, lifestyle e gastronomia em vídeos que conectam e despertam desejo.</p>
-        <p class="revelar">São mais de 200 vídeos para 40 marcas, unindo estratégia e autenticidade para gerar autoridade e resultado.</p>
-        <ul class="promessas revelar" aria-label="Minhas promessas">
-          <li><span class="num">01</span>Roteiro aprovado antes de gravar</li>
-          <li><span class="num">02</span>Uma rodada de ajuste inclusa</li>
-          <li><span class="num">03</span>Entrega em até 72 horas úteis</li>
+        <p class="revelar">Tenho 27 anos, sou UGC Creator &amp; influencer em Curitiba/PR, formada em Marketing Digital, e transformo minha rotina de beleza, moda, lifestyle e gastronomia em vídeos que conectam e despertam desejo.</p>
+        <p class="revelar">São mais de 50 vídeos para 40 marcas, com um olhar analítico que transforma produto em desejo de consumo e une estratégia e autenticidade para gerar autoridade e resultado.</p>
+        <ul class="selos revelar" aria-label="Destaques">
+          <li class="selo-cheio">+40 marcas parceiras</li>
+          <li>Curitiba/PR · Brasil</li>
         </ul>
-        <p class="assinatura revelar">Tatiele Milani<small>UGC Creator &amp; Influencer</small></p>
       </div>
     </div>
   </section>
@@ -722,7 +718,7 @@ const FORM_ENDPOINT = '';
 // Formatos que passam na faixa vinho embaixo da capa (aparecem em maiúsculas automaticamente)
 const FAIXA = [
   'Publi post', 'Criativos de alta performance', 'UGC de conversão', 'TikTok Shop',
-  'Clipes', 'Conteúdo de e-commerce', 'Fotos lifestyle', 'Storytelling criativo'
+  'Clips', 'Conteúdo de e-commerce', 'Fotos lifestyle', 'Storytelling criativo'
 ];
 
 // Conteúdos de destaque
@@ -836,7 +832,7 @@ const SERVICOS = [
 
 // Métricas com contador animado. valor: número final. casas: casas decimais. prefixo/sufixo: o que vem antes e depois.
 const METRICAS = [
-  { valor: 200,  casas: 0, prefixo: '',  sufixo: '',  rotulo: 'vídeos entregues' },
+  { valor: 50,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'vídeos entregues' },
   { valor: 40,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'marcas atendidas' },
   { valor: 53.2, casas: 1, prefixo: '+', sufixo: 'M', rotulo: 'views somadas nos destaques' },
   { valor: NICHOS.length, casas: 0, prefixo: '', sufixo: '', rotulo: 'nichos atendidos' } // conta sozinho pelos nichos acima
