@@ -173,16 +173,17 @@ p{margin:0 0 1em}
 .rede svg{width:24px;height:24px}
 .rede:hover{background:var(--vinho-escuro)}
 .rede::after{
-  content:attr(data-rotulo);position:absolute;left:calc(100% + 10px);top:50%;transform:translate(-4px,-50%);
+  content:attr(data-rotulo);position:absolute;right:calc(100% + 10px);top:50%;transform:translate(4px,-50%);
   padding:6px 12px;border-radius:999px;background:#fff;color:var(--tinta);font-size:.78rem;font-weight:500;white-space:nowrap;
   box-shadow:0 8px 20px -12px rgba(42,26,24,.35);opacity:0;pointer-events:none;transition:opacity .2s, transform .2s
 }
 .rede:hover::after,.rede:focus-visible::after{opacity:1;transform:translate(0,-50%)}
-.rede-ig{right:-64px;top:46%}
-.rede-tt{right:-30px;top:61%;width:46px;height:46px;animation-delay:-3s}
-.rede-tt svg{width:20px;height:20px}
+.rede-ig{right:-104px;top:17%}
+.rede-tt{right:-104px;top:30%;animation-delay:-3s}
+.rede-tt svg{width:21px;height:21px}
 @keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@media (max-width:1300px){ .rede-ig{right:-26px} .rede-tt{right:-6px} .rede::after{left:auto;right:calc(100% + 10px)} }
+@media (max-width:1340px){ .rede-ig,.rede-tt{right:-64px} }
+@media (max-width:1200px){ .rede-ig,.rede-tt{right:-14px} }
 
 /* Faixa de marcas */
 .faixa{overflow:hidden;padding:13px 0;background:var(--vinho)}
@@ -215,16 +216,19 @@ p{margin:0 0 1em}
 .selos .selo-cheio{background:var(--vinho);border-color:var(--vinho);font-weight:600;color:#fff}
 
 /* Carrossel de marcas parceiras: uma linha passando devagar */
-.marcas{margin-top:104px}
+.marcas{margin-top:64px}
+/* Linhas discretas que separam o Sobre mim, as marcas e a próxima seção */
+.divisor{border:0;height:1px;margin:88px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
+.divisor-fim{margin-top:64px}
 .marcas-titulo{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-2);text-align:center;margin:0 0 34px}
 .marcas-titulo::before,.marcas-titulo::after{content:"";width:48px;height:1px;background:var(--nude);flex-shrink:0}
-.marcas-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marcas-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .marcas-trilho{display:flex;width:max-content;padding:10px 0;animation:desliza 110s linear infinite}
 .marcas-faixa:hover .marcas-trilho{animation-play-state:paused}
 .marcas-grupo{display:flex;gap:22px;padding-right:22px}
 .marca-circ{width:96px;height:96px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#fff;border:3px solid #fff;box-shadow:0 10px 24px -14px rgba(42,26,24,.35);transition:transform .3s ease}
 .marca-circ:hover{transform:translateY(-4px)}
-.marca-circ img{width:100%;height:100%;object-fit:cover;transform:scale(1.07)}
+.marca-circ img{width:100%;height:100%;object-fit:cover}
 
 /* =========================================================
    3. DESTAQUES
@@ -450,7 +454,7 @@ p{margin:0 0 1em}
   .capa-grade{gap:8px}
   .capa-texto{padding-bottom:0}
   .capa-foto{max-width:440px;margin:0 auto;justify-self:center}
-  .rede-ig{right:4px;top:40%;width:46px;height:46px} .rede-tt{right:12px;top:56%;width:40px;height:40px} .rede::after{display:none}
+  .rede-ig,.rede-tt{right:4px;width:44px;height:44px} .rede-ig{top:12%} .rede-tt{top:24%} .rede::after{display:none}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .secao{padding:88px 0}
   .destaques-grade{grid-template-columns:1fr;max-width:420px;margin:0 auto;gap:56px}
@@ -577,11 +581,15 @@ p{margin:0 0 1em}
       </div>
     </div>
 
+    <div class="container"><hr class="divisor"></div>
+
     <!-- Carrossel de marcas parceiras: as logos vêm do array MARCAS_PARCEIRAS no script -->
     <div class="marcas revelar" aria-labelledby="titulo-marcas">
       <p class="marcas-titulo" id="titulo-marcas">Marcas que confiam no meu trabalho</p>
       <div class="marcas-faixa"><div class="marcas-trilho" id="marcas-trilho"></div></div>
     </div>
+
+    <div class="container"><hr class="divisor divisor-fim"></div>
   </section>
 
   <!-- ======================= 3. CONTEÚDOS DE DESTAQUE ======================= -->
@@ -757,7 +765,7 @@ const CONTATO = {
   whatsappTexto: '(41) 99628-1188',
   email: 'ugctatielemilani@gmail.com',
   instagram: 'tatielemilani',           // sem o @
-  tiktok: 'tatielemilani'               // CONFIRMAR: @ do TikTok (usado no ícone da capa e no rodapé)
+  tiktok: 'tatielemilani'               // @ do TikTok (usado no ícone da capa e no rodapé)
 };
 
 // Endereço do Formspree (ou outro serviço) para o formulário de contato enviar de verdade. Vazio = só mostra a confirmação.
