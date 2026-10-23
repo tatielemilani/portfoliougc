@@ -197,7 +197,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px;padding-bottom:20px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 110px no-repeat} /* embaixo, o carrossel fica colado na seção vinho, com sombreado */
+#sobre{padding-top:72px;padding-bottom:20px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 210px no-repeat} /* embaixo, o carrossel fica colado na seção vinho, com sombreado */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -254,6 +254,7 @@ p{margin:0 0 1em}
 .destaques-texto p.sobretitulo{font-size:.75rem;line-height:1.65;margin:0 0 20px;max-width:none} /* mesmo tamanho do rótulo "Nichos" */
 .destaques-texto strong{color:var(--destaque);font-weight:600}
 .destaques{overflow:hidden} /* os vídeos dos lados não podem passar da largura da tela */
+#destaques,#servicos,#contato{margin-top:-1px} /* encosta 1px no sombreado de cima para não aparecer linha */
 .destaques-palco{display:flex;flex-direction:column;align-items:center;min-width:0}
 .palco{position:relative;width:100%;max-width:560px;height:510px}
 .card-video{
@@ -390,16 +391,19 @@ p{margin:0 0 1em}
 .etapa h3{font-family:inherit;font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho);margin:0 0 12px}
 .etapa p{font-size:.93rem;line-height:1.65;color:var(--tinta);margin:0}
 .etapa p + p{margin-top:10px}
-.uso{margin:40px auto 0;max-width:860px;padding:18px 28px;border-radius:99px;text-align:center;font-size:.95rem;line-height:1.6;color:var(--tinta);background:linear-gradient(90deg,rgba(140,29,36,0),rgba(140,29,36,.09) 20%,rgba(140,29,36,.09) 80%,rgba(140,29,36,0))} /* faixa suave, numa frase só */
-.uso strong{font-family:var(--display);font-weight:800;letter-spacing:-.02em;color:var(--tinta);margin-right:6px}
-.uso strong em{font-family:var(--italico);font-style:italic;font-weight:600;color:var(--vinho)}
-.uso b{font-weight:700;color:var(--vinho)}
+.uso{margin:40px auto 0;max-width:940px;padding:18px 28px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:36px;text-align:center;background:linear-gradient(90deg,rgba(140,29,36,0),rgba(140,29,36,.09) 20%,rgba(140,29,36,.09) 80%,rgba(140,29,36,0))} /* faixa suave e discreta */
+.uso-titulo{margin:0;font-size:1rem;color:var(--tinta);white-space:nowrap}
+.uso-titulo strong{font-weight:800}
+.uso-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.85rem;line-height:1.4;color:var(--tinta-2);white-space:nowrap}
+.uso-item + .uso-item{padding-left:36px;border-left:1px solid rgba(140,29,36,.18)}
+.uso-icone{width:22px;height:22px;color:var(--vinho);margin-bottom:4px}
+.uso-item strong{font-size:.9rem;font-weight:700;color:var(--tinta)}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding:40px 0 48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 190px no-repeat} /* sombreado atrás dos depoimentos que vira o vinho do contato */
+#numeros{padding:40px 0 48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 320px no-repeat} /* sombreado atrás dos depoimentos que vira o vinho do contato */
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -584,7 +588,7 @@ p{margin:0 0 1em}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr;gap:40px}
-  .uso{padding:18px 20px;border-radius:18px}
+  .uso{flex-direction:column;gap:16px;padding:22px 20px;border-radius:20px} .uso-item + .uso-item{padding-left:0;border-left:0} .uso-item{white-space:normal}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:0}
@@ -788,7 +792,19 @@ p{margin:0 0 1em}
       </div>
       <!-- As etapas vêm do array ETAPAS no script -->
       <ol class="etapas" id="etapas"></ol>
-      <p class="uso revelar"><strong>Como usar meus <em>conteúdos</em>?</strong> No <b>tráfego pago</b>, como criativo nos seus anúncios, e no <b>orgânico</b>, nas redes sociais, no site e em catálogos, com uso vitalício.</p>
+      <div class="uso revelar">
+        <p class="uso-titulo">Como usar meus <strong>conteúdos?</strong></p>
+        <div class="uso-item">
+          <svg class="uso-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+          <strong>Tráfego pago</strong>
+          <span>Como criativo nos seus anúncios</span>
+        </div>
+        <div class="uso-item">
+          <svg class="uso-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>
+          <strong>Orgânico</strong>
+          <span>Redes sociais, site e catálogos, com uso vitalício</span>
+        </div>
+      </div>
     </div>
   </section>
 
