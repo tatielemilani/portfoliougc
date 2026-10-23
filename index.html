@@ -391,11 +391,12 @@ p{margin:0 0 1em}
 .rede-num span{display:block;margin-top:6px;font-size:.84rem;color:var(--tinta-2)}
 .rede-card-link{margin-top:auto;align-self:flex-start;font-size:.85rem;font-weight:600;color:var(--tinta);text-decoration:none;border-bottom:1px solid rgba(140,29,36,.3);padding-bottom:2px;transition:color .2s,border-color .2s}
 .rede-card-link:hover{color:var(--vinho);border-color:var(--vinho)}
-.publico-dados{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px;margin-bottom:96px}
+.publico-dados{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px}
+.divisor-depo{margin:64px auto 56px} /* linha entre as métricas e os depoimentos */
 .dado-card h3{font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vinho);margin:0 0 20px}
-.localidades{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.localidades li{display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-size:1.25rem;color:var(--tinta)}
-.localidades li span{font-family:var(--italico);font-style:italic;font-size:.95rem;color:var(--vinho)}
+.localidades{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.localidades li{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--tinta-2)}
+.localidades li svg{width:22px;height:12px;flex-shrink:0;color:var(--vinho)}
 .barra + .barra{margin-top:14px}
 .barra-rotulo{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--tinta-2);margin-bottom:7px}
 .barra-rotulo strong{font-weight:700;color:var(--tinta)}
@@ -561,7 +562,7 @@ p{margin:0 0 1em}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
-  .publico-texto{font-size:1rem} .publico-dados{margin-bottom:72px}
+  .publico-texto{font-size:1rem} .divisor-depo{margin:48px auto 44px}
   .contato{margin:0 8px;padding:72px 0;border-radius:20px}
   .formulario{padding:28px 20px}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
@@ -761,6 +762,7 @@ p{margin:0 0 1em}
       </div>
       <div class="publico-dados" id="publico-dados"></div>
 
+      <hr class="divisor divisor-depo">
       <div class="depo-cabeca" id="depoimentos">
         <div>
           <p class="sobretitulo revelar">Depoimentos</p>
@@ -1068,10 +1070,11 @@ const PUBLICO = {
 const REDES = [
   { rede: 'Instagram', usuario: 'tatielemilani', link: 'https://www.instagram.com/tatielemilani/', numeros: [
     { valor: 5600, casas: 0, sufixo: '',     rotulo: 'seguidores' },
-    { valor: 54.6, casas: 1, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' }
+    { valor: 27939, casas: 0, sufixo: '',  rotulo: 'visualizações nos últimos 30 dias' }
   ] },
   { rede: 'TikTok', usuario: 'tatielemilani', link: 'https://www.tiktok.com/@tatielemilani', numeros: [
     { valor: 10,   casas: 0, sufixo: ' mil', rotulo: 'seguidores' },
+    { valor: 7,    casas: 0, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' },
     { valor: 18.3, casas: 1, sufixo: ' mil', rotulo: 'curtidas' }
   ] }
 ];
@@ -1330,7 +1333,7 @@ const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits:
   $('#publico-dados').innerHTML = `
     <article class="dado-card revelar">
       <h3>Principais localidades</h3>
-      <ol class="localidades">${PUBLICO.localidades.map((l, i) => `<li><span>${pad(i + 1)}</span>${esc(l)}</li>`).join('')}</ol>
+      <ol class="localidades">${PUBLICO.localidades.map(l => `<li><svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h19M15.5 1.5 20 6l-4.5 4.5"/></svg>${esc(l)}</li>`).join('')}</ol>
     </article>
     <article class="dado-card revelar">
       <h3>Gêneros atingidos</h3>
