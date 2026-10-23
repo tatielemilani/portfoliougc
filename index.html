@@ -461,44 +461,45 @@ p{margin:0 0 1em}
 /* =========================================================
    7. CONTATO
    ========================================================= */
-.contato{background:var(--vinho);color:#fff;border-radius:28px;margin:0 24px;padding:96px 0}
-.contato-grade{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.contato h2{font-size:clamp(2.6rem,6vw,4.8rem);color:#fff}
-.contato h2 em{color:var(--destaque)}
+.contato{background:var(--vinho);color:#fff;padding:96px 0 72px}
+.contato-grade{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
+.contato h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.02;font-size:clamp(2.4rem,4.6vw,3.8rem);color:#fff}
+.contato h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
 .contato .sobretitulo{color:rgba(255,255,255,.8)}
-.contato-intro p{color:rgba(255,255,255,.85);margin:24px 0 36px;max-width:440px}
-.canais{display:flex;flex-direction:column;gap:12px;max-width:380px}
-.canal{
-  display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;
-  padding:14px 18px;border:1px solid rgba(255,255,255,.28);border-radius:var(--raio-p);transition:background .25s, border-color .25s
-}
-.canal:hover{background:rgba(255,255,255,.1);border-color:#fff}
-.canal svg{width:20px;height:20px;flex-shrink:0}
-.canal small{display:block;font-size:.75rem;opacity:.75}
+.contato-intro p{color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 36px;max-width:460px}
+.canais{display:flex;flex-direction:column;gap:14px}
+.canal{display:inline-flex;align-items:center;gap:14px;align-self:flex-start;text-decoration:none;color:#fff;font-size:1rem;transition:color .2s}
+.canal-icone{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;flex-shrink:0;transition:background .25s,border-color .25s,color .25s}
+.canal-icone svg{width:18px;height:18px}
+.canal:hover{color:var(--destaque)}
+.canal:hover .canal-icone{background:var(--destaque);border-color:var(--destaque);color:var(--vinho)}
 .canal span{min-width:0;overflow-wrap:anywhere}
-.formulario{background:var(--papel);color:var(--tinta);border-radius:var(--raio);padding:40px;box-shadow:var(--sombra-forte)}
+.campos-dupla{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .campo{margin-bottom:20px}
-.campo label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px}
+.campo label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:8px}
 .campo input,.campo textarea{
-  width:100%;font-family:var(--sans);font-size:1rem;color:var(--tinta);
-  background:#fff;border:1px solid var(--linha);border-radius:var(--raio-p);padding:14px 16px;transition:border-color .2s, box-shadow .2s
+  width:100%;font-family:var(--sans);font-size:1rem;color:#fff;
+  background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 18px;transition:border-color .2s, box-shadow .2s, background .2s
 }
-.campo textarea{min-height:140px;resize:vertical}
-.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--vinho);box-shadow:0 0 0 3px rgba(140,29,36,.15)}
-.formulario .btn{width:100%}
-.confirmacao{text-align:center;padding:24px 0}
-.confirmacao .check{width:64px;height:64px;border-radius:50%;background:var(--vinho);color:#fff;display:grid;place-items:center;margin:0 auto 20px}
-.confirmacao h3{font-size:2rem;margin-bottom:10px}
-.confirmacao p{color:var(--tinta-2)}
+.campo input::placeholder,.campo textarea::placeholder{color:rgba(255,255,255,.5)}
+.campo textarea{min-height:150px;resize:vertical}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--destaque);background:rgba(0,0,0,.2);box-shadow:0 0 0 3px rgba(241,214,196,.2)}
+.formulario .btn{margin-top:4px}
+.confirmacao{text-align:center;padding:48px 0}
+.confirmacao .check{width:64px;height:64px;border-radius:50%;background:var(--destaque);color:var(--vinho);display:grid;place-items:center;margin:0 auto 20px}
+.confirmacao h3{font-size:2rem;color:#fff;margin-bottom:10px}
+.confirmacao h3 em{color:var(--destaque)}
+.confirmacao p{color:rgba(255,255,255,.85)}
 
 /* =========================================================
-   8. RODAPÉ
+   8. RODAPÉ (continua no vinho do contato)
    ========================================================= */
-.rodape{padding:36px 0 28px}
-.rodape-linha{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 32px}
-.rodape-nome{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1;color:var(--vinho);margin:0}
-.rodape-sub{font-size:.85rem;color:var(--tinta-2);margin:8px 0 0}
-.rodape-direitos{font-size:.85rem;color:var(--tinta-2);text-align:right}
+.rodape{background:var(--vinho);color:#fff;padding:0 0 32px}
+.rodape-linha{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 32px;border-top:1px solid rgba(255,255,255,.18);padding-top:32px}
+.rodape-nome{font-family:var(--serif);font-weight:700;font-size:1.35rem;line-height:1;color:#fff;margin:0}
+.rodape-nome span{color:var(--destaque)}
+.rodape-sub{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:10px 0 0}
+.rodape-direitos{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-align:right}
 
 /* =========================================================
    CARD DE CAPTURA (MÍDIA KIT)
@@ -592,8 +593,7 @@ p{margin:0 0 1em}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
   .publico-texto{font-size:1rem} .divisor-depo{margin:48px auto 44px}
-  .contato{margin:0 8px;padding:72px 0;border-radius:20px}
-  .formulario{padding:28px 20px}
+  .contato{padding:72px 0 56px} .campos-dupla{grid-template-columns:1fr;gap:0} .rodape-linha{flex-direction:column;align-items:flex-start} .rodape-direitos{text-align:left}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
@@ -833,27 +833,26 @@ p{margin:0 0 1em}
       <div class="contato-intro">
         <p class="sobretitulo revelar">Contato</p>
         <h2 id="titulo-contato" class="revelar">Vamos criar algo <em>incrível</em> juntos</h2>
-        <p class="revelar">Respondo todas as mensagens em até 24 horas úteis, com uma proposta clara de formatos, prazos e preços.</p>
+        <p class="revelar">Me conta um pouco sobre a sua marca e o que você quer alcançar. Respondo todas as mensagens em até 24 horas úteis, com uma proposta clara de formatos, prazos e preços.</p>
         <div class="canais revelar">
-          <a class="canal" id="link-whatsapp" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.9-1-1 .8a4 4 0 0 1-2.4-2.4l.8-1-1-1.9L9 9.5z"/></svg>
-            <span><small>WhatsApp</small><span id="txt-whatsapp"></span></span>
+          <a class="canal" id="link-whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.9-1-1 .8a4 4 0 0 1-2.4-2.4l.8-1-1-1.9L9 9.5z"/></svg></span>
+            <span id="txt-whatsapp"></span>
           </a>
-          <a class="canal" id="link-email" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-            <span><small>E-mail</small><span id="txt-email"></span></span>
+          <a class="canal" id="link-email" href="#" aria-label="E-mail">
+            <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+            <span id="txt-email"></span>
           </a>
-          <a class="canal" id="link-instagram" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-            <span><small>Instagram</small><span id="txt-instagram"></span></span>
+          <a class="canal" id="link-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+            <span id="txt-instagram"></span>
           </a>
-          <a class="canal" id="link-tiktok" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7"/></svg>
-            <span><small>TikTok</small><span id="txt-tiktok"></span></span>
+          <a class="canal" id="link-tiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+            <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7"/></svg></span>
+            <span id="txt-tiktok"></span>
           </a>
         </div>
       </div>
-
       <div class="formulario revelar" id="caixa-formulario">
         <!--
           ATENÇÃO: este formulário mostra a confirmação na tela, mas ainda não envia para lugar nenhum.
@@ -861,20 +860,30 @@ p{margin:0 0 1em}
           e cole o endereço dele na constante FORM_ENDPOINT no começo do script.
         -->
         <form id="form-contato" novalidate>
-          <div class="campo">
-            <label for="c-nome">Seu nome</label>
-            <input id="c-nome" name="nome" type="text" autocomplete="name" required>
+          <div class="campos-dupla">
+            <div class="campo">
+              <label for="c-nome">Nome</label>
+              <input id="c-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+            </div>
+            <div class="campo">
+              <label for="c-email">E-mail</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" placeholder="voce@marca.com" required>
+            </div>
           </div>
           <div class="campo">
-            <label for="c-email">Seu e-mail</label>
-            <input id="c-email" name="email" type="email" autocomplete="email" required>
+            <label for="c-marca">Marca / empresa</label>
+            <input id="c-marca" name="marca" type="text" autocomplete="organization" placeholder="Nome da marca">
           </div>
           <div class="campo">
-            <label for="c-msg">Mensagem</label>
-            <textarea id="c-msg" name="mensagem" required placeholder="Conte sobre a marca, o produto e o prazo"></textarea>
+            <label for="c-orcamento">Orçamento estimado</label>
+            <input id="c-orcamento" name="orcamento" type="text" placeholder="Ex.: R$ 1.000 a R$ 5.000">
           </div>
-          <button type="submit" class="btn btn-primario">Enviar mensagem
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="campo">
+            <label for="c-msg">Conta sobre o projeto</label>
+            <textarea id="c-msg" name="mensagem" required placeholder="Produto, formato, prazo, objetivo da campanha..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-claro">Enviar mensagem
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
           </button>
         </form>
       </div>
@@ -886,7 +895,7 @@ p{margin:0 0 1em}
 <footer class="rodape">
   <div class="container rodape-linha">
     <div>
-      <p class="rodape-nome">Tatiele Milani</p>
+      <p class="rodape-nome">Tatiele Milani<span>.</span></p>
       <p class="rodape-sub">UGC Creator &amp; Influencer · Curitiba/PR</p>
     </div>
     <span class="rodape-direitos">© <span id="ano"></span> Tatiele Milani. Todos os direitos reservados.</span>
@@ -1601,7 +1610,8 @@ function validar(form) {
   form.querySelectorAll('[required]').forEach(campo => {
     const valido = campo.value.trim() !== '' && (campo.type !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(campo.value.trim()));
     campo.setAttribute('aria-invalid', !valido);
-    campo.style.borderColor = valido ? '' : '#b3261e';
+    campo.style.borderColor = valido ? '' : '#ffd2c8'; // claro para aparecer no fundo vinho
+    campo.style.boxShadow = valido ? '' : '0 0 0 3px rgba(255,210,200,.35)';
     if (!valido && ok) { campo.focus(); ok = false; }
   });
   return ok;
@@ -1621,7 +1631,7 @@ $('#form-contato').addEventListener('submit', (e) => {
     fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }).catch(() => {});
   }
   const caixa = $('#caixa-formulario');
-  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`, 'Recebi a sua mensagem e respondo em até um dia útil. Se preferir, me chama no WhatsApp.');
+  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`, 'Recebi a sua mensagem e respondo em até 24 horas úteis. Se preferir, me chama no WhatsApp.');
   caixa.querySelector('.confirmacao').focus();
 });
 
