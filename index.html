@@ -22,7 +22,7 @@
   --tinta-2:#5e4b47;
   --vinho:#8c1d24;
   --vinho-escuro:#6c141a;
-  --rosa-claro:#fcd3dc; /* destaque sobre o vinho (rosinha bebê) */
+  --destaque:#f2c47a; /* destaque sobre o vinho (dourado champanhe) */
   --nude:#d9a79c;
   --nude-texto:#a14a45; /* versão mais escura do nude, para texto pequeno com bom contraste */
   --linha:rgba(42,26,24,.12);
@@ -191,7 +191,7 @@ p{margin:0 0 1em}
 .faixa:hover .faixa-trilho{animation-play-state:paused}
 .faixa ul{display:flex;gap:36px;list-style:none;margin:0;padding:0 18px}
 .faixa li{font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88);white-space:nowrap;display:flex;align-items:center;gap:36px}
-.faixa li::after{content:"✦";font-size:.55rem;color:var(--rosa-claro)}
+.faixa li::after{content:"✦";font-size:.55rem;color:var(--destaque)}
 @keyframes desliza{to{transform:translateX(-50%)}}
 
 /* =========================================================
@@ -236,9 +236,9 @@ p{margin:0 0 1em}
 .secao-vinho{background:var(--vinho);color:#fff}
 .secao-vinho :focus-visible{outline-color:#fff}
 .secao-vinho .sobretitulo{color:rgba(255,255,255,.78)}
-.secao-vinho .sobretitulo::before{background:var(--rosa-claro)}
+.secao-vinho .sobretitulo::before{background:var(--destaque)}
 .secao-vinho h2,.secao-vinho h3{color:#fff}
-.secao-vinho h2 em{color:var(--rosa-claro)}
+.secao-vinho h2 em{color:var(--destaque)}
 .secao-vinho .secao-cabeca p{color:rgba(255,255,255,.82)}
 .secao-vinho .midia{box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
 
@@ -248,11 +248,11 @@ p{margin:0 0 1em}
 .destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .destaques-sub{font-size:1.2rem!important;color:#fff!important;margin:-12px 0 28px!important}
 .destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
-.destaques-texto h2 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--rosa-claro);margin-top:.05em}
+.destaques-texto h2 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--destaque);margin-top:.05em}
 .destaques-texto{margin-top:-36px} /* texto um pouco acima do centro dos vídeos */
 .destaques-texto p{color:#fff;max-width:500px;font-size:1.14rem;line-height:1.65;margin:0 0 16px}
 .destaques-texto p.sobretitulo{font-size:.75rem;line-height:1.65;margin:0 0 20px;max-width:none} /* mesmo tamanho do rótulo "Nichos" */
-.destaques-texto strong{color:var(--rosa-claro);font-weight:600}
+.destaques-texto strong{color:var(--destaque);font-weight:600}
 .destaques{overflow:hidden} /* os vídeos dos lados não podem passar da largura da tela */
 .destaques-palco{display:flex;flex-direction:column;align-items:center;min-width:0}
 .palco{position:relative;width:100%;max-width:560px;height:510px}
@@ -281,7 +281,7 @@ p{margin:0 0 1em}
 .palco-seta svg{width:20px;height:20px}
 .palco-pontos{display:flex;gap:8px}
 .palco-ponto{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:rgba(255,255,255,.4);cursor:pointer;transition:width .3s, background .3s}
-.palco-ponto[aria-current="true"]{width:26px;background:var(--rosa-claro)}
+.palco-ponto[aria-current="true"]{width:26px;background:var(--destaque)}
 .palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(252,211,220,.5);padding-bottom:2px}
 .palco-insta:hover{color:#fff}
 .play{
@@ -344,7 +344,7 @@ p{margin:0 0 1em}
 #fotos{padding:0 0 88px}
 .divisor-fotos{margin:20px auto 36px} /* linha entre os nichos e as fotos */
 #fotos .secao-cabeca{margin:0 auto 32px;max-width:none;text-align:center}
-#fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.05;font-size:clamp(1.7rem,3.7vw,3.1rem);text-wrap:balance}
+#fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.05;font-size:clamp(2rem,4.2vw,3.4rem);text-wrap:balance}
 #fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em}
 .fotos-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .fotos-trilho{display:flex}
@@ -363,7 +363,7 @@ p{margin:0 0 1em}
 .servicos-grade{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.2)}
 .servico{padding:40px 32px 44px 0;border-bottom:1px solid rgba(255,255,255,.2);transition:background .3s}
 .servico:not(:nth-child(3n+1)){padding-left:32px;border-left:1px solid rgba(255,255,255,.2)}
-.servico-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--rosa-claro)}
+.servico-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--destaque)}
 .servico h3{font-size:1.75rem;margin:18px 0 12px}
 .servico p{color:rgba(255,255,255,.8);font-size:.97rem;margin:0}
 
@@ -397,7 +397,7 @@ p{margin:0 0 1em}
 .contato{background:var(--vinho);color:#fff;border-radius:28px;margin:0 24px;padding:96px 0}
 .contato-grade{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .contato h2{font-size:clamp(2.6rem,6vw,4.8rem);color:#fff}
-.contato h2 em{color:var(--rosa-claro)}
+.contato h2 em{color:var(--destaque)}
 .contato .sobretitulo{color:rgba(255,255,255,.8)}
 .contato-intro p{color:rgba(255,255,255,.85);margin:24px 0 36px;max-width:440px}
 .canais{display:flex;flex-direction:column;gap:12px;max-width:380px}
