@@ -197,7 +197,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px;padding-bottom:80px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 80px no-repeat} /* o sombreado fica só no espaço abaixo das marcas */
+#sobre{padding-top:72px;padding-bottom:48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 140px no-repeat} /* sombreado nasce por trás das logos (que ficam na frente) e vira o vinho dos destaques */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -403,7 +403,7 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding:40px 0 96px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 96px no-repeat} /* sombreado só abaixo dos depoimentos, virando o vinho do contato */
+#numeros{padding:40px 0 64px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 210px no-repeat} /* sombreado nasce por trás dos depoimentos (que ficam na frente) e vira o vinho do contato */
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -441,7 +441,7 @@ p{margin:0 0 1em}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
 .depo-carrossel{position:relative;margin-top:28px}
-.depo-faixa{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.depo-faixa{overflow-x:auto;scrollbar-width:none} /* sem esmaecer nas pontas: os cards ficam sólidos na frente do sombreado */
 .depo-faixa::-webkit-scrollbar{display:none}
 .depoimentos{display:flex;width:max-content;padding:40px 0 18px}
 .depo-seta{position:absolute;top:calc(50% + 11px);transform:translateY(-50%);z-index:2;background:var(--creme);color:var(--tinta);border:1px solid rgba(140,29,36,.2);box-shadow:var(--sombra)}
