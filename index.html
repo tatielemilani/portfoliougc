@@ -361,12 +361,20 @@ p{margin:0 0 1em}
 /* =========================================================
    5. SERVIÇOS
    ========================================================= */
-.servicos-grade{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.2)}
-.servico{padding:40px 32px 44px 0;border-bottom:1px solid rgba(255,255,255,.2);transition:background .3s}
-.servico:not(:nth-child(3n+1)){padding-left:32px;border-left:1px solid rgba(255,255,255,.2)}
-.servico-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--destaque)}
-.servico h3{font-size:1.75rem;margin:18px 0 12px}
-.servico p{color:rgba(255,255,255,.8);font-size:.97rem;margin:0}
+/* Serviços: texto e chamada à esquerda, formatos em cards com etiqueta à direita */
+.serv-layout{display:grid;grid-template-columns:.95fr 1.25fr;gap:72px;align-items:center}
+.serv-icone{width:50px;height:50px;color:var(--destaque);margin-bottom:22px}
+.serv-texto h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.08;font-size:clamp(2.4rem,4.4vw,3.6rem)}
+.serv-texto h2 mark{background:var(--destaque);color:var(--vinho);font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;padding:0 .16em;border-radius:6px}
+.serv-texto > p:not(.sobretitulo){color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 0;max-width:440px}
+.serv-texto .serv-chamada{font-family:var(--italico);font-style:italic;font-weight:500;font-size:1.2rem;line-height:1.45;color:var(--destaque);margin:22px 0 26px}
+.btn-claro{background:var(--destaque);color:var(--vinho);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.btn-claro:hover{background:#fff;transform:translateY(-2px)}
+.servicos-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px 22px;padding-top:18px}
+.servico{position:relative;background:#f9f5ef;border-radius:16px;padding:40px 26px 28px;text-align:center;box-shadow:0 18px 40px -22px rgba(0,0,0,.5);transition:transform .3s}
+.servico:hover{transform:translateY(-4px)}
+.secao-vinho .servico h3{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--vinho);color:#fff;border:3px solid #f9f5ef;font-family:inherit;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:99px}
+.servico p{color:var(--tinta);font-size:.92rem;line-height:1.65;margin:0}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
@@ -504,9 +512,7 @@ p{margin:0 0 1em}
 @media (max-width:1024px){
   .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
   .publico-topo{grid-template-columns:1fr} .publico-texto{padding-right:0}
-  .servicos-grade{grid-template-columns:repeat(2,1fr)}
-  .servico,.servico:not(:nth-child(3n+1)){padding:36px 28px 40px 0;border-left:0}
-  .servico:nth-child(2n){padding-left:28px;border-left:1px solid rgba(255,255,255,.2)}
+  .serv-layout{grid-template-columns:1fr;gap:56px} .serv-texto > p:not(.sobretitulo){max-width:560px}
 }
 @media (max-width:1180px){
   .menu{gap:24px}
@@ -555,8 +561,7 @@ p{margin:0 0 1em}
   .capa-botoes .btn{flex:1 1 100%}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
-  .servicos-grade{grid-template-columns:1fr}
-  .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
+  .servicos-grade{grid-template-columns:1fr;gap:40px}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:64px}
@@ -739,12 +744,16 @@ p{margin:0 0 1em}
 
   <!-- ======================= 5. COMO EU TE AJUDO ======================= -->
   <section class="secao secao-vinho servicos" id="servicos" aria-labelledby="titulo-servicos">
-    <div class="container">
-      <div class="secao-cabeca">
-        <p class="sobretitulo revelar">Como eu te ajudo</p>
-        <h2 id="titulo-servicos" class="revelar">Do roteiro ao <em>anúncio</em> pronto.</h2>
-        <p class="revelar">Escolha um serviço ou combine vários. Eu monto a proposta certa para o momento da sua marca.</p>
+    <div class="container serv-layout">
+      <div class="serv-texto">
+        <svg class="serv-icone revelar" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M8 16h32l-2.5 26h-27z"/><path d="M17 20v-6a7 7 0 0114 0v6"/></svg>
+        <p class="sobretitulo revelar">Serviços</p>
+        <h2 id="titulo-servicos" class="revelar">O que podemos <mark>criar</mark> juntos?</h2>
+        <p class="revelar">Cada formato tem um objetivo: vender, escalar ou construir marca. Me conta o que a sua marca precisa que a gente monta o combo perfeito.</p>
+        <p class="serv-chamada revelar">Não sabe qual escolher? Me chama que a gente descobre juntos.</p>
+        <a class="btn btn-claro revelar" href="#contato">Bora criar juntos <span aria-hidden="true">→</span></a>
       </div>
+      <!-- Os formatos vêm do array SERVICOS no script -->
       <div class="servicos-grade" id="servicos-grade"></div>
     </div>
   </section>
@@ -1041,14 +1050,12 @@ const TRABALHOS = [
 ];
 
 
-// Serviços (número, título e descrição curta)
+// Serviços: o título aparece na etiqueta em cima do card
 const SERVICOS = [
-  { titulo: 'Vídeo UGC',              descricao: 'Vídeo vertical com roteiro, gravação e edição, pensado para gerar confiança e vontade de comprar.' },
-  { titulo: 'Corte para anúncio',     descricao: 'Versões com ganchos diferentes e duração ideal para testar no Meta Ads e no TikTok Ads.' },
-  { titulo: 'Fotos do produto',       descricao: 'Fotos lifestyle com luz natural para site, e-commerce e redes sociais.' },
-  { titulo: 'Unboxing',               descricao: 'A experiência de abrir o produto pela primeira vez, com reação real e detalhes que vendem.' },
-  { titulo: 'Publicação no meu perfil', descricao: 'Collab ou post no meu Instagram para levar a sua marca até a minha audiência.' },
-  { titulo: 'Pacote mensal',          descricao: 'Conteúdo recorrente todo mês, com calendário combinado e prioridade na agenda.' }
+  { titulo: 'UGC',                descricao: 'Vídeos com cara de gente real usando o seu produto, prontos pra rodar como anúncio no Meta, TikTok e YouTube. Roteiro pensado do gancho ao CTA.' },
+  { titulo: 'Publi',              descricao: 'Sua marca no meu perfil, do meu jeito, pra um público que já confia no que eu indico. Conteúdo que parece conversa, não anúncio.' },
+  { titulo: 'Clips',              descricao: 'Vídeos curtos com foco total no produto, pra anexar no anúncio do marketplace. O cliente vê tamanho, textura e funcionamento antes de comprar.' },
+  { titulo: 'TikTok Shop + Live', descricao: 'Vídeo de vitrine que converte e live com venda acontecendo em tempo real.' }
 ];
 
 // Métricas do público (do mídia kit). pct: porcentagem de cada faixa
@@ -1294,9 +1301,8 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
 })();
 
 // Serviços
-$('#servicos-grade').innerHTML = SERVICOS.map((s, i) => `
+$('#servicos-grade').innerHTML = SERVICOS.map(s => `
   <article class="servico revelar">
-    <span class="servico-num">${pad(i + 1)}</span>
     <h3>${esc(s.titulo)}</h3>
     <p>${esc(s.descricao)}</p>
   </article>`).join('');
