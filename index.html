@@ -197,7 +197,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px}
+#sobre{padding-top:72px;padding-bottom:36px} /* embaixo, o carrossel fica colado na seção vinho */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -216,10 +216,9 @@ p{margin:0 0 1em}
 .selos .selo-cheio{background:var(--vinho);border-color:var(--vinho);font-weight:600;color:#fff}
 
 /* Carrossel de marcas parceiras: uma linha passando devagar */
-.marcas{margin-top:64px}
-/* Linhas discretas que separam o Sobre mim, as marcas e a próxima seção */
-.divisor{border:0;height:1px;margin:88px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
-.divisor-fim{margin-top:64px}
+.marcas{margin-top:48px}
+/* Linha discreta entre o Sobre mim e as marcas */
+.divisor{border:0;height:1px;margin:48px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
 .marcas-titulo{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-2);text-align:center;margin:0 0 34px}
 .marcas-titulo::before,.marcas-titulo::after{content:"";width:48px;height:1px;background:var(--nude);flex-shrink:0}
 .marcas-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
@@ -589,7 +588,6 @@ p{margin:0 0 1em}
       <div class="marcas-faixa"><div class="marcas-trilho" id="marcas-trilho"></div></div>
     </div>
 
-    <div class="container"><hr class="divisor divisor-fim"></div>
   </section>
 
   <!-- ======================= 3. CONTEÚDOS DE DESTAQUE ======================= -->
@@ -774,25 +772,37 @@ const FORM_ENDPOINT = '';
 // Marcas parceiras do carrossel embaixo do Sobre mim (logo: arquivo na pasta imagens; nome: usado como texto alternativo)
 // Para adicionar uma marca: salve a logo redonda em imagens/ e acrescente uma linha. Nome vazio = "Marca parceira".
 const MARCAS_PARCEIRAS = [
-  { logo: 'marca-01.webp', nome: "L'Oréal Elseve" },   { logo: 'marca-02.webp', nome: 'Maxinutri' },
-  { logo: 'marca-03.webp', nome: 'Èze Congelados' },    { logo: 'marca-04.webp', nome: 'Legee' },
-  { logo: 'marca-05.webp', nome: "L'Oréal Paris" },     { logo: 'marca-06.webp', nome: 'Saint Germain' },
-  { logo: 'marca-07.webp', nome: 'MC Mercafé' },        { logo: 'marca-08.webp', nome: 'Uniasselvi' },
-  { logo: 'marca-09.webp', nome: 'Cei Norte Decorações' }, { logo: 'marca-10.webp', nome: 'Garnier' },
-  { logo: 'marca-11.webp', nome: 'Niely' },             { logo: 'marca-12.webp', nome: 'Pantene' },
-  { logo: 'marca-13.webp', nome: 'Braé' },              { logo: 'marca-14.webp', nome: 'Pimenta Rosa' },
-  { logo: 'marca-15.webp', nome: 'Aura Beauty' },       { logo: 'marca-16.webp', nome: 'Coca-Cola' },
-  { logo: 'marca-17.webp', nome: 'Vitao' },             { logo: 'marca-18.webp', nome: 'Dove' },
-  { logo: 'marca-19.webp', nome: 'Mercado Livre' },     { logo: 'marca-20.webp', nome: 'Magalu' },
-  { logo: 'marca-21.webp', nome: 'Maria Margarida' },   { logo: 'marca-22.webp', nome: 'Natura' },
-  { logo: 'marca-23.webp', nome: 'Omo' },               { logo: 'marca-24.webp', nome: "L'Occitane au Brésil" },
-  { logo: 'marca-25.webp', nome: 'Monange' },           { logo: 'marca-26.webp', nome: 'Beauty Boobié' },
-  { logo: 'marca-27.webp', nome: 'Basicamente' },       { logo: 'marca-28.webp', nome: '' },
-  { logo: 'marca-29.webp', nome: '' },                  { logo: 'marca-30.webp', nome: '' },
-  { logo: 'marca-31.webp', nome: 'Dacas' },             { logo: 'marca-32.webp', nome: 'Dr. Oetker' },
-  { logo: 'marca-33.webp', nome: '' },                  { logo: 'marca-34.webp', nome: 'Downy' },
-  { logo: 'marca-35.webp', nome: '3 Corações' },        { logo: 'marca-36.webp', nome: 'Tropical Especiarias' },
-  { logo: 'marca-37.webp', nome: '' },                  { logo: 'marca-38.webp', nome: '' },
+  { logo: 'marca-01.webp', nome: "L'Oréal Elseve" },
+  { logo: 'marca-02.webp', nome: 'Maxinutri' },
+  { logo: 'marca-03.webp', nome: 'Èze Congelados' },
+  { logo: 'marca-04.webp', nome: 'Legee' },
+  { logo: 'marca-05.webp', nome: "L'Oréal Paris" },
+  { logo: 'marca-06.webp', nome: 'Saint Germain' },
+  { logo: 'marca-07.webp', nome: 'MC Mercafé' },
+  { logo: 'marca-08.webp', nome: 'Uniasselvi' },
+  { logo: 'marca-09.webp', nome: 'Cei Norte Decorações' },
+  { logo: 'marca-12.webp', nome: 'Pantene' },
+  { logo: 'marca-16.webp', nome: 'Coca-Cola' },
+  { logo: 'marca-17.webp', nome: 'Vitao' },
+  { logo: 'marca-19.webp', nome: 'Mercado Livre' },
+  { logo: 'marca-20.webp', nome: 'Magalu' },
+  { logo: 'marca-21.webp', nome: 'Maria Margarida' },
+  { logo: 'marca-22.webp', nome: 'Natura' },
+  { logo: 'marca-24.webp', nome: "L'Occitane au Brésil" },
+  { logo: 'marca-25.webp', nome: 'Monange' },
+  { logo: 'marca-26.webp', nome: 'Beauty Boobié' },
+  { logo: 'marca-27.webp', nome: 'Basicamente' },
+  { logo: 'marca-28.webp', nome: '' },
+  { logo: 'marca-29.webp', nome: '' },
+  { logo: 'marca-30.webp', nome: '' },
+  { logo: 'marca-31.webp', nome: 'Dacas' },
+  { logo: 'marca-32.webp', nome: 'Dr. Oetker' },
+  { logo: 'marca-33.webp', nome: '' },
+  { logo: 'marca-34.webp', nome: 'Downy' },
+  { logo: 'marca-35.webp', nome: '3 Corações' },
+  { logo: 'marca-36.webp', nome: 'Tropical Especiarias' },
+  { logo: 'marca-37.webp', nome: '' },
+  { logo: 'marca-38.webp', nome: '' },
   { logo: 'marca-39.webp', nome: '' }
 ];
 
