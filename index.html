@@ -117,7 +117,14 @@ p{margin:0 0 1em}
 .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--vinho);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
 .menu a:hover,.menu a.ativo{color:var(--vinho)}
 .menu a:hover::after,.menu a.ativo::after{transform:scaleX(1)}
-.menu .menu-cta{margin-left:auto}
+.menu .menu-cta{margin-left:0}
+/* Botão de idioma PT | EN */
+.menu .menu-idioma{margin-left:auto;margin-right:-16px}
+.idioma{display:inline-flex;padding:3px;border:1px solid rgba(140,29,36,.22);border-radius:99px;background:rgba(255,255,255,.55)}
+.idioma button{border:0;background:transparent;font:inherit;font-size:.72rem;font-weight:700;letter-spacing:.08em;line-height:1;color:var(--tinta-2);padding:6px 10px;border-radius:99px;cursor:pointer;transition:background .2s,color .2s}
+.idioma button:hover{color:var(--vinho)}
+.idioma button[aria-pressed="true"]{background:var(--vinho);color:#fff}
+.idioma-celular{display:none}
 .menu .menu-cta a{background:var(--vinho);color:#fff;padding:9px 18px;border-radius:6px;font-weight:600;font-size:.84rem;letter-spacing:0;text-transform:none}
 .menu .menu-cta a::after{display:none}
 .menu .menu-cta a:hover{background:var(--vinho-escuro);color:#fff}
@@ -545,10 +552,11 @@ p{margin:0 0 1em}
   .menu{gap:24px}
   .menu a{font-size:.92rem}
 }
-/* Menu vira hambúrguer antes de apertar os 7 itens */
-@media (max-width:1060px){
+/* Menu vira hambúrguer antes de apertar os itens e o botão PT | EN */
+@media (max-width:1160px){
   :root{--topo:64px}
   .sanduiche{display:block}
+  .idioma-celular{display:block;margin-left:auto} .menu .menu-idioma{display:none}
   .topo nav{position:absolute;flex:none}
   .menu{
     position:fixed;top:var(--topo);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
@@ -624,6 +632,7 @@ p{margin:0 0 1em}
 <header class="topo" id="topo">
   <div class="container">
     <a href="#inicio" class="marca-nome" aria-label="Tatiele Milani, voltar ao início">Tatiele <em>Milani</em></a>
+    <div class="idioma-celular"><div class="idioma" role="group" aria-label="Idioma / Language"><button type="button" data-lang="pt" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div></div>
     <button class="sanduiche" id="sanduiche" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
       <span></span><span></span><span></span>
     </button>
@@ -635,6 +644,7 @@ p{margin:0 0 1em}
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#numeros">Métricas</a></li>
         <li><a href="#contato">Contato</a></li>
+        <li class="menu-idioma"><div class="idioma" role="group" aria-label="Idioma / Language"><button type="button" data-lang="pt" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div></li>
         <li class="menu-cta"><a href="#contato">Trabalhe comigo</a></li>
       </ul>
     </nav>
@@ -1424,7 +1434,10 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
 })();
 
 // Métricas do público, redes e depoimentos
-const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+let idioma = 'pt'; // muda no botão PT | EN do topo
+const formata = (v, casas) => v.toLocaleString(idioma === 'en' ? 'en-US' : 'pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+// Em inglês, "10 mil" vira "10K"
+const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : suf;
 (function metricas() {
   const icones = {
     Instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>',
@@ -1584,13 +1597,14 @@ const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits:
 
 // Contador animado
 function animaContador(el) {
-  const fim = parseFloat(el.dataset.valor), casas = +el.dataset.casas, pre = el.dataset.prefixo, suf = el.dataset.sufixo;
+  const fim = parseFloat(el.dataset.valor), casas = +el.dataset.casas, pre = el.dataset.prefixo, suf = sufixoIdioma(el.dataset.sufixo);
+  el.dataset.animado = '1';
   if (reduzMovimento) { el.textContent = pre + formata(fim, casas) + suf; return; }
   const dur = 1800, inicio = performance.now();
   const passo = (agora) => {
     const p = Math.min((agora - inicio) / dur, 1);
     const suave = 1 - Math.pow(1 - p, 3);
-    el.textContent = pre + formata(fim * suave, casas) + suf;
+    el.textContent = pre + formata(fim * suave, casas) + sufixoIdioma(el.dataset.sufixo);
     if (p < 1) requestAnimationFrame(passo);
   };
   requestAnimationFrame(passo);
@@ -1722,6 +1736,324 @@ window.addEventListener('load', () => {
   const pronto = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   pronto.then(() => setTimeout(() => { alvo.scrollIntoView({ behavior: 'instant', block: 'start' }); enderecoLimpo(); }, 50));
 });
+
+/* =========================================================
+   IDIOMA: botão PT | EN no topo
+   O site é escrito em português. Em inglês, cada texto da página é trocado
+   pela tradução abaixo ("texto em português": "texto em inglês").
+   Se mudar um texto em português, mude a chave aqui também.
+   ========================================================= */
+const EN = {
+  // Topo e menu
+  "Pular para o conteúdo": "Skip to content",
+  "Sobre": "About",
+  "Destaques": "Highlights",
+  "Nichos": "Niches",
+  "Serviços": "Services",
+  "Métricas": "Metrics",
+  "Contato": "Contact",
+  "Trabalhe comigo": "Work with me",
+  "UGC Creator & Influencer · Curitiba/PR": "UGC Creator & Influencer · Curitiba, Brazil",
+
+  // Capa
+  "Criando conteúdo": "Creating content",
+  "que gera": "that drives",
+  "conexão e vendas": "connection and sales",
+  "Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.": "From script to CTA, every second is designed to make your brand feel like a friend's recommendation and sell like an ad.",
+  "+50 vídeos": "+50 videos",
+  "+40 marcas parceiras": "+40 partner brands",
+  "+1,5M views": "+1.5M views",
+  "Quero criar com a Tati": "I want to create with Tati",
+  "Ver meus conteúdos": "See my content",
+  "Publi post": "Sponsored post",
+  "Criativos de alta performance": "High-performance creatives",
+  "UGC de conversão": "Conversion UGC",
+  "Conteúdo de e-commerce": "E-commerce content",
+  "Fotos lifestyle": "Lifestyle photos",
+  "Storytelling criativo": "Creative storytelling",
+
+  // Sobre
+  "Sobre mim": "About me",
+  "Olá, eu sou a": "Hi, I'm",
+  "Tenho 27 anos, sou UGC Creator & influencer em Curitiba/PR e formada em Marketing Digital. Minha rotina de beleza, moda, lifestyle e gastronomia vira conteúdo que conecta de verdade com quem assiste.": "I'm 27, a UGC creator & influencer based in Curitiba, Brazil, with a degree in Digital Marketing. My beauty, fashion, lifestyle and food routine turns into content that truly connects with viewers.",
+  "São mais de 50 vídeos para 40 marcas, com um olhar analítico que une estratégia e autenticidade para transformar produto em desejo de consumo e gerar resultado.": "That's more than 50 videos for 40 brands, with an analytical eye that combines strategy and authenticity to turn products into desire and drive results.",
+  "Curitiba/PR · Brasil": "Curitiba/PR · Brazil",
+  "Marcas que confiam no meu trabalho": "Brands that trust my work",
+
+  // Destaques
+  "Os melhores": "My best",
+  "resultados": "results",
+  "Será que você já me viu por aí?": "Have you seen me around?",
+  "Com a": "With",
+  ", uma receita de canjica cremosa mostrou a esponja mágica": ", a creamy canjica recipe put the",
+  "em ação e passou de": "magic sponge to work and reached",
+  "1,5 milhão de views": "1.5 million views",
+  "Com o": "With",
+  ", um tour pela academia somou": ", a gym tour reached",
+  "28,5 mil views": "28.5K views",
+  "no Reels.": "on Reels.",
+  "E a receita de": "And the",
+  "brigadeiro saudável": "healthy brigadeiro",
+  "alcançou": "recipe reached",
+  "23,2 mil views": "23.2K views",
+  "1,5 mi": "1.5M",
+  "28,5 mil": "28.5K",
+  "23,2 mil": "23.2K",
+  "Ver no Instagram": "See on Instagram",
+
+  // Nichos
+  "Que tipo de": "What kind of",
+  "conteúdo": "content",
+  "você busca hoje?": "are you looking for today?",
+  "Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.": "Browse the niches and see how each brand came to life in my videos.",
+  "Casa & Decor": "Home & Decor",
+  "Gastronomia": "Food",
+  "Beleza & Cuidado": "Beauty & Care",
+  "Moda": "Fashion",
+  "Cabelo": "Hair",
+  "Casal": "Couples",
+  "Acessórios": "Accessories",
+  "Estudo": "Study",
+  "vídeos": "videos",
+
+  // Fotos
+  "Fotos que mostram o": "Photos that show the",
+  "produto": "product",
+  "na vida real": "in real life",
+
+  // Serviços
+  "O que podemos": "What can we",
+  "criar": "create",
+  "juntos?": "together?",
+  "Cada formato tem um objetivo: vender, escalar ou fortalecer a sua marca.": "Each format has a goal: sell, scale or strengthen your brand.",
+  "Ainda não sabe qual formato combina com a sua marca?": "Not sure which format fits your brand yet?",
+  "Me chama que a gente descobre juntos.": "Message me and we'll figure it out together.",
+  "Bora conversar": "Let's talk",
+  "Vídeos autênticos do seu produto, com a naturalidade de quem usa de verdade. Prontos pra anúncio no Meta, no TikTok e no YouTube.": "Authentic videos of your product, with the ease of someone who really uses it. Ready to run as ads on Meta, TikTok and YouTube.",
+  "Eu apresento a sua marca no meu perfil, com a minha voz, pra um público que já confia nas minhas indicações. Parece conversa entre amigas, não propaganda.": "I introduce your brand on my profile, in my own voice, to an audience that already trusts my recommendations. It feels like a chat between friends, not an ad.",
+  "Vídeos curtinhos com o produto como protagonista, pra usar no anúncio do marketplace. Quem compra vê tamanho, textura e como funciona antes de decidir.": "Short videos with your product as the star, for your marketplace listings. Shoppers see the size, texture and how it works before they decide.",
+  "Vídeos de vitrine que levam o produto pro carrinho e lives em que eu mostro tudo, tiro as dúvidas e vendo em tempo real.": "Showcase videos that move your product into the cart, and lives where I show everything, answer questions and sell in real time.",
+
+  // Processo
+  "Como funciona": "How it works",
+  "Meu processo": "My creative",
+  "criativo": "process",
+  "Briefing + contrato": "Briefing + contract",
+  "Começo entendendo o posicionamento da marca, os produtos e o que você quer alcançar.": "I start by understanding your brand positioning, your products and what you want to achieve.",
+  "A conversa pode ser por reunião, e-mail ou WhatsApp. Com tudo alinhado, assinamos o contrato.": "We can talk on a call, by e-mail or on WhatsApp. Once everything is aligned, we sign the contract.",
+  "Roteiro": "Script",
+  "Crio o roteiro com base no briefing e envio pra sua aprovação.": "I write the script based on the briefing and send it for your approval.",
+  "Você pode mandar uma direção específica ou deixar a criação livre comigo, do jeito que fizer mais sentido.": "You can send specific direction or give me creative freedom, whatever makes more sense for you.",
+  "Gravação + entrega": "Filming + delivery",
+  "Com o produto em mãos, ou depois de visitar o seu espaço, gravo e edito tudo com capricho.": "Once I have the product, or after visiting your space, I film and edit everything with care.",
+  "Envio com marca d'água pra aprovação, faço os ajustes necessários e entrego o material final pelo Google Drive.": "I send it watermarked for approval, make any needed adjustments and deliver the final files via Google Drive.",
+  "O prazo depende do escopo e da quantidade de conteúdos.": "Timelines depend on the scope and the number of pieces.",
+  "Como usar meus": "How to use my",
+  "conteúdos?": "content?",
+  "Tráfego pago": "Paid ads",
+  "Como criativo nos seus anúncios": "As creatives in your ads",
+  "Orgânico": "Organic",
+  "Redes sociais, site e catálogos, com uso vitalício": "Social media, website and catalogs, with lifetime use",
+
+  // Métricas
+  "Métricas e depoimentos": "Metrics and testimonials",
+  "Com quem meu": "Who my",
+  "conversa": "speaks to",
+  "Mulheres de 18 a 54 anos que valorizam beleza autêntica, praticidade, produtos com propósito e experiências reais. Meu público é ativo e engajado, se conecta com vídeos e relatos que inspiram confiança e valoriza recomendações espontâneas e verdadeiras.": "Women aged 18 to 54 who value authentic beauty, practicality, purposeful products and real experiences. My audience is active and engaged, connects with videos and stories that build trust, and values genuine, spontaneous recommendations.",
+  "seguidores": "followers",
+  "visualizações nos últimos 30 dias": "views in the last 30 days",
+  "Ver perfil": "View profile",
+  "Principais localidades": "Top locations",
+  "Gêneros atingidos": "Audience gender",
+  "Feminino": "Female",
+  "Masculino": "Male",
+  "Faixa etária": "Age range",
+  "25 a 34 anos": "25 to 34 years",
+  "18 a 24 anos": "18 to 24 years",
+  "35 a 44 anos": "35 to 44 years",
+  "45 a 54 anos": "45 to 54 years",
+
+  // Depoimentos (traduzidos do original em português)
+  "Depoimentos": "Testimonials",
+  "O que dizem sobre": "What brands say",
+  "o meu": "about my",
+  "trabalho": "work",
+  "Feedback de marcas que confiaram no meu trabalho.": "Feedback from brands that trusted my work.",
+  "Muito obrigado por topar fazer parte desse projeto conosco! Foi um prazer trabalhar com você, e esperamos repetir essa parceria em breve.": "Thank you so much for joining this project with us! It was a pleasure working with you, and we hope to repeat this partnership soon.",
+  "Seu trabalho é excelente, entregou a proposta que a marca solicitou no roteiro. Não teve problemas pra entregar uma edição boa e bem feita. Teve um ótimo alcance pra marca.": "Your work is excellent, you delivered exactly what the brand asked for in the script. The editing was great and well done, with no issues. It had great reach for the brand.",
+  "Amamos trabalhar com a Tatiele! 🤍 Além de captar o briefing com clareza, ela entregou um conteúdo impecável, leve e cheio de verdade. O resultado ficou incrível!": "We loved working with Tatiele! 🤍 Besides understanding the briefing clearly, she delivered flawless content, light and full of truth. The result was amazing!",
+  "Amei o vídeo, ficou muito lindo e muito boom 💙": "I loved the video, it turned out so beautiful and so good 💙",
+  "Amamos a experiência de trabalhar com a Tatiele. Entregou um conteúdo excelente.": "We loved the experience of working with Tatiele. She delivered excellent content.",
+  "Sua edição é maravilhosa.": "Your editing is wonderful.",
+  "Todos aprovadíssimos! Ficaram excelentes.": "All approved! They turned out excellent.",
+
+  // Contato e formulário
+  "Vamos criar algo": "Let's create something",
+  "incrível": "amazing",
+  "juntos": "together",
+  "Me conta um pouco sobre a sua marca e o que você quer alcançar. Respondo todas as mensagens em até 24 horas úteis, com uma proposta clara de formatos, prazos e preços.": "Tell me a bit about your brand and what you want to achieve. I reply to every message within 24 business hours, with a clear proposal of formats, timelines and pricing.",
+  "Nome": "Name",
+  "Marca": "Brand",
+  "Serviço de interesse": "Service of interest",
+  "Selecione...": "Select...",
+  "Ainda não sei": "Not sure yet",
+  "Orçamento (opcional)": "Budget (optional)",
+  "Até R$ 500": "Up to R$ 500",
+  "R$ 500 a R$ 1.500": "R$ 500 to R$ 1,500",
+  "R$ 1.500 a R$ 3.000": "R$ 1,500 to R$ 3,000",
+  "Acima de R$ 3.000": "Over R$ 3,000",
+  "A combinar": "To be discussed",
+  "Sobre a campanha": "About the campaign",
+  "Enviar proposta": "Send proposal",
+  "Obrigada,": "Thank you,",
+  "Recebi a sua mensagem e respondo em até 24 horas úteis. Se preferir, me chama no WhatsApp.": "I got your message and will reply within 24 business hours. If you prefer, message me on WhatsApp.",
+  "Tatiele Milani. Todos os direitos reservados.": "Tatiele Milani. All rights reserved.",
+
+  // Mídia kit
+  "Quer meu": "Want my full",
+  "mídia kit": "media kit",
+  "completo?": "?",
+  "Valores, formatos, resultados e cases em um PDF bonito. Deixa seu contato que eu te envio.": "Rates, formats, results and case studies in a beautiful PDF. Leave your contact and I'll send it to you.",
+  "Quero receber": "Send it to me",
+  "Prontinho,": "All set,",
+  "O mídia kit vai chegar no seu e-mail em breve. Fica de olho na caixa de entrada.": "The media kit will arrive in your inbox soon. Keep an eye out for it.",
+
+  // Textos para leitores de tela, fotos e campos
+  "Tatiele Milani, voltar ao início": "Tatiele Milani, back to top",
+  "Abrir menu": "Open menu",
+  "Fechar menu": "Close menu",
+  "Menu principal": "Main menu",
+  "Tatiele Milani sorrindo, de blusa vinho ombro a ombro": "Tatiele Milani smiling in an off-the-shoulder burgundy top",
+  "Tatiele Milani sorrindo de lado, de blusa clara": "Tatiele Milani smiling sideways in a light top",
+  "Meu Instagram (abre em nova aba)": "My Instagram (opens in a new tab)",
+  "Meu TikTok (abre em nova aba)": "My TikTok (opens in a new tab)",
+  "Formatos de conteúdo que eu produzo": "Content formats I produce",
+  "Marca parceira": "Partner brand",
+  "Vídeos em destaque": "Featured videos",
+  "Canjica cremosa com a esponja Magic Clean, da Sterily, 1,5 milhão de views": "Creamy canjica with Sterily's Magic Clean sponge, 1.5 million views",
+  "Tour pela academia para o Wellhub, 28,5 mil views": "Gym tour for Wellhub, 28.5K views",
+  "Receita de brigadeiro saudável, 23,2 mil views": "Healthy brigadeiro recipe, 23.2K views",
+  "Ligar o som": "Turn sound on",
+  "Desligar o som": "Turn sound off",
+  "Assistir": "Watch",
+  "Vídeo anterior": "Previous video",
+  "Próximo vídeo": "Next video",
+  "Escolher nicho": "Choose a niche",
+  "Vídeos anteriores": "Previous videos",
+  "Próximos vídeos": "Next videos",
+  "Depoimento anterior": "Previous testimonial",
+  "Próximo depoimento": "Next testimonial",
+  "Vídeo": "Video",
+  "Fechar vídeo": "Close video",
+  "Fechar": "Close",
+  "Produto, objetivo, prazo, referências...": "Product, goal, timeline, references..."
+};
+
+// Textos que mudam com o nome da marca ou com números
+const EN_PADROES = [
+  [/^Assistir vídeo para (.+), nicho (.+)$/, (m, marca, nicho) => `Watch the video for ${marca}, ${EN[nicho] || nicho} niche`],
+  [/^Capa do vídeo para (.+)$/, (m, marca) => `Video cover for ${marca}`],
+  [/^Foto UGC para (.+)$/, (m, marca) => `UGC photo for ${marca}`],
+  [/^Vídeo para (.+)$/, (m, marca) => `Video for ${marca}`],
+  [/^Ver destaque (\d+)$/, (m, n) => `See highlight ${n}`],
+  [/^(\d+),(\d+)%$/, (m, a, b) => `${a}.${b}%`]
+];
+
+(function trocaIdioma() {
+  const originais = new WeakMap();   // texto em português de cada pedaço de texto
+  const attrOriginais = new WeakMap(); // e de cada atributo (alt, aria-label, placeholder)
+  const ATRIBUTOS = ['aria-label', 'alt', 'placeholder', 'title'];
+  const traduz = (texto) => {
+    const chave = texto.trim().replace(/\s+/g, ' ');
+    if (!chave) return null;
+    if (EN[chave] !== undefined) return EN[chave];
+    for (const [re, fn] of EN_PADROES) if (re.test(chave)) return chave.replace(re, fn);
+    return null;
+  };
+  // mantém os espaços em volta do texto (ex.: "Com a " + Sterily)
+  const comEspacos = (orig, novo) => (/^[?.!,]/.test(novo) ? '' : orig.match(/^\s*/)[0]) + novo + orig.match(/\s*$/)[0];
+
+  function noTexto(no) {
+    if (!originais.has(no)) originais.set(no, no.nodeValue);
+    const orig = originais.get(no);
+    if (idioma === 'en') {
+      const en = traduz(orig);
+      const novo = en === null ? orig : comEspacos(orig, en);
+      if (no.nodeValue !== novo) no.nodeValue = novo;
+    } else if (no.nodeValue !== orig) no.nodeValue = orig;
+  }
+  function atributos(el) {
+    let salvos = attrOriginais.get(el);
+    if (!salvos) { salvos = {}; attrOriginais.set(el, salvos); }
+    ATRIBUTOS.forEach(a => {
+      if (!el.hasAttribute(a)) return;
+      const atual = el.getAttribute(a);
+      // se o código trocou o atributo (ex.: "Desligar o som"), esse passa a ser o original
+      if (!salvos[a] || (atual !== salvos[a].pt && atual !== salvos[a].en)) salvos[a] = { pt: atual, en: null };
+      if (salvos[a].en === null) { const en = traduz(salvos[a].pt); salvos[a].en = en === null ? salvos[a].pt : en; }
+      const novo = idioma === 'en' ? salvos[a].en : salvos[a].pt;
+      if (atual !== novo) el.setAttribute(a, novo);
+    });
+  }
+  function percorre(raiz) {
+    if (raiz.nodeType === 3) { if (!raiz.parentElement || !raiz.parentElement.closest('script,style')) noTexto(raiz); return; }
+    if (raiz.nodeType !== 1 || raiz.closest('script,style')) return;
+    atributos(raiz);
+    raiz.querySelectorAll('*').forEach(el => { if (!el.closest('script,style')) atributos(el); });
+    const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement && !n.parentElement.closest('script,style') ? 1 : 2
+    });
+    let n; while ((n = w.nextNode())) noTexto(n);
+  }
+
+  // Números que contam (seguidores, visualizações): refaz no formato do idioma
+  function contadores() {
+    document.querySelectorAll('[data-contador]').forEach(el => {
+      const valor = parseFloat(el.dataset.valor), casas = +el.dataset.casas;
+      const texto = el.dataset.prefixo + formata(valor, casas) + sufixoIdioma(el.dataset.sufixo);
+      el.setAttribute('aria-label', texto);
+      el.textContent = el.dataset.animado ? texto : el.dataset.prefixo + formata(0, casas) + sufixoIdioma(el.dataset.sufixo);
+    });
+  }
+
+  const tituloPT = document.title;
+  const descricao = document.querySelector('meta[name="description"]');
+  const descricaoPT = descricao ? descricao.content : '';
+
+  let observador = null;
+  function aplica(novo, salvar) {
+    idioma = novo;
+    document.documentElement.lang = novo === 'en' ? 'en' : 'pt-BR';
+    document.title = novo === 'en' ? 'Tatiele Milani · UGC Creator & Influencer Portfolio' : tituloPT;
+    if (descricao) descricao.content = novo === 'en' ? 'Portfolio of Tatiele Milani, UGC creator and influencer in Curitiba, Brazil. Videos that make your brand feel like a friend\'s recommendation and sell like an ad.' : descricaoPT;
+    if (observador) observador.disconnect();
+    percorre(document.body);
+    contadores();
+    document.querySelectorAll('.idioma button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === novo));
+    if (salvar) { try { localStorage.setItem('idioma', novo); } catch (e) {} }
+    // o que aparecer depois (outro nicho, confirmação do formulário) também é traduzido
+    observador = new MutationObserver(lista => {
+      observador.disconnect();
+      lista.forEach(m => {
+        if (m.type === 'attributes') atributos(m.target);
+        else m.addedNodes.forEach(percorre);
+      });
+      observador.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ATRIBUTOS });
+    });
+    observador.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ATRIBUTOS });
+  }
+
+  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.lang !== idioma) aplica(b.dataset.lang, true);
+  }));
+
+  // Abre em inglês se a pessoa escolheu antes ou se o link tiver ?lang=en
+  let inicial = 'pt';
+  try { inicial = localStorage.getItem('idioma') || 'pt'; } catch (e) {}
+  const doLink = new URLSearchParams(location.search).get('lang');
+  if (doLink === 'en' || doLink === 'pt') inicial = doLink;
+  if (inicial === 'en') aplica('en', false);
+})();
 </script>
 </body>
 </html>
