@@ -545,7 +545,9 @@ p{margin:0 0 1em}
 .confirmacao .check{width:64px;height:64px;border-radius:50%;background:var(--destaque);color:var(--vinho);display:grid;place-items:center;margin:0 auto 20px}
 .confirmacao h3{font-size:2rem;color:#fff;margin-bottom:10px}
 .confirmacao h3 em{color:var(--destaque)}
-.confirmacao p{color:rgba(255,255,255,.85)}
+.confirmacao p{color:rgba(255,255,255,.85);max-width:460px;margin:0 auto}
+.confirmacao .check svg{width:30px;height:30px}
+.confirmacao .btn{margin-top:26px}
 
 /* =========================================================
    8. RODAPÉ (continua no vinho do contato)
@@ -1683,10 +1685,10 @@ function validar(form) {
   });
   return ok;
 }
-function confirmacao(titulo, texto) {
+function confirmacao(titulo, texto, extra = '') {
   return `<div class="confirmacao" role="status" tabindex="-1">
     <div class="check" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-    <h3>${titulo}</h3><p>${texto}</p></div>`;
+    <h3>${titulo}</h3><p>${texto}</p>${extra}</div>`;
 }
 
 $('#form-contato').addEventListener('submit', (e) => {
@@ -1714,7 +1716,9 @@ $('#form-contato').addEventListener('submit', (e) => {
   const janela = window.open(link, '_blank', 'noopener');
   if (!janela) location.href = link; // se o navegador bloquear a nova aba, abre na mesma
   const caixa = $('#caixa-formulario');
-  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`, 'Sua proposta abriu no WhatsApp, é só tocar em enviar que ela chega direto para mim. Respondo em até 24 horas úteis.');
+  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`,
+    'Sua proposta já está pronta no WhatsApp. É só tocar em enviar que ela chega direto para mim, e eu respondo em até 24 horas úteis.',
+    `<a class="btn btn-claro" href="${esc(link)}" target="_blank" rel="noopener">Abrir o WhatsApp de novo</a>`);
   caixa.querySelector('.confirmacao').focus();
 });
 
@@ -1907,7 +1911,8 @@ const EN = {
   "Sobre a campanha": "About the campaign",
   "Enviar proposta": "Send proposal",
   "Obrigada,": "Thank you,",
-  "Sua proposta abriu no WhatsApp, é só tocar em enviar que ela chega direto para mim. Respondo em até 24 horas úteis.": "Your proposal opened in WhatsApp, just tap send and it comes straight to me. I reply within 24 business hours.",
+  "Sua proposta já está pronta no WhatsApp. É só tocar em enviar que ela chega direto para mim, e eu respondo em até 24 horas úteis.": "Your proposal is ready in WhatsApp. Just tap send and it comes straight to me. I reply within 24 business hours.",
+  "Abrir o WhatsApp de novo": "Open WhatsApp again",
   "A proposta abre no seu WhatsApp, já preenchida, e chega direto para mim.": "The proposal opens in your WhatsApp, already filled in, and comes straight to me.",
   "Tatiele Milani. Todos os direitos reservados.": "Tatiele Milani. All rights reserved.",
 
