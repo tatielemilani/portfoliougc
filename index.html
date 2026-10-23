@@ -371,18 +371,36 @@ p{margin:0 0 1em}
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
-.metricas{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:88px}
-.metrica{background:var(--papel);border-radius:var(--raio);padding:32px 28px;box-shadow:var(--sombra)}
-.metrica strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,4.6vw,3.8rem);line-height:1;color:var(--vinho);font-variant-numeric:tabular-nums}
-.metrica span{display:block;margin-top:12px;font-size:.92rem;color:var(--tinta-2)}
-.subtitulo{font-family:var(--serif);font-size:1.9rem;margin-bottom:28px}
-.subtitulo em{font-style:italic;color:var(--vinho)}
-.resultados{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:88px}
-.resultado{border-top:2px solid var(--tinta);padding-top:22px}
-.resultado .valor{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--nude-texto)}
-.resultado .rot{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2);margin:10px 0 12px}
-.resultado h3{font-size:1.3rem;margin-bottom:6px}
-.resultado p{color:var(--tinta-2);font-size:.95rem;margin:0}
+/* Métricas do público e das redes */
+#numeros .secao-cabeca{margin-bottom:40px}
+#numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
+#numeros .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
+.publico-topo{display:grid;grid-template-columns:1.1fr 1.3fr;gap:24px;align-items:stretch;margin-bottom:24px}
+.publico-texto{margin:0;align-self:center;padding-right:24px;font-size:1.12rem;line-height:1.7;color:var(--tinta)}
+.redes-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.rede-card,.dado-card{background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:26px 26px 22px;transition:border-color .3s,box-shadow .3s}
+.rede-card:hover,.dado-card:hover{border-color:var(--vinho);box-shadow:0 14px 30px -18px rgba(140,29,36,.45)}
+.rede-card{display:flex;flex-direction:column;gap:16px}
+.rede-card-topo{display:flex;align-items:center;gap:12px}
+.rede-card-icone{width:42px;height:42px;border-radius:50%;background:var(--vinho);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.rede-card-icone svg{width:20px;height:20px}
+.rede-card-topo strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--tinta)}
+.rede-card-topo small{display:block;font-size:.82rem;color:var(--tinta-2)}
+.rede-num strong{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,3vw,2.5rem);letter-spacing:-.04em;line-height:1;color:var(--vinho);font-variant-numeric:tabular-nums}
+.rede-num span{display:block;margin-top:6px;font-size:.84rem;color:var(--tinta-2)}
+.rede-card-link{margin-top:auto;align-self:flex-start;font-size:.85rem;font-weight:600;color:var(--tinta);text-decoration:none;border-bottom:1px solid rgba(140,29,36,.3);padding-bottom:2px;transition:color .2s,border-color .2s}
+.rede-card-link:hover{color:var(--vinho);border-color:var(--vinho)}
+.publico-dados{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px;margin-bottom:96px}
+.dado-card h3{font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vinho);margin:0 0 20px}
+.localidades{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.localidades li{display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-size:1.25rem;color:var(--tinta)}
+.localidades li span{font-family:var(--italico);font-style:italic;font-size:.95rem;color:var(--vinho)}
+.barra + .barra{margin-top:14px}
+.barra-rotulo{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--tinta-2);margin-bottom:7px}
+.barra-rotulo strong{font-weight:700;color:var(--tinta)}
+.barra-trilho{height:7px;border-radius:99px;background:rgba(140,29,36,.1);overflow:hidden}
+.barra-trilho span{display:block;height:100%;width:0;border-radius:inherit;background:var(--vinho);transition:width 1.4s cubic-bezier(.2,.7,.2,1) .2s}
+.dado-card.visivel .barra-trilho span{width:var(--p)}
 /* Depoimentos: cards com a logo da marca por cima, em carrossel */
 .depo-cabeca{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:8px;scroll-margin-top:90px}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(1.6rem,2.9vw,2.2rem)}
@@ -482,7 +500,7 @@ p{margin:0 0 1em}
    ========================================================= */
 @media (max-width:1024px){
   .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
-  .metricas{grid-template-columns:repeat(2,1fr)}
+  .publico-topo{grid-template-columns:1fr} .publico-texto{padding-right:0}
   .servicos-grade{grid-template-columns:repeat(2,1fr)}
   .servico,.servico:not(:nth-child(3n+1)){padding:36px 28px 40px 0;border-left:0}
   .servico:nth-child(2n){padding-left:28px;border-left:1px solid rgba(255,255,255,.2)}
@@ -520,7 +538,7 @@ p{margin:0 0 1em}
   .secao{padding:88px 0}
   .destaques-grade{grid-template-columns:1fr;gap:40px} .destaques-texto{margin-top:0}
   .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
-  .resultados{grid-template-columns:1fr}
+  .publico-dados{grid-template-columns:1fr 1fr} .publico-dados .dado-card:last-child{grid-column:1 / -1}
   .depo-cabeca{flex-direction:column;align-items:flex-start;gap:14px}
   #depo-anterior{left:-10px} #depo-proximo{right:-10px}
   .nicho-trilho{grid-auto-columns:calc((100% - 2 * 16px) / 3);gap:16px}
@@ -541,17 +559,14 @@ p{margin:0 0 1em}
   .foto-card{height:360px} #fotos{padding-bottom:64px}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
-  .metricas{gap:14px}
-  .metrica{padding:24px 18px}
+  .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
+  .publico-texto{font-size:1rem} .publico-dados{margin-bottom:72px}
   .contato{margin:0 8px;padding:72px 0;border-radius:20px}
   .formulario{padding:28px 20px}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
   .modal-card{padding:40px 22px 26px}
-}
-@media (max-width:380px){
-  .metricas{grid-template-columns:1fr}
 }
 
 /* Respeita quem prefere menos movimento */
@@ -731,17 +746,19 @@ p{margin:0 0 1em}
     </div>
   </section>
 
-  <!-- ======================= 6. NÚMEROS E DEPOIMENTOS ======================= -->
+  <!-- ======================= 6. MÉTRICAS E DEPOIMENTOS ======================= -->
   <section class="secao" id="numeros" aria-labelledby="titulo-numeros">
     <div class="container">
       <div class="secao-cabeca">
-        <p class="sobretitulo revelar">Números e depoimentos</p>
-        <h2 id="titulo-numeros" class="revelar">Resultados que <em>falam</em> por mim.</h2>
+        <p class="sobretitulo revelar">Métricas e depoimentos</p>
+        <h2 id="titulo-numeros" class="revelar">Com quem meu <em>conteúdo</em> conversa</h2>
       </div>
-      <div class="metricas" id="metricas"></div>
-
-      <h3 class="subtitulo revelar">Resultados de <em>campanha</em></h3>
-      <div class="resultados" id="resultados"></div>
+      <!-- Os dados do público e das redes vêm de PUBLICO e REDES no script -->
+      <div class="publico-topo">
+        <p class="publico-texto revelar" id="publico-texto"></p>
+        <div class="redes-cards" id="redes-cards"></div>
+      </div>
+      <div class="publico-dados" id="publico-dados"></div>
 
       <div class="depo-cabeca" id="depoimentos">
         <div>
@@ -1030,19 +1047,32 @@ const SERVICOS = [
   { titulo: 'Pacote mensal',          descricao: 'Conteúdo recorrente todo mês, com calendário combinado e prioridade na agenda.' }
 ];
 
-// Métricas com contador animado. valor: número final. casas: casas decimais. prefixo/sufixo: o que vem antes e depois.
-const METRICAS = [
-  { valor: 50,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'vídeos entregues' },
-  { valor: 40,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'marcas atendidas' },
-  { valor: 1.5,  casas: 1, prefixo: '+', sufixo: 'M', rotulo: 'views somadas nos destaques' },
-  { valor: NICHOS.length, casas: 0, prefixo: '', sufixo: '', rotulo: 'nichos atendidos' } // conta sozinho pelos nichos acima
-];
+// Métricas do público (do mídia kit). pct: porcentagem de cada faixa
+const PUBLICO = {
+  texto: 'Mulheres de 18 a 54 anos que valorizam beleza autêntica, praticidade, produtos com propósito e experiências reais. Meu público é ativo e engajado, se conecta com vídeos e relatos que inspiram confiança e valoriza recomendações espontâneas e verdadeiras.',
+  localidades: ['São Paulo', 'Curitiba', 'Rio de Janeiro'],
+  generos: [
+    { rotulo: 'Feminino',  pct: 96.5 },
+    { rotulo: 'Masculino', pct: 3.5 }
+  ],
+  idades: [
+    { rotulo: '25 a 34 anos', pct: 39.9 },
+    { rotulo: '18 a 24 anos', pct: 23.5 },
+    { rotulo: '35 a 44 anos', pct: 20.4 },
+    { rotulo: '45 a 54 anos', pct: 10.2 }
+  ]
+};
 
-// Resultados de campanha (troque marca e descrição pelos dados reais)
-const RESULTADOS = [
-  { valor: '1,5 mi',   rotulo: 'views no Instagram', titulo: 'Sterily · Magic Clean', descricao: 'Receita de canjica cremosa mostrando a esponja mágica Magic Clean em ação.' },
-  { valor: '28,5 mil', rotulo: 'views no Instagram', titulo: 'Wellhub', descricao: 'Tour pela academia mostrando o que dá para acessar com o Wellhub.' },
-  { valor: '23,2 mil', rotulo: 'views no Instagram', titulo: 'Brigadeiro saudável', descricao: 'Receita fácil de brigadeiro saudável, feita do começo ao fim no vídeo.' }
+// Números das redes, com contador animado. valor: número final | casas: casas decimais | sufixo: o que vem depois
+const REDES = [
+  { rede: 'Instagram', usuario: 'tatielemilani', link: 'https://www.instagram.com/tatielemilani/', numeros: [
+    { valor: 5464, casas: 0, sufixo: '',     rotulo: 'seguidores' },
+    { valor: 54.6, casas: 1, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' }
+  ] },
+  { rede: 'TikTok', usuario: 'tatielemilani', link: 'https://www.tiktok.com/@tatielemilani', numeros: [
+    { valor: 10,   casas: 0, sufixo: ' mil', rotulo: 'seguidores' },
+    { valor: 17.8, casas: 1, sufixo: ' mil', rotulo: 'curtidas' }
+  ] }
 ];
 
 // Depoimentos reais das marcas
@@ -1267,22 +1297,49 @@ $('#servicos-grade').innerHTML = SERVICOS.map((s, i) => `
     <p>${esc(s.descricao)}</p>
   </article>`).join('');
 
-// Métricas, resultados e depoimentos
+// Métricas do público, redes e depoimentos
 const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
-$('#metricas').innerHTML = METRICAS.map(m => `
-  <div class="metrica revelar">
-    <strong data-contador data-valor="${m.valor}" data-casas="${m.casas}" data-prefixo="${esc(m.prefixo)}" data-sufixo="${esc(m.sufixo)}"
-      aria-label="${esc(m.prefixo + formata(m.valor, m.casas) + m.sufixo)}">${esc(m.prefixo)}0${esc(m.sufixo)}</strong>
-    <span>${esc(m.rotulo)}</span>
-  </div>`).join('');
+(function metricas() {
+  const icones = {
+    Instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>',
+    TikTok: document.querySelector('#capa-tiktok svg').outerHTML
+  };
+  $('#publico-texto').textContent = PUBLICO.texto;
 
-$('#resultados').innerHTML = RESULTADOS.map(r => `
-  <article class="resultado revelar">
-    <div class="valor">${esc(r.valor)}</div>
-    <span class="rot">${esc(r.rotulo)}</span>
-    <h3>${esc(r.titulo)}</h3>
-    <p>${esc(r.descricao)}</p>
-  </article>`).join('');
+  $('#redes-cards').innerHTML = REDES.map(r => `
+    <article class="rede-card revelar">
+      <div class="rede-card-topo">
+        <span class="rede-card-icone">${icones[r.rede] || ''}</span>
+        <span><strong>${esc(r.rede)}</strong><small>@${esc(r.usuario)}</small></span>
+      </div>
+      ${r.numeros.map(n => `
+        <div class="rede-num">
+          <strong data-contador data-valor="${n.valor}" data-casas="${n.casas}" data-prefixo="" data-sufixo="${esc(n.sufixo)}"
+            aria-label="${esc(formata(n.valor, n.casas) + n.sufixo)}">0${esc(n.sufixo)}</strong>
+          <span>${esc(n.rotulo)}</span>
+        </div>`).join('')}
+      <a class="rede-card-link" href="${esc(r.link)}" target="_blank" rel="noopener">Ver perfil <span aria-hidden="true">↗</span></a>
+    </article>`).join('');
+
+  const barras = (lista) => lista.map(b => `
+    <div class="barra">
+      <div class="barra-rotulo"><span>${esc(b.rotulo)}</span><strong>${esc(formata(b.pct, 1))}%</strong></div>
+      <div class="barra-trilho"><span style="--p:${b.pct}%"></span></div>
+    </div>`).join('');
+  $('#publico-dados').innerHTML = `
+    <article class="dado-card revelar">
+      <h3>Principais localidades</h3>
+      <ol class="localidades">${PUBLICO.localidades.map((l, i) => `<li><span>${pad(i + 1)}</span>${esc(l)}</li>`).join('')}</ol>
+    </article>
+    <article class="dado-card revelar">
+      <h3>Gêneros atingidos</h3>
+      ${barras(PUBLICO.generos)}
+    </article>
+    <article class="dado-card revelar">
+      <h3>Faixa etária</h3>
+      ${barras(PUBLICO.idades)}
+    </article>`;
+})();
 
 (function depoimentos() {
   const cards = DEPOIMENTOS.map(d => `
