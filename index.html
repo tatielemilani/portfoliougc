@@ -382,14 +382,25 @@ p{margin:0 0 1em}
 .resultado .rot{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2);margin:10px 0 12px}
 .resultado h3{font-size:1.3rem;margin-bottom:6px}
 .resultado p{color:var(--tinta-2);font-size:.95rem;margin:0}
-.depoimentos{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.depoimento{margin:0;background:var(--papel);border-radius:var(--raio);padding:36px;box-shadow:var(--sombra);position:relative}
-.depoimento::before{content:"\201C";position:absolute;top:8px;right:28px;font-family:var(--serif);font-size:6rem;line-height:1;color:var(--creme-2)}
-.depoimento blockquote{margin:0 0 24px;font-family:var(--serif);font-size:1.3rem;line-height:1.45;position:relative}
-.depoimento figcaption{display:flex;align-items:center;gap:14px;font-size:.9rem}
-.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#d9a79c,#8c1d24);display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:1.1rem;flex-shrink:0}
-.depoimento figcaption strong{display:block;font-weight:600}
-.depoimento figcaption span{color:var(--tinta-2)}
+/* Depoimentos: cards com a logo da marca por cima, em carrossel */
+.depo-cabeca{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:8px;scroll-margin-top:90px}
+.depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(1.6rem,2.9vw,2.2rem)}
+.depo-cabeca h3 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em;color:var(--vinho)}
+.depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
+.depo-carrossel{position:relative}
+.depoimentos{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:4px;scrollbar-width:none;padding:40px 4px 18px}
+.depoimentos::-webkit-scrollbar{display:none}
+.depoimento{flex:0 0 calc((100% - 48px) / 4);scroll-snap-align:start;margin:0;background:var(--papel);border-radius:14px;padding:38px 16px 18px;box-shadow:var(--sombra);text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
+.depoimento figcaption{order:-1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.depoimento .depo-logo{position:absolute;top:-30px;left:calc(50% - 30px);width:60px;height:60px;border-width:2px}
+.depo-letra{display:grid;place-items:center;background:var(--vinho);color:#fff;font-family:var(--serif);font-size:1.5rem}
+.depoimento figcaption strong{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta)}
+.depo-estrelas{color:var(--vinho);letter-spacing:2px;font-size:.78rem;line-height:1}
+.depoimento blockquote{margin:8px 0 0;font-size:.82rem;line-height:1.5;color:var(--tinta-2)}
+.depo-seta{position:absolute;top:calc(50% + 14px);transform:translateY(-50%);z-index:2;background:#fff;color:var(--tinta);border:1px solid var(--linha);box-shadow:var(--sombra)}
+.depo-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
+.depo-seta:disabled{opacity:0;pointer-events:none}
+#depo-anterior{left:-22px} #depo-proximo{right:-22px}
 
 /* =========================================================
    7. CONTATO
@@ -506,7 +517,9 @@ p{margin:0 0 1em}
   .destaques-grade{grid-template-columns:1fr;gap:40px} .destaques-texto{margin-top:0}
   .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
   .resultados{grid-template-columns:1fr}
-  .depoimentos{grid-template-columns:1fr}
+  .depoimento{flex-basis:calc((100% - 32px) / 3)}
+  .depo-cabeca{flex-direction:column;align-items:flex-start;gap:14px}
+  #depo-anterior{left:-8px} #depo-proximo{right:-8px}
   .nicho-trilho{grid-auto-columns:calc((100% - 2 * 16px) / 3);gap:16px}
 }
 @media (max-width:600px){
@@ -529,7 +542,9 @@ p{margin:0 0 1em}
   .metrica{padding:24px 18px}
   .contato{margin:0 8px;padding:72px 0;border-radius:20px}
   .formulario{padding:28px 20px}
-  .depoimento{padding:28px 22px}
+  .depoimento{flex-basis:70%;padding:38px 16px 18px}
+  .depoimentos{gap:14px}
+  .depo-seta{display:none}
   .modal-card{padding:40px 22px 26px}
 }
 @media (max-width:380px){
@@ -724,8 +739,19 @@ p{margin:0 0 1em}
       <h3 class="subtitulo revelar">Resultados de <em>campanha</em></h3>
       <div class="resultados" id="resultados"></div>
 
-      <h3 class="subtitulo revelar" id="depoimentos">O que as marcas <em>dizem</em></h3>
-      <div class="depoimentos" id="depoimentos"></div>
+      <div class="depo-cabeca" id="depoimentos">
+        <div>
+          <p class="sobretitulo revelar">Depoimentos</p>
+          <h3 class="revelar">O que dizem sobre o <em>trabalho</em></h3>
+        </div>
+        <p class="revelar">Feedbacks reais de marcas que confiaram no meu trabalho.</p>
+      </div>
+      <!-- Os depoimentos vêm do array DEPOIMENTOS no script -->
+      <div class="depo-carrossel">
+        <button type="button" class="palco-seta depo-seta" id="depo-anterior" aria-label="Depoimentos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="depoimentos" id="depoimentos-trilho"></div>
+        <button type="button" class="palco-seta depo-seta" id="depo-proximo" aria-label="Próximos depoimentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -1015,12 +1041,15 @@ const RESULTADOS = [
   { valor: '23,2 mil', rotulo: 'views no Instagram', titulo: 'Brigadeiro saudável', descricao: 'Receita fácil de brigadeiro saudável, feita do começo ao fim no vídeo.' }
 ];
 
-// Depoimentos (troque pelo texto real que cada cliente te mandou)
+// Depoimentos reais das marcas
+// logo: arquivo na pasta imagens (sem logo, aparece a primeira letra) | estrelas: só quando a marca deu nota
 const DEPOIMENTOS = [
-  { texto: 'Cole aqui o depoimento do Cliente 01 sobre o seu trabalho.', nome: 'Cliente 01', empresa: 'Marca 01' },
-  { texto: 'Cole aqui o depoimento do Cliente 02 sobre o seu trabalho.', nome: 'Cliente 02', empresa: 'Marca 02' },
-  { texto: 'Cole aqui o depoimento do Cliente 03 sobre o seu trabalho.', nome: 'Cliente 03', empresa: 'Marca 03' },
-  { texto: 'Cole aqui o depoimento do Cliente 04 sobre o seu trabalho.', nome: 'Cliente 04', empresa: 'Marca 04' }
+  { marca: 'Cei Norte Decorações', logo: 'marca-09.webp', texto: 'Seu trabalho é excelente, entregou a proposta que a marca solicitou no roteiro. Não teve problemas pra entregar uma edição boa e bem feita. Teve um ótimo alcance pra marca.' },
+  { marca: 'Beauty Boobié', logo: 'marca-26.webp', estrelas: 5, texto: 'Amamos trabalhar com a Tatiele! 🤍 Além de captar o briefing com clareza, ela entregou um conteúdo impecável, leve e cheio de verdade. O resultado ficou incrível!' },
+  { marca: 'Èze Congelados', logo: 'marca-03.webp', texto: 'Amei o vídeo, ficou muito lindo e muito boom 💙' },
+  { marca: 'Tropical Especiarias', logo: 'marca-36.webp', estrelas: 5, texto: 'Amamos a experiência de trabalhar com a Tatiele. Entregou um conteúdo excelente.' },
+  { marca: 'Mais Memórias', logo: 'marca-30.webp', texto: 'Sua edição é maravilhosa.' },
+  { marca: 'Sterily', texto: 'Todos aprovadíssimos! Ficaram excelentes.' }
 ];
 
 /* =========================================================
@@ -1249,14 +1278,32 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
     <p>${esc(r.descricao)}</p>
   </article>`).join('');
 
-$('#depoimentos').innerHTML = DEPOIMENTOS.map(d => `
-  <figure class="depoimento revelar">
-    <blockquote>${esc(d.texto)}</blockquote>
-    <figcaption>
-      <span class="avatar" aria-hidden="true">${esc(d.nome.charAt(0))}</span>
-      <span><strong>${esc(d.nome)}</strong><span>${esc(d.empresa)}</span></span>
-    </figcaption>
-  </figure>`).join('');
+(function depoimentos() {
+  const trilho = $('#depoimentos-trilho');
+  trilho.innerHTML = DEPOIMENTOS.map(d => `
+    <figure class="depoimento">
+      <blockquote>${esc(d.texto)}</blockquote>
+      <figcaption>
+        ${d.logo
+          ? `<span class="marca-circ depo-logo"><img src="imagens/${esc(d.logo)}?v=3" alt="Logo ${esc(d.marca)}" width="96" height="96" loading="lazy" decoding="async"></span>`
+          : `<span class="marca-circ depo-logo depo-letra" aria-hidden="true">${esc(d.marca.charAt(0))}</span>`}
+        <strong>${esc(d.marca)}</strong>
+        ${d.estrelas ? `<span class="depo-estrelas" aria-label="Nota ${d.estrelas} de 5">${'★'.repeat(d.estrelas)}</span>` : ''}
+      </figcaption>
+    </figure>`).join('');
+
+  const anterior = $('#depo-anterior'), proximo = $('#depo-proximo');
+  const passo = () => { const c = trilho.querySelector('.depoimento'); return c ? c.offsetWidth + 16 : 300; };
+  const atualizar = () => {
+    anterior.disabled = trilho.scrollLeft <= 8;
+    proximo.disabled = trilho.scrollLeft >= trilho.scrollWidth - trilho.clientWidth - 8;
+  };
+  anterior.addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
+  proximo.addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
+  trilho.addEventListener('scroll', atualizar, { passive: true });
+  window.addEventListener('resize', atualizar);
+  atualizar();
+})();
 
 // Contatos e rodapé
 (function contatos() {
