@@ -378,7 +378,7 @@ p{margin:0 0 1em}
 .secao-vinho .servico h3{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--vinho);color:#fff;border:3px solid #f9f5ef;font-family:inherit;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:99px}
 .servico p{color:var(--tinta);font-size:.92rem;line-height:1.65;margin:0}
 /* Processo criativo e uso dos conteúdos */
-.secao.processo{padding:48px 0 40px}
+.secao.processo{padding:48px 0 0}
 .processo .secao-cabeca{margin-bottom:40px}
 .processo .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
 .processo .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
@@ -396,6 +396,8 @@ p{margin:0 0 1em}
 .uso-grade{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .uso-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:26px 26px 24px;transition:background .3s,border-color .3s}
 .uso-item:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3)}
+.uso-icone{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:rgba(241,214,196,.14);color:var(--destaque);margin-bottom:16px}
+.uso-icone svg{width:24px;height:24px}
 .uso-item h4{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--destaque);margin:0 0 10px}
 .uso-item p{font-size:1rem;line-height:1.6;color:rgba(255,255,255,.9);margin:0}
 
@@ -403,10 +405,10 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding-top:56px}
+#numeros{padding-top:64px}
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
-#numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:min(4.25rem,calc(6.3vw - 5px));white-space:nowrap}
-@media (max-width:600px){#numeros .secao-cabeca h2{font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:normal}}
+#numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
+@media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
 #numeros .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
 .publico-topo{display:grid;grid-template-columns:1.1fr 1.3fr;gap:24px;align-items:stretch;margin-bottom:24px}
 .publico-texto{margin:0;align-self:center;padding-right:24px;font-size:1.12rem;line-height:1.7;color:var(--tinta)}
@@ -437,7 +439,7 @@ p{margin:0 0 1em}
 .dado-card.visivel .barra-trilho span{width:var(--p)}
 /* Depoimentos: cards com a logo da marca por cima, em carrossel */
 .depo-cabeca{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:8px;scroll-margin-top:90px}
-.depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(1.6rem,2.9vw,2.2rem)}
+.depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
 .depo-carrossel{position:relative}
@@ -1117,8 +1119,8 @@ const ETAPAS = [
 
 // Como a marca pode usar os conteúdos
 const USOS = [
-  { titulo: 'Tráfego pago', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
-  { titulo: 'Orgânico',     texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
+  { titulo: 'Tráfego pago', icone: 'trafego', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
+  { titulo: 'Orgânico',     icone: 'organico', texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
 ];
 
 // Métricas do público (do mídia kit). pct: porcentagem de cada faixa
@@ -1371,6 +1373,11 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
   </article>`).join('');
 
 // Processo criativo e uso dos conteúdos
+// Ícones de traço fino dos cards de uso
+const ICONES_USO = {
+  trafego: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>',
+  organico: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>'
+};
 (function processo() {
   $('#etapas').innerHTML = ETAPAS.map(e => `
     <li class="etapa revelar">
@@ -1379,6 +1386,7 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
     </li>`).join('');
   $('#usos').innerHTML = USOS.map(u => `
     <div class="uso-item">
+      <span class="uso-icone" aria-hidden="true">${ICONES_USO[u.icone] || ''}</span>
       <h4>${esc(u.titulo)}</h4>
       <p>${esc(u.texto)}</p>
     </div>`).join('');
