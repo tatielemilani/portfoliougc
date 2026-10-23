@@ -363,11 +363,13 @@ p{margin:0 0 1em}
    ========================================================= */
 /* Serviços: texto e chamada à esquerda, formatos em cards com etiqueta à direita */
 .serv-layout{display:grid;grid-template-columns:.95fr 1.25fr;gap:72px;align-items:center}
-.serv-icone{width:50px;height:50px;color:var(--destaque);margin-bottom:22px}
 .serv-texto h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.08;font-size:clamp(2.4rem,4.4vw,3.6rem)}
-.serv-texto h2 mark{background:var(--destaque);color:var(--vinho);font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;padding:0 .16em;border-radius:6px}
+.serv-texto h2 mark{display:inline-block;background:var(--destaque);color:var(--vinho);font-family:var(--italico);font-style:italic;font-weight:600;font-size:.86em;line-height:1;letter-spacing:-.02em;padding:.03em .14em .1em;border-radius:6px}
 .serv-texto > p:not(.sobretitulo){color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 0;max-width:440px}
-.serv-texto .serv-chamada{font-family:var(--italico);font-style:italic;font-weight:500;font-size:1.2rem;line-height:1.45;color:var(--destaque);margin:22px 0 26px}
+.servicos{padding:80px 0 72px}
+.serv-texto .btn{margin-top:36px}
+.serv-chamada{margin:56px auto 0;text-align:center;font-family:var(--italico);font-style:italic;font-weight:500;font-size:1.25rem;line-height:1.5;color:rgba(255,255,255,.9)}
+.serv-chamada span{color:var(--destaque)}
 .btn-claro{background:var(--destaque);color:var(--vinho);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
 .btn-claro:hover{background:#fff;transform:translateY(-2px)}
 .servicos-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px 22px;padding-top:18px}
@@ -375,6 +377,27 @@ p{margin:0 0 1em}
 .servico:hover{transform:translateY(-4px)}
 .secao-vinho .servico h3{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--vinho);color:#fff;border:3px solid #f9f5ef;font-family:inherit;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:99px}
 .servico p{color:var(--tinta);font-size:.92rem;line-height:1.65;margin:0}
+/* Processo criativo e uso dos conteúdos */
+.processo{padding:96px 0 40px}
+.processo .secao-cabeca{margin-bottom:40px}
+.processo .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
+.processo .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
+.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.etapa{background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:28px 28px 26px;transition:border-color .3s,box-shadow .3s}
+.etapa:hover{border-color:var(--vinho);box-shadow:0 14px 30px -18px rgba(140,29,36,.45)}
+.etapa-num{display:block;font-family:var(--italico);font-style:italic;font-weight:600;font-size:3.4rem;line-height:.9;color:var(--vinho)}
+.etapa h3{font-family:inherit;font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta);margin:16px 0 12px}
+.etapa p{font-size:.93rem;line-height:1.65;color:var(--tinta);margin:0}
+.etapa p + p{margin-top:10px}
+.uso{margin-top:56px;background:var(--vinho);color:#fff;border-radius:22px;padding:48px 52px;display:grid;grid-template-columns:.9fr 1.6fr;gap:48px;align-items:center}
+.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;margin:0}
+.uso-titulo em{font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
+.uso-grade{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.uso-item{display:flex;gap:16px;align-items:flex-start}
+.uso-icone{width:52px;height:52px;border-radius:50%;background:var(--destaque);color:var(--vinho);display:grid;place-items:center;flex-shrink:0}
+.uso-icone svg{width:26px;height:26px}
+.uso-item h4{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:4px 0 8px}
+.uso-item p{font-size:.93rem;line-height:1.6;color:rgba(255,255,255,.86);margin:0}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
@@ -513,6 +536,7 @@ p{margin:0 0 1em}
   .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
   .publico-topo{grid-template-columns:1fr} .publico-texto{padding-right:0}
   .serv-layout{grid-template-columns:1fr;gap:56px} .serv-texto > p:not(.sobretitulo){max-width:560px}
+  .etapas{grid-template-columns:1fr;gap:18px} .uso{grid-template-columns:1fr;gap:28px;padding:40px 32px}
 }
 @media (max-width:1180px){
   .menu{gap:24px}
@@ -562,6 +586,7 @@ p{margin:0 0 1em}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr;gap:40px}
+  .uso-grade{grid-template-columns:1fr;gap:24px} .uso{padding:32px 22px;border-radius:18px} .serv-chamada{font-size:1.1rem;margin-top:44px}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:64px}
@@ -746,15 +771,30 @@ p{margin:0 0 1em}
   <section class="secao secao-vinho servicos" id="servicos" aria-labelledby="titulo-servicos">
     <div class="container serv-layout">
       <div class="serv-texto">
-        <svg class="serv-icone revelar" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M8 16h32l-2.5 26h-27z"/><path d="M17 20v-6a7 7 0 0114 0v6"/></svg>
         <p class="sobretitulo revelar">Serviços</p>
         <h2 id="titulo-servicos" class="revelar">O que podemos <mark>criar</mark> juntos?</h2>
-        <p class="revelar">Cada formato tem um objetivo: vender, escalar ou construir marca. Me conta o que a sua marca precisa que a gente monta o combo perfeito.</p>
-        <p class="serv-chamada revelar">Não sabe qual escolher? Me chama que a gente descobre juntos.</p>
+        <p class="revelar">Cada formato tem um objetivo: vender, escalar ou fortalecer a sua marca. Você me conta o que precisa e eu monto a combinação certa pra você.</p>
         <a class="btn btn-claro revelar" href="#contato">Bora criar juntos <span aria-hidden="true">→</span></a>
       </div>
       <!-- Os formatos vêm do array SERVICOS no script -->
       <div class="servicos-grade" id="servicos-grade"></div>
+    </div>
+    <p class="container serv-chamada revelar">Ainda não sabe qual formato combina com a sua marca? <span>Me chama que a gente descobre juntos.</span></p>
+  </section>
+
+  <!-- ======================= 5B. PROCESSO CRIATIVO E USO DOS CONTEÚDOS ======================= -->
+  <section class="secao processo" id="processo" aria-labelledby="titulo-processo">
+    <div class="container">
+      <div class="secao-cabeca">
+        <p class="sobretitulo revelar">Como funciona</p>
+        <h2 id="titulo-processo" class="revelar">Meu processo <em>criativo</em></h2>
+      </div>
+      <!-- As etapas e os usos vêm dos arrays ETAPAS e USOS no script -->
+      <ol class="etapas" id="etapas"></ol>
+      <div class="uso revelar">
+        <h3 class="uso-titulo">Como usar meus <em>conteúdos</em>?</h3>
+        <div class="uso-grade" id="usos"></div>
+      </div>
     </div>
   </section>
 
@@ -1052,10 +1092,33 @@ const TRABALHOS = [
 
 // Serviços: o título aparece na etiqueta em cima do card
 const SERVICOS = [
-  { titulo: 'UGC',                descricao: 'Vídeos com cara de gente real usando o seu produto, prontos pra rodar como anúncio no Meta, TikTok e YouTube. Roteiro pensado do gancho ao CTA.' },
-  { titulo: 'Publi',              descricao: 'Sua marca no meu perfil, do meu jeito, pra um público que já confia no que eu indico. Conteúdo que parece conversa, não anúncio.' },
-  { titulo: 'Clips',              descricao: 'Vídeos curtos com foco total no produto, pra anexar no anúncio do marketplace. O cliente vê tamanho, textura e funcionamento antes de comprar.' },
-  { titulo: 'TikTok Shop + Live', descricao: 'Vídeo de vitrine que converte e live com venda acontecendo em tempo real.' }
+  { titulo: 'UGC',                descricao: 'Vídeos gravados por mim, do jeitinho de quem usa o produto de verdade. Penso cada roteiro do gancho ao CTA pra virar anúncio no Meta, no TikTok e no YouTube.' },
+  { titulo: 'Publi post',         descricao: 'Eu apresento a sua marca no meu perfil, com a minha voz, pra um público que já confia nas minhas indicações. Parece conversa entre amigas, não propaganda.' },
+  { titulo: 'Clips',              descricao: 'Vídeos curtinhos com o produto como protagonista, pra usar no anúncio do marketplace. Quem compra vê tamanho, textura e como funciona antes de decidir.' },
+  { titulo: 'TikTok Shop + Live', descricao: 'Vídeos de vitrine que levam o produto pro carrinho e lives em que eu mostro tudo, tiro as dúvidas e vendo em tempo real.' }
+];
+
+// Processo criativo: as 3 etapas, cada parágrafo vira uma linha do card
+const ETAPAS = [
+  { titulo: 'Briefing + contrato', textos: [
+    'Começo entendendo o posicionamento da marca, os produtos e o que você quer alcançar.',
+    'A conversa pode ser por reunião, e-mail ou WhatsApp. Com tudo alinhado, assinamos o contrato.'
+  ] },
+  { titulo: 'Roteiro', textos: [
+    'Crio o roteiro com base no briefing e envio pra sua aprovação.',
+    'Você pode mandar uma direção específica ou deixar a criação livre comigo, do jeito que fizer mais sentido.'
+  ] },
+  { titulo: 'Gravação + entrega', textos: [
+    'Com o produto em mãos, ou depois de visitar o seu espaço, gravo e edito tudo com capricho.',
+    'Envio com marca d\'água pra aprovação, faço os ajustes necessários e entrego o material final pelo Google Drive.',
+    'O prazo depende do escopo e da quantidade de conteúdos.'
+  ] }
+];
+
+// Como a marca pode usar os conteúdos
+const USOS = [
+  { titulo: 'Tráfego pago', icone: 'anuncio', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
+  { titulo: 'Orgânico',     icone: 'organico', texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
 ];
 
 // Métricas do público (do mídia kit). pct: porcentagem de cada faixa
@@ -1306,6 +1369,25 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
     <h3>${esc(s.titulo)}</h3>
     <p>${esc(s.descricao)}</p>
   </article>`).join('');
+
+// Processo criativo e uso dos conteúdos
+(function processo() {
+  $('#etapas').innerHTML = ETAPAS.map((e, i) => `
+    <li class="etapa revelar">
+      <span class="etapa-num" aria-hidden="true">${i + 1}</span>
+      <h3>${esc(e.titulo)}</h3>
+      ${e.textos.map(t => `<p>${esc(t)}</p>`).join('')}
+    </li>`).join('');
+  const icones = {
+    anuncio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M6.5 12.5l3.5-3.5 2.5 2.5 4.5-4.5"/></svg>',
+    organico: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-9 8.3 8.9 8.9 0 01-3.8-.9L3 20l1.3-4.4A8.2 8.2 0 013 11.5 8.6 8.6 0 0112 3a8.6 8.6 0 019 8.5z"/><path d="M12 15.2l-2.9-2.8a1.8 1.8 0 012.6-2.6l.3.3.3-.3a1.8 1.8 0 012.6 2.6z"/></svg>'
+  };
+  $('#usos').innerHTML = USOS.map(u => `
+    <div class="uso-item">
+      <span class="uso-icone">${icones[u.icone] || ''}</span>
+      <div><h4>${esc(u.titulo)}</h4><p>${esc(u.texto)}</p></div>
+    </div>`).join('');
+})();
 
 // Métricas do público, redes e depoimentos
 const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
