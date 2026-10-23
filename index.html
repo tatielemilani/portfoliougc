@@ -337,6 +337,11 @@ p{margin:0 0 1em}
 .video-player iframe{width:100%;height:100%;border:0;display:block}
 .video-fechar{top:12px;right:12px;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)} /* X dentro do vídeo, no canto */
 .video-fechar:hover{background:rgba(0,0,0,.7)}
+.video-copiar{top:12px;right:60px;left:auto;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.video-copiar:hover{background:rgba(0,0,0,.7)}
+.video-copiar svg{width:18px;height:18px}
+.video-aviso{position:absolute;z-index:3;top:62px;right:12px;padding:6px 12px;border-radius:999px;background:#fff;color:var(--tinta);font-size:.8rem;font-weight:600;opacity:0;transform:translateY(-4px);transition:opacity .25s, transform .25s;pointer-events:none}
+.video-aviso.visivel{opacity:1;transform:none}
 
 /* =========================================================
    5. SERVIÇOS
@@ -650,7 +655,7 @@ p{margin:0 0 1em}
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Nichos</p>
         <h2 id="titulo-trabalhos" class="revelar">Que tipo de <em>conteúdo</em> você busca hoje?</h2>
-        <p class="revelar">Navegue pelos nichos e assista aos vídeos que criei para cada marca.</p>
+        <p class="revelar">Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.</p>
       </div>
       <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
       <div class="filtros revelar" id="filtros" role="group" aria-label="Escolher nicho"></div>
@@ -768,6 +773,11 @@ p{margin:0 0 1em}
     <button class="modal-fechar video-fechar" id="video-fechar" data-fechar-video aria-label="Fechar vídeo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
+    <!-- Setinha para copiar o link do vídeo -->
+    <button type="button" class="modal-fechar video-copiar" id="video-copiar" aria-label="Copiar o link do vídeo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H10a7 7 0 0 0-7 7"/></svg>
+    </button>
+    <span class="video-aviso" id="video-aviso" role="status" aria-live="polite"></span>
     <div class="video-player" id="video-player"></div>
   </div>
 </div>
@@ -892,9 +902,9 @@ const NICHOS = [
 // A capa vem sozinha do YouTube. Se quiser outra capa, adicione capa: 'imagens/arquivo.jpg' na linha.
 const TRABALHOS = [
   // Cabelo
-  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
   { nicho: 'cabelo', marca: "L'Oréal",                         video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
   { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
+  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
   // Casa & Decor
   { nicho: 'casa', marca: 'Cheiro de Memória',                 video: 'https://youtube.com/shorts/54YBQfUVYPE' },
   { nicho: 'casa', marca: 'Duoflex',                           video: 'https://youtube.com/shorts/9M-Eut_Q8Ns' },
@@ -1134,10 +1144,24 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
 
 // Player de vídeo: abre o Shorts aqui mesmo no site, sem sair da página
 (function playerVideo() {
-  const modal = $('#modal-video'), player = $('#video-player');
-  let focoAnterior = null;
+  const modal = $('#modal-video'), player = $('#video-player'), aviso = $('#video-aviso');
+  let focoAnterior = null, linkAtual = '', timerAviso = null;
+  function avisar(texto) {
+    aviso.textContent = texto; aviso.classList.add('visivel');
+    clearTimeout(timerAviso); timerAviso = setTimeout(() => aviso.classList.remove('visivel'), 2200);
+  }
+  // Copia o link do vídeo (no celular, abre o compartilhar do próprio aparelho)
+  $('#video-copiar').addEventListener('click', async () => {
+    if (navigator.share && matchMedia('(hover: none)').matches) {
+      try { await navigator.share({ url: linkAtual }); return; } catch (e) { if (e.name === 'AbortError') return; }
+    }
+    try { await navigator.clipboard.writeText(linkAtual); }
+    catch (e) { const t = document.createElement('textarea'); t.value = linkAtual; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+    avisar('Link copiado!');
+  });
   function abrir(id, titulo) {
     focoAnterior = document.activeElement;
+    linkAtual = `https://youtube.com/shorts/${id}`;
     player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
       title="Vídeo para ${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
