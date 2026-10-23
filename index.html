@@ -956,7 +956,8 @@ function midia(capa, legenda, alt, extra = '') {
 
 // Carrossel de marcas: uma linha só, repetida para o giro não ter emenda
 (function marcasParceiras() {
-  const circulo = (m) => `<div class="marca-circ"><img src="imagens/${esc(m.logo)}" alt="${esc(m.nome || 'Marca parceira')}" width="96" height="96" loading="lazy" decoding="async"></div>`;
+  const VERSAO_LOGOS = 3; // aumente quando trocar alguma logo, para o navegador não mostrar a antiga
+  const circulo = (m) => `<div class="marca-circ"><img src="imagens/${esc(m.logo)}?v=${VERSAO_LOGOS}" alt="${esc(m.nome || 'Marca parceira')}" width="96" height="96" loading="lazy" decoding="async"></div>`;
   const itens = MARCAS_PARCEIRAS.map(circulo).join('');
   $('#marcas-trilho').innerHTML = `<div class="marcas-grupo">${itens}</div><div class="marcas-grupo" aria-hidden="true">${itens.replace(/alt="[^"]*"/g, 'alt=""')}</div>`;
 })();
