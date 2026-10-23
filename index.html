@@ -240,35 +240,52 @@ p{margin:0 0 1em}
 .secao-vinho h2,.secao-vinho h3{color:#fff}
 .secao-vinho h2 em{color:var(--rosa-claro)}
 .secao-vinho .secao-cabeca p{color:rgba(255,255,255,.82)}
-.secao-vinho .destaque-numero{color:#fff}
-.secao-vinho .destaque-rotulo{color:var(--rosa-claro)}
-.secao-vinho .destaque p{color:rgba(255,255,255,.8)}
-.secao-vinho .destaque .ver{color:#fff;border-color:var(--rosa-claro)}
 .secao-vinho .midia{box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
-.destaques-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.destaque{
-  display:block;text-decoration:none;color:inherit;border-radius:calc(var(--raio) + 4px);
-  transition:transform .4s ease;
+
+/* Destaques: texto à esquerda e carrossel de vídeos à direita */
+.destaques-grade{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
+.destaques-texto h2 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--rosa-claro);margin-top:.05em}
+.destaques-texto p{color:rgba(255,255,255,.82);max-width:440px;margin:0 0 14px}
+.destaques-texto strong{color:var(--rosa-claro);font-weight:600}
+.destaques-frase{font-family:var(--italico);font-style:italic;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.35;color:#fff!important;margin-top:34px!important}
+.destaques-frase span{padding-bottom:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 60 2, 120 11, 180 6 S 270 4, 298 7' fill='none' stroke='%23f6cfc6' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom/100% 12px no-repeat}
+.destaques{overflow:hidden} /* os vídeos dos lados não podem passar da largura da tela */
+.destaques-palco{display:flex;flex-direction:column;align-items:center;min-width:0}
+.palco{position:relative;width:100%;height:580px}
+.card-video{
+  position:absolute;top:50%;left:50%;width:300px;aspect-ratio:9/16;margin:0;border-radius:20px;overflow:hidden;
+  background:#3a1015;box-shadow:0 30px 60px -25px rgba(0,0,0,.65);cursor:pointer;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s ease, filter .6s ease
 }
-.destaque .midia{aspect-ratio:9/16;box-shadow:var(--sombra);transition:box-shadow .4s ease}
-.destaque:nth-child(2) .midia{background:linear-gradient(160deg,#efd8d0 0%,#c98a83 60%,#8c1d24 100%)}
-.destaque:nth-child(3) .midia{background:linear-gradient(160deg,#f5ebe4 0%,#e3c2b4 55%,#b9786b 100%)}
-.destaque:hover{transform:translateY(-6px)}
-.destaque:hover .midia{box-shadow:var(--sombra-forte)}
+.card-video video{width:100%;height:100%;object-fit:cover;display:block}
+.card-video[data-pos="centro"]{transform:translate(-50%,-50%);z-index:3}
+.card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 185px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
+.card-video[data-pos="direita"]{transform:translate(calc(-50% + 185px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
+.card-video[data-pos="fora"]{transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none}
+.card-video:not([data-pos="centro"]):hover{opacity:.75}
+.card-rotulo{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(25,8,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+.card-som{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(25,8,10,.55);color:#fff;display:grid;place-items:center;cursor:pointer}
+.card-som svg{width:20px;height:20px}
+.card-play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--vinho);display:grid;place-items:center;cursor:pointer;transition:opacity .3s}
+.card-play svg{width:24px;height:24px;margin-left:3px}
+.card-video.tocando .card-play{opacity:0;pointer-events:none}
+.card-video:not([data-pos="centro"]) .card-som,.card-video:not([data-pos="centro"]) .card-play{display:none}
+.palco-controles{display:flex;align-items:center;gap:18px;margin-top:22px}
+.palco-seta{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s}
+.palco-seta:hover{background:#fff;color:var(--vinho)}
+.palco-seta svg{width:20px;height:20px}
+.palco-pontos{display:flex;gap:8px}
+.palco-ponto{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:rgba(255,255,255,.4);cursor:pointer;transition:width .3s, background .3s}
+.palco-ponto[aria-current="true"]{width:26px;background:var(--rosa-claro)}
+.palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(246,207,198,.5);padding-bottom:2px}
+.palco-insta:hover{color:#fff}
 .play{
   position:absolute;inset:0;margin:auto;z-index:2;width:76px;height:76px;border-radius:50%;
   background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(42,26,24,.35);
   transition:transform .35s ease, background .35s ease;
 }
 .play svg{width:26px;height:26px;margin-left:4px;fill:var(--vinho);transition:fill .35s}
-.destaque:hover .play{transform:scale(1.08);background:var(--vinho)}
-.destaque:hover .play svg{fill:#fff}
-.destaque-info{padding:24px 4px 0}
-.destaque-numero{font-family:var(--serif);font-size:clamp(2.6rem,4.4vw,3.6rem);line-height:1;color:var(--vinho);font-weight:400}
-.destaque-rotulo{display:block;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--nude-texto);margin:8px 0 14px}
-.destaque h3{font-size:1.45rem;margin-bottom:6px}
-.destaque p{font-size:.95rem;color:var(--tinta-2);margin:0}
-.destaque .ver{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.85rem;font-weight:600;color:var(--tinta);border-bottom:1px solid var(--nude);padding-bottom:2px}
 
 /* =========================================================
    4. TRABALHOS POR NICHO
@@ -456,7 +473,8 @@ p{margin:0 0 1em}
   .rede-ig,.rede-tt{right:4px;width:44px;height:44px} .rede-ig{top:12%} .rede-tt{top:24%} .rede::after{display:none}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .secao{padding:88px 0}
-  .destaques-grade{grid-template-columns:1fr;max-width:420px;margin:0 auto;gap:56px}
+  .destaques-grade{grid-template-columns:1fr;gap:40px}
+  .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
   .resultados{grid-template-columns:1fr}
   .depoimentos{grid-template-columns:1fr}
   .trabalhos-grade{grid-template-columns:repeat(3,1fr);gap:16px}
@@ -474,6 +492,7 @@ p{margin:0 0 1em}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
   .trabalhos-grade{grid-template-columns:repeat(2,1fr);gap:14px}
   .filtro{padding:8px 14px;font-size:.85rem}
+  .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .metricas{gap:14px}
   .metrica{padding:24px 18px}
@@ -592,14 +611,25 @@ p{margin:0 0 1em}
 
   <!-- ======================= 3. CONTEÚDOS DE DESTAQUE ======================= -->
   <section class="secao secao-vinho destaques" id="destaques" aria-labelledby="titulo-destaques">
-    <div class="container">
-      <div class="secao-cabeca">
-        <p class="sobretitulo revelar">Conteúdos de destaque</p>
-        <h2 id="titulo-destaques" class="revelar">Vídeos que <em>viralizaram</em> de verdade.</h2>
-        <p class="revelar">Três conteúdos que mostram o que acontece quando o roteiro certo encontra o público certo. Toque para assistir.</p>
+    <div class="container destaques-grade">
+      <div class="destaques-texto">
+        <p class="sobretitulo revelar">Resultados</p>
+        <h2 id="titulo-destaques" class="revelar">Conteúdos que <em>bombaram</em></h2>
+        <p class="revelar">Com o <strong>Wellhub</strong>, um tour pela academia virou <strong>+28,5M de views</strong> no Reels.</p>
+        <p class="revelar">A receita de <strong>brigadeiro saudável</strong> passou de <strong>23,2M de views</strong>.</p>
+        <p class="revelar">E a <strong>canjica cremosa</strong> em collab com a <strong>Sterily</strong> somou <strong>+1,5M de views</strong>.</p>
+        <p class="destaques-frase revelar">Conteúdo pensado pra gerar <span>resultado de verdade.</span></p>
       </div>
-      <!-- Os cards são montados pelo script a partir do array DESTAQUES (link do vídeo e capa ficam lá) -->
-      <div class="destaques-grade" id="destaques-grade"></div>
+      <!-- Carrossel de vídeos: montado pelo script a partir do array DESTAQUES (vídeo, capa e link ficam lá) -->
+      <div class="destaques-palco revelar">
+        <div class="palco" id="palco" aria-roledescription="carrossel" aria-label="Vídeos em destaque"></div>
+        <div class="palco-controles">
+          <button type="button" class="palco-seta" id="palco-anterior" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="palco-pontos" id="palco-pontos"></div>
+          <button type="button" class="palco-seta" id="palco-proximo" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <a class="palco-insta" id="palco-insta" href="#" target="_blank" rel="noopener">Ver no Instagram <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </section>
 
@@ -812,34 +842,16 @@ const FAIXA = [
   'Clips', 'Conteúdo de e-commerce', 'Fotos lifestyle', 'Storytelling criativo'
 ];
 
-// Conteúdos de destaque
-// link: endereço do vídeo que abre ao clicar no card
-// capa: caminho da imagem de capa vertical 9:16 (ex.: 'imagens/destaque-1.jpg'). Vazio = mostra o bloco com degradê.
+// Conteúdos de destaque (carrossel da seção vinho). O primeiro da lista começa no centro.
+// video: arquivo .mp4 na pasta imagens | capa: imagem vertical 9:16 | link: post no Instagram
+// rotulo: etiqueta no canto do vídeo | titulo: usado na descrição para leitores de tela
 const DESTAQUES = [
-  {
-    link: 'https://www.instagram.com/p/DZX2uoKh4nt/',  // LINK DO VÍDEO 1
-    capa: '',                                           // CAPA DO VÍDEO 1
-    numero: '+1,5M',
-    rotulo: 'views no Instagram',
-    titulo: 'Título do conteúdo 01',                    // PLACEHOLDER
-    contexto: 'Uma linha de contexto: marca, objetivo ou formato.' // PLACEHOLDER
-  },
-  {
-    link: 'https://www.instagram.com/p/DceyrdbSQa7/',  // LINK DO VÍDEO 2
-    capa: '',                                           // CAPA DO VÍDEO 2
-    numero: '+28,5M',
-    rotulo: 'views no Instagram',
-    titulo: 'Título do conteúdo 02',                    // PLACEHOLDER
-    contexto: 'Uma linha de contexto: marca, objetivo ou formato.' // PLACEHOLDER
-  },
-  {
-    link: 'https://www.instagram.com/p/DU_FdXPDTU3/',  // LINK DO VÍDEO 3
-    capa: '',                                           // CAPA DO VÍDEO 3
-    numero: '+23,2M',
-    rotulo: 'views no Instagram',
-    titulo: 'Título do conteúdo 03',                    // PLACEHOLDER
-    contexto: 'Uma linha de contexto: marca, objetivo ou formato.' // PLACEHOLDER
-  }
+  { video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
+    rotulo: 'Wellhub · +28,5M', titulo: 'Tour pela academia para o Wellhub, +28,5 milhões de views' },
+  { video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
+    rotulo: 'Brigadeiro · +23,2M', titulo: 'Receita de brigadeiro saudável, +23,2 milhões de views' },
+  { video: 'imagens/destaque-1.mp4', capa: 'imagens/destaque-1-capa.jpg', link: 'https://www.instagram.com/p/DZX2uoKh4nt/',
+    rotulo: 'Sterily · +1,5M', titulo: 'Canjica cremosa em collab com a Sterily, +1,5 milhão de views' }
 ];
 
 // Nichos que aparecem como botões de filtro (o "id" precisa bater com o campo "nicho" dos trabalhos)
@@ -972,21 +984,68 @@ function midia(capa, legenda, alt, extra = '') {
   $('#marcas-trilho').innerHTML = `<div class="marcas-grupo">${itens}</div><div class="marcas-grupo" aria-hidden="true">${itens.replace(/alt="[^"]*"/g, 'alt=""')}</div>`;
 })();
 
-// Destaques
+// Destaques: carrossel com o vídeo do centro tocando sem som (o som liga no botão)
 (function destaques() {
-  const play = '<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
-  $('#destaques-grade').innerHTML = DESTAQUES.map((d, i) => `
-    <a class="destaque revelar" href="${esc(d.link)}" target="_blank" rel="noopener"
-       aria-label="Assistir ${esc(d.titulo)}, ${esc(d.numero)} ${esc(d.rotulo)} (abre em nova aba)">
-      ${midia(d.capa, 'capa do vídeo 9:16', 'Capa do vídeo ' + d.titulo, play)}
-      <div class="destaque-info">
-        <div class="destaque-numero">${esc(d.numero)}</div>
-        <span class="destaque-rotulo">${esc(d.rotulo)}</span>
-        <h3>${esc(d.titulo)}</h3>
-        <p>${esc(d.contexto)}</p>
-        <span class="ver">Assistir no Instagram <span aria-hidden="true">↗</span></span>
-      </div>
-    </a>`).join('');
+  const palco = $('#palco'), pontos = $('#palco-pontos'), linkInsta = $('#palco-insta');
+  const iconeMudo = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
+  const iconeSom = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
+  const iconePlay = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
+  let atual = 0, visivel = false, comSom = false;
+
+  palco.innerHTML = DESTAQUES.map((d, i) => `
+    <figure class="card-video" data-i="${i}">
+      <video src="${esc(d.video)}" poster="${esc(d.capa)}" muted loop playsinline preload="none" aria-label="${esc(d.titulo)}"></video>
+      <span class="card-rotulo">${esc(d.rotulo)}</span>
+      <button type="button" class="card-som" aria-label="Ligar o som">${iconeMudo}</button>
+      <button type="button" class="card-play" aria-label="Assistir">${iconePlay}</button>
+    </figure>`).join('');
+  pontos.innerHTML = DESTAQUES.map((d, i) => `<button type="button" class="palco-ponto" data-i="${i}" aria-label="Ver destaque ${i + 1}"></button>`).join('');
+  const cards = [...palco.querySelectorAll('.card-video')];
+
+  function mostrar(i) {
+    const n = DESTAQUES.length;
+    atual = (i + n) % n;
+    cards.forEach((card, k) => {
+      const rel = ((k - atual) % n + n) % n; // 0 = centro, 1 = direita, n-1 = esquerda
+      card.dataset.pos = rel === 0 ? 'centro' : rel === 1 ? 'direita' : rel === n - 1 ? 'esquerda' : 'fora';
+      const v = card.querySelector('video');
+      if (rel !== 0) { v.pause(); v.muted = true; }
+      card.setAttribute('aria-hidden', rel !== 0);
+    });
+    pontos.querySelectorAll('.palco-ponto').forEach((p, k) => p.setAttribute('aria-current', k === atual));
+    linkInsta.href = DESTAQUES[atual].link;
+    tocarCentro();
+  }
+  function tocarCentro() {
+    const card = cards[atual], v = card.querySelector('video');
+    v.muted = !comSom;
+    card.querySelector('.card-som').innerHTML = comSom ? iconeSom : iconeMudo;
+    card.querySelector('.card-som').setAttribute('aria-label', comSom ? 'Desligar o som' : 'Ligar o som');
+    if (visivel && !reduzMovimento) { v.preload = 'auto'; v.play().then(() => card.classList.add('tocando')).catch(() => {}); }
+  }
+
+  palco.addEventListener('click', (e) => {
+    const card = e.target.closest('.card-video'); if (!card) return;
+    const i = +card.dataset.i;
+    if (i !== atual) { mostrar(i); return; }
+    const v = card.querySelector('video');
+    if (e.target.closest('.card-som')) { comSom = !comSom; tocarCentro(); return; }
+    if (v.paused) { v.preload = 'auto'; v.muted = !comSom; v.play().then(() => card.classList.add('tocando')).catch(() => {}); }
+    else { v.pause(); card.classList.remove('tocando'); }
+  });
+  cards.forEach(c => c.querySelector('video').addEventListener('pause', () => c.classList.remove('tocando')));
+  $('#palco-anterior').addEventListener('click', () => mostrar(atual - 1));
+  $('#palco-proximo').addEventListener('click', () => mostrar(atual + 1));
+  pontos.addEventListener('click', (e) => { const p = e.target.closest('.palco-ponto'); if (p) mostrar(+p.dataset.i); });
+
+  // Só toca quando a seção aparece na tela (economiza internet no celular)
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((ents) => ents.forEach(ent => {
+      visivel = ent.isIntersecting;
+      if (visivel) tocarCentro(); else cards.forEach(c => c.querySelector('video').pause());
+    }), { threshold: 0.35 }).observe(palco);
+  }
+  mostrar(0);
 })();
 
 // Pega o código de 11 letras de um link do YouTube (shorts, watch, youtu.be ou embed)
