@@ -335,11 +335,8 @@ p{margin:0 0 1em}
 .video-caixa{position:relative;width:min(470px, calc((100vh - 140px) * 9 / 16), 100%);animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
 .video-player{aspect-ratio:9/16;border-radius:var(--raio);overflow:hidden;background:#000;box-shadow:var(--sombra-forte)}
 .video-player iframe{width:100%;height:100%;border:0;display:block}
-.video-fechar{top:-50px;right:0;background:var(--creme)}
-.video-fechar:hover{background:#fff}
-.video-legenda{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:14px 2px 0;color:var(--creme);font-size:.9rem}
-.video-legenda strong{font-family:var(--serif);font-weight:400;font-size:1.2rem}
-.video-legenda a{color:var(--creme);white-space:nowrap}
+.video-fechar{top:12px;right:12px;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)} /* X dentro do vídeo, no canto */
+.video-fechar:hover{background:rgba(0,0,0,.7)}
 
 /* =========================================================
    5. SERVIÇOS
@@ -767,12 +764,11 @@ p{margin:0 0 1em}
 <!-- ======================= PLAYER DE VÍDEO ======================= -->
 <div class="modal" id="modal-video" hidden>
   <div class="modal-fundo" data-fechar-video></div>
-  <div class="video-caixa" role="dialog" aria-modal="true" aria-labelledby="video-titulo">
+  <div class="video-caixa" role="dialog" aria-modal="true" aria-label="Vídeo">
     <button class="modal-fechar video-fechar" id="video-fechar" data-fechar-video aria-label="Fechar vídeo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <div class="video-player" id="video-player"></div>
-    <p class="video-legenda"><strong id="video-titulo"></strong><a id="video-link" href="#" target="_blank" rel="noopener">Abrir no YouTube <span aria-hidden="true">↗</span></a></p>
   </div>
 </div>
 
@@ -896,9 +892,9 @@ const NICHOS = [
 // A capa vem sozinha do YouTube. Se quiser outra capa, adicione capa: 'imagens/arquivo.jpg' na linha.
 const TRABALHOS = [
   // Cabelo
-  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
   { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
   { nicho: 'cabelo', marca: "L'Oréal",                         video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
+  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
   // Casa & Decor
   { nicho: 'casa', marca: 'Cheiro de Memória',                 video: 'https://youtube.com/shorts/54YBQfUVYPE' },
   { nicho: 'casa', marca: 'Duoflex',                           video: 'https://youtube.com/shorts/9M-Eut_Q8Ns' },
@@ -1144,8 +1140,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     focoAnterior = document.activeElement;
     player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
       title="Vídeo para ${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-    $('#video-titulo').textContent = titulo;
-    $('#video-link').href = `https://youtube.com/shorts/${id}`;
+    modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     $('#video-fechar').focus();
