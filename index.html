@@ -143,32 +143,31 @@ p{margin:0 0 1em}
   background:radial-gradient(ellipse 60% 70% at 22% 45%, rgba(244,238,230,.92), rgba(244,238,230,0) 70%)
 }
 .capa > *{position:relative;z-index:1}
-.capa-grade{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
-.capa-texto{padding-bottom:72px}
+.capa-grade{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:end}
+.capa-texto{align-self:center;padding:24px 0 56px}
 .check{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:#fff;flex-shrink:0}
 .check svg{width:16px;height:16px}
 .capa-selo-topo{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:500;color:var(--tinta-2);margin-bottom:26px}
 .capa-selo-topo .check{width:30px;height:30px}
-.capa h1{font-size:clamp(2.9rem,5.8vw,5.4rem);line-height:.95;color:var(--tinta);overflow-wrap:break-word}
+.capa h1{font-size:clamp(2rem,4.3vw,4.1rem);line-height:.98;color:var(--tinta)}
 .capa h1 .h1-forte{display:block;font-family:var(--display);font-weight:800;letter-spacing:-.05em}
-.capa h1 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.03em;line-height:1.02;color:var(--vinho);margin-top:.06em}
-.capa-frase{font-size:.98rem;line-height:1.7;color:var(--tinta-2);max-width:430px;margin:26px 0 8px}
-.capa-numeros{font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);opacity:.85;margin:0 0 34px}
-.capa-numeros span{color:var(--vinho);margin:0 6px}
+.capa h1 .h1-linha{display:block;white-space:nowrap} /* "Criando conteúdo" sempre na mesma linha */
+.capa h1 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.03em;line-height:1.05;color:var(--vinho);margin-top:.04em;white-space:nowrap}
+.capa-frase{font-size:.98rem;line-height:1.7;color:var(--tinta-2);max-width:500px;margin:26px 0 12px}
+.capa-numeros{font-size:1.02rem;font-weight:500;color:var(--tinta);margin:0 0 34px}
+.capa-numeros span{color:var(--tinta-2);font-weight:300;margin:0 8px}
 .capa-botoes{display:flex;flex-wrap:wrap;align-items:center;gap:26px}
 .capa-botoes .btn-primario{padding:15px 28px;font-size:.95rem;border-radius:10px}
 .link-seta{display:inline-flex;align-items:center;gap:6px;font-size:.92rem;font-weight:600;color:var(--tinta);text-decoration:none;border-bottom:1px solid var(--nude);padding-bottom:3px}
 .link-seta span{display:inline-block;color:var(--vinho);transition:transform .25s ease}
 .link-seta:hover span{transform:translate(2px,-2px)}
-.capa-foto{position:relative;align-self:end;max-width:min(450px, calc((100vh - var(--topo) - 40px) * 760 / 1158));width:100%;justify-self:end}
+/* Foto sozinha, sem fundo; mais alta para a cabeça subir na tela */
+.capa-foto{position:relative;align-self:end;max-width:min(500px, calc((100vh - var(--topo) - 16px) * 760 / 1158));width:100%;justify-self:end}
 .capa-foto img{position:relative;z-index:1;width:100%;height:auto;display:block}
-/* Arco atrás da foto: um preenchido em rosé e outro só com a linha vinho */
-.capa-foto::before,.capa-foto::after{content:"";position:absolute;bottom:0;border-radius:999px 999px 0 0}
-.capa-foto::before{left:6%;right:6%;top:9%;background:linear-gradient(180deg,#ecdcd3 0%,#e2c6bb 100%)}
-.capa-foto::after{left:1%;right:1%;top:5%;border:1px solid rgba(140,29,36,.28);border-bottom:0}
-/* @ do Instagram, discreto ao lado da foto */
+/* @ do Instagram: no canto direito da página, logo abaixo do "Trabalhe comigo" */
+.capa-insta-wrap{position:absolute;z-index:3;top:calc(var(--topo) + 18px);right:max(24px, calc((100vw - 1400px) / 2 + 24px))}
 .capa-insta{
-  position:absolute;z-index:2;right:-38px;top:46%;display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex;align-items:center;gap:8px;
   padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid rgba(140,29,36,.12);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   font-size:.78rem;font-weight:500;color:var(--tinta-2);text-decoration:none;white-space:nowrap;
@@ -176,7 +175,6 @@ p{margin:0 0 1em}
 }
 .capa-insta svg{width:15px;height:15px;color:var(--vinho)}
 .capa-insta:hover{color:var(--vinho);background:#fff}
-@media (max-width:1240px){ .capa-insta{right:-8px} }
 
 /* Faixa de marcas */
 .faixa{overflow:hidden;padding:13px 0;background:var(--vinho)}
@@ -427,12 +425,12 @@ p{margin:0 0 1em}
   .menu .menu-cta a{text-align:center;padding:14px 18px}
 }
 @media (max-width:900px){
-  .capa{padding-top:calc(var(--topo) + 40px)}
+  .capa{padding-top:calc(var(--topo) + 64px)}
   .capa-grade,.sobre-grade,.contato-grade{grid-template-columns:1fr;gap:48px}
   .capa-grade{gap:8px}
   .capa-texto{padding-bottom:0}
   .capa-foto{max-width:440px;margin:0 auto;justify-self:center}
-  .capa-insta{right:2px;top:38%}
+  .capa-insta-wrap{top:calc(var(--topo) + 12px);right:16px}
   .sobre-foto{max-width:420px;width:100%;margin:0 auto}
   .secao{padding:88px 0}
   .destaques-grade{grid-template-columns:1fr;max-width:420px;margin:0 auto;gap:56px}
@@ -444,6 +442,8 @@ p{margin:0 0 1em}
   body{font-size:1rem}
   .container{padding:0 16px}
   .capa-botoes{gap:18px}
+  .capa-numeros{font-size:clamp(.7rem,3.5vw,.84rem);white-space:nowrap}
+  .capa-numeros span{margin:0 5px}
   .capa-botoes .btn{flex:1 1 100%}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
@@ -504,11 +504,11 @@ p{margin:0 0 1em}
       <div class="capa-texto">
         <p class="capa-selo-topo revelar"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>UGC Creator &amp; Influencer · Curitiba/PR</p>
         <h1 id="titulo-capa" class="revelar">
-          <span class="h1-forte">Criando conteúdo <br>que gera</span>
+          <span class="h1-forte"><span class="h1-linha">Criando conteúdo</span> <span class="h1-linha">que gera</span></span>
           <em>conexão e vendas</em>
         </h1>
         <p class="capa-frase revelar">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</p>
-        <p class="capa-numeros revelar">50 vídeos <span aria-hidden="true">·</span> 40 marcas <span aria-hidden="true">·</span> +53,2M views</p>
+        <p class="capa-numeros revelar">+50 vídeos <span aria-hidden="true">|</span> +40 marcas parceiras <span aria-hidden="true">|</span> +53,2M views</p>
         <div class="capa-botoes revelar">
           <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
           <a href="#destaques" class="link-seta">Ver meus conteúdos <span aria-hidden="true">↗</span></a>
@@ -518,11 +518,15 @@ p{margin:0 0 1em}
       <div class="capa-foto revelar">
         <!-- FOTO DA CAPA: recorte com fundo transparente (WebP), combina com qualquer cor de fundo -->
         <img src="imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo, de blusa vinho ombro a ombro" width="760" height="1158" fetchpriority="high" decoding="async">
-        <a class="capa-insta" href="https://www.instagram.com/tatielemilani/" target="_blank" rel="noopener" aria-label="Instagram @tatielemilani (abre em nova aba)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>
-          @tatielemilani
-        </a>
       </div>
+    </div>
+
+    <!-- @ do Instagram: fica no canto da página, logo abaixo do botão "Trabalhe comigo" -->
+    <div class="capa-insta-wrap">
+      <a class="capa-insta" href="https://www.instagram.com/tatielemilani/" target="_blank" rel="noopener" aria-label="Instagram @tatielemilani (abre em nova aba)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>
+        @tatielemilani
+      </a>
     </div>
 
     <!-- Faixa de formatos: os textos vêm do array FAIXA no script -->
