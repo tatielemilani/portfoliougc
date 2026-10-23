@@ -294,16 +294,20 @@ p{margin:0 0 1em}
 /* =========================================================
    4. NICHOS
    ========================================================= */
-.filtros{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
 .filtro{
-  font-family:var(--sans);font-size:.92rem;font-weight:500;padding:10px 20px;border-radius:999px;
+  font-family:var(--sans);font-size:.86rem;font-weight:500;padding:9px 15px;border-radius:999px;white-space:nowrap;
   border:1px solid var(--linha);background:rgba(255,255,255,.45);color:var(--tinta);cursor:pointer;transition:all .25s ease
 }
 .filtro:hover{border-color:var(--tinta)}
 .filtro[aria-pressed="true"]{background:var(--vinho);color:#fff;border-color:var(--vinho)}
 .nicho-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}
-.nicho-nome{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.02em;margin:0}
-.nicho-desc{font-family:var(--italico);font-style:italic;color:var(--tinta-2);margin:6px 0 0}
+.nicho-nome{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-.04em;line-height:1.05;margin:0}
+/* Título da seção na mesma fonte dos destaques e da capa */
+#trabalhos .secao-cabeca{margin-bottom:28px}
+#trabalhos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
+#trabalhos .secao-cabeca h2 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em}
+.nicho-qtd{font-family:var(--sans);font-size:.85rem;font-weight:600;letter-spacing:.04em;color:var(--tinta-2);opacity:.7;margin-left:6px}
 .nicho-setas{display:flex;gap:10px;flex-shrink:0}
 .nicho-setas .palco-seta{border-color:var(--linha);color:var(--tinta)}
 .nicho-setas .palco-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
@@ -650,14 +654,13 @@ p{margin:0 0 1em}
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Nichos</p>
         <h2 id="titulo-trabalhos" class="revelar">Que tipo de <em>conteúdo</em> você busca hoje?</h2>
-        <p class="revelar">Escolha um nicho e assista aos vídeos que criei para cada marca, aqui mesmo.</p>
+        <p class="revelar">Navegue pelos nichos e assista aos vídeos que criei para cada marca.</p>
       </div>
       <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
       <div class="filtros revelar" id="filtros" role="group" aria-label="Escolher nicho"></div>
       <div class="nicho-topo">
         <div>
-          <h3 class="nicho-nome" id="nicho-nome"></h3>
-          <p class="nicho-desc" id="nicho-desc"></p>
+          <h3 class="nicho-nome"><span id="nicho-nome"></span> <span class="nicho-qtd" id="nicho-qtd"></span></h3>
         </div>
         <div class="nicho-setas">
           <button type="button" class="palco-seta" id="nicho-anterior" aria-label="Vídeos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -875,17 +878,18 @@ const DESTAQUES = [
 ];
 
 // Nichos que aparecem como botões de filtro (o "id" precisa bater com o campo "nicho" dos trabalhos)
-// desc: frase curta em itálico que aparece embaixo do nome do nicho
+// A ordem desta lista é a ordem dos botões; o primeiro já aparece selecionado
 const NICHOS = [
-  { id: 'cabelo',      nome: 'Cabelo',           desc: 'Cuidado e finalização dos fios na rotina real' },
-  { id: 'casa',        nome: 'Casa & Decor',     desc: 'Organização, limpeza e decoração do dia a dia' },
-  { id: 'gastronomia', nome: 'Gastronomia',      desc: 'Receitas e sabores que dão vontade de provar' },
-  { id: 'beleza',      nome: 'Beleza & Cuidado', desc: 'Skincare, make e autocuidado sem filtro' },
-  { id: 'moda',        nome: 'Moda',             desc: 'Looks, provadores e estilo de verdade' },
-  { id: 'ecommerce',   nome: 'E-Commerce',       desc: 'Achados e compras online mostrados na prática' },
-  { id: 'casal',       nome: 'Casal',            desc: 'Momentos a dois que viram conteúdo' },
-  { id: 'acessorios',  nome: 'Acessórios',       desc: 'Detalhes que completam o visual' },
-  { id: 'estudo',      nome: 'Estudo',           desc: 'Educação e rotina de estudos' }
+  { id: 'casa',        nome: 'Casa & Decor' },
+  { id: 'gastronomia', nome: 'Gastronomia' },
+  { id: 'beleza',      nome: 'Beleza & Cuidado' },
+  { id: 'ecommerce',   nome: 'E-Commerce' },
+  { id: 'moda',        nome: 'Moda' },
+  { id: 'cabelo',      nome: 'Cabelo' },
+  { id: 'casal',       nome: 'Casal' },
+  { id: 'acessorios',  nome: 'Acessórios' },
+  { id: 'estudo',      nome: 'Estudo' },
+  { id: 'lifestyle',   nome: 'App & Lifestyle' }
 ];
 
 // Galeria de trabalhos (vídeos do YouTube Shorts)
@@ -895,9 +899,9 @@ const TRABALHOS = [
   // Cabelo
   { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
   { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
-  { nicho: 'cabelo', marca: "L'Oréal Keratin Alpha Sleek",     video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
+  { nicho: 'cabelo', marca: "L'Oréal",                         video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
   // Casa & Decor
-  { nicho: 'casa', marca: 'Mais Memórias',                     video: 'https://youtube.com/shorts/54YBQfUVYPE' },
+  { nicho: 'casa', marca: 'Cheiro de Memória',                 video: 'https://youtube.com/shorts/54YBQfUVYPE' },
   { nicho: 'casa', marca: 'Duoflex',                           video: 'https://youtube.com/shorts/9M-Eut_Q8Ns' },
   { nicho: 'casa', marca: 'Hoomy',                             video: 'https://youtube.com/shorts/Ov6WU1X_j-Q' },
   { nicho: 'casa', marca: 'Sterily',                           video: 'https://youtube.com/shorts/b0lKPzH7Ufo' },
@@ -909,7 +913,7 @@ const TRABALHOS = [
   { nicho: 'gastronomia', marca: 'Tropical Especiarias',       video: 'https://youtube.com/shorts/qCshgPpGZEQ' },
   { nicho: 'gastronomia', marca: 'Dr. Oetker',                 video: 'https://youtube.com/shorts/EFbMhwS5Qpg' },
   { nicho: 'gastronomia', marca: 'Café 3corações',             video: 'https://youtube.com/shorts/cYMIL1F6yIQ' },
-  { nicho: 'gastronomia', marca: 'Thermo Coffee',              video: 'https://youtube.com/shorts/m_Ba2y8Sd2I' },
+  { nicho: 'gastronomia', marca: 'Maxinutri',                  video: 'https://youtube.com/shorts/m_Ba2y8Sd2I' },
   { nicho: 'gastronomia', marca: 'Vitao',                      video: 'https://youtube.com/shorts/nV4GONymwuk' },
   // Beleza & Cuidado
   { nicho: 'beleza', marca: 'Natura',                          video: 'https://youtube.com/shorts/LjKZr1OayUI' },
@@ -938,7 +942,10 @@ const TRABALHOS = [
   { nicho: 'acessorios', marca: 'Pimenta Rosa',                video: 'https://youtube.com/shorts/4k9eo5oJuZc' },
   // Estudo
   { nicho: 'estudo', marca: 'Positivo',                        video: 'https://youtube.com/shorts/ysdSdmDDV_c' },
-  { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' }
+  { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' },
+  // App & Lifestyle
+  { nicho: 'lifestyle', marca: 'Lyx Construtora',               video: 'https://youtube.com/shorts/KTdOCbS4YBU' },
+  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc' }
 ];
 
 
@@ -1096,7 +1103,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
   function desenhar() {
     const n = NICHOS.find(x => x.id === atual);
     $('#nicho-nome').textContent = n.nome;
-    $('#nicho-desc').textContent = n.desc || '';
+    $('#nicho-qtd').innerHTML = String(TRABALHOS.filter(t => t.nicho === atual).length).padStart(2, '0') + '<span class="sr-only"> vídeos</span>';
     trilho.innerHTML = TRABALHOS.filter(t => t.nicho === atual).map(t => card(t, n.nome)).join('');
     trilho.scrollLeft = 0;
     trilho.querySelectorAll('.trabalho-capa').forEach(img => img.addEventListener('error', () => {
