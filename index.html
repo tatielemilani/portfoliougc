@@ -341,7 +341,7 @@ p{margin:0 0 1em}
 /* =========================================================
    FOTOS UGC
    ========================================================= */
-#fotos{padding:0 0 36px}
+#fotos{padding:0}
 .divisor-fotos{margin:20px auto 36px} /* linha entre os nichos e as fotos */
 #fotos .secao-cabeca{margin:0 auto 32px;max-width:none;text-align:center}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-kerning:none;line-height:1;font-size:min(3.9rem,calc(5.3vw - 4px));white-space:nowrap}
@@ -368,7 +368,7 @@ p{margin:0 0 1em}
 .serv-texto > p:not(.sobretitulo){color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 0;max-width:440px}
 .secao.servicos{padding:52px 0 64px}
 .serv-texto .btn{margin-top:36px}
-.serv-chamada{margin:56px auto 0;text-align:center;font-family:var(--italico);font-style:italic;font-weight:500;font-size:1.25rem;line-height:1.5;color:rgba(255,255,255,.9)}
+.serv-texto > p.serv-chamada{margin:22px 0 0;max-width:420px;font-family:var(--italico);font-style:italic;font-weight:500;font-size:1.2rem;line-height:1.5;color:rgba(255,255,255,.9)}
 .serv-chamada span{color:var(--destaque)}
 .btn-claro{background:var(--destaque);color:var(--vinho);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
 .btn-claro:hover{background:#fff;transform:translateY(-2px)}
@@ -378,26 +378,26 @@ p{margin:0 0 1em}
 .secao-vinho .servico h3{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--vinho);color:#fff;border:3px solid #f9f5ef;font-family:inherit;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:99px}
 .servico p{color:var(--tinta);font-size:.92rem;line-height:1.65;margin:0}
 /* Processo criativo e uso dos conteúdos */
-.processo{padding:96px 0 40px}
+.secao.processo{padding:48px 0 40px}
 .processo .secao-cabeca{margin-bottom:40px}
 .processo .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
 .processo .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
-.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.etapa{background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:28px 28px 26px;transition:border-color .3s,box-shadow .3s}
+.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;position:relative}
+.etapas::before{content:"";position:absolute;left:6%;right:6%;top:50%;border-top:1.5px dashed rgba(140,29,36,.35)} /* linha por trás que liga as etapas */
+.etapa{position:relative;z-index:1;background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:28px 28px 26px;transition:border-color .3s,box-shadow .3s}
+.etapa:not(:last-child)::after{content:"";position:absolute;top:50%;right:-37px;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--creme) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238c1d24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat}
 .etapa:hover{border-color:var(--vinho);box-shadow:0 14px 30px -18px rgba(140,29,36,.45)}
-.etapa-num{display:block;font-family:var(--italico);font-style:italic;font-weight:600;font-size:3.4rem;line-height:.9;color:var(--vinho)}
-.etapa h3{font-family:inherit;font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta);margin:16px 0 12px}
+.etapa h3{font-family:inherit;font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho);margin:0 0 12px}
 .etapa p{font-size:.93rem;line-height:1.65;color:var(--tinta);margin:0}
 .etapa p + p{margin-top:10px}
-.uso{margin-top:56px;background:var(--vinho);color:#fff;border-radius:22px;padding:48px 52px;display:grid;grid-template-columns:.9fr 1.6fr;gap:48px;align-items:center}
-.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;margin:0}
+.uso{margin-top:56px;background:var(--vinho);color:#fff;border-radius:22px;padding:48px 48px;display:grid;grid-template-columns:.8fr 1.7fr;gap:40px;align-items:center}
+.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(2rem,3.4vw,2.8rem);color:#fff;margin:0}
 .uso-titulo em{font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
-.uso-grade{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-.uso-item{display:flex;gap:16px;align-items:flex-start}
-.uso-icone{width:52px;height:52px;border-radius:50%;background:var(--destaque);color:var(--vinho);display:grid;place-items:center;flex-shrink:0}
-.uso-icone svg{width:26px;height:26px}
-.uso-item h4{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:4px 0 8px}
-.uso-item p{font-size:.93rem;line-height:1.6;color:rgba(255,255,255,.86);margin:0}
+.uso-grade{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.uso-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:26px 26px 24px;transition:background .3s,border-color .3s}
+.uso-item:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3)}
+.uso-item h4{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--destaque);margin:0 0 10px}
+.uso-item p{font-size:1rem;line-height:1.6;color:rgba(255,255,255,.9);margin:0}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
@@ -536,7 +536,7 @@ p{margin:0 0 1em}
   .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
   .publico-topo{grid-template-columns:1fr} .publico-texto{padding-right:0}
   .serv-layout{grid-template-columns:1fr;gap:56px} .serv-texto > p:not(.sobretitulo){max-width:560px}
-  .etapas{grid-template-columns:1fr;gap:18px} .uso{grid-template-columns:1fr;gap:28px;padding:40px 32px}
+  .etapas{grid-template-columns:1fr;gap:44px} .etapas::before{left:50%;right:auto;top:0;bottom:0;border-top:0;border-left:1.5px dashed rgba(140,29,36,.35)} .etapa:not(:last-child)::after{top:auto;right:auto;bottom:-36px;left:50%;margin:0 0 0 -13px;transform:rotate(90deg)} .uso{grid-template-columns:1fr;gap:28px;padding:40px 32px}
 }
 @media (max-width:1180px){
   .menu{gap:24px}
@@ -586,10 +586,10 @@ p{margin:0 0 1em}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr;gap:40px}
-  .uso-grade{grid-template-columns:1fr;gap:24px} .uso{padding:32px 22px;border-radius:18px} .serv-chamada{font-size:1.1rem;margin-top:44px}
+  .uso-grade{grid-template-columns:1fr;gap:14px} .uso{padding:32px 22px;border-radius:18px}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
-  .foto-card{height:360px} #fotos{padding-bottom:28px}
+  .foto-card{height:360px} #fotos{padding-bottom:0}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
@@ -773,13 +773,13 @@ p{margin:0 0 1em}
       <div class="serv-texto">
         <p class="sobretitulo revelar">Serviços</p>
         <h2 id="titulo-servicos" class="revelar">O que podemos <mark>criar</mark> juntos?</h2>
-        <p class="revelar">Cada formato tem um objetivo: vender, escalar ou fortalecer a sua marca. Você me conta o que precisa e eu monto a combinação certa pra você.</p>
+        <p class="revelar">Cada formato tem um objetivo: vender, escalar ou fortalecer a sua marca.</p>
+        <p class="serv-chamada revelar">Ainda não sabe qual formato combina com a sua marca? <span>Me chama que a gente descobre juntos.</span></p>
         <a class="btn btn-claro revelar" href="#contato">Bora criar juntos <span aria-hidden="true">→</span></a>
       </div>
       <!-- Os formatos vêm do array SERVICOS no script -->
       <div class="servicos-grade" id="servicos-grade"></div>
     </div>
-    <p class="container serv-chamada revelar">Ainda não sabe qual formato combina com a sua marca? <span>Me chama que a gente descobre juntos.</span></p>
   </section>
 
   <!-- ======================= 5B. PROCESSO CRIATIVO E USO DOS CONTEÚDOS ======================= -->
@@ -1092,7 +1092,7 @@ const TRABALHOS = [
 
 // Serviços: o título aparece na etiqueta em cima do card
 const SERVICOS = [
-  { titulo: 'UGC',                descricao: 'Vídeos gravados por mim, do jeitinho de quem usa o produto de verdade. Penso cada roteiro do gancho ao CTA pra virar anúncio no Meta, no TikTok e no YouTube.' },
+  { titulo: 'UGC',                descricao: 'Vídeos gravados por mim, do jeitinho de quem usa o produto de verdade. O roteiro prende a atenção logo nos primeiros segundos e faz quem assiste querer comprar, pronto pra anúncio no Meta, no TikTok e no YouTube.' },
   { titulo: 'Publi post',         descricao: 'Eu apresento a sua marca no meu perfil, com a minha voz, pra um público que já confia nas minhas indicações. Parece conversa entre amigas, não propaganda.' },
   { titulo: 'Clips',              descricao: 'Vídeos curtinhos com o produto como protagonista, pra usar no anúncio do marketplace. Quem compra vê tamanho, textura e como funciona antes de decidir.' },
   { titulo: 'TikTok Shop + Live', descricao: 'Vídeos de vitrine que levam o produto pro carrinho e lives em que eu mostro tudo, tiro as dúvidas e vendo em tempo real.' }
@@ -1117,8 +1117,8 @@ const ETAPAS = [
 
 // Como a marca pode usar os conteúdos
 const USOS = [
-  { titulo: 'Tráfego pago', icone: 'anuncio', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
-  { titulo: 'Orgânico',     icone: 'organico', texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
+  { titulo: 'Tráfego pago', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
+  { titulo: 'Orgânico',     texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
 ];
 
 // Métricas do público (do mídia kit). pct: porcentagem de cada faixa
@@ -1372,20 +1372,15 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
 
 // Processo criativo e uso dos conteúdos
 (function processo() {
-  $('#etapas').innerHTML = ETAPAS.map((e, i) => `
+  $('#etapas').innerHTML = ETAPAS.map(e => `
     <li class="etapa revelar">
-      <span class="etapa-num" aria-hidden="true">${i + 1}</span>
       <h3>${esc(e.titulo)}</h3>
       ${e.textos.map(t => `<p>${esc(t)}</p>`).join('')}
     </li>`).join('');
-  const icones = {
-    anuncio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M6.5 12.5l3.5-3.5 2.5 2.5 4.5-4.5"/></svg>',
-    organico: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-9 8.3 8.9 8.9 0 01-3.8-.9L3 20l1.3-4.4A8.2 8.2 0 013 11.5 8.6 8.6 0 0112 3a8.6 8.6 0 019 8.5z"/><path d="M12 15.2l-2.9-2.8a1.8 1.8 0 012.6-2.6l.3.3.3-.3a1.8 1.8 0 012.6 2.6z"/></svg>'
-  };
   $('#usos').innerHTML = USOS.map(u => `
     <div class="uso-item">
-      <span class="uso-icone">${icones[u.icone] || ''}</span>
-      <div><h4>${esc(u.titulo)}</h4><p>${esc(u.texto)}</p></div>
+      <h4>${esc(u.titulo)}</h4>
+      <p>${esc(u.texto)}</p>
     </div>`).join('');
 })();
 
