@@ -243,28 +243,29 @@ p{margin:0 0 1em}
 .secao-vinho .midia{box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
 
 /* Destaques: texto à esquerda e carrossel de vídeos à direita */
-.destaques-grade{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+#destaques{padding:96px 0}
+.destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.destaques-sub{font-size:1.1rem;color:#fff!important;margin:-12px 0 26px!important}
 .destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
 .destaques-texto h2 em{display:block;font-family:var(--italico);font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--rosa-claro);margin-top:.05em}
 .destaques-texto p{color:rgba(255,255,255,.82);max-width:440px;margin:0 0 14px}
 .destaques-texto strong{color:var(--rosa-claro);font-weight:600}
-.destaques-frase{font-family:var(--italico);font-style:italic;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.35;color:#fff!important;margin-top:34px!important}
-.destaques-frase span{padding-bottom:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 60 2, 120 11, 180 6 S 270 4, 298 7' fill='none' stroke='%23f6cfc6' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom/100% 12px no-repeat}
 .destaques{overflow:hidden} /* os vídeos dos lados não podem passar da largura da tela */
 .destaques-palco{display:flex;flex-direction:column;align-items:center;min-width:0}
-.palco{position:relative;width:100%;height:580px}
+.palco{position:relative;width:100%;max-width:560px;height:510px}
 .card-video{
-  position:absolute;top:50%;left:50%;width:300px;aspect-ratio:9/16;margin:0;border-radius:20px;overflow:hidden;
+  position:absolute;top:50%;left:50%;width:264px;aspect-ratio:9/16;margin:0;border-radius:20px;overflow:hidden;
   background:#3a1015;box-shadow:0 30px 60px -25px rgba(0,0,0,.65);cursor:pointer;
   transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s ease, filter .6s ease
 }
 .card-video video{width:100%;height:100%;object-fit:cover;display:block}
 .card-video[data-pos="centro"]{transform:translate(-50%,-50%);z-index:3}
-.card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 185px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
-.card-video[data-pos="direita"]{transform:translate(calc(-50% + 185px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
+.card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 168px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
+.card-video[data-pos="direita"]{transform:translate(calc(-50% + 168px),-50%) scale(.8);opacity:.5;filter:saturate(.75);z-index:1}
 .card-video[data-pos="fora"]{transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none}
 .card-video:not([data-pos="centro"]):hover{opacity:.75}
-.card-rotulo{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(25,8,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+.card-rotulo{position:absolute;left:14px;bottom:12px;display:flex;align-items:center;gap:7px;color:#fff;font-size:.95rem;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6);pointer-events:none}
+.card-rotulo svg{width:19px;height:19px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
 .card-som{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(25,8,10,.55);color:#fff;display:grid;place-items:center;cursor:pointer}
 .card-som svg{width:20px;height:20px}
 .card-play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--vinho);display:grid;place-items:center;cursor:pointer;transition:opacity .3s}
@@ -552,7 +553,7 @@ p{margin:0 0 1em}
           <em>conexão e vendas</em>
         </h1>
         <p class="capa-frase revelar">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</p>
-        <p class="capa-numeros revelar">+50 vídeos <span aria-hidden="true">|</span> +40 marcas parceiras <span aria-hidden="true">|</span> +53,2M views</p>
+        <p class="capa-numeros revelar">+50 vídeos <span aria-hidden="true">|</span> +40 marcas parceiras <span aria-hidden="true">|</span> +1,5M views</p>
         <div class="capa-botoes revelar">
           <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
           <a href="#destaques" class="link-seta">Ver meus conteúdos <span aria-hidden="true">↗</span></a>
@@ -613,12 +614,12 @@ p{margin:0 0 1em}
   <section class="secao secao-vinho destaques" id="destaques" aria-labelledby="titulo-destaques">
     <div class="container destaques-grade">
       <div class="destaques-texto">
-        <p class="sobretitulo revelar">Resultados</p>
-        <h2 id="titulo-destaques" class="revelar">Conteúdos que <em>bombaram</em></h2>
-        <p class="revelar">Com o <strong>Wellhub</strong>, um tour pela academia virou <strong>+28,5M de views</strong> no Reels.</p>
-        <p class="revelar">A receita de <strong>brigadeiro saudável</strong> passou de <strong>23,2M de views</strong>.</p>
-        <p class="revelar">E a <strong>canjica cremosa</strong> em collab com a <strong>Sterily</strong> somou <strong>+1,5M de views</strong>.</p>
-        <p class="destaques-frase revelar">Conteúdo pensado pra gerar <span>resultado de verdade.</span></p>
+        <p class="sobretitulo revelar">Destaques</p>
+        <h2 id="titulo-destaques" class="revelar">Os melhores <em>resultados</em></h2>
+        <p class="destaques-sub revelar">Será que você já me viu por aí? <span aria-hidden="true">👀</span></p>
+        <p class="revelar">Com a <strong>Sterily</strong>, uma receita de canjica cremosa mostrou a esponja mágica <strong>Magic Clean</strong> em ação e passou de <strong>1,5 milhão de views</strong>.</p>
+        <p class="revelar">Com o <strong>Wellhub</strong>, um tour pela academia somou <strong>28,5 mil views</strong> no Reels.</p>
+        <p class="revelar">E a receita de <strong>brigadeiro saudável</strong> alcançou <strong>23,2 mil views</strong>.</p>
       </div>
       <!-- Carrossel de vídeos: montado pelo script a partir do array DESTAQUES (vídeo, capa e link ficam lá) -->
       <div class="destaques-palco revelar">
@@ -844,14 +845,14 @@ const FAIXA = [
 
 // Conteúdos de destaque (carrossel da seção vinho). O primeiro da lista começa no centro.
 // video: arquivo .mp4 na pasta imagens | capa: imagem vertical 9:16 | link: post no Instagram
-// rotulo: etiqueta no canto do vídeo | titulo: usado na descrição para leitores de tela
+// views: número que aparece com o olhinho, igual ao Instagram | titulo: descrição para leitores de tela
 const DESTAQUES = [
-  { video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
-    rotulo: 'Wellhub · +28,5M', titulo: 'Tour pela academia para o Wellhub, +28,5 milhões de views' },
-  { video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
-    rotulo: 'Brigadeiro · +23,2M', titulo: 'Receita de brigadeiro saudável, +23,2 milhões de views' },
   { video: 'imagens/destaque-1.mp4', capa: 'imagens/destaque-1-capa.jpg', link: 'https://www.instagram.com/p/DZX2uoKh4nt/',
-    rotulo: 'Sterily · +1,5M', titulo: 'Canjica cremosa em collab com a Sterily, +1,5 milhão de views' }
+    views: '1,5 mi', titulo: 'Canjica cremosa com a esponja Magic Clean, da Sterily, 1,5 milhão de views' },
+  { video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
+    views: '28,5 mil', titulo: 'Tour pela academia para o Wellhub, 28,5 mil views' },
+  { video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
+    views: '23,2 mil', titulo: 'Receita de brigadeiro saudável, 23,2 mil views' }
 ];
 
 // Nichos que aparecem como botões de filtro (o "id" precisa bater com o campo "nicho" dos trabalhos)
@@ -937,15 +938,15 @@ const SERVICOS = [
 const METRICAS = [
   { valor: 50,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'vídeos entregues' },
   { valor: 40,   casas: 0, prefixo: '',  sufixo: '',  rotulo: 'marcas atendidas' },
-  { valor: 53.2, casas: 1, prefixo: '+', sufixo: 'M', rotulo: 'views somadas nos destaques' },
+  { valor: 1.5,  casas: 1, prefixo: '+', sufixo: 'M', rotulo: 'views somadas nos destaques' },
   { valor: NICHOS.length, casas: 0, prefixo: '', sufixo: '', rotulo: 'nichos atendidos' } // conta sozinho pelos nichos acima
 ];
 
 // Resultados de campanha (troque marca e descrição pelos dados reais)
 const RESULTADOS = [
-  { valor: '+28,5M', rotulo: 'views no Instagram', titulo: 'Campanha Marca 01', descricao: 'PLACEHOLDER: conte em uma linha o objetivo e o que a campanha trouxe para a marca.' },
-  { valor: '+23,2M', rotulo: 'views no Instagram', titulo: 'Campanha Marca 02', descricao: 'PLACEHOLDER: conte em uma linha o objetivo e o que a campanha trouxe para a marca.' },
-  { valor: '+1,5M',  rotulo: 'views no Instagram', titulo: 'Campanha Marca 03', descricao: 'PLACEHOLDER: conte em uma linha o objetivo e o que a campanha trouxe para a marca.' }
+  { valor: '1,5 mi',   rotulo: 'views no Instagram', titulo: 'Sterily · Magic Clean', descricao: 'Receita de canjica cremosa mostrando a esponja mágica Magic Clean em ação.' },
+  { valor: '28,5 mil', rotulo: 'views no Instagram', titulo: 'Wellhub', descricao: 'Tour pela academia mostrando o que dá para acessar com o Wellhub.' },
+  { valor: '23,2 mil', rotulo: 'views no Instagram', titulo: 'Brigadeiro saudável', descricao: 'Receita fácil de brigadeiro saudável, feita do começo ao fim no vídeo.' }
 ];
 
 // Depoimentos (troque pelo texto real que cada cliente te mandou)
@@ -995,7 +996,7 @@ function midia(capa, legenda, alt, extra = '') {
   palco.innerHTML = DESTAQUES.map((d, i) => `
     <figure class="card-video" data-i="${i}">
       <video src="${esc(d.video)}" poster="${esc(d.capa)}" muted loop playsinline preload="none" aria-label="${esc(d.titulo)}"></video>
-      <span class="card-rotulo">${esc(d.rotulo)}</span>
+      <span class="card-rotulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>${esc(d.views)}</span>
       <button type="button" class="card-som" aria-label="Ligar o som">${iconeMudo}</button>
       <button type="button" class="card-play" aria-label="Assistir">${iconePlay}</button>
     </figure>`).join('');
