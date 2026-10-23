@@ -22,7 +22,7 @@
   --tinta-2:#5e4b47;
   --vinho:#8c1d24;
   --vinho-escuro:#6c141a;
-  --rosa-claro:#f6cfc6; /* destaque sobre o vinho */
+  --rosa-claro:#ead9c3; /* destaque sobre o vinho (bege claro) */
   --nude:#d9a79c;
   --nude-texto:#a14a45; /* versão mais escura do nude, para texto pequeno com bom contraste */
   --linha:rgba(42,26,24,.12);
@@ -244,7 +244,7 @@ p{margin:0 0 1em}
 
 /* Destaques: texto à esquerda e carrossel de vídeos à direita */
 #destaques{padding:48px 0 40px} /* mais junto das marcas e dos nichos */
-#trabalhos{padding-top:28px}
+#trabalhos{padding-top:28px;padding-bottom:56px}
 .destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .destaques-sub{font-size:1.2rem!important;color:#fff!important;margin:-12px 0 28px!important}
 .destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
@@ -282,7 +282,7 @@ p{margin:0 0 1em}
 .palco-pontos{display:flex;gap:8px}
 .palco-ponto{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:rgba(255,255,255,.4);cursor:pointer;transition:width .3s, background .3s}
 .palco-ponto[aria-current="true"]{width:26px;background:var(--rosa-claro)}
-.palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(246,207,198,.5);padding-bottom:2px}
+.palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(234,217,195,.5);padding-bottom:2px}
 .palco-insta:hover{color:#fff}
 .play{
   position:absolute;inset:0;margin:auto;z-index:2;width:76px;height:76px;border-radius:50%;
@@ -334,14 +334,26 @@ p{margin:0 0 1em}
 /* Player de vídeo */
 .video-caixa{position:relative;width:min(470px, calc((100vh - 140px) * 9 / 16), 100%);animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
 .video-player{aspect-ratio:9/16;border-radius:var(--raio);overflow:hidden;background:#000;box-shadow:var(--sombra-forte)}
-.video-player iframe{width:100%;height:100%;border:0;display:block}
+.video-player iframe,.video-player video{width:100%;height:100%;border:0;display:block;object-fit:cover;background:#000}
 .video-fechar{top:12px;right:12px;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)} /* X dentro do vídeo, no canto */
 .video-fechar:hover{background:rgba(0,0,0,.7)}
-.video-copiar{top:12px;right:60px;left:auto;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)}
-.video-copiar:hover{background:rgba(0,0,0,.7)}
-.video-copiar svg{width:18px;height:18px}
-.video-aviso{position:absolute;z-index:3;top:62px;right:12px;padding:6px 12px;border-radius:999px;background:#fff;color:var(--tinta);font-size:.8rem;font-weight:600;opacity:0;transform:translateY(-4px);transition:opacity .25s, transform .25s;pointer-events:none}
-.video-aviso.visivel{opacity:1;transform:none}
+
+/* =========================================================
+   FOTOS UGC
+   ========================================================= */
+#fotos{padding:16px 0 88px}
+#fotos .secao-cabeca{margin-bottom:32px}
+#fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
+#fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em}
+.fotos-faixa{overflow:hidden}
+.fotos-trilho{display:flex}
+.fotos-trilho.andando{width:max-content;animation:desliza 80s linear infinite}
+.fotos-faixa:hover .fotos-trilho.andando{animation-play-state:paused}
+.fotos-grupo{display:flex;gap:18px}
+.fotos-trilho.andando .fotos-grupo{padding-right:18px}
+.foto-card{position:relative;margin:0;height:460px;min-width:200px;flex-shrink:0;border-radius:18px;overflow:hidden;background:var(--creme-2);box-shadow:var(--sombra)}
+.foto-card img{height:100%;width:auto;display:block}
+.foto-marca{position:absolute;left:12px;bottom:12px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--tinta);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 
 /* =========================================================
    5. SERVIÇOS
@@ -383,7 +395,7 @@ p{margin:0 0 1em}
 .contato{background:var(--vinho);color:#fff;border-radius:28px;margin:0 24px;padding:96px 0}
 .contato-grade{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .contato h2{font-size:clamp(2.6rem,6vw,4.8rem);color:#fff}
-.contato h2 em{color:#f6cfc6}
+.contato h2 em{color:var(--rosa-claro)}
 .contato .sobretitulo{color:rgba(255,255,255,.8)}
 .contato-intro p{color:rgba(255,255,255,.85);margin:24px 0 36px;max-width:440px}
 .canais{display:flex;flex-direction:column;gap:12px;max-width:380px}
@@ -508,6 +520,7 @@ p{margin:0 0 1em}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
+  .foto-card{height:360px} #fotos{padding-bottom:64px}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .metricas{gap:14px}
@@ -527,6 +540,7 @@ p{margin:0 0 1em}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
   .js .revelar{opacity:1;transform:none}
   .faixa-trilho{animation:none;flex-wrap:wrap}
+  .fotos-trilho.andando{animation:none;width:auto;overflow-x:auto} .fotos-trilho.andando .fotos-grupo[aria-hidden]{display:none}
   .marcas-trilho{animation:none;width:auto;justify-content:center;flex-wrap:wrap} .marcas-grupo{flex-wrap:wrap;justify-content:center;padding:0} .marcas-grupo[aria-hidden]{display:none} .marcas-faixa{-webkit-mask-image:none;mask-image:none}
 }
 </style>
@@ -672,6 +686,19 @@ p{margin:0 0 1em}
     </div>
   </section>
 
+  <!-- ======================= FOTOS UGC ======================= -->
+  <section class="secao fotos" id="fotos" aria-labelledby="titulo-fotos">
+    <div class="container">
+      <div class="secao-cabeca">
+        <p class="sobretitulo revelar">Fotos</p>
+        <h2 id="titulo-fotos" class="revelar">Fotos <em>UGC</em></h2>
+        <p class="revelar">Produtos em cena, com luz natural e o dia a dia de verdade.</p>
+      </div>
+    </div>
+    <!-- As fotos vêm do array FOTOS no script -->
+    <div class="fotos-faixa revelar"><div class="fotos-trilho" id="fotos-trilho"></div></div>
+  </section>
+
   <!-- ======================= 5. COMO EU TE AJUDO ======================= -->
   <section class="secao secao-vinho servicos" id="servicos" aria-labelledby="titulo-servicos">
     <div class="container">
@@ -773,11 +800,6 @@ p{margin:0 0 1em}
     <button class="modal-fechar video-fechar" id="video-fechar" data-fechar-video aria-label="Fechar vídeo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <!-- Setinha para copiar o link do vídeo -->
-    <button type="button" class="modal-fechar video-copiar" id="video-copiar" aria-label="Copiar o link do vídeo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H10a7 7 0 0 0-7 7"/></svg>
-    </button>
-    <span class="video-aviso" id="video-aviso" role="status" aria-live="polite"></span>
     <div class="video-player" id="video-player"></div>
   </div>
 </div>
@@ -862,6 +884,13 @@ const MARCAS_PARCEIRAS = [
   { logo: 'marca-37.webp', nome: '' },
   { logo: 'marca-38.webp', nome: '' },
   { logo: 'marca-39.webp', nome: '' }
+];
+
+// Galeria de fotos UGC (embaixo dos nichos)
+// foto: arquivo na pasta imagens | marca: nome que aparece na etiqueta da foto
+// Com 4 fotos ou mais, a galeria passa sozinha devagar, igual ao carrossel de marcas.
+const FOTOS = [
+  { foto: 'imagens/foto-hoomy-1.jpg', marca: 'Hoomy' }
 ];
 
 // Formatos que passam na faixa vinho embaixo da capa (aparecem em maiúsculas automaticamente)
@@ -949,7 +978,7 @@ const TRABALHOS = [
   { nicho: 'estudo', marca: 'Positivo',                        video: 'https://youtube.com/shorts/ysdSdmDDV_c' },
   { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' },
   // App & Lifestyle
-  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc' },
+  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc', arquivo: 'imagens/destaque-2.mp4' },
   { nicho: 'lifestyle', marca: 'Lyx Construtora',               video: 'https://youtube.com/shorts/KTdOCbS4YBU' }
 ];
 
@@ -1005,6 +1034,19 @@ function midia(capa, legenda, alt, extra = '') {
 (function faixa() {
   const lista = FAIXA.map(m => `<li>${esc(m)}</li>`).join('');
   $('#faixa-trilho').innerHTML = `<ul>${lista}</ul><ul aria-hidden="true">${lista}</ul>`;
+})();
+
+// Galeria de fotos: com poucas fotos fica parada; com 4 ou mais passa sozinha (pausa ao passar o mouse)
+(function galeriaFotos() {
+  const trilho = $('#fotos-trilho');
+  const item = (f) => `<figure class="foto-card"><img src="${esc(f.foto)}" alt="Foto UGC para ${esc(f.marca)}" loading="lazy" decoding="async"><figcaption class="foto-marca">${esc(f.marca)}</figcaption></figure>`;
+  const itens = FOTOS.map(item).join('');
+  if (FOTOS.length >= 4) {
+    trilho.classList.add('andando');
+    trilho.innerHTML = `<div class="fotos-grupo">${itens}</div><div class="fotos-grupo" aria-hidden="true">${itens.replace(/alt="[^"]*"/g, 'alt=""')}</div>`;
+  } else {
+    trilho.innerHTML = `<div class="fotos-grupo container">${itens}</div>`;
+  }
 })();
 
 // Carrossel de marcas: uma linha só, repetida para o giro não ter emenda
@@ -1096,7 +1138,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     const [capa, reserva] = capas(id);
     return `<figure class="trabalho">
       <a class="trabalho-link" href="https://youtube.com/shorts/${esc(id)}" target="_blank" rel="noopener"
-         data-video="${esc(id)}" data-titulo="${esc(t.marca)}" aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
+         data-video="${esc(id)}" data-titulo="${esc(t.marca)}"${t.arquivo ? ` data-arquivo="${esc(t.arquivo)}"` : ""} aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
         <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" loading="lazy" decoding="async" width="1080" height="1920">
         <span class="trabalho-marca">${esc(t.marca)}</span>
         ${play}
@@ -1144,25 +1186,14 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
 
 // Player de vídeo: abre o Shorts aqui mesmo no site, sem sair da página
 (function playerVideo() {
-  const modal = $('#modal-video'), player = $('#video-player'), aviso = $('#video-aviso');
-  let focoAnterior = null, linkAtual = '', timerAviso = null;
-  function avisar(texto) {
-    aviso.textContent = texto; aviso.classList.add('visivel');
-    clearTimeout(timerAviso); timerAviso = setTimeout(() => aviso.classList.remove('visivel'), 2200);
-  }
-  // Copia o link do vídeo (no celular, abre o compartilhar do próprio aparelho)
-  $('#video-copiar').addEventListener('click', async () => {
-    if (navigator.share && matchMedia('(hover: none)').matches) {
-      try { await navigator.share({ url: linkAtual }); return; } catch (e) { if (e.name === 'AbortError') return; }
-    }
-    try { await navigator.clipboard.writeText(linkAtual); }
-    catch (e) { const t = document.createElement('textarea'); t.value = linkAtual; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
-    avisar('Link copiado!');
-  });
-  function abrir(id, titulo) {
+  const modal = $('#modal-video'), player = $('#video-player');
+  let focoAnterior = null;
+  // arquivo: se o vídeo estiver salvo no próprio site (.mp4), toca direto dele; senão usa o YouTube
+  function abrir(id, titulo, arquivo) {
     focoAnterior = document.activeElement;
-    linkAtual = `https://youtube.com/shorts/${id}`;
-    player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
+    player.innerHTML = arquivo
+      ? `<video src="${esc(arquivo)}" controls autoplay playsinline aria-label="Vídeo para ${esc(titulo)}"></video>`
+      : `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1"
       title="Vídeo para ${esc(titulo)}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
     modal.hidden = false;
@@ -1179,7 +1210,7 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     const link = e.target.closest('a[data-video]');
     if (!link || !link.dataset.video || e.ctrlKey || e.metaKey || e.shiftKey) return;
     e.preventDefault();
-    abrir(link.dataset.video, link.dataset.titulo || '');
+    abrir(link.dataset.video, link.dataset.titulo || '', link.dataset.arquivo || '');
   });
   modal.addEventListener('click', (e) => { if (e.target.closest('[data-fechar-video]')) fechar(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) fechar(); });
