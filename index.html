@@ -221,7 +221,7 @@ p{margin:0 0 1em}
 .divisor{border:0;height:1px;margin:48px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
 .marcas-titulo{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-2);text-align:center;margin:0 0 34px}
 .marcas-titulo::before,.marcas-titulo::after{content:"";width:48px;height:1px;background:var(--nude);flex-shrink:0}
-.marcas-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.marcas-faixa{overflow:hidden} /* sem esmaecer nas pontas, igual aos depoimentos */
 .marcas-trilho{display:flex;width:max-content;padding:10px 0;animation:desliza 110s linear infinite}
 .marcas-faixa:hover .marcas-trilho{animation-play-state:paused}
 .marcas-grupo{display:flex;gap:22px;padding-right:22px}
@@ -342,13 +342,13 @@ p{margin:0 0 1em}
 /* =========================================================
    FOTOS UGC
    ========================================================= */
-#fotos{padding:0;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 52% no-repeat} /* sombreado que nasce atrás das fotos e vira o vinho dos serviços */
+#fotos{padding:0;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 52% no-repeat} /* sombreado que nasce atrás das fotos e vira o vinho dos serviços */
 .divisor-fotos{margin:20px auto 36px} /* linha entre os nichos e as fotos */
 #fotos .secao-cabeca{margin:0 auto 32px;max-width:none;text-align:center}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-kerning:none;line-height:1;font-size:min(3.9rem,calc(5.3vw - 4px));white-space:nowrap}
 @media (max-width:600px){#fotos .secao-cabeca h2{font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:normal;text-wrap:balance}}
 #fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
-.fotos-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.fotos-faixa{overflow:hidden} /* sem esmaecer nas pontas, igual aos depoimentos */
 .fotos-trilho{display:flex}
 .fotos-trilho.andando{width:max-content;padding:6px 0 12px;animation:desliza 70s linear infinite}
 .fotos-faixa:hover .fotos-trilho.andando{animation-play-state:paused}
