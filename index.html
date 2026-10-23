@@ -389,11 +389,13 @@ p{margin:0 0 1em}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
 .depo-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .depoimentos{display:flex;width:max-content;padding:40px 0 18px;animation:desliza 90s linear infinite}
-.depo-faixa:hover .depoimentos{animation-play-state:paused}
+.depo-faixa:hover .depoimentos,.depo-faixa:focus-within .depoimentos{animation-play-state:paused}
 .depo-grupo{display:flex;gap:20px;padding-right:20px}
-.depoimento{flex:0 0 340px;margin:0;background:var(--papel);border-radius:14px;padding:40px 30px 22px;box-shadow:var(--sombra);text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
+.depoimento{flex:0 0 340px;margin:0;background:var(--creme);border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:42px 30px 22px;outline:none;cursor:default;transition:border-color .3s,box-shadow .3s;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
 .depoimento figcaption{order:-1;display:flex;flex-direction:column;align-items:center;gap:6px}
-.depoimento .depo-logo{position:absolute;top:-30px;left:calc(50% - 30px);width:60px;height:60px;border-width:2px}
+.depoimento .depo-logo{position:absolute;top:-30px;left:calc(50% - 30px);width:60px;height:60px;border-width:2px;box-shadow:0 0 0 6px var(--creme),0 0 0 7px rgba(140,29,36,.16);transition:box-shadow .3s}
+.depoimento:hover,.depoimento:focus{border-color:var(--vinho);box-shadow:0 14px 30px -18px rgba(140,29,36,.45)}
+.depoimento:hover .depo-logo,.depoimento:focus .depo-logo{box-shadow:0 0 0 6px var(--creme),0 0 0 7.5px var(--vinho)}
 .depo-letra{display:grid;place-items:center;background:var(--vinho);color:#fff;font-family:var(--serif);font-size:1.5rem}
 .depoimento figcaption strong{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta)}
 .depoimento blockquote{margin:8px 0 0;font-size:.78rem;line-height:1.55;color:var(--tinta-2)}
@@ -1272,7 +1274,7 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
 
 (function depoimentos() {
   const cards = DEPOIMENTOS.map(d => `
-    <figure class="depoimento">
+    <figure class="depoimento" tabindex="0">
       <blockquote>${esc(d.texto)}</blockquote>
       <figcaption>
         ${d.logo
@@ -1282,7 +1284,7 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
       </figcaption>
     </figure>`).join('');
   // Passa sozinho bem devagar, repetido para o giro não ter emenda (para quando o mouse está em cima)
-  const copia = cards.replace(/alt="[^"]*"/g, 'alt=""').replace(/<span class="marca-circ/g, '<span aria-hidden="true" class="marca-circ');
+  const copia = cards.replace(/ tabindex="0"/g, ' tabindex="-1"').replace(/alt="[^"]*"/g, 'alt=""').replace(/<span class="marca-circ/g, '<span aria-hidden="true" class="marca-circ');
   $('#depoimentos-trilho').innerHTML = `<div class="depo-grupo">${cards}</div><div class="depo-grupo" aria-hidden="true">${copia}</div>`;
 })();
 
