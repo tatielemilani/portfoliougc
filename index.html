@@ -244,7 +244,7 @@ p{margin:0 0 1em}
 
 /* Destaques: texto à esquerda e carrossel de vídeos à direita */
 #destaques{padding:48px 0 40px} /* mais junto das marcas e dos nichos */
-#trabalhos{padding-top:28px;padding-bottom:56px}
+#trabalhos{padding-top:28px;padding-bottom:12px}
 .destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .destaques-sub{font-size:1.2rem!important;color:#fff!important;margin:-12px 0 28px!important}
 .destaques-texto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.045em;margin:0 0 28px}
@@ -341,7 +341,8 @@ p{margin:0 0 1em}
 /* =========================================================
    FOTOS UGC
    ========================================================= */
-#fotos{padding:16px 0 88px}
+#fotos{padding:0 0 88px}
+.divisor-fotos{margin:20px auto 36px} /* linha entre os nichos e as fotos */
 #fotos .secao-cabeca{margin-bottom:32px}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
 #fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em}
@@ -690,10 +691,10 @@ p{margin:0 0 1em}
   <!-- ======================= FOTOS UGC ======================= -->
   <section class="secao fotos" id="fotos" aria-labelledby="titulo-fotos">
     <div class="container">
+      <hr class="divisor divisor-fotos">
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Fotos</p>
         <h2 id="titulo-fotos" class="revelar">Fotos que mostram o <em>produto</em> na vida real</h2>
-        <p class="revelar">Produtos em cena, com luz natural e o dia a dia de verdade.</p>
       </div>
     </div>
     <!-- As fotos vêm do array FOTOS no script -->
