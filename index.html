@@ -197,7 +197,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px;padding-bottom:20px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 210px no-repeat} /* embaixo, o carrossel fica colado na seção vinho, com sombreado */
+#sobre{padding-top:72px;padding-bottom:80px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 80px no-repeat} /* o sombreado fica só no espaço abaixo das marcas */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -403,7 +403,7 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding:40px 0 48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 320px no-repeat} /* sombreado atrás dos depoimentos que vira o vinho do contato */
+#numeros{padding:40px 0 96px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 96px no-repeat} /* sombreado só abaixo dos depoimentos, virando o vinho do contato */
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -468,6 +468,7 @@ p{margin:0 0 1em}
 .contato .sobretitulo{color:rgba(255,255,255,.8)}
 .contato-intro p{color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;margin:24px 0 36px;max-width:460px}
 .canais{display:flex;flex-direction:column;gap:14px}
+.canais-linha{display:flex;flex-wrap:wrap;gap:14px 32px}
 .canal{display:inline-flex;align-items:center;gap:14px;align-self:flex-start;text-decoration:none;color:#fff;font-size:1rem;transition:color .2s}
 .canal-icone{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;flex-shrink:0;transition:background .25s,border-color .25s,color .25s}
 .canal-icone svg{width:18px;height:18px}
@@ -855,6 +856,7 @@ p{margin:0 0 1em}
             <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
             <span id="txt-email"></span>
           </a>
+          <div class="canais-linha">
           <a class="canal" id="link-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
             <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
             <span id="txt-instagram"></span>
@@ -863,6 +865,7 @@ p{margin:0 0 1em}
             <span class="canal-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7"/></svg></span>
             <span id="txt-tiktok"></span>
           </a>
+          </div>
         </div>
       </div>
       <div class="formulario revelar" id="caixa-formulario">
