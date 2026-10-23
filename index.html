@@ -22,7 +22,7 @@
   --tinta-2:#5e4b47;
   --vinho:#8c1d24;
   --vinho-escuro:#6c141a;
-  --rosa-claro:#ead9c3; /* destaque sobre o vinho (bege claro) */
+  --rosa-claro:#fcd3dc; /* destaque sobre o vinho (rosinha bebê) */
   --nude:#d9a79c;
   --nude-texto:#a14a45; /* versão mais escura do nude, para texto pequeno com bom contraste */
   --linha:rgba(42,26,24,.12);
@@ -282,7 +282,7 @@ p{margin:0 0 1em}
 .palco-pontos{display:flex;gap:8px}
 .palco-ponto{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:rgba(255,255,255,.4);cursor:pointer;transition:width .3s, background .3s}
 .palco-ponto[aria-current="true"]{width:26px;background:var(--rosa-claro)}
-.palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(234,217,195,.5);padding-bottom:2px}
+.palco-insta{margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px solid rgba(252,211,220,.5);padding-bottom:2px}
 .palco-insta:hover{color:#fff}
 .play{
   position:absolute;inset:0;margin:auto;z-index:2;width:76px;height:76px;border-radius:50%;
@@ -345,15 +345,16 @@ p{margin:0 0 1em}
 #fotos .secao-cabeca{margin-bottom:32px}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
 #fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em}
-.fotos-faixa{overflow:hidden}
+.fotos-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .fotos-trilho{display:flex}
-.fotos-trilho.andando{width:max-content;animation:desliza 80s linear infinite}
+.fotos-trilho.andando{width:max-content;padding:6px 0 12px;animation:desliza 70s linear infinite}
 .fotos-faixa:hover .fotos-trilho.andando{animation-play-state:paused}
 .fotos-grupo{display:flex;gap:18px}
 .fotos-trilho.andando .fotos-grupo{padding-right:18px}
-.foto-card{position:relative;margin:0;height:460px;min-width:200px;flex-shrink:0;border-radius:18px;overflow:hidden;background:var(--creme-2);box-shadow:var(--sombra)}
+.foto-card{position:relative;margin:0;height:420px;min-width:200px;flex-shrink:0;border-radius:18px;overflow:hidden;background:var(--creme-2);box-shadow:var(--sombra);transition:transform .35s ease}
+.foto-card:hover{transform:translateY(-4px)}
 .foto-card img{height:100%;width:auto;display:block}
-.foto-marca{position:absolute;left:12px;bottom:12px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--tinta);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.foto-marca{position:absolute;top:12px;left:12px;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase} /* mesma etiqueta dos vídeos dos nichos */
 
 /* =========================================================
    5. SERVIÇOS
@@ -691,7 +692,7 @@ p{margin:0 0 1em}
     <div class="container">
       <div class="secao-cabeca">
         <p class="sobretitulo revelar">Fotos</p>
-        <h2 id="titulo-fotos" class="revelar">Fotos <em>UGC</em></h2>
+        <h2 id="titulo-fotos" class="revelar">Fotos que mostram o <em>produto</em> na vida real</h2>
         <p class="revelar">Produtos em cena, com luz natural e o dia a dia de verdade.</p>
       </div>
     </div>
@@ -890,7 +891,13 @@ const MARCAS_PARCEIRAS = [
 // foto: arquivo na pasta imagens | marca: nome que aparece na etiqueta da foto
 // Com 4 fotos ou mais, a galeria passa sozinha devagar, igual ao carrossel de marcas.
 const FOTOS = [
-  { foto: 'imagens/foto-hoomy-1.jpg', marca: 'Hoomy' }
+  { foto: 'imagens/foto-hoomy-1.jpg',       marca: 'Hoomy' },
+  { foto: 'imagens/foto-legee.jpg',         marca: 'Legée' },
+  { foto: 'imagens/foto-dacas.jpg',         marca: 'Dacas' },
+  { foto: 'imagens/foto-pimenta-rosa.jpg',  marca: 'Pimenta Rosa' },
+  { foto: 'imagens/foto-mais-memorias.jpg', marca: 'Mais Memórias' },
+  { foto: 'imagens/foto-loreal.jpg',        marca: "L'Oréal Paris" },
+  { foto: 'imagens/foto-duoflex.jpg',       marca: 'Duoflex' }
 ];
 
 // Formatos que passam na faixa vinho embaixo da capa (aparecem em maiúsculas automaticamente)
@@ -1039,7 +1046,7 @@ function midia(capa, legenda, alt, extra = '') {
 // Galeria de fotos: com poucas fotos fica parada; com 4 ou mais passa sozinha (pausa ao passar o mouse)
 (function galeriaFotos() {
   const trilho = $('#fotos-trilho');
-  const item = (f) => `<figure class="foto-card"><img src="${esc(f.foto)}" alt="Foto UGC para ${esc(f.marca)}" loading="lazy" decoding="async"><figcaption class="foto-marca">${esc(f.marca)}</figcaption></figure>`;
+  const item = (f) => `<figure class="foto-card"><img src="${esc(f.foto)}" alt="Foto UGC para ${esc(f.marca)}" width="619" height="1100" loading="lazy" decoding="async"><figcaption class="foto-marca">${esc(f.marca)}</figcaption></figure>`;
   const itens = FOTOS.map(item).join('');
   if (FOTOS.length >= 4) {
     trilho.classList.add('andando');
