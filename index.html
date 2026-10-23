@@ -387,9 +387,15 @@ p{margin:0 0 1em}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(1.6rem,2.9vw,2.2rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:400;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
-.depo-faixa{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.depoimentos{display:flex;width:max-content;padding:40px 0 18px;animation:desliza 90s linear infinite}
-.depo-faixa:hover .depoimentos,.depo-faixa:focus-within .depoimentos{animation-play-state:paused}
+.depo-carrossel{position:relative}
+.depo-faixa{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.depo-faixa::-webkit-scrollbar{display:none}
+.depoimentos{display:flex;width:max-content;padding:40px 0 18px}
+.depo-seta{position:absolute;top:calc(50% + 11px);transform:translateY(-50%);z-index:2;background:var(--creme);color:var(--tinta);border:1px solid rgba(140,29,36,.2);box-shadow:var(--sombra)}
+.depo-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
+#depo-anterior{left:-23px} #depo-proximo{right:-23px}
+.depo-insta{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta);text-decoration:none;transition:color .2s}
+.depo-insta:hover{color:var(--vinho);text-decoration:underline;text-underline-offset:3px}
 .depo-grupo{display:flex;gap:20px;padding-right:20px}
 .depoimento{flex:0 0 440px;margin:0;background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:42px 38px 24px;outline:none;cursor:default;transition:border-color .3s,box-shadow .3s;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
 .depoimento figcaption{order:-1;display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -515,6 +521,7 @@ p{margin:0 0 1em}
   .palco{height:500px} .card-video{width:260px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 170px),-50%) scale(.78)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 170px),-50%) scale(.78)}
   .resultados{grid-template-columns:1fr}
   .depo-cabeca{flex-direction:column;align-items:flex-start;gap:14px}
+  #depo-anterior{left:-10px} #depo-proximo{right:-10px}
   .nicho-trilho{grid-auto-columns:calc((100% - 2 * 16px) / 3);gap:16px}
 }
 @media (max-width:600px){
@@ -539,6 +546,7 @@ p{margin:0 0 1em}
   .formulario{padding:28px 20px}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
+  .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
   .modal-card{padding:40px 22px 26px}
 }
 @media (max-width:380px){
@@ -552,7 +560,7 @@ p{margin:0 0 1em}
   .js .revelar{opacity:1;transform:none}
   .faixa-trilho{animation:none;flex-wrap:wrap}
   .fotos-trilho.andando{animation:none;width:auto;overflow-x:auto} .fotos-trilho.andando .fotos-grupo[aria-hidden]{display:none}
-  .depoimentos{animation:none;width:auto;overflow-x:auto} .depo-grupo[aria-hidden]{display:none}
+  .depo-grupo[aria-hidden]{display:none}
   .marcas-trilho{animation:none;width:auto;justify-content:center;flex-wrap:wrap} .marcas-grupo{flex-wrap:wrap;justify-content:center;padding:0} .marcas-grupo[aria-hidden]{display:none} .marcas-faixa{-webkit-mask-image:none;mask-image:none}
 }
 </style>
@@ -742,8 +750,10 @@ p{margin:0 0 1em}
         <p class="revelar">Feedback de marcas que confiaram no meu trabalho.</p>
       </div>
       <!-- Os depoimentos vêm do array DEPOIMENTOS no script -->
-      <div class="depo-faixa">
-        <div class="depoimentos" id="depoimentos-trilho"></div>
+      <div class="depo-carrossel">
+        <button type="button" class="palco-seta depo-seta" id="depo-anterior" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="depo-faixa" id="depoimentos-trilho"></div>
+        <button type="button" class="palco-seta depo-seta" id="depo-proximo" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </section>
@@ -1036,13 +1046,15 @@ const RESULTADOS = [
 
 // Depoimentos reais das marcas
 // logo: arquivo na pasta imagens (sem logo, aparece a primeira letra)
+// insta: arroba da marca, aparece embaixo da logo com link para o Instagram (sem arroba, aparece o nome)
 const DEPOIMENTOS = [
-  { marca: 'Cei Norte Decorações', logo: 'marca-09.webp', texto: 'Seu trabalho é excelente, entregou a proposta que a marca solicitou no roteiro. Não teve problemas pra entregar uma edição boa e bem feita. Teve um ótimo alcance pra marca.' },
-  { marca: 'Beauty Boobié', logo: 'marca-26.webp', texto: 'Amamos trabalhar com a Tatiele! 🤍 Além de captar o briefing com clareza, ela entregou um conteúdo impecável, leve e cheio de verdade. O resultado ficou incrível!' },
+  { marca: 'Shopee', insta: 'shopee_br', logo: 'marca-41.webp', texto: 'Muito obrigado por topar fazer parte desse projeto conosco! Foi um prazer trabalhar com você, e esperamos repetir essa parceria em breve.' },
+  { marca: 'Cei Norte Decorações', insta: 'ceinortedecoracoes', logo: 'marca-09.webp', texto: 'Seu trabalho é excelente, entregou a proposta que a marca solicitou no roteiro. Não teve problemas pra entregar uma edição boa e bem feita. Teve um ótimo alcance pra marca.' },
+  { marca: 'Beauty Boobié', insta: 'beautyboobiebr', logo: 'marca-26.webp', texto: 'Amamos trabalhar com a Tatiele! 🤍 Além de captar o briefing com clareza, ela entregou um conteúdo impecável, leve e cheio de verdade. O resultado ficou incrível!' },
   { marca: 'Èze Congelados', logo: 'marca-03.webp', texto: 'Amei o vídeo, ficou muito lindo e muito boom 💙' },
-  { marca: 'Tropical Especiarias', logo: 'marca-36.webp', texto: 'Amamos a experiência de trabalhar com a Tatiele. Entregou um conteúdo excelente.' },
-  { marca: 'Mais Memórias', logo: 'marca-30.webp', texto: 'Sua edição é maravilhosa.' },
-  { marca: 'Sterily', logo: 'marca-40.webp', texto: 'Todos aprovadíssimos! Ficaram excelentes.' }
+  { marca: 'Tropical Especiarias', insta: 'tropicalespeciarias', logo: 'marca-36.webp', texto: 'Amamos a experiência de trabalhar com a Tatiele. Entregou um conteúdo excelente.' },
+  { marca: 'Mais Memórias', insta: 'mais.memorias', logo: 'marca-30.webp', texto: 'Sua edição é maravilhosa.' },
+  { marca: 'Sterily', insta: 'sterilybrasil', logo: 'marca-40.webp', texto: 'Todos aprovadíssimos! Ficaram excelentes.' }
 ];
 
 /* =========================================================
@@ -1279,12 +1291,51 @@ $('#resultados').innerHTML = RESULTADOS.map(r => `
         ${d.logo
           ? `<span class="marca-circ depo-logo"><img src="imagens/${esc(d.logo)}?v=3" alt="Logo ${esc(d.marca)}" width="96" height="96" loading="lazy" decoding="async"></span>`
           : `<span class="marca-circ depo-logo depo-letra" aria-hidden="true">${esc(d.marca.charAt(0))}</span>`}
-        <strong>${esc(d.marca)}</strong>
+        ${d.insta
+          ? `<a class="depo-insta" href="https://www.instagram.com/${esc(d.insta)}/" target="_blank" rel="noopener">@${esc(d.insta)}</a>`
+          : `<strong>${esc(d.marca)}</strong>`}
       </figcaption>
     </figure>`).join('');
-  // Passa sozinho bem devagar, repetido para o giro não ter emenda (para quando o mouse está em cima)
-  const copia = cards.replace(/ tabindex="0"/g, ' tabindex="-1"').replace(/alt="[^"]*"/g, 'alt=""').replace(/<span class="marca-circ/g, '<span aria-hidden="true" class="marca-circ');
-  $('#depoimentos-trilho').innerHTML = `<div class="depo-grupo">${cards}</div><div class="depo-grupo" aria-hidden="true">${copia}</div>`;
+  // Repetido para o giro não ter emenda; a cópia fica fora da navegação por teclado
+  const copia = cards.replace(/ tabindex="0"/g, ' tabindex="-1"').replace(/ rel="noopener">/g, ' rel="noopener" tabindex="-1">')
+    .replace(/alt="[^"]*"/g, 'alt=""').replace(/<span class="marca-circ/g, '<span aria-hidden="true" class="marca-circ');
+  const faixa = $('#depoimentos-trilho');
+  faixa.innerHTML = `<div class="depoimentos"><div class="depo-grupo">${cards}</div><div class="depo-grupo" aria-hidden="true">${copia}</div></div>`;
+
+  // Passa sozinho bem devagar; para com o mouse em cima, no toque e por um tempo depois das setas
+  const grupo = faixa.querySelector('.depo-grupo');
+  const VELOCIDADE = 30; // pixels por segundo
+  let pos = 0, parado = false, esperaAte = 0, antes = 0;
+  const volta = () => grupo.offsetWidth; // largura de um giro completo
+  function andar(agora) {
+    const dt = antes ? Math.min(agora - antes, 100) : 0;
+    antes = agora;
+    if (Math.abs(faixa.scrollLeft - pos) > 2) pos = faixa.scrollLeft; // a pessoa arrastou
+    if (!parado && agora > esperaAte) {
+      pos += VELOCIDADE * dt / 1000;
+      if (pos >= volta()) pos -= volta();
+      faixa.scrollLeft = pos;
+    }
+    requestAnimationFrame(andar);
+  }
+  if (!reduzMovimento) requestAnimationFrame(andar);
+
+  const segura = (ms) => { esperaAte = performance.now() + ms; };
+  faixa.addEventListener('mouseenter', () => { parado = true; });
+  faixa.addEventListener('mouseleave', () => { parado = false; });
+  faixa.addEventListener('touchstart', () => segura(4000), { passive: true });
+  faixa.addEventListener('focusin', () => segura(6000));
+
+  const passo = () => { const c = faixa.querySelector('.depoimento'); return c ? c.offsetWidth + 20 : 300; };
+  function mover(sentido) {
+    segura(5000);
+    if (sentido < 0 && faixa.scrollLeft < passo()) faixa.scrollLeft += volta(); // dá a volta sem emenda
+    if (sentido > 0 && faixa.scrollLeft + passo() > volta() * 2 - faixa.clientWidth) faixa.scrollLeft -= volta();
+    pos = faixa.scrollLeft;
+    faixa.scrollBy({ left: sentido * passo(), behavior: reduzMovimento ? 'auto' : 'smooth' });
+  }
+  $('#depo-anterior').addEventListener('click', () => mover(-1));
+  $('#depo-proximo').addEventListener('click', () => mover(1));
 })();
 
 // Contatos e rodapé
