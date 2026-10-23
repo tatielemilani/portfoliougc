@@ -537,6 +537,7 @@ p{margin:0 0 1em}
 .campo textarea{min-height:150px;resize:vertical}
 .campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:var(--destaque);background-color:rgba(0,0,0,.2);box-shadow:0 0 0 3px rgba(241,214,196,.2)}
 .formulario .btn{margin-top:4px}
+.form-nota{margin:12px 0 0;text-align:center;font-size:.82rem;color:rgba(255,255,255,.75)}
 .campo select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;background:rgba(0,0,0,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1d6c4' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 16px center/16px no-repeat}
 .campo select option{color:var(--tinta);background:#fff}
 .btn-enviar{width:100%;justify-content:center;text-transform:uppercase;letter-spacing:.14em;font-size:.85rem;padding-top:18px;padding-bottom:18px}
@@ -973,6 +974,7 @@ p{margin:0 0 1em}
           <button type="submit" class="btn btn-claro btn-enviar">Enviar proposta
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
+          <p class="form-nota">A proposta abre no seu WhatsApp, já preenchida, e chega direto para mim.</p>
         </form>
       </div>
     </div>
@@ -1695,8 +1697,24 @@ $('#form-contato').addEventListener('submit', (e) => {
   if (FORM_ENDPOINT) {
     fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }).catch(() => {});
   }
+  // A proposta vai para o WhatsApp da Tati: abre a conversa com tudo preenchido, a marca só toca em enviar
+  const campo = (rotulo, valor) => valor.trim() ? `*${rotulo}:* ${valor.trim()}` : '';
+  const texto = [
+    idioma === 'en' ? 'Hi, Tati! I found your portfolio and would like to send a proposal.' : 'Oi, Tati! Vim pelo seu portfólio e quero te mandar uma proposta.',
+    '',
+    campo('Nome', form.nome.value),
+    campo('Marca', form.marca.value),
+    campo('E-mail', form.email.value),
+    campo('WhatsApp', form.whatsapp.value),
+    campo('Serviço de interesse', form.servico.value),
+    campo('Orçamento', form.orcamento.value),
+    campo('Sobre a campanha', form.mensagem.value)
+  ].filter((linha, i) => i < 2 || linha).join('\n');
+  const link = `https://wa.me/${CONTATO.whatsapp}?text=${encodeURIComponent(texto)}`;
+  const janela = window.open(link, '_blank', 'noopener');
+  if (!janela) location.href = link; // se o navegador bloquear a nova aba, abre na mesma
   const caixa = $('#caixa-formulario');
-  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`, 'Recebi a sua mensagem e respondo em até 24 horas úteis. Se preferir, me chama no WhatsApp.');
+  caixa.innerHTML = confirmacao(`Obrigada, <em>${esc(nome)}</em>!`, 'Sua proposta abriu no WhatsApp, é só tocar em enviar que ela chega direto para mim. Respondo em até 24 horas úteis.');
   caixa.querySelector('.confirmacao').focus();
 });
 
@@ -1889,7 +1907,8 @@ const EN = {
   "Sobre a campanha": "About the campaign",
   "Enviar proposta": "Send proposal",
   "Obrigada,": "Thank you,",
-  "Recebi a sua mensagem e respondo em até 24 horas úteis. Se preferir, me chama no WhatsApp.": "I got your message and will reply within 24 business hours. If you prefer, message me on WhatsApp.",
+  "Sua proposta abriu no WhatsApp, é só tocar em enviar que ela chega direto para mim. Respondo em até 24 horas úteis.": "Your proposal opened in WhatsApp, just tap send and it comes straight to me. I reply within 24 business hours.",
+  "A proposta abre no seu WhatsApp, já preenchida, e chega direto para mim.": "The proposal opens in your WhatsApp, already filled in, and comes straight to me.",
   "Tatiele Milani. Todos os direitos reservados.": "Tatiele Milani. All rights reserved.",
 
   // Textos para leitores de tela, fotos e campos
