@@ -1700,7 +1700,7 @@ $('#form-contato').addEventListener('submit', (e) => {
     fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }).catch(() => {});
   }
   // A proposta vai para o WhatsApp da Tati: abre a conversa com tudo preenchido, a marca só toca em enviar
-  const campo = (rotulo, valor) => valor.trim() ? `*${rotulo}:* ${valor.trim()}` : '';
+  const campo = (rotulo, valor) => valor.trim() ? `${rotulo}: ${valor.trim()}` : '';
   const texto = [
     idioma === 'en' ? 'Hi, Tati! I found your portfolio and would like to send a proposal.' : 'Oi, Tati! Vim pelo seu portfólio e quero te mandar uma proposta.',
     '',
