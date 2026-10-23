@@ -197,7 +197,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px;padding-bottom:20px} /* embaixo, o carrossel fica colado na seção vinho */
+#sobre{padding-top:72px;padding-bottom:20px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 110px no-repeat} /* embaixo, o carrossel fica colado na seção vinho, com sombreado */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -390,20 +390,16 @@ p{margin:0 0 1em}
 .etapa h3{font-family:inherit;font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho);margin:0 0 12px}
 .etapa p{font-size:.93rem;line-height:1.65;color:var(--tinta);margin:0}
 .etapa p + p{margin-top:10px}
-.uso{margin-top:48px;background:var(--vinho);color:#fff;border-radius:22px;padding:40px 32px 44px;text-align:center}
-.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.6rem,2.6vw,2.1rem);color:#fff;margin:0 0 30px}
-.uso-titulo em{font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
-.uso-grade{display:grid;grid-template-columns:repeat(2,minmax(0,300px));justify-content:center;gap:24px 64px}
-.uso-icone{display:block;width:40px;height:40px;margin:0 auto 12px;color:var(--destaque)}
-.uso-icone svg{width:100%;height:100%}
-.uso-item h4{font-family:inherit;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin:0 0 6px}
-.uso-item p{font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.85);margin:0}
+.uso{margin:40px auto 0;max-width:860px;padding:18px 28px;border-radius:99px;text-align:center;font-size:.95rem;line-height:1.6;color:var(--tinta);background:linear-gradient(90deg,rgba(140,29,36,0),rgba(140,29,36,.09) 20%,rgba(140,29,36,.09) 80%,rgba(140,29,36,0))} /* faixa suave, numa frase só */
+.uso strong{font-family:var(--display);font-weight:800;letter-spacing:-.02em;color:var(--tinta);margin-right:6px}
+.uso strong em{font-family:var(--italico);font-style:italic;font-weight:600;color:var(--vinho)}
+.uso b{font-weight:700;color:var(--vinho)}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding-top:40px}
+#numeros{padding:40px 0 48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 190px no-repeat} /* sombreado atrás dos depoimentos que vira o vinho do contato */
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -440,7 +436,7 @@ p{margin:0 0 1em}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
-.depo-carrossel{position:relative}
+.depo-carrossel{position:relative;margin-top:28px}
 .depo-faixa{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .depo-faixa::-webkit-scrollbar{display:none}
 .depoimentos{display:flex;width:max-content;padding:40px 0 18px}
@@ -461,7 +457,7 @@ p{margin:0 0 1em}
 /* =========================================================
    7. CONTATO
    ========================================================= */
-.contato{background:var(--vinho);color:#fff;padding:96px 0 72px}
+.contato{background:var(--vinho);color:#fff;padding:56px 0 72px}
 .contato-grade{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
 .contato h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.02;font-size:clamp(2.4rem,4.6vw,3.8rem);color:#fff}
 .contato h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
@@ -476,15 +472,18 @@ p{margin:0 0 1em}
 .canal span{min-width:0;overflow-wrap:anywhere}
 .campos-dupla{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .campo{margin-bottom:20px}
-.campo label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:8px}
-.campo input,.campo textarea{
+.campo label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:8px}
+.campo input,.campo textarea,.campo select{
   width:100%;font-family:var(--sans);font-size:1rem;color:#fff;
   background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 18px;transition:border-color .2s, box-shadow .2s, background .2s
 }
 .campo input::placeholder,.campo textarea::placeholder{color:rgba(255,255,255,.5)}
 .campo textarea{min-height:150px;resize:vertical}
-.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--destaque);background:rgba(0,0,0,.2);box-shadow:0 0 0 3px rgba(241,214,196,.2)}
+.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:var(--destaque);background-color:rgba(0,0,0,.2);box-shadow:0 0 0 3px rgba(241,214,196,.2)}
 .formulario .btn{margin-top:4px}
+.campo select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;background:rgba(0,0,0,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1d6c4' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 16px center/16px no-repeat}
+.campo select option{color:var(--tinta);background:#fff}
+.btn-enviar{width:100%;justify-content:center;text-transform:uppercase;letter-spacing:.14em;font-size:.85rem;padding-top:18px;padding-bottom:18px}
 .confirmacao{text-align:center;padding:48px 0}
 .confirmacao .check{width:64px;height:64px;border-radius:50%;background:var(--destaque);color:var(--vinho);display:grid;place-items:center;margin:0 auto 20px}
 .confirmacao h3{font-size:2rem;color:#fff;margin-bottom:10px}
@@ -585,7 +584,7 @@ p{margin:0 0 1em}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr;gap:40px}
-  .uso-grade{grid-template-columns:1fr;gap:28px} .uso{padding:32px 22px;border-radius:18px}
+  .uso{padding:18px 20px;border-radius:18px}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:0}
@@ -593,7 +592,7 @@ p{margin:0 0 1em}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
   .publico-texto{font-size:1rem} .divisor-depo{margin:48px auto 44px}
-  .contato{padding:72px 0 56px} .campos-dupla{grid-template-columns:1fr;gap:0} .rodape-linha{flex-direction:column;align-items:flex-start} .rodape-direitos{text-align:left}
+  .contato{padding:48px 0 56px} .campos-dupla{grid-template-columns:1fr;gap:0} .rodape-linha{flex-direction:column;align-items:flex-start} .rodape-direitos{text-align:left}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
@@ -787,12 +786,9 @@ p{margin:0 0 1em}
         <p class="sobretitulo revelar">Como funciona</p>
         <h2 id="titulo-processo" class="revelar">Meu processo <em>criativo</em></h2>
       </div>
-      <!-- As etapas e os usos vêm dos arrays ETAPAS e USOS no script -->
+      <!-- As etapas vêm do array ETAPAS no script -->
       <ol class="etapas" id="etapas"></ol>
-      <div class="uso revelar">
-        <h3 class="uso-titulo">Como usar meus <em>conteúdos</em>?</h3>
-        <div class="uso-grade" id="usos"></div>
-      </div>
+      <p class="uso revelar"><strong>Como usar meus <em>conteúdos</em>?</strong> No <b>tráfego pago</b>, como criativo nos seus anúncios, e no <b>orgânico</b>, nas redes sociais, no site e em catálogos, com uso vitalício.</p>
     </div>
   </section>
 
@@ -863,27 +859,53 @@ p{margin:0 0 1em}
           <div class="campos-dupla">
             <div class="campo">
               <label for="c-nome">Nome</label>
-              <input id="c-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+              <input id="c-nome" name="nome" type="text" autocomplete="name" required>
             </div>
             <div class="campo">
+              <label for="c-marca">Marca</label>
+              <input id="c-marca" name="marca" type="text" autocomplete="organization">
+            </div>
+          </div>
+          <div class="campos-dupla">
+            <div class="campo">
               <label for="c-email">E-mail</label>
-              <input id="c-email" name="email" type="email" autocomplete="email" placeholder="voce@marca.com" required>
+              <input id="c-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="campo">
+              <label for="c-whatsapp">WhatsApp</label>
+              <input id="c-whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="(41) 99999-9999">
+            </div>
+          </div>
+          <div class="campos-dupla">
+            <div class="campo">
+              <label for="c-servico">Serviço de interesse</label>
+              <select id="c-servico" name="servico">
+                <option value="">Selecione...</option>
+                <option>UGC</option>
+                <option>Publi post</option>
+                <option>Clips</option>
+                <option>TikTok Shop + Live</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="c-orcamento">Orçamento (opcional)</label>
+              <select id="c-orcamento" name="orcamento">
+                <option value="">Selecione...</option>
+                <option>Até R$ 500</option>
+                <option>R$ 500 a R$ 1.500</option>
+                <option>R$ 1.500 a R$ 3.000</option>
+                <option>Acima de R$ 3.000</option>
+                <option>A combinar</option>
+              </select>
             </div>
           </div>
           <div class="campo">
-            <label for="c-marca">Marca / empresa</label>
-            <input id="c-marca" name="marca" type="text" autocomplete="organization" placeholder="Nome da marca">
+            <label for="c-msg">Sobre a campanha</label>
+            <textarea id="c-msg" name="mensagem" required placeholder="Produto, objetivo, prazo, referências..."></textarea>
           </div>
-          <div class="campo">
-            <label for="c-orcamento">Orçamento estimado</label>
-            <input id="c-orcamento" name="orcamento" type="text" placeholder="Ex.: R$ 1.000 a R$ 5.000">
-          </div>
-          <div class="campo">
-            <label for="c-msg">Conta sobre o projeto</label>
-            <textarea id="c-msg" name="mensagem" required placeholder="Produto, formato, prazo, objetivo da campanha..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-claro">Enviar mensagem
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          <button type="submit" class="btn btn-claro btn-enviar">Enviar proposta
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
       </div>
@@ -1123,11 +1145,6 @@ const ETAPAS = [
   ] }
 ];
 
-// Como a marca pode usar os conteúdos
-const USOS = [
-  { titulo: 'Tráfego pago', icone: 'trafego', texto: 'Use como criativo nos seus anúncios, com foco em conversão para a sua marca.' },
-  { titulo: 'Orgânico',     icone: 'organico', texto: 'Use nas redes sociais, no site e em catálogos. O uso orgânico é vitalício.' }
-];
 
 // Métricas do público (do mídia kit). pct: porcentagem de cada faixa
 const PUBLICO = {
@@ -1378,24 +1395,13 @@ $('#servicos-grade').innerHTML = SERVICOS.map(s => `
     <p>${esc(s.descricao)}</p>
   </article>`).join('');
 
-// Processo criativo e uso dos conteúdos
-// Ícones de traço fino dos cards de uso
-const ICONES_USO = {
-  trafego: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>',
-  organico: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>'
-};
+// Processo criativo
 (function processo() {
   $('#etapas').innerHTML = ETAPAS.map(e => `
     <li class="etapa revelar">
       <h3>${esc(e.titulo)}</h3>
       ${e.textos.map(t => `<p>${esc(t)}</p>`).join('')}
     </li>`).join('');
-  $('#usos').innerHTML = USOS.map(u => `
-    <div class="uso-item">
-      <span class="uso-icone" aria-hidden="true">${ICONES_USO[u.icone] || ''}</span>
-      <h4>${esc(u.titulo)}</h4>
-      <p>${esc(u.texto)}</p>
-    </div>`).join('');
 })();
 
 // Métricas do público, redes e depoimentos
