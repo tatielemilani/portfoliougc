@@ -372,8 +372,9 @@ p{margin:0 0 1em}
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros .secao-cabeca{margin-bottom:40px}
-#numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
+#numeros .secao-cabeca{margin-bottom:40px;max-width:none}
+#numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:min(4.25rem,calc(6.3vw - 5px));white-space:nowrap}
+@media (max-width:600px){#numeros .secao-cabeca h2{font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:normal}}
 #numeros .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
 .publico-topo{display:grid;grid-template-columns:1.1fr 1.3fr;gap:24px;align-items:stretch;margin-bottom:24px}
 .publico-texto{margin:0;align-self:center;padding-right:24px;font-size:1.12rem;line-height:1.7;color:var(--tinta)}
@@ -1066,12 +1067,12 @@ const PUBLICO = {
 // Números das redes, com contador animado. valor: número final | casas: casas decimais | sufixo: o que vem depois
 const REDES = [
   { rede: 'Instagram', usuario: 'tatielemilani', link: 'https://www.instagram.com/tatielemilani/', numeros: [
-    { valor: 5464, casas: 0, sufixo: '',     rotulo: 'seguidores' },
+    { valor: 5600, casas: 0, sufixo: '',     rotulo: 'seguidores' },
     { valor: 54.6, casas: 1, sufixo: ' mil', rotulo: 'visualizações nos últimos 30 dias' }
   ] },
   { rede: 'TikTok', usuario: 'tatielemilani', link: 'https://www.tiktok.com/@tatielemilani', numeros: [
     { valor: 10,   casas: 0, sufixo: ' mil', rotulo: 'seguidores' },
-    { valor: 17.8, casas: 1, sufixo: ' mil', rotulo: 'curtidas' }
+    { valor: 18.3, casas: 1, sufixo: ' mil', rotulo: 'curtidas' }
   ] }
 ];
 
