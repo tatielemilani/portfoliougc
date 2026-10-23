@@ -319,14 +319,13 @@ p{margin:0 0 1em}
 .trabalho-link{position:relative;display:block;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--creme-2);text-decoration:none;color:#fff;box-shadow:var(--sombra);transition:transform .35s ease, box-shadow .35s ease}
 .trabalho-link:hover{transform:translateY(-4px);box-shadow:var(--sombra-forte)}
 .trabalho-capa{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.trabalho-link::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 22%,transparent 55%,rgba(0,0,0,.65) 100%);pointer-events:none}
+.trabalho-link::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 22%);pointer-events:none}
 .trabalho-marca{position:absolute;z-index:2;top:12px;left:12px;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-.trabalho-rodape{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;display:flex;flex-direction:column;gap:2px}
-.trabalho-rodape strong{font-family:var(--serif);font-weight:600;font-size:1.25rem;line-height:1.15}
-.trabalho-rodape small{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
-.trabalho-link .play{background:var(--vinho)}
+.trabalho-link .play{background:var(--vinho);opacity:0;transform:scale(.85);transition:opacity .3s ease, transform .3s ease}
+/* O botão vermelho só aparece ao passar o mouse (no celular, sem mouse, ele fica sempre visível) */
+.trabalho-link:hover .play,.trabalho-link:focus-visible .play{opacity:1;transform:scale(1)}
+@media (hover:none){ .trabalho-link .play{opacity:1;transform:none} }
 .trabalho-link .play svg{fill:#fff}
-.trabalho-link:hover .play{transform:scale(1.08)}
 .play.play-p{width:54px;height:54px}
 .play.play-p svg{width:20px;height:20px;margin-left:3px}
 .midia.tem-foto{background:var(--creme-2)}
@@ -505,7 +504,7 @@ p{margin:0 0 1em}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr}
   .servico,.servico:nth-child(2n),.servico:not(:nth-child(3n+1)){padding:32px 0;border-left:0}
-  .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .trabalho-rodape strong{font-size:1.1rem} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
+  .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .palco{height:430px} .card-video{width:226px} .card-video[data-pos="esquerda"]{transform:translate(calc(-50% - 118px),-50%) scale(.76)} .card-video[data-pos="direita"]{transform:translate(calc(-50% + 118px),-50%) scale(.76)}
   .marca-circ{width:72px;height:72px} .marcas-grupo{gap:14px;padding-right:14px} .marcas{margin-top:72px} .marcas-titulo{letter-spacing:.2em;gap:10px} .marcas-titulo::before,.marcas-titulo::after{width:22px}
@@ -944,8 +943,8 @@ const TRABALHOS = [
   { nicho: 'estudo', marca: 'Positivo',                        video: 'https://youtube.com/shorts/ysdSdmDDV_c' },
   { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' },
   // App & Lifestyle
-  { nicho: 'lifestyle', marca: 'Lyx Construtora',               video: 'https://youtube.com/shorts/KTdOCbS4YBU' },
-  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc' }
+  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc' },
+  { nicho: 'lifestyle', marca: 'Lyx Construtora',               video: 'https://youtube.com/shorts/KTdOCbS4YBU' }
 ];
 
 
@@ -1095,7 +1094,6 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
         <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" loading="lazy" decoding="async" width="1080" height="1920">
         <span class="trabalho-marca">${esc(t.marca)}</span>
         ${play}
-        <span class="trabalho-rodape"><strong>${esc(t.marca)}</strong><small>${esc(nicho)}</small></span>
       </a>
     </figure>`;
   }
