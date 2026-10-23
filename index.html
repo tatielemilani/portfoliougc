@@ -341,7 +341,7 @@ p{margin:0 0 1em}
 /* =========================================================
    FOTOS UGC
    ========================================================= */
-#fotos{padding:0}
+#fotos{padding:0;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.18) 45%,var(--vinho) 100%) bottom/100% 52% no-repeat} /* sombreado que nasce atrás das fotos e vira o vinho dos serviços */
 .divisor-fotos{margin:20px auto 36px} /* linha entre os nichos e as fotos */
 #fotos .secao-cabeca{margin:0 auto 32px;max-width:none;text-align:center}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-kerning:none;line-height:1;font-size:min(3.9rem,calc(5.3vw - 4px));white-space:nowrap}
@@ -378,7 +378,7 @@ p{margin:0 0 1em}
 .secao-vinho .servico h3{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--vinho);color:#fff;border:3px solid #f9f5ef;font-family:inherit;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:99px}
 .servico p{color:var(--tinta);font-size:.92rem;line-height:1.65;margin:0}
 /* Processo criativo e uso dos conteúdos */
-.secao.processo{padding:48px 0 0}
+.secao.processo{padding:24px 0 0}
 .processo .secao-cabeca{margin-bottom:40px}
 .processo .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1}
 .processo .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
@@ -390,22 +390,20 @@ p{margin:0 0 1em}
 .etapa h3{font-family:inherit;font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--vinho);margin:0 0 12px}
 .etapa p{font-size:.93rem;line-height:1.65;color:var(--tinta);margin:0}
 .etapa p + p{margin-top:10px}
-.uso{margin-top:56px;background:var(--vinho);color:#fff;border-radius:22px;padding:48px 48px;display:grid;grid-template-columns:.8fr 1.7fr;gap:40px;align-items:center}
-.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(2rem,3.4vw,2.8rem);color:#fff;margin:0}
+.uso{margin-top:48px;background:var(--vinho);color:#fff;border-radius:22px;padding:40px 32px 44px;text-align:center}
+.uso-titulo{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.6rem,2.6vw,2.1rem);color:#fff;margin:0 0 30px}
 .uso-titulo em{font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--destaque)}
-.uso-grade{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.uso-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:26px 26px 24px;transition:background .3s,border-color .3s}
-.uso-item:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3)}
-.uso-icone{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:rgba(241,214,196,.14);color:var(--destaque);margin-bottom:16px}
-.uso-icone svg{width:24px;height:24px}
-.uso-item h4{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--destaque);margin:0 0 10px}
-.uso-item p{font-size:1rem;line-height:1.6;color:rgba(255,255,255,.9);margin:0}
+.uso-grade{display:grid;grid-template-columns:repeat(2,minmax(0,300px));justify-content:center;gap:24px 64px}
+.uso-icone{display:block;width:40px;height:40px;margin:0 auto 12px;color:var(--destaque)}
+.uso-icone svg{width:100%;height:100%}
+.uso-item h4{font-family:inherit;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin:0 0 6px}
+.uso-item p{font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.85);margin:0}
 
 /* =========================================================
    6. NÚMEROS E DEPOIMENTOS
    ========================================================= */
 /* Métricas do público e das redes */
-#numeros{padding-top:64px}
+#numeros{padding-top:40px}
 #numeros .secao-cabeca{margin-bottom:40px;max-width:none}
 #numeros .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:nowrap}
 @media (max-width:760px){#numeros .secao-cabeca h2{white-space:normal}}
@@ -438,7 +436,7 @@ p{margin:0 0 1em}
 .barra-trilho span{display:block;height:100%;width:0;border-radius:inherit;background:var(--vinho);transition:width 1.4s cubic-bezier(.2,.7,.2,1) .2s}
 .dado-card.visivel .barra-trilho span{width:var(--p)}
 /* Depoimentos: cards com a logo da marca por cima, em carrossel */
-.depo-cabeca{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:8px;scroll-margin-top:90px}
+.depo-cabeca{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-bottom:8px;scroll-margin-top:90px}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
@@ -496,13 +494,11 @@ p{margin:0 0 1em}
 /* =========================================================
    8. RODAPÉ
    ========================================================= */
-.rodape{padding:72px 0 40px}
-.rodape-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:40px;border-bottom:1px solid var(--linha)}
-.rodape-nome{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);line-height:1}
-.rodape-nome em{font-style:italic;color:var(--vinho)}
-.rodape-redes{display:flex;flex-wrap:wrap;gap:24px;list-style:none;margin:0;padding:0}
-.rodape-redes a{text-decoration:none;font-weight:500;font-size:.95rem;border-bottom:1px solid var(--nude);padding-bottom:2px}
-.rodape-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:.85rem;color:var(--tinta-2)}
+.rodape{padding:36px 0 28px}
+.rodape-linha{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 32px}
+.rodape-nome{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1;color:var(--vinho);margin:0}
+.rodape-sub{font-size:.85rem;color:var(--tinta-2);margin:8px 0 0}
+.rodape-direitos{font-size:.85rem;color:var(--tinta-2);text-align:right}
 
 /* =========================================================
    CARD DE CAPTURA (MÍDIA KIT)
@@ -538,7 +534,7 @@ p{margin:0 0 1em}
   .nicho-trilho{grid-auto-columns:calc((100% - 3 * 20px) / 4)}
   .publico-topo{grid-template-columns:1fr} .publico-texto{padding-right:0}
   .serv-layout{grid-template-columns:1fr;gap:56px} .serv-texto > p:not(.sobretitulo){max-width:560px}
-  .etapas{grid-template-columns:1fr;gap:44px} .etapas::before{left:50%;right:auto;top:0;bottom:0;border-top:0;border-left:1.5px dashed rgba(140,29,36,.35)} .etapa:not(:last-child)::after{top:auto;right:auto;bottom:-36px;left:50%;margin:0 0 0 -13px;transform:rotate(90deg)} .uso{grid-template-columns:1fr;gap:28px;padding:40px 32px}
+  .etapas{grid-template-columns:1fr;gap:44px} .etapas::before{left:50%;right:auto;top:0;bottom:0;border-top:0;border-left:1.5px dashed rgba(140,29,36,.35)} .etapa:not(:last-child)::after{top:auto;right:auto;bottom:-36px;left:50%;margin:0 0 0 -13px;transform:rotate(90deg)}
 }
 @media (max-width:1180px){
   .menu{gap:24px}
@@ -588,7 +584,7 @@ p{margin:0 0 1em}
   .capa-botoes .link-seta{margin:0 auto}
   .secao-cabeca{margin-bottom:44px}
   .servicos-grade{grid-template-columns:1fr;gap:40px}
-  .uso-grade{grid-template-columns:1fr;gap:14px} .uso{padding:32px 22px;border-radius:18px}
+  .uso-grade{grid-template-columns:1fr;gap:28px} .uso{padding:32px 22px;border-radius:18px}
   .nicho-trilho{grid-auto-columns:64%;gap:14px} .nicho-setas{display:none} .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px} .filtros::-webkit-scrollbar{display:none} .filtro{flex-shrink:0}
   .filtro{padding:8px 14px;font-size:.85rem}
   .foto-card{height:360px} #fotos{padding-bottom:0}
@@ -818,7 +814,7 @@ p{margin:0 0 1em}
       <div class="depo-cabeca" id="depoimentos">
         <div>
           <p class="sobretitulo revelar">Depoimentos</p>
-          <h3 class="revelar">O que dizem sobre o meu <em>trabalho</em></h3>
+          <h3 class="revelar">O que dizem sobre<br>o meu <em>trabalho</em></h3>
         </div>
         <p class="revelar">Feedback de marcas que confiaram no meu trabalho.</p>
       </div>
@@ -836,8 +832,8 @@ p{margin:0 0 1em}
     <div class="container contato-grade">
       <div class="contato-intro">
         <p class="sobretitulo revelar">Contato</p>
-        <h2 id="titulo-contato" class="revelar">Bora criar <em>juntos</em>?</h2>
-        <p class="revelar">Me conta sobre a sua marca e o que você quer alcançar. Respondo em até um dia útil com uma proposta pensada para você.</p>
+        <h2 id="titulo-contato" class="revelar">Vamos criar algo <em>incrível</em> juntos</h2>
+        <p class="revelar">Respondo todas as mensagens em até 24 horas úteis, com uma proposta clara de formatos, prazos e preços.</p>
         <div class="canais revelar">
           <a class="canal" id="link-whatsapp" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.9-1-1 .8a4 4 0 0 1-2.4-2.4l.8-1-1-1.9L9 9.5z"/></svg>
@@ -850,6 +846,10 @@ p{margin:0 0 1em}
           <a class="canal" id="link-instagram" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
             <span><small>Instagram</small><span id="txt-instagram"></span></span>
+          </a>
+          <a class="canal" id="link-tiktok" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7"/></svg>
+            <span><small>TikTok</small><span id="txt-tiktok"></span></span>
           </a>
         </div>
       </div>
@@ -884,15 +884,12 @@ p{margin:0 0 1em}
 
 <!-- ======================= 8. RODAPÉ ======================= -->
 <footer class="rodape">
-  <div class="container">
-    <div class="rodape-topo">
-      <p class="rodape-nome">Tatiele <em>Milani</em></p>
-      <ul class="rodape-redes" id="rodape-redes"></ul>
+  <div class="container rodape-linha">
+    <div>
+      <p class="rodape-nome">Tatiele Milani</p>
+      <p class="rodape-sub">UGC Creator &amp; Influencer · Curitiba/PR</p>
     </div>
-    <div class="rodape-base">
-      <span>© <span id="ano"></span> Tatiele Milani. Todos os direitos reservados.</span>
-      <span>UGC Creator &amp; Influencer · Curitiba/PR</span>
-    </div>
+    <span class="rodape-direitos">© <span id="ano"></span> Tatiele Milani. Todos os direitos reservados.</span>
   </div>
 </footer>
 
@@ -1509,15 +1506,13 @@ const formata = (v, casas) => v.toLocaleString('pt-BR', { minimumFractionDigits:
     $('#capa-tiktok').remove();
   }
   $('#txt-instagram').textContent = '@' + CONTATO.instagram;
+  if (CONTATO.tiktok) {
+    $('#link-tiktok').href = `https://www.tiktok.com/@${CONTATO.tiktok}`;
+    $('#txt-tiktok').textContent = '@' + CONTATO.tiktok;
+  } else {
+    $('#link-tiktok').remove();
+  }
 
-  const redes = [
-    { nome: 'Instagram', url: ig },
-    CONTATO.tiktok ? { nome: 'TikTok', url: `https://www.tiktok.com/@${CONTATO.tiktok}` } : null,
-    { nome: 'WhatsApp', url: wa },
-    { nome: 'E-mail', url: `mailto:${CONTATO.email}` }
-  ].filter(Boolean);
-  $('#rodape-redes').innerHTML = redes.map(r =>
-    `<li><a href="${esc(r.url)}"${r.url.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${r.nome}</a></li>`).join('');
   $('#ano').textContent = new Date().getFullYear();
 })();
 
