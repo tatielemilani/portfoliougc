@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- No celular, o site abre na largura do computador (mesmo visual, em miniatura) -->
+<meta name="viewport" content="width=1280">
 <title>Tatiele Milani · Portfólio UGC Creator & Influencer</title>
 <meta name="description" content="Portfólio de Tatiele Milani, UGC creator e influencer em Curitiba/PR. Vídeos que fazem sua marca parecer recomendação de amiga e vendem como anúncio.">
 <meta name="theme-color" content="#f4eee6">
@@ -345,6 +346,22 @@ p{margin:0 0 1em}
 .video-player iframe,.video-player video{width:100%;height:100%;border:0;display:block;object-fit:cover;background:#000}
 .video-fechar{top:12px;right:12px;z-index:2;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35)} /* X dentro do vídeo, no canto */
 .video-fechar:hover{background:rgba(0,0,0,.7)}
+/* Setas para passar para o vídeo anterior ou o próximo do mesmo nicho */
+.video-seta{position:absolute;top:50%;width:48px;height:48px;margin-top:-24px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,color .2s}
+.video-seta:hover{background:#fff;color:var(--vinho)}
+.video-seta svg{width:22px;height:22px}
+.video-seta-anterior{left:-68px} .video-seta-proximo{right:-68px}
+.video-seta[hidden],.video-contador[hidden]{display:none}
+.video-contador{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:.8rem;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.85)}
+@media (max-width:640px){.video-seta{width:40px;height:40px;margin-top:-20px;background:rgba(0,0,0,.35)} .video-seta-anterior{left:8px} .video-seta-proximo{right:8px} .video-contador{bottom:auto;top:20px;left:16px;right:auto;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.6)}}
+/* No celular o site fica em miniatura (largura do computador), então o player ocupa a tela e os botões ficam grandes para o dedo */
+@media (pointer:coarse){
+  .video-caixa{width:min(94vw, calc((100vh - 260px) * 9 / 16))}
+  .video-seta{width:130px;height:130px;margin-top:-65px;background:rgba(0,0,0,.35)} .video-seta svg{width:60px;height:60px}
+  .video-seta-anterior{left:24px} .video-seta-proximo{right:24px}
+  .video-fechar{width:110px;height:110px;top:24px;right:24px} .video-fechar svg{width:50px;height:50px}
+  .video-contador{top:auto;bottom:-80px;left:0;right:0;text-align:center;font-size:2.2rem}
+}
 
 /* =========================================================
    FOTOS UGC
@@ -518,12 +535,6 @@ p{margin:0 0 1em}
 .modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:20px}
 .modal[hidden]{display:none}
 .modal-fundo{position:absolute;inset:0;background:rgba(42,26,24,.6);backdrop-filter:blur(3px);animation:aparece .35s ease}
-.modal-card{
-  position:relative;width:100%;max-width:440px;max-height:calc(100vh - 40px);overflow:auto;
-  background:var(--creme);border-radius:20px;padding:44px 36px 36px;box-shadow:var(--sombra-forte);animation:sobe .45s cubic-bezier(.2,.8,.2,1)
-}
-.modal-card h2{font-size:2.1rem;margin-bottom:10px;padding-right:24px}
-.modal-card > p{color:var(--tinta-2);margin-bottom:24px}
 .modal-fechar{
   position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--tinta)
 }
@@ -609,7 +620,6 @@ p{margin:0 0 1em}
   .depoimento{flex-basis:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
-  .modal-card{padding:40px 22px 26px}
 }
 
 /* Respeita quem prefere menos movimento */
@@ -961,34 +971,12 @@ p{margin:0 0 1em}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <div class="video-player" id="video-player"></div>
+    <button type="button" class="video-seta video-seta-anterior" id="video-anterior" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button type="button" class="video-seta video-seta-proximo" id="video-proximo" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    <p class="video-contador" id="video-contador" aria-live="polite"></p>
   </div>
 </div>
 
-<!-- ======================= CARD DE CAPTURA ======================= -->
-<div class="modal" id="modal-kit" hidden>
-  <div class="modal-fundo" data-fechar></div>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="titulo-kit">
-    <span class="modal-faixa" aria-hidden="true"></span>
-    <button class="modal-fechar" data-fechar aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <div id="kit-conteudo">
-      <h2 id="titulo-kit">Quer meu <em>mídia kit</em> completo?</h2>
-      <p>Valores, formatos, resultados e cases em um PDF bonito. Deixa seu contato que eu te envio.</p>
-      <form id="form-kit" novalidate>
-        <div class="campo">
-          <label for="k-nome">Nome</label>
-          <input id="k-nome" name="nome" type="text" autocomplete="name" required>
-        </div>
-        <div class="campo">
-          <label for="k-email">E-mail</label>
-          <input id="k-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <button type="submit" class="btn btn-primario" style="width:100%">Quero receber</button>
-      </form>
-    </div>
-  </div>
-</div>
 
 <script>
 document.documentElement.classList.add('js');
@@ -1092,60 +1080,60 @@ const NICHOS = [
   { id: 'lifestyle',   nome: 'App & Lifestyle' }
 ];
 
-// Galeria de trabalhos (vídeos do YouTube Shorts)
-// Para adicionar um vídeo: copie uma linha, troque o nicho, a marca e cole o link do Shorts.
-// A capa vem sozinha do YouTube. Se quiser outra capa, adicione capa: 'imagens/arquivo.jpg' na linha.
+// Vídeos de cada nicho, na ordem em que aparecem
+// arquivo: nome do vídeo na pasta imagens/videos (o .mp4) e da capa na pasta imagens/capas (o .jpg)
+// Para adicionar um vídeo: salve o .mp4 e a capa com o mesmo nome e copie uma linha trocando nicho, marca e arquivo.
 const TRABALHOS = [
   // Cabelo
-  { nicho: 'cabelo', marca: "L'Oréal",                         video: 'https://youtube.com/shorts/VYNclZ3ERMA' },
-  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/KmHFXPvwgDU' },
-  { nicho: 'cabelo', marca: 'Pantene',                         video: 'https://youtube.com/shorts/LhImuZiVzA4' },
+  { nicho: 'cabelo', marca: 'Pantene',                         arquivo: 'cabelo-pantene-1' },
+  { nicho: 'cabelo', marca: 'Pantene',                         arquivo: 'cabelo-pantene-2' },
+  { nicho: 'cabelo', marca: "L'Oréal Professionnel",           arquivo: 'cabelo-loreal-prof' },
   // Casa & Decor
-  { nicho: 'casa', marca: 'Cheiro de Memória',                 video: 'https://youtube.com/shorts/54YBQfUVYPE' },
-  { nicho: 'casa', marca: 'Duoflex',                           video: 'https://youtube.com/shorts/9M-Eut_Q8Ns' },
-  { nicho: 'casa', marca: 'Hoomy',                             video: 'https://youtube.com/shorts/Ov6WU1X_j-Q' },
-  { nicho: 'casa', marca: 'Sterily',                           video: 'https://youtube.com/shorts/b0lKPzH7Ufo' },
-  { nicho: 'casa', marca: 'Sterily',                           video: 'https://youtube.com/shorts/DEnQrRwxmCM' },
-  { nicho: 'casa', marca: 'Cei Norte Decorações',              video: 'https://youtube.com/shorts/Vv2fJ0v_9iw' },
-  { nicho: 'casa', marca: 'Downy',                             video: 'https://youtube.com/shorts/Uy_H85bOkPQ' },
+  { nicho: 'casa', marca: 'Cheiro de Memória',                 arquivo: 'casa-cheiro-de-memoria' },
+  { nicho: 'casa', marca: 'Duoflex',                           arquivo: 'casa-duoflex' },
+  { nicho: 'casa', marca: 'Hoomy',                             arquivo: 'casa-hoomy' },
+  { nicho: 'casa', marca: 'Sterily',                           arquivo: 'casa-sterily-1' },
+  { nicho: 'casa', marca: 'Sterily',                           arquivo: 'casa-sterily-2' },
+  { nicho: 'casa', marca: 'Cei Norte Decorações',              arquivo: 'casa-cei-norte' },
+  { nicho: 'casa', marca: 'Downy',                             arquivo: 'casa-downy' },
   // Gastronomia
-  { nicho: 'gastronomia', marca: 'Kit Kat',                    video: 'https://youtube.com/shorts/JSzfhFMSGXs' },
-  { nicho: 'gastronomia', marca: 'Tropical Especiarias',       video: 'https://youtube.com/shorts/qCshgPpGZEQ' },
-  { nicho: 'gastronomia', marca: 'Dr. Oetker',                 video: 'https://youtube.com/shorts/EFbMhwS5Qpg' },
-  { nicho: 'gastronomia', marca: 'Café 3corações',             video: 'https://youtube.com/shorts/cYMIL1F6yIQ' },
-  { nicho: 'gastronomia', marca: 'Maxinutri',                  video: 'https://youtube.com/shorts/m_Ba2y8Sd2I' },
-  { nicho: 'gastronomia', marca: 'Vitao',                      video: 'https://youtube.com/shorts/nV4GONymwuk' },
+  { nicho: 'gastronomia', marca: 'Tropical Especiarias',       arquivo: 'gastro-tropical' },
+  { nicho: 'gastronomia', marca: 'Kit Kat',                    arquivo: 'gastro-kitkat' },
+  { nicho: 'gastronomia', marca: 'Dr. Oetker',                 arquivo: 'gastro-dr-oetker' },
+  { nicho: 'gastronomia', marca: '3 Corações',                 arquivo: 'gastro-3-coracoes' },
+  { nicho: 'gastronomia', marca: 'Maxinutri',                  arquivo: 'gastro-maxinutri' },
+  { nicho: 'gastronomia', marca: 'Vitao',                      arquivo: 'gastro-vitao' },
   // Beleza & Cuidado
-  { nicho: 'beleza', marca: 'Natura',                          video: 'https://youtube.com/shorts/LjKZr1OayUI' },
-  { nicho: 'beleza', marca: 'Monange',                         video: 'https://youtube.com/shorts/y4i82Shw4S0' },
-  { nicho: 'beleza', marca: 'Nívea',                           video: 'https://youtube.com/shorts/vt4UYAHjS34' },
-  { nicho: 'beleza', marca: "L'Oréal Paris Água Micelar Bifásica", video: 'https://youtube.com/shorts/baxYOccN4sQ' },
-  { nicho: 'beleza', marca: 'Legée',                           video: 'https://youtube.com/shorts/KvK2cBEktiU' },
+  { nicho: 'beleza', marca: 'Natura',                          arquivo: 'beleza-natura' },
+  { nicho: 'beleza', marca: 'Monange',                         arquivo: 'beleza-monange' },
+  { nicho: 'beleza', marca: 'CeraVe',                          arquivo: 'beleza-cerave' },
+  { nicho: 'beleza', marca: "L'Oréal Paris",                   arquivo: 'beleza-loreal-paris' },
+  { nicho: 'beleza', marca: 'Legée',                           arquivo: 'beleza-legee' },
   // Moda
-  { nicho: 'moda', marca: 'Shein',                             video: 'https://youtube.com/shorts/SzWQKlo5TWM' },
-  { nicho: 'moda', marca: 'Basicamente',                       video: 'https://youtube.com/shorts/RGK2LBfytsc' },
-  { nicho: 'moda', marca: 'Plume',                             video: 'https://youtube.com/shorts/IrChI5IJue0' },
-  { nicho: 'moda', marca: 'Basicamente',                       video: 'https://youtube.com/shorts/4CbJZ_uXZ_k' },
-  { nicho: 'moda', marca: 'Boobíe',                            video: 'https://youtube.com/shorts/66sn7mjPjtA' },
+  { nicho: 'moda', marca: 'Shein',                             arquivo: 'moda-shein' },
+  { nicho: 'moda', marca: 'Basicamente',                       arquivo: 'moda-basicamente-1' },
+  { nicho: 'moda', marca: 'Basicamente',                       arquivo: 'moda-basicamente-2' },
+  { nicho: 'moda', marca: 'Plume',                             arquivo: 'moda-plume' },
+  { nicho: 'moda', marca: 'Boobíe',                            arquivo: 'moda-boobie' },
   // E-Commerce
-  { nicho: 'ecommerce', marca: 'Shopee',                       video: 'https://youtube.com/shorts/HgdVW7Iipp8' },
-  { nicho: 'ecommerce', marca: 'Shopee',                       video: 'https://youtube.com/shorts/3_Hnp2MOuf8' },
-  { nicho: 'ecommerce', marca: 'Mercado Livre',                video: 'https://youtube.com/shorts/X3DHLcdh3XU' },
-  { nicho: 'ecommerce', marca: 'Magalu',                       video: 'https://youtube.com/shorts/tFFsRExup-s' },
+  { nicho: 'ecommerce', marca: 'Shopee',                       arquivo: 'ecom-shopee-1' },
+  { nicho: 'ecommerce', marca: 'Shopee',                       arquivo: 'ecom-shopee-2' },
+  { nicho: 'ecommerce', marca: 'Mercado Livre',                arquivo: 'ecom-mercado-livre' },
+  { nicho: 'ecommerce', marca: 'Magalu',                       arquivo: 'ecom-magalu' },
   // Casal
-  { nicho: 'casal', marca: 'Coca-Cola',                        video: 'https://youtube.com/shorts/eTMZDPWqE8s' },
-  { nicho: 'casal', marca: 'Crepes Èze',                       video: 'https://youtube.com/shorts/5e5Et9q9htY' },
-  { nicho: 'casal', marca: 'Mais Memórias',                    video: 'https://youtube.com/shorts/YIfxnr7WsNE' },
+  { nicho: 'casal', marca: 'Coca-Cola',                        arquivo: 'casal-coca-cola' },
+  { nicho: 'casal', marca: 'Crepes Èze',                       arquivo: 'casal-crepes-eze' },
+  { nicho: 'casal', marca: 'Mais Memórias',                    arquivo: 'casal-mais-memorias' },
   // Acessórios
-  { nicho: 'acessorios', marca: 'Relicário Dacas',             video: 'https://youtube.com/shorts/4EsfW3noffU' },
-  { nicho: 'acessorios', marca: 'Pimenta Rosa',                video: 'https://youtube.com/shorts/sOmxQuY3p5U' },
-  { nicho: 'acessorios', marca: 'Pimenta Rosa',                video: 'https://youtube.com/shorts/4k9eo5oJuZc' },
+  { nicho: 'acessorios', marca: 'Dacas',                       arquivo: 'acess-dacas' },
+  { nicho: 'acessorios', marca: 'Pimenta Rosa',                arquivo: 'acess-pimenta-rosa-1' },
+  { nicho: 'acessorios', marca: 'Pimenta Rosa',                arquivo: 'acess-pimenta-rosa-2' },
   // Estudo
-  { nicho: 'estudo', marca: 'Positivo',                        video: 'https://youtube.com/shorts/ysdSdmDDV_c' },
-  { nicho: 'estudo', marca: 'Uniasselvi',                      video: 'https://youtube.com/shorts/lLIM_McRJPo' },
+  { nicho: 'estudo', marca: 'Positivo',                        arquivo: 'estudo-positivo' },
+  { nicho: 'estudo', marca: 'Uniasselvi',                      arquivo: 'estudo-uniasselvi' },
   // App & Lifestyle
-  { nicho: 'lifestyle', marca: 'Wellhub',                       video: 'https://youtube.com/shorts/jkxU9U_dGAc', arquivo: 'imagens/lifestyle-wellhub.mp4', capa: 'imagens/capas/lifestyle-wellhub.jpg' },
-  { nicho: 'lifestyle', marca: 'Lyx Construtora',               video: 'https://youtube.com/shorts/KTdOCbS4YBU', arquivo: 'imagens/lifestyle-lyx.mp4', capa: 'imagens/capas/lifestyle-lyx.jpg' }
+  { nicho: 'lifestyle', marca: 'Wellhub',                      arquivo: 'lifestyle-wellhub' },
+  { nicho: 'lifestyle', marca: 'Lyx Construtora',              arquivo: 'lifestyle-lyx' }
 ];
 
 
@@ -1322,25 +1310,21 @@ function midia(capa, legenda, alt, extra = '') {
 })();
 
 // Pega o código de 11 letras de um link do YouTube (shorts, watch, youtu.be ou embed)
-const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/); return m ? m[1] : ''; };
 
 // Nichos: botões só com os nichos e um carrossel com os vídeos do nicho escolhido
 (function trabalhos() {
   const trilho = $('#trabalhos-grade');
   const filtros = $('#filtros');
   const play = '<span class="play play-p" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
-  // Capa salva no próprio site (imagens/capas/ID.jpg); se faltar, busca a vertical do YouTube
-  // Para um vídeo novo, salve a capa em imagens/capas com o código do vídeo no nome
-  const capas = (id) => [`imagens/capas/${id}.jpg`, `https://i.ytimg.com/vi/${id}/oar2.jpg`];
   let atual = NICHOS[0].id;
 
+  // O vídeo e a capa ficam no próprio site: imagens/videos/ARQUIVO.mp4 e imagens/capas/ARQUIVO.jpg
   function card(t, nicho) {
-    const id = idDoVideo(t.video);
-    const [capa, reserva] = capas(id);
+    const video = `imagens/videos/${t.arquivo}.mp4`;
     return `<figure class="trabalho">
-      <a class="trabalho-link" href="https://youtube.com/shorts/${esc(id)}" target="_blank" rel="noopener"
-         data-video="${esc(id)}" data-titulo="${esc(t.marca)}"${t.arquivo ? ` data-arquivo="${esc(t.arquivo)}"` : ""} aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
-        <img class="trabalho-capa" src="${esc(t.capa || capa)}" data-reserva="${esc(reserva)}" alt="Capa do vídeo para ${esc(t.marca)}" decoding="async" width="540" height="960">
+      <a class="trabalho-link" href="${esc(video)}" target="_blank" rel="noopener"
+         data-arquivo="${esc(video)}" data-titulo="${esc(t.marca)}" aria-label="Assistir vídeo para ${esc(t.marca)}, nicho ${esc(nicho)}">
+        <img class="trabalho-capa" src="imagens/capas/${esc(t.arquivo)}.jpg" alt="Capa do vídeo para ${esc(t.marca)}" decoding="async" width="540" height="960">
         <span class="trabalho-marca">${esc(t.marca)}</span>
         ${play}
       </a>
@@ -1353,9 +1337,6 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     $('#nicho-qtd').innerHTML = String(TRABALHOS.filter(t => t.nicho === atual).length).padStart(2, '0') + '<span class="sr-only"> vídeos</span>';
     trilho.innerHTML = TRABALHOS.filter(t => t.nicho === atual).map(t => card(t, n.nome)).join('');
     trilho.scrollLeft = 0;
-    trilho.querySelectorAll('.trabalho-capa').forEach(img => img.addEventListener('error', () => {
-      if (img.dataset.reserva && img.src !== img.dataset.reserva) img.src = img.dataset.reserva;
-    }));
     atualizarSetas();
   }
 
@@ -1385,18 +1366,28 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
   desenhar();
 })();
 
-// Player de vídeo: abre o Shorts aqui mesmo no site, sem sair da página
+// Player de vídeo: abre o vídeo aqui mesmo no site, com setas para ir ao anterior e ao próximo do mesmo nicho
 (function playerVideo() {
   const modal = $('#modal-video'), player = $('#video-player');
-  let focoAnterior = null;
-  // arquivo: se o vídeo estiver salvo no próprio site (.mp4), toca direto dele; senão usa o YouTube
-  function abrir(id, titulo, arquivo) {
-    focoAnterior = document.activeElement;
-    player.innerHTML = arquivo
-      ? `<video src="${esc(arquivo)}" controls autoplay playsinline aria-label="Vídeo para ${esc(titulo)}"></video>`
-      : `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1&vq=hd1080"
-      title="Vídeo para ${esc(titulo)}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  const anterior = $('#video-anterior'), proximo = $('#video-proximo'), contador = $('#video-contador');
+  let focoAnterior = null, lista = [], indice = 0;
+
+  function mostra(i) {
+    indice = (i + lista.length) % lista.length;
+    const link = lista[indice];
+    const titulo = link.dataset.titulo || '';
+    player.innerHTML = `<video src="${esc(link.dataset.arquivo)}" controls autoplay playsinline preload="auto" aria-label="Vídeo para ${esc(titulo)}"></video>`;
     modal.querySelector('.video-caixa').setAttribute('aria-label', 'Vídeo para ' + titulo);
+    const varios = lista.length > 1;
+    anterior.hidden = proximo.hidden = contador.hidden = !varios;
+    contador.textContent = `${indice + 1} / ${lista.length}`;
+  }
+  function abrir(link) {
+    focoAnterior = document.activeElement;
+    // os vídeos do mesmo carrossel (o nicho escolhido) viram a lista das setas
+    const grupo = link.closest('#trabalhos-grade') || link.parentElement;
+    lista = [...grupo.querySelectorAll('a[data-arquivo]')];
+    mostra(Math.max(0, lista.indexOf(link)));
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     $('#video-fechar').focus();
@@ -1408,13 +1399,20 @@ const idDoVideo = (url) => { const m = String(url).match(/(?:shorts\/|youtu\.be\
     if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
   }
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[data-video]');
-    if (!link || !link.dataset.video || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const link = e.target.closest('a[data-arquivo]');
+    if (!link || e.ctrlKey || e.metaKey || e.shiftKey) return;
     e.preventDefault();
-    abrir(link.dataset.video, link.dataset.titulo || '', link.dataset.arquivo || '');
+    abrir(link);
   });
+  anterior.addEventListener('click', () => mostra(indice - 1));
+  proximo.addEventListener('click', () => mostra(indice + 1));
   modal.addEventListener('click', (e) => { if (e.target.closest('[data-fechar-video]')) fechar(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) fechar(); });
+  document.addEventListener('keydown', (e) => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') fechar();
+    else if (e.key === 'ArrowRight' && lista.length > 1) mostra(indice + 1);
+    else if (e.key === 'ArrowLeft' && lista.length > 1) mostra(indice - 1);
+  });
 })();
 
 // Serviços
@@ -1674,49 +1672,6 @@ $('#form-contato').addEventListener('submit', (e) => {
   caixa.querySelector('.confirmacao').focus();
 });
 
-// Card de captura do mídia kit: aparece após 7 segundos, uma vez por visita
-(function capturaKit() {
-  const CHAVE = 'midiaKitVisto';
-  const modal = $('#modal-kit');
-  let focoAnterior = null;
-  let jaVisto = false;
-  try { jaVisto = sessionStorage.getItem(CHAVE) === '1'; } catch (e) {}
-
-  function abrir() {
-    if (!$('#modal-video').hidden) { setTimeout(abrir, 5000); return; } // espera a pessoa terminar o vídeo
-    focoAnterior = document.activeElement;
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    try { sessionStorage.setItem(CHAVE, '1'); } catch (e) {}
-    setTimeout(() => $('#k-nome').focus(), 50);
-  }
-  function fechar() {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
-  }
-  modal.addEventListener('click', (e) => { if (e.target.closest('[data-fechar]')) fechar(); });
-  document.addEventListener('keydown', (e) => {
-    if (modal.hidden) return;
-    if (e.key === 'Escape') fechar();
-    if (e.key === 'Tab') { // mantém o foco dentro do card
-      const focaveis = [...modal.querySelectorAll('button, input, [tabindex="-1"]')].filter(el => el.offsetParent !== null);
-      if (!focaveis.length) return;
-      const primeiro = focaveis[0], ultimo = focaveis[focaveis.length - 1];
-      if (e.shiftKey && document.activeElement === primeiro) { e.preventDefault(); ultimo.focus(); }
-      else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primeiro.focus(); }
-    }
-  });
-  $('#form-kit').addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!validar(e.target)) return;
-    const nome = e.target.nome.value.trim().split(' ')[0];
-    $('#kit-conteudo').innerHTML = confirmacao(`Prontinho, <em>${esc(nome)}</em>!`, 'O mídia kit vai chegar no seu e-mail em breve. Fica de olho na caixa de entrada.');
-    $('#kit-conteudo .confirmacao').focus();
-  });
-  if (!jaVisto) setTimeout(abrir, 7000);
-})();
-
 // Links do menu e botões: rolam até a seção sem colocar #secao no endereço
 const enderecoLimpo = () => history.replaceState(null, '', location.pathname + location.search);
 document.addEventListener('click', (e) => {
@@ -1908,15 +1863,6 @@ const EN = {
   "Obrigada,": "Thank you,",
   "Recebi a sua mensagem e respondo em até 24 horas úteis. Se preferir, me chama no WhatsApp.": "I got your message and will reply within 24 business hours. If you prefer, message me on WhatsApp.",
   "Tatiele Milani. Todos os direitos reservados.": "Tatiele Milani. All rights reserved.",
-
-  // Mídia kit
-  "Quer meu": "Want my full",
-  "mídia kit": "media kit",
-  "completo?": "?",
-  "Valores, formatos, resultados e cases em um PDF bonito. Deixa seu contato que eu te envio.": "Rates, formats, results and case studies in a beautiful PDF. Leave your contact and I'll send it to you.",
-  "Quero receber": "Send it to me",
-  "Prontinho,": "All set,",
-  "O mídia kit vai chegar no seu e-mail em breve. Fica de olho na caixa de entrada.": "The media kit will arrive in your inbox soon. Keep an eye out for it.",
 
   // Textos para leitores de tela, fotos e campos
   "Tatiele Milani, voltar ao início": "Tatiele Milani, back to top",
