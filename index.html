@@ -2,17 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<!-- No celular, o site abre na largura do computador (mesmo visual, em miniatura) -->
-<meta name="viewport" content="width=1280">
-<script>
-  // Já abre com a página inteira encaixada na tela do celular, sem parecer que está com zoom
-  (function () {
-    var largura = Math.min(screen.width, screen.height);
-    if (largura && largura < 1280) {
-      document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280, initial-scale=' + (largura / 1280).toFixed(3));
-    }
-  })();
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tatiele Milani · Portfólio UGC Creator & Influencer</title>
 <meta name="description" content="Portfólio de Tatiele Milani, UGC creator e influencer em Curitiba/PR. Vídeos que fazem sua marca parecer recomendação de amiga e vendem como anúncio.">
 <!-- Prévia do link no WhatsApp, Instagram e outros apps -->
@@ -380,15 +370,6 @@ p{margin:0 0 1em}
 .video-seta[hidden],.video-contador[hidden]{display:none}
 .video-contador{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:.8rem;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.85)}
 @media (max-width:640px){.video-seta{width:40px;height:40px;margin-top:-20px;background:rgba(0,0,0,.35)} .video-seta-anterior{left:8px} .video-seta-proximo{right:8px} .video-contador{bottom:auto;top:20px;left:16px;right:auto;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.6)}}
-/* No celular o site fica em miniatura (largura do computador), então o player ocupa a tela e os botões ficam grandes para o dedo */
-@media (pointer:coarse){
-  .capa-foto{margin-right:90px} /* foto da capa e ícones das redes mais para dentro da tela no celular */
-  .video-caixa{width:min(94vw, calc((100vh - 260px) * 9 / 16))}
-  .video-seta{width:130px;height:130px;margin-top:-65px;background:rgba(0,0,0,.35)} .video-seta svg{width:60px;height:60px}
-  .video-seta-anterior{left:24px} .video-seta-proximo{right:24px}
-  .video-fechar{width:110px;height:110px;top:24px;right:24px} .video-fechar svg{width:50px;height:50px}
-  .video-contador{top:auto;bottom:-80px;left:0;right:0;text-align:center;font-size:2.2rem}
-}
 
 /* =========================================================
    FOTOS UGC
@@ -652,6 +633,77 @@ p{margin:0 0 1em}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:-6px} #depo-proximo{right:-6px}
 }
 
+
+/* =========================================================
+   CELULAR: mesmo jeitinho do computador (coisas lado a lado), com letras legíveis
+   ========================================================= */
+@media (max-width:600px){
+  .secao{padding:64px 0}
+
+  /* Capa: texto numa coluna à esquerda e a foto grande à direita */
+  .capa{padding-top:calc(var(--topo) + 20px)}
+  .capa::after{background:radial-gradient(ellipse 70% 60% at 20% 40%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
+  .capa-grade{grid-template-columns:46% 54%;gap:0;align-items:end}
+  .capa-texto{padding:6px 0 26px;align-self:center;position:relative;z-index:2}
+  .capa-selo-topo{font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:6px;margin-bottom:14px;line-height:1.35}
+  .capa-selo-topo .check{width:18px;height:18px} .capa-selo-topo .check svg{width:10px;height:10px}
+  .capa h1{font-size:1.6rem;line-height:1}
+  .capa h1 .h1-linha,.capa h1 em{white-space:normal}
+  .capa-frase{font-size:.78rem;line-height:1.55;margin:12px 0 12px}
+  .capa-numeros{display:flex;flex-direction:column;gap:3px;white-space:normal;font-size:.74rem;font-weight:600;margin:0 0 16px}
+  .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
+  .capa-botoes{gap:10px}
+  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:11px 16px;font-size:.78rem;border-radius:9px}
+  .capa-botoes .link-seta{margin:0;font-size:.74rem}
+  .capa-foto{max-width:none;width:auto;margin:0 -16px 0 -18px;justify-self:stretch}
+  .rede-ig,.rede-tt{right:8px;width:34px;height:34px} .rede-ig{top:6%} .rede-tt{top:calc(6% + 44px)}
+  .rede svg{width:17px;height:17px} .rede-tt svg{width:15px;height:15px}
+
+  /* Sobre mim: foto à esquerda e texto à direita */
+  #sobre{padding-top:40px}
+  .sobre-grade{grid-template-columns:42% 1fr;gap:16px;align-items:center}
+  .sobre-foto{max-width:none;margin:0}
+  .sobre-rotulo{font-size:.95rem;margin-bottom:6px}
+  .sobre-texto h2{font-size:1.45rem;margin-bottom:10px}
+  .sobre-texto p{font-size:.74rem;line-height:1.55;margin:0 0 8px}
+  .selos{margin-top:10px;gap:6px}
+  .selos li{font-size:.68rem;padding:7px 12px}
+  .selos li:not(.selo-cheio){display:none}
+  .marca-circ{width:64px;height:64px} .marcas{margin-top:40px}
+
+  /* Nichos e fotos: dois por vez na tela */
+  .nicho-trilho{grid-auto-columns:calc((100% - 12px) / 2);gap:12px}
+  .foto-card{height:300px}
+
+  /* Serviços: os quatro cards dois a dois */
+  .serv-layout{gap:40px}
+  .servicos-grade{grid-template-columns:1fr 1fr;gap:34px 12px}
+  .servico{padding:30px 12px 16px}
+  .secao-vinho .servico h3{font-size:.6rem;letter-spacing:.08em;padding:7px 11px}
+  .servico p{font-size:.74rem;line-height:1.5}
+
+  /* Métricas: redes lado a lado, localidades e gêneros lado a lado */
+  .redes-cards{grid-template-columns:1fr 1fr;gap:12px}
+  .rede-card{padding:16px 14px;gap:12px}
+  .rede-card-icone{width:32px;height:32px} .rede-card-icone svg{width:16px;height:16px}
+  .rede-card-topo strong{font-size:.86rem} .rede-card-topo small{font-size:.66rem}
+  .rede-num strong{font-size:1.5rem} .rede-num span{font-size:.68rem;line-height:1.35}
+  .rede-card-link{font-size:.74rem}
+  .publico-dados{grid-template-columns:1fr 1fr;gap:12px}
+  .publico-dados .dado-card:last-child{grid-column:1 / -1}
+  .dado-card{padding:16px 14px}
+  .dado-card h3{font-size:.62rem;margin-bottom:14px}
+  .localidades{gap:10px} .localidades li{font-size:.8rem;gap:8px} .localidades li svg{width:16px}
+  .barra-rotulo{font-size:.76rem}
+
+  /* Contato: campos dois a dois, como no computador */
+  .campos-dupla{grid-template-columns:1fr 1fr;gap:10px}
+  .campo{margin-bottom:14px}
+  .campo label{font-size:.6rem;letter-spacing:.1em}
+  .campo input,.campo textarea,.campo select{font-size:.88rem;padding:12px 14px;border-radius:12px}
+  .campo select{padding-right:34px;background-position:right 10px center;background-size:14px}
+  .campo textarea{min-height:120px}
+}
 /* Respeita quem prefere menos movimento */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
