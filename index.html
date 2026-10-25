@@ -505,7 +505,7 @@ p{margin:0 0 1em}
 .depo-insta{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta);text-decoration:none;transition:color .2s}
 .depo-insta:hover{color:var(--vinho);text-decoration:underline;text-underline-offset:3px}
 .depo-grupo{display:flex;gap:20px;padding-right:20px}
-.depoimento{flex:0 0 440px;margin:0;background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:42px 38px 24px;outline:none;cursor:default;transition:border-color .3s,box-shadow .3s;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
+.depoimento{flex:0 0 440px;width:440px;margin:0;background:#f9f5ef;border:1px solid rgba(140,29,36,.16);border-radius:16px;padding:42px 38px 24px;outline:none;cursor:default;transition:border-color .3s,box-shadow .3s;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center} /* largura fixa: sem ela o Firefox calcula a volta pelo texto numa linha só e abre um buraco */
 .depoimento figcaption{order:-1;display:flex;flex-direction:column;align-items:center;gap:6px}
 .depoimento .depo-logo{position:absolute;top:-30px;left:calc(50% - 30px);width:60px;height:60px;border-width:2px;box-shadow:none}
 .depoimento:hover,.depoimento:focus{border-color:var(--vinho);box-shadow:0 14px 30px -18px rgba(140,29,36,.45)}
@@ -655,7 +655,7 @@ p{margin:0 0 1em}
   .redes-cards,.publico-dados{grid-template-columns:1fr;gap:14px} .publico-dados .dado-card:last-child{grid-column:auto}
   .publico-texto{font-size:1rem} .divisor-depo{margin:48px auto 44px}
   .contato{padding:48px 0 56px} .campos-dupla{grid-template-columns:1fr;gap:0} .rodape-linha{flex-direction:column;align-items:flex-start} .rodape-direitos{text-align:left}
-  .depoimento{flex-basis:290px;padding:38px 20px 18px}
+  .depoimento{flex-basis:290px;width:290px;padding:38px 20px 18px}
   .depo-grupo{gap:14px;padding-right:14px}
   .depo-seta{width:38px;height:38px} #depo-anterior{left:12px} #depo-proximo{right:12px}
 }
@@ -777,7 +777,7 @@ p{margin:0 0 1em}
 
   /* Depoimentos: um card grande por vez */
   .depo-seta{display:none} /* sem setas: arrasta com o dedo */
-  .depoimento{flex-basis:calc(100vw - 68px);padding:40px 20px 20px}
+  .depoimento{flex-basis:calc(100vw - 68px);width:calc(100vw - 68px);padding:40px 20px 20px}
   #numeros{padding-bottom:16px;background-size:100% 150px} /* contato mais perto dos depoimentos */
   .depoimento blockquote{font-size:.78rem}
 
