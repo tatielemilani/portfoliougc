@@ -654,7 +654,7 @@ p{margin:0 0 1em}
   .capa-grade{grid-template-columns:30% 70%;gap:0;align-items:end}
   .capa-texto{padding:6px 0 30px;align-self:center;position:relative;z-index:2}
   .capa-texto{width:150px} /* a coluna de texto avança um pouco sobre o fundo da foto, sem tocar em você */
-  .capa-selo-topo{font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;gap:8px;margin:0 0 14px;line-height:1.3;color:var(--tinta-2)}
+  .capa-selo-topo{font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;gap:8px;margin:0 0 14px;line-height:1.3;color:var(--tinta-2);white-space:nowrap;width:max-content}
   .capa-selo-topo .check{display:none}
   .capa-selo-topo::before{content:"";width:16px;height:1.5px;background:var(--vinho);flex-shrink:0} /* tracinho no lugar do ✓ */
   .capa-selo-topo .check{width:14px;height:14px} .capa-selo-topo .check svg{width:8px;height:8px}
@@ -667,7 +667,7 @@ p{margin:0 0 1em}
   .capa-numeros{display:flex;flex-direction:column;gap:5px;white-space:normal;font-size:.68rem;font-weight:700;margin:0 0 16px;padding-left:10px;border-left:2px solid var(--vinho);max-width:112px}
   .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
   .capa-botoes{gap:0}
-  .capa-botoes{width:110px}
+  .capa-botoes{width:110px;margin-top:14px}
   .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;width:100%;justify-content:center;text-align:center;padding:11px 8px;font-size:.68rem;line-height:1.25;border-radius:9px}
   .capa-botoes .link-seta{display:none}
   .capa-foto{max-width:none;width:auto;margin:0 -22px 0 -6px;justify-self:stretch;align-self:end}
@@ -704,6 +704,7 @@ p{margin:0 0 1em}
 
   /* Fotos: cartões menores passando */
   .foto-card{height:300px;min-width:0} /* a foto aparece inteira, sem corte */
+  #fotos .secao-cabeca h2{font-size:1.72rem;white-space:normal;text-wrap:balance} /* título das fotos em duas linhas */
 
   /* Serviços: um cartão por linha, compacto */
   .serv-layout{gap:28px}
@@ -884,7 +885,7 @@ p{margin:0 0 1em}
         <p class="sobretitulo revelar">Nichos</p>
         <h2 id="titulo-trabalhos" class="revelar">Que tipo de <em>conteúdo</em> você busca hoje?</h2>
         <p class="revelar">Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.</p>
-        <p class="dica-deslize revelar">Deslize para o lado para ver mais nichos e vídeos <span aria-hidden="true">→</span></p>
+        <p class="dica-deslize revelar">Deslize para o lado para ver mais nichos <span aria-hidden="true">→</span></p>
       </div>
       <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
       <div class="filtros revelar" id="filtros" role="group" aria-label="Escolher nicho"></div>
@@ -1907,7 +1908,7 @@ const EN = {
   "conteúdo": "content",
   "você busca hoje?": "are you looking for today?",
   "Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.": "Browse the niches and see how each brand came to life in my videos.",
-  "Deslize para o lado para ver mais nichos e vídeos": "Swipe sideways to see more niches and videos",
+  "Deslize para o lado para ver mais nichos": "Swipe sideways to see more niches",
   "UGC Creator · Curitiba/PR": "UGC Creator · Curitiba, Brazil",
   "Casa & Decor": "Home & Decor",
   "Gastronomia": "Food",
