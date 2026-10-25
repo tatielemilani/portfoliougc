@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tatiele Milani · Portfólio UGC Creator & Influencer</title>
+<title>Tatiele Milani · UGC & Influencer</title>
+<link rel="icon" type="image/png" sizes="32x32" href="imagens/icone-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="imagens/icone-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="imagens/icone-180.png">
 <meta name="description" content="Portfólio de Tatiele Milani, UGC creator e influencer em Curitiba/PR. Vídeos que fazem sua marca parecer recomendação de amiga e vendem como anúncio.">
 <!-- Prévia do link no WhatsApp, Instagram e outros apps -->
 <meta property="og:type" content="website">
@@ -2274,7 +2277,7 @@ const EN_PADROES = [
   function aplica(novo, salvar) {
     idioma = novo;
     document.documentElement.lang = novo === 'en' ? 'en' : 'pt-BR';
-    document.title = novo === 'en' ? 'Tatiele Milani · UGC Creator & Influencer Portfolio' : tituloPT;
+    document.title = tituloPT; // o título da aba é igual nos dois idiomas
     if (descricao) descricao.content = novo === 'en' ? 'Portfolio of Tatiele Milani, UGC creator and influencer in Curitiba, Brazil. Videos that make your brand feel like a friend\'s recommendation and sell like an ad.' : descricaoPT;
     if (observador) observador.disconnect();
     percorre(document.body);
