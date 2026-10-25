@@ -7,7 +7,7 @@
 <meta name="description" content="UGC creator e influenciadora em Curitiba/PR. Portfólio, parcerias, cupons e o que eu indico.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter+Tight:wght@800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     --creme: #f4eee6;
@@ -40,19 +40,10 @@
   img { display: block; max-width: 100%; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 
-  /* topo */
-  .topo { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-  .logo { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--vinho); }
-  .btn-topo {
-    background: var(--vinho); color: #fff; font-weight: 600; font-size: 14px;
-    padding: 10px 18px; border-radius: 999px; transition: background .2s;
-  }
-  .btn-topo:hover { background: var(--vinho-escuro); }
-
   /* hero */
-  .hero { display: grid; gap: 40px; padding: 12px 0 48px; }
+  .hero { display: grid; gap: 36px; padding: 24px 0 48px; }
   @media (min-width: 860px) {
-    .hero { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 64px; padding-top: 32px; }
+    .hero { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 64px; padding-top: 40px; }
   }
   .foto-box { position: relative; max-width: 420px; margin: 0 auto; width: 100%; }
   .foto {
@@ -77,10 +68,13 @@
     letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto);
   }
   h1 {
-    font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 7vw, 56px);
-    line-height: 1.05; letter-spacing: -.01em; margin: 12px 0 16px;
+    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(40px, 8.5vw, 64px);
+    line-height: 1; letter-spacing: -.045em; word-spacing: .08em; margin: 14px 0 20px;
   }
-  h1 em { font-style: italic; color: var(--vinho); }
+  h1 em {
+    font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 500;
+    letter-spacing: -.03em; color: var(--vinho);
+  }
 
   .redes { display: flex; gap: 10px; margin: 20px 0 24px; }
   .redes a {
@@ -184,10 +178,6 @@
 <body>
 <div class="wrap">
 
-  <header class="topo">
-    <a class="logo" href="../">Tatiele Milani</a>
-    <a class="btn-topo" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">Bora conversar</a>
-  </header>
 
   <section class="hero">
     <div class="foto-box">
@@ -196,13 +186,13 @@
       </div>
       <div class="nome-tag">
         <strong>Oi, eu sou a <em>Tati</em></strong>
-        <span>UGC creator em Curitiba/PR</span>
+        <span>UGC &amp; Influencer em Curitiba</span>
       </div>
     </div>
 
     <div>
       <span class="chip">UGC Creator &amp; Influencer</span>
-      <h1>Conectando marcas ao <em>coração das pessoas</em> ♡</h1>
+      <h1>Conectando marcas ao <em>coração das pessoas&nbsp;♡</em></h1>
 
       <nav class="redes" aria-label="Minhas redes">
         <a href="https://www.instagram.com/tatielemilani" target="_blank" rel="noopener" aria-label="Instagram">
