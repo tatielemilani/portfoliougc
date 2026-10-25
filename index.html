@@ -488,8 +488,7 @@ p{margin:0 0 1em}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
-.depo-carrossel{position:relative;margin:28px calc(50% - 50vw) 0} /* de ponta a ponta da tela, igual às fotos */
-#numeros{overflow-x:clip} /* a faixa larga não cria rolagem para o lado */
+.depo-carrossel{position:relative;margin-top:28px} /* fora do container: de ponta a ponta da tela, igual às fotos */
 .depo-faixa{overflow-x:auto;scrollbar-width:none} /* sem esmaecer nas pontas: os cards ficam sólidos na frente do sombreado */
 .depo-faixa::-webkit-scrollbar{display:none}
 .depoimentos{display:flex;width:max-content;padding:40px 0 18px}
@@ -1040,13 +1039,14 @@ p{margin:0 0 1em}
         </div>
         <p class="revelar">Feedback de marcas que confiaram no meu trabalho.</p>
       </div>
+    </div>
+    <!-- Os depoimentos ficam fora do container: de ponta a ponta da tela, igual às fotos -->
       <!-- Os depoimentos vêm do array DEPOIMENTOS no script -->
       <div class="depo-carrossel">
         <button type="button" class="palco-seta depo-seta" id="depo-anterior" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
         <div class="depo-faixa" id="depoimentos-trilho"></div>
         <button type="button" class="palco-seta depo-seta" id="depo-proximo" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
-    </div>
   </section>
 
   <!-- ======================= 7. BORA CRIAR JUNTOS ======================= -->
