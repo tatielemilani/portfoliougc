@@ -682,12 +682,13 @@ p{margin:0 0 1em}
   /* Sobre mim: foto alta à esquerda e texto pequeno à direita */
   #sobre{padding-top:48px}
   .sobre-grade{grid-template-columns:48% 1fr;gap:12px;align-items:stretch}
-  .sobre-foto{max-width:none;margin:0}
+  .sobre-foto{max-width:none;margin:0 0 0 -10px} /* foto um pouquinho mais para a esquerda */
+  .sobre-texto{z-index:3} /* a linha do "Sobre mim" passa por cima da foto */
   .sobre-foto .midia{aspect-ratio:auto;height:100%}
   .sobre-rotulo{font-size:.85rem;margin-bottom:4px}
   .sobre-texto h2{font-size:1.25rem;margin-bottom:8px}
   .sobre-texto h2 em{font-size:1.8rem}
-  .sobre-texto p{font-size:.62rem;line-height:1.5;margin:0 0 8px}
+  .sobre-texto p{font-size:.68rem;line-height:1.5;margin:0 0 8px}
   .selos{margin-top:8px;gap:6px}
   .selos li{font-size:.6rem;padding:6px 10px}
   .selos li:not(.selo-cheio){display:none}
@@ -703,11 +704,13 @@ p{margin:0 0 1em}
   .destaques-texto p{font-size:1rem}
 
   /* Nichos: três vídeos por vez */
-  .nicho-trilho{grid-auto-columns:calc((100% - 24px) / 3);gap:12px}
+  .nicho-trilho{grid-auto-columns:calc((100% - 34px) / 3.3);gap:12px;margin-right:-22px;padding-right:22px} /* um pedacinho do próximo vídeo aparece na borda */
   .nicho-setas{display:none}
-  .filtros{flex-wrap:wrap;overflow:visible;margin:0 0 22px;padding:0;gap:8px} /* todos os nichos à vista para tocar direto */
-  .filtro{flex-shrink:1;padding:7px 11px;font-size:.72rem}
-  .nicho-mais{display:grid;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
+  .filtros{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0 0 22px;padding:0;gap:8px} /* nichos em 3 colunas, todos à vista */
+  .filtro{padding:9px 3px;font-size:.64rem;line-height:1.2;text-align:center;white-space:nowrap}
+  .trabalho-link .play{background:rgba(140,29,36,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* play mais clarinho */
+  .play.play-p{width:42px;height:42px} .play.play-p svg{width:16px;height:16px}
+  .nicho-mais{display:none;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
   .nicho-mais svg{width:16px;height:16px}
   .nicho-mais[disabled]{opacity:0;pointer-events:none}
   .trabalho-marca{font-size:.56rem;padding:5px 8px}
@@ -1206,7 +1209,7 @@ const DESTAQUES = [
     views: '1,5 mi', titulo: 'Canjica cremosa com a esponja Magic Clean, da Sterily, 1,5 milhão de views' },
   { marca: 'Wellhub', video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
     views: '28,5 mil', titulo: 'Tour pela academia para o Wellhub, 28,5 mil views' },
-  { marca: 'Brigadeiro saudável', video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
+  { marca: 'Vitao', video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
     views: '23,2 mil', titulo: 'Receita de brigadeiro saudável, 23,2 mil views' }
 ];
 
@@ -2082,7 +2085,6 @@ const EN = {
   "Mais vídeos": "More videos",
   "Fotos anteriores": "Previous photos",
   "Próximas fotos": "Next photos",
-  "Brigadeiro saudável": "Healthy brigadeiro",
   "Depoimento anterior": "Previous testimonial",
   "Próximo depoimento": "Next testimonial",
   "Vídeo": "Video",
