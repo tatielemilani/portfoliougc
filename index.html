@@ -641,31 +641,30 @@ p{margin:0 0 1em}
 @media (max-width:600px){
   .secao{padding:64px 0}
 
-  /* Capa: selo, título (2 linhas) e frase em cima, mais para o meio;
-     embaixo, números + botões + redes flutuando à esquerda e a foto à direita */
-  .capa{padding-top:calc(var(--topo) + 20px)}
-  .capa::after{background:radial-gradient(ellipse 80% 50% at 50% 30%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
-  .capa-grade{position:relative;grid-template-columns:50% 50%;gap:0;align-items:start}
+  /* Capa centralizada, tipo capa de revista: selo, título, frase e botões em cima;
+     a foto grande no meio com brilho nude atrás, as redes flutuando dos lados
+     e os números num cartãozinho por cima da parte de baixo da foto */
+  .capa{padding-top:calc(var(--topo) + 22px)}
+  .capa::after{background:radial-gradient(ellipse 85% 40% at 50% 22%, rgba(244,238,230,.96), rgba(244,238,230,0) 75%)}
+  .capa-grade{grid-template-columns:1fr;gap:0;align-items:end;text-align:center}
   .capa-texto{display:contents}
-  .capa-selo-topo,.capa h1,.capa-frase{grid-column:1 / -1;text-align:center}
-  .capa-selo-topo{justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 12px}
+  .capa-selo-topo{justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 16px}
   .capa-selo-topo .check{width:18px;height:18px} .capa-selo-topo .check svg{width:10px;height:10px}
-  .capa h1{font-size:clamp(1.3rem,6.6vw,1.65rem);line-height:1.02}
-  .capa h1 .h1-linha{display:inline} /* "Criando conteúdo que gera" numa linha só */
-  .capa h1 em{white-space:nowrap}
+  .capa h1{font-size:clamp(1.9rem,9.2vw,2.35rem);line-height:1}
   .frase-longa{display:none} .frase-curta{display:inline}
-  .capa-frase{font-size:.78rem;line-height:1.5;max-width:300px;margin:10px auto 18px}
-  .capa-numeros,.capa-botoes{grid-column:1;position:relative;z-index:2}
-  .capa-numeros{grid-row:4;display:flex;flex-direction:column;gap:3px;white-space:normal;font-size:.74rem;font-weight:600;margin:6px 0 14px}
-  .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
-  .capa-botoes{grid-row:5;flex-direction:column;align-items:flex-start;gap:10px}
-  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:11px 14px;font-size:.74rem;border-radius:9px}
-  .capa-botoes .link-seta{display:inline-flex;margin:0;font-size:.72rem}
-  .capa-foto{grid-column:2;grid-row:4 / span 3;position:static;max-width:none;width:auto;margin:0 -16px 0 -10px;justify-self:stretch;align-self:end}
-  /* Instagram e TikTok flutuando do lado esquerdo, embaixo dos botões */
-  .rede{position:absolute;z-index:3;top:auto;right:auto;bottom:66px;width:36px;height:36px}
-  .rede-ig{left:22px} .rede-tt{left:70px}
-  .rede svg{width:17px;height:17px} .rede-tt svg{width:15px;height:15px}
+  .capa-frase{font-size:.82rem;line-height:1.5;max-width:290px;margin:12px auto 18px}
+  .capa-botoes{grid-row:4;justify-content:center;align-items:center;gap:18px;margin:0 0 6px}
+  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:12px 18px;font-size:.8rem;border-radius:10px}
+  .capa-botoes .link-seta{display:inline-flex;margin:0;font-size:.78rem}
+  .capa-foto,.capa-numeros{grid-row:5;grid-column:1}
+  .capa-foto{position:relative;width:78%;max-width:310px;margin:0 auto;justify-self:center;align-self:end}
+  .capa-foto::before{content:"";position:absolute;left:50%;top:6%;width:118%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle, rgba(217,167,156,.5), rgba(217,167,156,0) 68%);pointer-events:none}
+  .capa-numeros{position:relative;z-index:3;align-self:end;justify-self:center;display:flex;align-items:center;justify-content:space-around;gap:6px;width:min(330px,100%);margin:0 0 16px;padding:12px 10px;white-space:nowrap;font-size:.74rem;font-weight:700;background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(140,29,36,.14);border-radius:14px;box-shadow:0 14px 30px -18px rgba(42,26,24,.45)}
+  .capa-numeros span{display:block;width:1px;height:18px;margin:0;background:rgba(140,29,36,.25);font-size:0;color:transparent}
+  /* Instagram e TikTok flutuando, um de cada lado */
+  .rede{width:38px;height:38px}
+  .rede-ig{left:-14px;right:auto;top:30%} .rede-tt{right:-14px;left:auto;top:42%}
+  .rede svg{width:18px;height:18px} .rede-tt svg{width:16px;height:16px}
   .rede::after{display:none}
 
   /* Sobre mim: foto à esquerda e texto à direita */
