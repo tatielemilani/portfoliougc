@@ -708,8 +708,13 @@ p{margin:0 0 1em}
   /* Nichos: três vídeos por vez */
   .nicho-trilho{grid-auto-columns:calc((100% - 34px) / 3.3);gap:12px;margin-right:-22px;padding-right:22px} /* um pedacinho do próximo vídeo aparece na borda */
   .nicho-setas{display:none}
-  .filtros{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;justify-items:start;overflow:visible;margin:0 0 22px;padding:0;gap:8px 5px} /* nichos no jeito antigo, 3 por linha */
-  .filtro{padding:7px clamp(5px,1.9vw,10px);font-size:clamp(.7rem,3.4vw,.8rem);white-space:nowrap} /* letra do jeito antigo, diminuindo um tiquinho só em celular bem pequeno */
+  .filtros{display:grid;grid-template-columns:repeat(3,max-content);justify-content:space-between;justify-items:stretch;overflow:visible;margin:0 0 22px;padding:0;gap:8px 6px} /* nichos no jeito antigo, 3 colunas alinhadas */
+  /* ordem só no celular: nome comprido + médio + curto em cada linha, para as colunas ficarem certinhas */
+  .filtro[data-filtro="casa"]{order:1} .filtro[data-filtro="gastronomia"]{order:2} .filtro[data-filtro="moda"]{order:3}
+  .filtro[data-filtro="beleza"]{order:4} .filtro[data-filtro="cabelo"]{order:5} .filtro[data-filtro="casal"]{order:6}
+  .filtro[data-filtro="ecommerce"]{order:7} .filtro[data-filtro="acessorios"]{order:8} .filtro[data-filtro="estudo"]{order:9}
+  .filtro[data-filtro="lifestyle"]{order:10;grid-column:1 / -1;justify-self:center}
+  .filtro{padding:7px 12px;font-size:.8rem;white-space:nowrap;text-align:center} /* letra do jeito antigo */
   .trabalho-link .play{background:rgba(140,29,36,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* play mais clarinho */
   .play.play-p{width:42px;height:42px} .play.play-p svg{width:16px;height:16px}
   .nicho-mais{display:none;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
