@@ -136,10 +136,12 @@ p{margin:0 0 1em}
 .aviso-selo{flex-shrink:0;background:var(--destaque);color:var(--vinho);font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:99px}
 .aviso-contagem{font-weight:700;white-space:nowrap}
 .aviso-ponto{opacity:.45}
-.aviso-frase{color:rgba(255,255,255,.82);white-space:nowrap;transition:opacity .35s ease}
+.aviso-frase{display:inline-block;color:rgba(255,255,255,.82);white-space:nowrap;transition:opacity .35s ease} /* a largura vem do script: a da maior frase */
 .aviso-frase.trocando{opacity:0}
 .aviso-link{margin-left:14px;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1px solid rgba(241,214,196,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
 .aviso-link:hover{color:var(--destaque);border-color:var(--destaque)}
+.aviso-link::after{content:"";position:absolute;inset:0} /* clicar em qualquer parte da faixa leva pro contato */
+.aviso:hover .aviso-link{color:var(--destaque);border-color:var(--destaque)}
 @media (max-width:820px){
   :root{--aviso:54px}
   .aviso{font-size:.74rem}
@@ -850,7 +852,7 @@ p{margin:0 0 1em}
     <span class="aviso-selo">Black Friday</span>
     <strong class="aviso-contagem" id="aviso-contagem">Black Friday chegando</strong>
     <span class="aviso-ponto" aria-hidden="true">·</span>
-    <span class="aviso-frase" id="aviso-frase">vídeo de e-commerce que vende no dia</span>
+    <span class="aviso-frase" id="aviso-frase">vídeos que vendem no dia da oferta</span>
     <a class="aviso-link" href="#contato">reservar <span class="aviso-link-extra">agenda</span> <span aria-hidden="true">→</span></a>
   </div>
 </div>
@@ -1861,13 +1863,29 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
   }
   $('#aviso-contagem').textContent = dias === 0 ? 'É hoje a Black Friday!' : dias === 1 ? 'Falta 1 dia pra Black Friday' : `Faltam ${dias} dias pra Black Friday`;
   const FRASES = [
-    'vídeo de e-commerce que vende no dia',
-    'reserve a sua agenda de novembro',
-    'criativos de tráfego prontos antes do pico',
-    'roteiros validados por performance',
-    'poucas vagas pra gravar em novembro'
+    'vídeos que vendem no dia da oferta',
+    'garanta sua data em novembro',
+    'anúncios prontos antes da alta',
+    'roteiros pensados pra converter',
+    'agenda de novembro quase fechada'
   ];
   const frase = $('#aviso-frase');
+  // O espaço da frase fica sempre do tamanho da maior, assim o resto da faixa não se mexe quando ela troca
+  const medidor = frase.cloneNode();
+  medidor.removeAttribute('id');
+  medidor.setAttribute('aria-hidden', 'true');
+  medidor.style.cssText = 'position:absolute;visibility:hidden;width:auto;left:-9999px';
+  frase.parentNode.appendChild(medidor);
+  function larguraFixa() {
+    const textos = idioma === 'en' ? FRASES.map(f => EN[f] || f) : FRASES;
+    let maior = 0;
+    textos.forEach(t => { medidor.textContent = t; maior = Math.max(maior, medidor.getBoundingClientRect().width); });
+    frase.style.width = Math.ceil(maior) + 'px';
+  }
+  larguraFixa();
+  if (document.fonts) document.fonts.ready.then(larguraFixa);
+  window.addEventListener('resize', larguraFixa);
+  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => setTimeout(larguraFixa, 50)));
   let i = 0;
   setInterval(() => {
     frase.classList.add('trocando');
@@ -2067,11 +2085,11 @@ const EN = {
   "Black Friday chegando": "Black Friday is coming",
   "Falta 1 dia pra Black Friday": "1 day until Black Friday",
   "É hoje a Black Friday!": "Black Friday is today!",
-  "vídeo de e-commerce que vende no dia": "e-commerce videos that sell on the day",
-  "reserve a sua agenda de novembro": "book your November slot",
-  "criativos de tráfego prontos antes do pico": "ad creatives ready before the peak",
-  "roteiros validados por performance": "scripts proven by performance",
-  "poucas vagas pra gravar em novembro": "few filming spots left in November",
+  "vídeos que vendem no dia da oferta": "videos that sell on sale day",
+  "garanta sua data em novembro": "lock in your November date",
+  "anúncios prontos antes da alta": "ads ready before the rush",
+  "roteiros pensados pra converter": "scripts built to convert",
+  "agenda de novembro quase fechada": "November calendar almost full",
   "reservar": "book",
   "agenda": "a slot",
   // Topo e menu
