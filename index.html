@@ -2,17 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<!-- No celular, o site abre na largura do computador (mesmo visual, em miniatura) -->
-<meta name="viewport" content="width=1280">
-<script>
-  // Já abre com a página inteira encaixada na tela do celular, sem parecer que está com zoom
-  (function () {
-    var largura = Math.min(screen.width, screen.height);
-    if (largura && largura < 1280) {
-      document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280, initial-scale=' + (largura / 1280).toFixed(3));
-    }
-  })();
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tatiele Milani · Portfólio UGC Creator & Influencer</title>
 <meta name="description" content="Portfólio de Tatiele Milani, UGC creator e influencer em Curitiba/PR. Vídeos que fazem sua marca parecer recomendação de amiga e vendem como anúncio.">
 <!-- Prévia do link no WhatsApp, Instagram e outros apps -->
@@ -381,15 +371,6 @@ p{margin:0 0 1em}
 .video-seta[hidden],.video-contador[hidden]{display:none}
 .video-contador{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:.8rem;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.85)}
 @media (max-width:640px){.video-seta{width:40px;height:40px;margin-top:-20px;background:rgba(0,0,0,.35)} .video-seta-anterior{left:8px} .video-seta-proximo{right:8px} .video-contador{bottom:auto;top:20px;left:16px;right:auto;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.6)}}
-/* No celular o site fica em miniatura (largura do computador), então o player ocupa a tela e os botões ficam grandes para o dedo */
-@media (pointer:coarse){
-  .capa-foto{margin-right:90px} /* foto da capa e ícones das redes mais para dentro da tela no celular */
-  .video-caixa{width:min(94vw, calc((100vh - 260px) * 9 / 16))}
-  .video-seta{width:130px;height:130px;margin-top:-65px;background:rgba(0,0,0,.35)} .video-seta svg{width:60px;height:60px}
-  .video-seta-anterior{left:24px} .video-seta-proximo{right:24px}
-  .video-fechar{width:110px;height:110px;top:24px;right:24px} .video-fechar svg{width:50px;height:50px}
-  .video-contador{top:auto;bottom:-80px;left:0;right:0;text-align:center;font-size:2.2rem}
-}
 
 
 /* =========================================================
@@ -661,30 +642,31 @@ p{margin:0 0 1em}
 @media (max-width:600px){
   .secao{padding:64px 0}
 
-  /* Capa centralizada, tipo capa de revista: selo, título, frase e botões em cima;
-     a foto grande no meio com brilho nude atrás, as redes flutuando dos lados
-     e os números num cartãozinho por cima da parte de baixo da foto */
-  .capa{padding-top:calc(var(--topo) + 22px)}
-  .capa::after{background:radial-gradient(ellipse 85% 40% at 50% 22%, rgba(244,238,230,.96), rgba(244,238,230,0) 75%)}
-  .capa-grade{grid-template-columns:1fr;gap:0;align-items:end;text-align:center}
+  /* Capa: selo, título (2 linhas) e frase em cima, mais para o meio;
+     embaixo, números + botões + redes flutuando à esquerda e a foto à direita */
+  .capa{padding-top:calc(var(--topo) + 20px)}
+  .capa::after{background:radial-gradient(ellipse 80% 50% at 50% 30%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
+  .capa-grade{position:relative;grid-template-columns:47% 53%;gap:0;align-items:start}
   .capa-texto{display:contents}
-  .capa-selo-topo{justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 16px}
+  .capa-selo-topo,.capa h1,.capa-frase{grid-column:1 / -1;text-align:center}
+  .capa-selo-topo{justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 12px}
   .capa-selo-topo .check{width:18px;height:18px} .capa-selo-topo .check svg{width:10px;height:10px}
-  .capa h1{font-size:clamp(1.9rem,9.2vw,2.35rem);line-height:1}
+  .capa h1{font-size:clamp(1.3rem,6.6vw,1.65rem);line-height:1.02}
+  .capa h1 .h1-linha{display:inline} /* "Criando conteúdo que gera" numa linha só */
+  .capa h1 em{white-space:nowrap}
   .frase-longa{display:none} .frase-curta{display:inline}
-  .capa-frase{font-size:.82rem;line-height:1.5;max-width:290px;margin:12px auto 18px}
-  .capa-botoes{grid-row:4;justify-content:center;align-items:center;gap:18px;margin:0 0 6px}
-  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:12px 18px;font-size:.8rem;border-radius:10px}
-  .capa-botoes .link-seta{display:inline-flex;margin:0;font-size:.78rem}
-  .capa-foto,.capa-numeros{grid-row:5;grid-column:1}
-  .capa-foto{position:relative;width:78%;max-width:310px;margin:0 auto;justify-self:center;align-self:end}
-  .capa-foto::before{content:"";position:absolute;left:50%;top:6%;width:118%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle, rgba(217,167,156,.5), rgba(217,167,156,0) 68%);pointer-events:none}
-  .capa-numeros{position:relative;z-index:3;align-self:end;justify-self:center;display:flex;align-items:center;justify-content:space-around;gap:6px;width:min(330px,100%);margin:0 0 16px;padding:12px 10px;white-space:nowrap;font-size:.74rem;font-weight:700;background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(140,29,36,.14);border-radius:14px;box-shadow:0 14px 30px -18px rgba(42,26,24,.45)}
-  .capa-numeros span{display:block;width:1px;height:18px;margin:0;background:rgba(140,29,36,.25);font-size:0;color:transparent}
-  /* Instagram e TikTok flutuando, um de cada lado */
-  .rede{width:38px;height:38px}
-  .rede-ig{left:-14px;right:auto;top:30%} .rede-tt{right:-14px;left:auto;top:42%}
-  .rede svg{width:18px;height:18px} .rede-tt svg{width:16px;height:16px}
+  .capa-frase{font-size:.78rem;line-height:1.5;max-width:300px;margin:10px auto 18px}
+  .capa-numeros,.capa-botoes{grid-column:1;position:relative;z-index:2}
+  .capa-numeros{grid-row:4;display:flex;flex-direction:column;gap:3px;white-space:normal;font-size:.74rem;font-weight:600;margin:6px 0 14px}
+  .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
+  .capa-botoes{grid-row:5;flex-direction:column;align-items:flex-start;gap:10px}
+  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:11px 14px;font-size:.74rem;border-radius:9px}
+  .capa-botoes .link-seta{display:inline-flex;margin:0;font-size:.72rem}
+  .capa-foto{grid-column:2;grid-row:4 / span 3;position:static;max-width:none;width:auto;margin:0 -16px 0 -10px;justify-self:stretch;align-self:end}
+  /* Instagram e TikTok flutuando do lado esquerdo, embaixo dos botões */
+  .rede{position:absolute;z-index:3;top:auto;right:auto;bottom:66px;width:36px;height:36px}
+  .rede-ig{left:22px} .rede-tt{left:70px}
+  .rede svg{width:17px;height:17px} .rede-tt svg{width:15px;height:15px}
   .rede::after{display:none}
 
   /* Sobre mim: foto à esquerda e texto à direita */
