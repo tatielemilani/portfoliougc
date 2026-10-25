@@ -146,7 +146,17 @@
   }
   .codigo button.ok { background: #3c7a4a; }
   .cod-texto { display: flex; flex-direction: column; min-width: 0; }
-  .desconto { display: block; margin-top: 2px; font-size: 11px; font-weight: 600; color: var(--nude-texto); }
+  .cupom { position: relative; }
+  .selo-desc {
+    position: absolute; top: -16px; right: -10px; width: 54px; height: 54px; border-radius: 50%;
+    background: var(--vinho); color: #fff; border: 2px solid var(--destaque); display: flex; align-items: center; justify-content: center; gap: 1px;
+    transform: rotate(8deg); box-shadow: 0 6px 14px -6px rgba(108,20,26,.6);
+    font-family: "Inter Tight", var(--sans); font-weight: 800; line-height: .85;
+  }
+  .selo-desc b { font-size: 24px; letter-spacing: -.06em; }
+  .selo-desc > span { display: flex; flex-direction: column; align-items: center; color: var(--destaque); }
+  .selo-desc i { font-style: normal; font-size: 12px; }
+  .selo-desc small { font-size: 8px; letter-spacing: .02em; }
   .ir { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--vinho); }
   .ir:hover { text-decoration: underline; }
 
@@ -248,7 +258,8 @@
         <div class="info">
           <span class="marca">Océane</span>
           <h3>Maquiagem e skincare</h3>
-          <div class="codigo"><span class="cod-texto"><code>TATIMILANI</code><span class="desconto">10% de desconto</span></span><button type="button" data-copiar="TATIMILANI">copiar</button></div>
+        <span class="selo-desc" role="img" aria-label="10% de desconto"><b>10</b><span><i>%</i><small>OFF</small></span></span>
+          <div class="codigo"><span class="cod-texto"><code>TATIMILANI</code></span><button type="button" data-copiar="TATIMILANI">copiar</button></div>
           <a class="ir" href="https://www.oceane.com.br/?utmi_pc=tatimilani" target="_blank" rel="noopener">ir pro site →</a>
         </div>
       </article>
@@ -257,7 +268,8 @@
         <div class="info">
           <span class="marca">Basicamente</span>
           <h3>Roupas tech</h3>
-          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI-763</code><span class="desconto">20% de desconto</span></span><button type="button" data-copiar="TATIELEMILANI-763">copiar</button></div>
+        <span class="selo-desc" role="img" aria-label="20% de desconto"><b>20</b><span><i>%</i><small>OFF</small></span></span>
+          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI-763</code></span><button type="button" data-copiar="TATIELEMILANI-763">copiar</button></div>
           <a class="ir" href="https://basicamente.com/?influ=tatielemilani&amp;utm_campaign=tatielemilani" target="_blank" rel="noopener">ir pro site →</a>
         </div>
       </article>
@@ -266,7 +278,8 @@
         <div class="info">
           <span class="marca">Maria Margarida</span>
           <h3>Fixador de maquiagem</h3>
-          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI</code><span class="desconto">10% de desconto</span></span><button type="button" data-copiar="TATIELEMILANI">copiar</button></div>
+        <span class="selo-desc" role="img" aria-label="10% de desconto"><b>10</b><span><i>%</i><small>OFF</small></span></span>
+          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI</code></span><button type="button" data-copiar="TATIELEMILANI">copiar</button></div>
           <a class="ir" href="https://www.mariamargarida.com.br/fixador-ate-embaixo-da-agua?variation=26836806&amp;utm_source=flipnet&amp;utm_campaign=tatielemilani" target="_blank" rel="noopener">ir pro site →</a>
         </div>
       </article>
@@ -275,7 +288,8 @@
         <div class="info">
           <span class="marca">basico.com</span>
           <h3>Roupas básicas</h3>
-          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI</code><span class="desconto">20% de desconto</span></span><button type="button" data-copiar="TATIELEMILANI">copiar</button></div>
+        <span class="selo-desc" role="img" aria-label="20% de desconto"><b>20</b><span><i>%</i><small>OFF</small></span></span>
+          <div class="codigo"><span class="cod-texto"><code>TATIELEMILANI</code></span><button type="button" data-copiar="TATIELEMILANI">copiar</button></div>
           <a class="ir" href="https://www.malwee.com.br/home-marca-basico?influ=tatielemilani&amp;utm_campaign=tatielemilani" target="_blank" rel="noopener">ir pro site →</a>
         </div>
       </article>
