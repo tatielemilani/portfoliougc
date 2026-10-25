@@ -69,9 +69,14 @@
     .nome-tag span { font-size: 11px; margin-top: 5px; padding: 3px 9px; }
   }
 
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto);
+  /* títulos de seção: mesmas fontes do portfólio */
+  .titulo {
+    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(30px, 7.5vw, 42px);
+    line-height: 1; letter-spacing: -.05em; word-spacing: .08em; margin: 12px 0 12px;
+  }
+  .titulo em {
+    font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: 1.06em; letter-spacing: -.04em; color: var(--vinho);
   }
   .rotulo-hero {
     display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700;
@@ -110,10 +115,8 @@
   .b4 { background: var(--papel); border: 1px solid var(--linha); }
 
   .secao { padding: 56px 0 0; }
-  .secao-titulo { text-align: center; margin-bottom: 24px; }
-  .secao-titulo h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin-top: 6px; }
-  .secao-titulo h2 em { font-style: italic; color: var(--vinho); }
-  .secao-titulo p { color: var(--tinta-2); margin-top: 8px; }
+  .secao-titulo { margin-bottom: 20px; }
+  .secao-titulo p { color: var(--tinta-2); margin-top: 10px; }
 
   /* cupons */
   .grade { display: grid; gap: 16px; }
@@ -144,8 +147,6 @@
     background: var(--destaque); border-radius: 28px; padding: 32px 20px; display: grid; gap: 24px; align-items: center;
   }
   @media (min-width: 760px) { .vitrine { grid-template-columns: 1fr 1fr; padding: 40px; } }
-  .vitrine h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin: 6px 0 10px; }
-  .vitrine h2 em { font-style: italic; color: var(--vinho); }
   .vitrine p { color: var(--tinta-2); margin-bottom: 18px; }
   .produto {
     background: var(--papel); border-radius: var(--raio); padding: 14px; display: flex; gap: 14px; align-items: center;
@@ -168,10 +169,9 @@
     margin: 56px 0 0; background: var(--vinho); color: #fff; border-radius: 28px;
     padding: 40px 20px; text-align: center;
   }
-  .contato h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 8px 0 12px; }
-  .contato h2 em { font-style: italic; color: var(--destaque); }
+  .contato .titulo em { color: var(--destaque); }
   .contato p { opacity: .85; max-width: 44ch; margin: 0 auto 24px; }
-  .contato .chip { color: var(--destaque); }
+  .contato .rotulo-hero { color: var(--destaque); }
   .contato .acoes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
   footer { text-align: center; font-size: 13px; color: var(--tinta-2); padding: 32px 0 40px; }
@@ -223,8 +223,7 @@
 
   <section class="secao" id="cupons">
     <div class="secao-titulo">
-      <span class="chip">cupons</span>
-      <h2>Meus <em>cupons</em> de desconto</h2>
+      <span class="rotulo-hero">Cupons</span>
       <p>Copia o código e usa na finalização da compra, no site da marca.</p>
     </div>
     <div class="grade">
@@ -252,9 +251,9 @@
   <section class="secao">
     <div class="vitrine">
       <div>
-        <span class="chip">vitrine da Tati</span>
-        <h2>Coisas que eu <em>indico</em></h2>
-        <p>Produtos que eu uso de verdade e recomendo, da Shopee e do Magalu, num lugar só.</p>
+        <span class="rotulo-hero">Vitrine da Tati</span>
+        <h2 class="titulo">Coisas que eu <em>indico</em></h2>
+        <p>Produtos que eu uso de verdade e recomendo num lugar só.</p>
         <a class="btn" href="indicacoes/">ver a vitrine →</a>
       </div>
       <a class="produto" href="indicacoes/">
@@ -265,8 +264,8 @@
   </section>
 
   <section class="contato">
-    <span class="chip">para marcas</span>
-    <h2>Vamos criar algo <em>incrível</em> juntos?</h2>
+    <span class="rotulo-hero">Para marcas</span>
+    <h2 class="titulo">Vamos criar algo <em>incrível</em> juntos?</h2>
     <p>UGC, publi post, clips e TikTok Shop. Me conta da sua marca que eu respondo em até 24 horas úteis.</p>
     <div class="acoes">
       <a class="btn claro" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">chamar no WhatsApp</a>
