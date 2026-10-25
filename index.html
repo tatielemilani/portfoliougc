@@ -1866,7 +1866,7 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
     document.documentElement.style.setProperty('--aviso', '0px');
     return;
   }
-  $('#aviso-contagem').textContent = dias === 0 ? 'É hoje a Black Friday!' : dias === 1 ? 'Falta 1 dia pra Black Friday' : `Faltam ${dias} dias pra Black Friday`;
+  $('#aviso-contagem').textContent = dias === 0 ? 'É hoje!' : dias === 1 ? 'Falta 1 dia' : `Faltam ${dias} dias`;
   const FRASES = [
     'vídeos que vendem no dia da oferta',
     'garanta sua data em novembro',
@@ -2088,8 +2088,8 @@ window.addEventListener('load', () => {
 const EN = {
   // Faixa de Black Friday
   "Black Friday chegando": "Black Friday is coming",
-  "Falta 1 dia pra Black Friday": "1 day until Black Friday",
-  "É hoje a Black Friday!": "Black Friday is today!",
+  "Falta 1 dia": "1 day left",
+  "É hoje!": "It's today!",
   "vídeos que vendem no dia da oferta": "videos that sell on sale day",
   "garanta sua data em novembro": "lock in your November date",
   "anúncios prontos antes da alta": "ads ready before the rush",
@@ -2309,7 +2309,7 @@ const EN_PADROES = [
   [/^Foto UGC para (.+)$/, (m, marca) => `UGC photo for ${marca}`],
   [/^Vídeo para (.+)$/, (m, marca) => `Video for ${marca}`],
   [/^Ver destaque (\d+)$/, (m, n) => `See highlight ${n}`],
-  [/^Faltam (\d+) dias pra Black Friday$/, (m, n) => `${n} days until Black Friday`],
+  [/^Faltam (\d+) dias$/, (m, n) => `${n} days left`],
   [/^(\d+),(\d+)%$/, (m, a, b) => `${a}.${b}%`]
 ];
 
