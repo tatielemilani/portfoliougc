@@ -56,9 +56,10 @@
   --italico:"Playfair Display", Georgia, serif; /* itálico elegante */
   --largura:1180px;
   --topo:72px;
+  --aviso:40px; /* altura da faixa de Black Friday (vira 0 quando ela some) */
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--topo);-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topo) + var(--aviso));-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--creme);color:var(--tinta);
   font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
@@ -123,11 +124,32 @@ p{margin:0 0 1em}
    MENU FIXO
    ========================================================= */
 .topo{
-  position:fixed;inset:0 0 auto 0;z-index:100;height:var(--topo);
+  position:fixed;inset:0 0 auto 0;top:var(--aviso);z-index:100;height:var(--topo);
   background:rgba(244,238,230,.9);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
   border-bottom:1px solid var(--linha);box-shadow:0 6px 22px -10px rgba(42,26,24,.22);
 }
 .topo .container{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px;max-width:1400px}
+
+/* Faixa de Black Friday acima do menu: parada, só a frase do meio troca */
+.aviso{position:fixed;top:0;left:0;right:0;height:var(--aviso);z-index:101;background:var(--vinho);color:#fff;font-size:.86rem;line-height:1.2}
+.aviso-linha{display:flex;align-items:center;justify-content:center;gap:14px;height:100%;max-width:1400px}
+.aviso-selo{flex-shrink:0;background:var(--destaque);color:var(--vinho);font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:99px}
+.aviso-contagem{font-weight:700;white-space:nowrap}
+.aviso-ponto{opacity:.45}
+.aviso-frase{color:rgba(255,255,255,.82);white-space:nowrap;transition:opacity .35s ease}
+.aviso-frase.trocando{opacity:0}
+.aviso-link{margin-left:14px;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1px solid rgba(241,214,196,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
+.aviso-link:hover{color:var(--destaque);border-color:var(--destaque)}
+@media (max-width:820px){
+  :root{--aviso:54px}
+  .aviso{font-size:.74rem}
+  .aviso-linha{flex-wrap:wrap;align-content:center;gap:5px 10px}
+  .aviso-ponto{flex-basis:100%;height:0;overflow:hidden} /* o pontinho vira a quebra entre as duas linhas */
+  .aviso-selo{font-size:.56rem;padding:4px 9px}
+  .aviso-link{margin-left:0}
+}
+@media (max-width:600px){ .aviso{font-size:.7rem} }
+@media (max-width:370px){ .aviso{font-size:.66rem} .aviso-link-extra{display:none} } /* celular bem estreito: só "reservar →" */
 .topo nav{flex:1}
 .marca-nome{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:var(--vinho);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .marca-nome em{font-style:normal;color:var(--vinho)}
@@ -162,7 +184,7 @@ p{margin:0 0 1em}
    ========================================================= */
 /* Fundo da capa: listras verticais bem suaves em dois tons de bege */
 .capa{
-  padding:calc(var(--topo) + 48px) 0 0;position:relative;overflow:hidden;
+  padding:calc(var(--topo) + var(--aviso) + 48px) 0 0;position:relative;overflow:hidden;
   background:repeating-linear-gradient(90deg, var(--creme) 0 72px, #efe6db 72px 144px);
 }
 .capa::after{ /* clareia as listras em volta do texto, para a leitura ficar limpa */
@@ -611,10 +633,10 @@ p{margin:0 0 1em}
   .idioma-celular{display:block;margin-left:auto} .menu .menu-idioma{display:none}
   .topo nav{position:absolute;flex:none}
   .menu{
-    position:fixed;top:var(--topo);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    position:fixed;top:calc(var(--topo) + var(--aviso));left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--creme);border-bottom:1px solid var(--linha);padding:8px 24px 24px;box-shadow:0 18px 30px -18px rgba(42,26,24,.35);
     transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s ease, transform .25s ease, visibility .25s;
-    max-height:calc(100vh - var(--topo));overflow:auto
+    max-height:calc(100vh - var(--topo) - var(--aviso));overflow:auto
   }
   .menu.aberto{transform:none;opacity:1;visibility:visible}
   .menu li,.menu li:first-child{border-bottom:1px solid var(--linha);margin-left:0}
@@ -624,7 +646,7 @@ p{margin:0 0 1em}
   .menu .menu-cta a{text-align:center;padding:14px 18px}
 }
 @media (max-width:900px){
-  .capa{padding-top:calc(var(--topo) + 40px)}
+  .capa{padding-top:calc(var(--topo) + var(--aviso) + 40px)}
   .capa-grade,.sobre-grade,.contato-grade{grid-template-columns:1fr;gap:48px}
   .capa-grade{gap:8px}
   .capa-texto{padding-bottom:0}
@@ -675,7 +697,7 @@ p{margin:0 0 1em}
   .secao-cabeca h2,.depo-cabeca h3{font-size:2.1rem}
 
   /* Capa: coluna estreita de texto à esquerda e a foto grande até a borda direita */
-  .capa{padding-top:calc(var(--topo) + 16px)}
+  .capa{padding-top:calc(var(--topo) + var(--aviso) + 16px)}
   .capa::after{background:radial-gradient(ellipse 45% 60% at 14% 45%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
   .capa-grade{grid-template-columns:30% 70%;gap:0;align-items:end}
   .capa-texto{padding:6px 0 30px;align-self:center;position:relative;z-index:2}
@@ -822,6 +844,17 @@ p{margin:0 0 1em}
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- ======================= MENU FIXO ======================= -->
+<!-- Faixa de Black Friday: a contagem e as frases vêm do script (some sozinha depois da Black Friday) -->
+<div class="aviso" id="aviso" role="region" aria-label="Black Friday">
+  <div class="container aviso-linha">
+    <span class="aviso-selo">Black Friday</span>
+    <strong class="aviso-contagem" id="aviso-contagem">Black Friday chegando</strong>
+    <span class="aviso-ponto" aria-hidden="true">·</span>
+    <span class="aviso-frase" id="aviso-frase">vídeo de e-commerce que vende no dia</span>
+    <a class="aviso-link" href="#contato">reservar <span class="aviso-link-extra">agenda</span> <span aria-hidden="true">→</span></a>
+  </div>
+</div>
+
 <header class="topo" id="topo">
   <div class="container">
     <a href="#inicio" class="marca-nome" aria-label="Tatiele Milani, voltar ao início">Tatiele <em>Milani</em></a>
@@ -1813,6 +1846,39 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
   if (proximo) proximo.addEventListener('click', () => mover(1));
 }
 
+// Faixa de Black Friday: conta os dias até a 4ª sexta de novembro e troca a frase do meio
+(function blackFriday() {
+  const aviso = $('#aviso');
+  if (!aviso) return;
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const novembro = new Date(hoje.getFullYear(), 10, 1);
+  const bf = new Date(hoje.getFullYear(), 10, 1 + ((5 - novembro.getDay() + 7) % 7) + 21);
+  const dias = Math.round((bf - hoje) / 86400000);
+  if (dias < 0 || dias > 60) { // passou a Black Friday (ou ainda está longe): a faixa some
+    aviso.remove();
+    document.documentElement.style.setProperty('--aviso', '0px');
+    return;
+  }
+  $('#aviso-contagem').textContent = dias === 0 ? 'É hoje a Black Friday!' : dias === 1 ? 'Falta 1 dia pra Black Friday' : `Faltam ${dias} dias pra Black Friday`;
+  const FRASES = [
+    'vídeo de e-commerce que vende no dia',
+    'reserve a sua agenda de novembro',
+    'criativos de tráfego prontos antes do pico',
+    'roteiros validados por performance',
+    'poucas vagas pra gravar em novembro'
+  ];
+  const frase = $('#aviso-frase');
+  let i = 0;
+  setInterval(() => {
+    frase.classList.add('trocando');
+    setTimeout(() => {
+      i = (i + 1) % FRASES.length;
+      frase.textContent = FRASES[i]; // texto novo: o tradutor pega sozinho quando está em inglês
+      frase.classList.remove('trocando');
+    }, 350);
+  }, 3500);
+})();
+
 // Contatos e rodapé
 (function contatos() {
   const wa = `https://wa.me/${CONTATO.whatsapp}?text=${encodeURIComponent('Oi, Tati! Vi seu portfólio e quero conversar sobre um projeto.')}`;
@@ -1997,6 +2063,17 @@ window.addEventListener('load', () => {
    Se mudar um texto em português, mude a chave aqui também.
    ========================================================= */
 const EN = {
+  // Faixa de Black Friday
+  "Black Friday chegando": "Black Friday is coming",
+  "Falta 1 dia pra Black Friday": "1 day until Black Friday",
+  "É hoje a Black Friday!": "Black Friday is today!",
+  "vídeo de e-commerce que vende no dia": "e-commerce videos that sell on the day",
+  "reserve a sua agenda de novembro": "book your November slot",
+  "criativos de tráfego prontos antes do pico": "ad creatives ready before the peak",
+  "roteiros validados por performance": "scripts proven by performance",
+  "poucas vagas pra gravar em novembro": "few filming spots left in November",
+  "reservar": "book",
+  "agenda": "a slot",
   // Topo e menu
   "Pular para o conteúdo": "Skip to content",
   "Sobre": "About",
@@ -2209,6 +2286,7 @@ const EN_PADROES = [
   [/^Foto UGC para (.+)$/, (m, marca) => `UGC photo for ${marca}`],
   [/^Vídeo para (.+)$/, (m, marca) => `Video for ${marca}`],
   [/^Ver destaque (\d+)$/, (m, n) => `See highlight ${n}`],
+  [/^Faltam (\d+) dias pra Black Friday$/, (m, n) => `${n} days until Black Friday`],
   [/^(\d+),(\d+)%$/, (m, a, b) => `${a}.${b}%`]
 ];
 
