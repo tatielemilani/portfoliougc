@@ -158,6 +158,7 @@
     box-shadow: var(--sombra); transition: transform .2s;
   }
   .produto:hover { transform: translateY(-2px); }
+  @media (max-width: 759px) { .vitrine .produto { display: none; } }
   .produto img { width: 64px; height: 64px; object-fit: cover; border-radius: 12px; flex: none; }
   .produto strong { display: block; font-size: 15px; }
   .produto small { color: var(--tinta-2); }
@@ -176,6 +177,7 @@
   .contato .titulo em { color: var(--destaque); }
   .contato p { opacity: .85; max-width: 44ch; margin: 0 auto 24px; }
   .contato .assinatura { max-width: none; margin: 28px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--destaque); opacity: .85; }
+  .assinatura-nome { display: block; margin-bottom: 4px; font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: 0; text-transform: none; color: #fff; }
   .contato .acoes { display: grid; gap: 12px; max-width: 420px; margin: 0 auto; }
   .opcao {
     display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -286,7 +288,7 @@
       <a class="opcao" href="https://ig.me/m/tatielemilani" target="_blank" rel="noopener">Mandar DM no Instagram</a>
       <a class="opcao" href="mailto:ugctatielemilani@gmail.com">Mandar e-mail</a>
     </div>
-    <p class="assinatura">UGC Creator &amp; Influencer · Curitiba/PR</p>
+    <p class="assinatura"><span class="assinatura-nome">Tatiele Milani</span>UGC Creator &amp; Influencer · Curitiba/PR</p>
   </section>
 
 </div>
