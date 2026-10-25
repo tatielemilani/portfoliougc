@@ -225,7 +225,7 @@ p{margin:0 0 1em}
 /* =========================================================
    2. SOBRE MIM
    ========================================================= */
-#sobre{padding-top:72px;padding-bottom:48px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 140px no-repeat} /* sombreado nasce por trás das logos (que ficam na frente) e vira o vinho dos destaques */
+#sobre{padding-top:72px;padding-bottom:28px;background:linear-gradient(180deg,rgba(140,29,36,0) 0%,rgba(140,29,36,.06) 22%,rgba(140,29,36,.2) 42%,rgba(140,29,36,.45) 60%,rgba(140,29,36,.72) 76%,rgba(140,29,36,.9) 88%,rgba(140,29,36,.98) 96%,var(--vinho) 100%) bottom/100% 140px no-repeat} /* sombreado nasce por trás das logos (que ficam na frente) e vira o vinho dos destaques */
 .sobre-grade{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:center}
 .sobre-foto .midia{aspect-ratio:4/5;box-shadow:var(--sombra)}
 #sobre{overflow:hidden}
@@ -272,7 +272,7 @@ p{margin:0 0 1em}
 .secao-vinho .midia{box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
 
 /* Destaques: texto à esquerda e carrossel de vídeos à direita */
-#destaques{padding:48px 0 40px} /* mais junto das marcas e dos nichos */
+#destaques{padding:24px 0 40px} /* mais junto das marcas e dos nichos */
 #trabalhos{padding-top:28px;padding-bottom:12px}
 .destaques-grade{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .destaques-sub{font-size:1.2rem!important;color:#fff!important;margin:-12px 0 28px!important}
@@ -305,7 +305,12 @@ p{margin:0 0 1em}
 .card-play svg{width:24px;height:24px;margin-left:3px}
 .card-video.tocando .card-play{opacity:0;pointer-events:none}
 .card-video:not([data-pos="centro"]) .card-som,.card-video:not([data-pos="centro"]) .card-play{display:none}
-.palco-controles{display:flex;align-items:center;gap:18px;margin-top:22px}
+.palco-controles{display:none} /* sem setas embaixo: arrasta para o lado ou clica no vídeo do lado */
+.palco{cursor:grab}
+.palco-dica{position:absolute;top:50%;left:calc(50% + 286px);z-index:4;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:transparent;color:rgba(255,255,255,.75);display:grid;place-items:center;cursor:pointer;transform:translateY(-50%);animation:cutuca 2.4s ease-in-out infinite;transition:color .2s}
+.palco-dica:hover{color:#fff}
+.palco-dica svg{width:26px;height:26px}
+@keyframes cutuca{0%,100%{transform:translate(0,-50%)}50%{transform:translate(5px,-50%)}} /* a setinha sutil mexe de leve avisando que tem mais vídeo */
 .palco-seta{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s}
 .palco-seta:hover{background:#fff;color:var(--vinho)}
 .palco-seta svg{width:20px;height:20px}
@@ -490,6 +495,9 @@ p{margin:0 0 1em}
 .depo-seta{position:absolute;top:calc(50% + 11px);transform:translateY(-50%);z-index:2;background:var(--creme);color:var(--tinta);border:1px solid rgba(140,29,36,.2);box-shadow:var(--sombra)}
 .depo-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
 #depo-anterior{left:-23px} #depo-proximo{right:-23px}
+.palco-seta.fotos-seta,.palco-seta.depo-seta{display:none} /* sem setas: passam sozinhas e dá para arrastar com o mouse ou o dedo */
+.arrastavel{cursor:grab} .arrastavel.arrastando{cursor:grabbing;user-select:none}
+.arrastavel img{-webkit-user-drag:none;user-select:none}
 .depo-insta{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--tinta);text-decoration:none;transition:color .2s}
 .depo-insta:hover{color:var(--vinho);text-decoration:underline;text-underline-offset:3px}
 .depo-grupo{display:flex;gap:20px;padding-right:20px}
@@ -529,6 +537,10 @@ p{margin:0 0 1em}
 .campo textarea{min-height:150px;resize:vertical}
 .campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:var(--destaque);background-color:rgba(0,0,0,.2);box-shadow:0 0 0 3px rgba(241,214,196,.2)}
 .formulario .btn{margin-top:4px}
+.formulario{background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.2);border-radius:26px;padding:32px 32px 28px} /* a proposta num cartão, igual ao celular */
+.contato-intro{padding-top:33px} /* o "Contato" continua na altura do "Nome" do cartão */
+@media (max-width:900px){ .contato-intro{padding-top:0} }
+@media (max-width:600px){ .palco-dica{display:none} } /* no celular os vídeos passam sozinhos e é só arrastar */
 .form-nota{margin:12px 0 0;text-align:center;font-size:.82rem;color:rgba(255,255,255,.75)}
 .campo select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;background:rgba(0,0,0,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1d6c4' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 16px center/16px no-repeat}
 .campo select option{color:var(--tinta);background:#fff}
@@ -1438,6 +1450,19 @@ function midia(capa, legenda, alt, extra = '') {
     </figure>`).join('');
   pontos.innerHTML = DESTAQUES.map((d, i) => `<button type="button" class="palco-ponto" data-i="${i}" aria-label="Ver destaque ${i + 1}"></button>`).join('');
   const cards = [...palco.querySelectorAll('.card-video')];
+  // Setinha sutil do lado avisando que dá para ver o próximo vídeo
+  palco.insertAdjacentHTML('beforeend', '<button type="button" class="palco-dica" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>');
+  palco.querySelector('.palco-dica').addEventListener('click', (e) => { e.stopPropagation(); esperaAuto = Date.now() + 15000; mostrar(atual + 1); });
+  // Arrastar com o mouse para o lado também troca o vídeo
+  let mouseX = null, arrastouVideo = false;
+  palco.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse' && e.button === 0) { mouseX = e.clientX; arrastouVideo = false; } });
+  palco.addEventListener('dragstart', (e) => e.preventDefault());
+  window.addEventListener('pointerup', (e) => {
+    if (mouseX === null) return;
+    const dx = e.clientX - mouseX; mouseX = null;
+    if (Math.abs(dx) > 40) { arrastouVideo = true; esperaAuto = Date.now() + 15000; mostrar(atual + (dx < 0 ? 1 : -1)); }
+  });
+  palco.addEventListener('click', (e) => { if (arrastouVideo) { e.stopPropagation(); arrastouVideo = false; } }, true);
 
   function mostrar(i) {
     const n = DESTAQUES.length;
@@ -1504,6 +1529,7 @@ function midia(capa, legenda, alt, extra = '') {
 // Nichos: botões só com os nichos e um carrossel com os vídeos do nicho escolhido
 (function trabalhos() {
   const trilho = $('#trabalhos-grade');
+  arrastaComMouse(trilho); // além das setas, dá para arrastar com o mouse
   const filtros = $('#filtros');
   const play = '<span class="play play-p" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
   let atual = NICHOS[0].id;
@@ -1694,6 +1720,35 @@ const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : 
 
 // Carrossel que passa sozinho bem devagar, com setas e com o dedo (depoimentos e fotos)
 // Para com o mouse em cima, no toque e por um tempo depois das setas; o grupo vem repetido para o giro não ter emenda
+// No computador: segurar e arrastar com o mouse para o lado, igual o dedo no celular
+function arrastaComMouse(el, aoSegurar) {
+  el.classList.add('arrastavel');
+  let ultimoX = null, andou = 0;
+  el.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    ultimoX = e.clientX; andou = 0;
+    el.classList.add('arrastando');
+    el.style.scrollSnapType = 'none';
+    if (aoSegurar) aoSegurar(true);
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (ultimoX === null) return;
+    const dx = e.clientX - ultimoX;
+    ultimoX = e.clientX; andou += Math.abs(dx);
+    el.scrollLeft -= dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (ultimoX === null) return;
+    ultimoX = null;
+    el.classList.remove('arrastando');
+    el.style.scrollSnapType = '';
+    if (aoSegurar) aoSegurar(false);
+  });
+  // se arrastou, o clique de soltar não abre o vídeo nem o link
+  el.addEventListener('click', (e) => { if (andou > 6) { e.preventDefault(); e.stopPropagation(); andou = 0; } }, true);
+  el.addEventListener('dragstart', (e) => e.preventDefault());
+}
+
 function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, direcao = 1) { // direcao -1 passa para o outro lado
   const VELOCIDADE = 30; // pixels por segundo
   let pos = 0, parado = false, esperaAte = 0, antes = 0, animandoAte = 0;
@@ -1725,9 +1780,8 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
   if (!reduzMovimento) requestAnimationFrame(andar);
 
   const segura = (ms) => { esperaAte = performance.now() + ms; };
-  // Só para enquanto o mouse está em cima (computador) ou o dedo está encostado; soltou, volta a andar na hora
-  faixa.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') parado = true; });
-  faixa.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') parado = false; });
+  // Nunca para sozinha: só enquanto a pessoa segura (mouse ou dedo); soltou, volta a andar na hora
+  arrastaComMouse(faixa, (segurando) => { parado = segurando; });
   faixa.addEventListener('touchstart', () => { parado = true; }, { passive: true });
   faixa.addEventListener('touchend', () => { parado = false; segura(400); }, { passive: true });
   faixa.addEventListener('touchcancel', () => { parado = false; }, { passive: true });
