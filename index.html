@@ -708,13 +708,14 @@ p{margin:0 0 1em}
   /* Nichos: três vídeos por vez */
   .nicho-trilho{grid-auto-columns:calc((100% - 34px) / 3.3);gap:12px;margin-right:-22px;padding-right:22px} /* um pedacinho do próximo vídeo aparece na borda */
   .nicho-setas{display:none}
-  .filtros{display:grid;grid-template-columns:repeat(3,max-content);justify-content:space-between;justify-items:stretch;overflow:visible;margin:0 0 22px;padding:0;gap:8px 6px} /* nichos no jeito antigo, 3 colunas alinhadas */
-  /* ordem só no celular: nome comprido + médio + curto em cada linha, para as colunas ficarem certinhas */
-  .filtro[data-filtro="casa"]{order:1} .filtro[data-filtro="gastronomia"]{order:2} .filtro[data-filtro="moda"]{order:3}
-  .filtro[data-filtro="beleza"]{order:4} .filtro[data-filtro="cabelo"]{order:5} .filtro[data-filtro="casal"]{order:6}
-  .filtro[data-filtro="ecommerce"]{order:7} .filtro[data-filtro="acessorios"]{order:8} .filtro[data-filtro="estudo"]{order:9}
-  .filtro[data-filtro="lifestyle"]{order:10;grid-column:1 / -1;justify-self:center}
-  .filtro{padding:7px 12px;font-size:.8rem;white-space:nowrap;text-align:center} /* letra do jeito antigo */
+  /* Nichos em 3 linhas, cada linha preenchendo a largura, com a letra do jeito antigo */
+  .filtros{display:flex;flex-wrap:wrap;overflow:visible;margin:0 0 22px;padding:0;gap:0 6px}
+  .filtros::before,.filtros::after{content:"";flex-basis:100%;height:0} /* quebras de linha invisíveis */
+  .filtros::before{order:4} .filtros::after{order:8}
+  .filtro{flex:1 1 auto;margin-bottom:8px;padding:7px clamp(8px,2.6vw,12px);font-size:clamp(.68rem,3.1vw,.8rem);white-space:nowrap;text-align:center}
+  .filtro[data-filtro="casa"]{order:1} .filtro[data-filtro="gastronomia"]{order:2} .filtro[data-filtro="cabelo"]{order:3}
+  .filtro[data-filtro="beleza"]{order:5} .filtro[data-filtro="lifestyle"]{order:6} .filtro[data-filtro="moda"]{order:7}
+  .filtro[data-filtro="ecommerce"]{order:9} .filtro[data-filtro="acessorios"]{order:10} .filtro[data-filtro="casal"]{order:11} .filtro[data-filtro="estudo"]{order:12}
   .trabalho-link .play{background:rgba(140,29,36,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* play mais clarinho */
   .play.play-p{width:42px;height:42px} .play.play-p svg{width:16px;height:16px}
   .nicho-mais{display:none;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
