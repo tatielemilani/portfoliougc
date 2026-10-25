@@ -53,15 +53,20 @@
   }
   .foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
   .nome-tag {
-    position: absolute; left: -10px; bottom: 22px;
-    background: var(--vinho); color: #fff; border-radius: 14px;
-    padding: 10px 16px 12px; box-shadow: var(--sombra); transform: rotate(-3deg);
+    position: absolute; left: -26px; bottom: 20px;
+    background: var(--vinho); color: #fff; border-radius: 12px;
+    padding: 8px 13px 10px; box-shadow: var(--sombra); transform: rotate(-3deg);
   }
-  .nome-tag strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.1; }
+  .nome-tag strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 18px; line-height: 1.1; }
   .nome-tag strong em { font-style: italic; }
   .nome-tag span {
-    display: inline-block; margin-top: 5px; background: var(--destaque); color: var(--vinho-escuro);
-    font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+    display: inline-block; margin-top: 4px; background: var(--destaque); color: var(--vinho-escuro);
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+  }
+  @media (min-width: 860px) {
+    .nome-tag { left: -36px; bottom: 24px; padding: 10px 16px 12px; border-radius: 14px; }
+    .nome-tag strong { font-size: 22px; }
+    .nome-tag span { font-size: 11px; margin-top: 5px; padding: 3px 9px; }
   }
 
   .chip {
