@@ -150,7 +150,12 @@ p{margin:0 0 1em}
   .aviso-selo{font-size:.56rem;padding:4px 9px}
   .aviso-link{margin-left:0}
 }
-@media (max-width:600px){ .aviso{font-size:.7rem} }
+@media (max-width:600px){ /* no celular: sem as frases, tudo numa linha só */
+  :root{--aviso:42px}
+  .aviso{font-size:.72rem}
+  .aviso-linha{flex-wrap:nowrap;gap:9px}
+  .aviso-ponto,.aviso-frase,.aviso-link-extra{display:none}
+}
 @media (max-width:370px){ .aviso{font-size:.66rem} .aviso-link-extra{display:none} } /* celular bem estreito: só "reservar →" */
 .topo nav{flex:1}
 .marca-nome{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:var(--vinho);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
