@@ -51,8 +51,11 @@
   .voltar:hover { text-decoration: underline; }
   h1 { font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(38px, 9vw, 52px); line-height: .98; letter-spacing: -.05em; word-spacing: .08em; margin: 12px 0 14px; }
   h1 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.06em; letter-spacing: -.04em; color: var(--vinho); }
-  .intro { color: var(--tinta-2); }
-  .aviso { background: var(--destaque); color: var(--vinho-escuro); border-radius: 14px; padding: 12px 14px; font-size: 13px; margin: 18px 0 24px; }
+  .intro { color: var(--tinta-2); margin-bottom: 22px; }
+  .sobre { background: var(--vinho); color: #fff; border-radius: 20px; padding: 20px 20px 22px; margin-top: 8px; }
+  .sobre h2 { font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: 24px; line-height: 1; letter-spacing: -.04em; margin-bottom: 8px; }
+  .sobre h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.08em; letter-spacing: -.02em; color: var(--destaque); }
+  .sobre p { font-size: 14px; opacity: .9; }
 
   .rotulo { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto); margin: 0 0 10px; }
   .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
@@ -131,14 +134,18 @@
     <aside class="lateral">
       <a class="voltar" href="../">← voltar pra bio</a>
       <h1>Coisas que eu <em>indico</em></h1>
-      <p class="intro">O que eu uso, amo e indico, tudo num lugar só. Se quiser, filtra pela sua loja preferida.</p>
-      <p class="aviso">Alguns links são de afiliada: se você comprar por eles, eu ganho uma comissão e você não paga nada a mais. Preço e estoque mudam direto na loja, então confere lá antes de comprar.</p>
+      <p class="intro">O que eu uso, amo e indico, tudo num lugar só. Se quiser, filtra por categoria.</p>
 
       <span class="rotulo">Loja</span>
       <div class="filtros" id="filtro-loja"></div>
 
       <span class="rotulo">Categoria</span>
       <div class="filtros" id="filtro-categoria"></div>
+
+      <div class="sobre">
+        <h2>Sobre os <em>links</em></h2>
+        <p>Só entra aqui o que eu uso ou usaria de verdade. Preço e estoque mudam direto na loja, então dá uma conferida antes de comprar.</p>
+      </div>
     </aside>
 
     <main>
@@ -238,11 +245,15 @@
   function montaFiltros(id, campo) {
     var caixa = document.getElementById(id);
     caixa.innerHTML = "";
-    unicos(campo).forEach(function (valor) {
+    var valores = unicos(campo);
+    // com uma loja só, mostra só ela (sem o "Todas")
+    var soUma = campo === "loja" && valores.length === 2;
+    if (soUma) valores = valores.slice(1);
+    valores.forEach(function (valor) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "filtro";
-      b.setAttribute("aria-pressed", filtro[campo] === valor ? "true" : "false");
+      b.setAttribute("aria-pressed", soUma || filtro[campo] === valor ? "true" : "false");
       if (campo === "loja" && cores[valor]) {
         var dot = document.createElement("span");
         dot.className = "bolinha";
