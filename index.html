@@ -177,6 +177,7 @@ p{margin:0 0 1em}
 .capa h1 .h1-forte{display:block;font-family:var(--display);font-weight:800;letter-spacing:-.05em}
 .capa h1 .h1-linha{display:block;white-space:nowrap} /* "Criando conteúdo" sempre na mesma linha */
 .capa h1 em{display:block;font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--vinho);margin-top:.04em;white-space:nowrap}
+.frase-curta{display:none} /* versão curta da frase, só no celular */
 .capa-frase{font-size:.98rem;line-height:1.7;color:var(--tinta-2);max-width:500px;margin:26px 0 12px}
 .capa-numeros{font-size:1.02rem;font-weight:500;color:var(--tinta);margin:0 0 34px}
 .capa-numeros span{color:var(--tinta-2);font-weight:300;margin:0 8px}
@@ -640,25 +641,29 @@ p{margin:0 0 1em}
 @media (max-width:600px){
   .secao{padding:64px 0}
 
-  /* Capa: textos centralizados em cima; embaixo a foto no meio, o botão ao lado e as redes do outro lado */
-  .capa{padding-top:calc(var(--topo) + 22px)}
-  .capa::after{background:radial-gradient(ellipse 80% 45% at 50% 30%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
-  .capa-grade{grid-template-columns:1fr;gap:0;align-items:end;text-align:center}
-  .capa-texto{display:contents} /* os textos e o botão viram peças da grade, para o botão ficar ao lado da foto */
-  .capa-selo-topo{justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 16px}
+  /* Capa: selo numa linha em cima; texto no cantinho esquerdo e a foto do lado direito; botão e redes embaixo do texto */
+  .capa{padding-top:calc(var(--topo) + 20px)}
+  .capa::after{background:radial-gradient(ellipse 70% 60% at 20% 45%, rgba(244,238,230,.95), rgba(244,238,230,0) 75%)}
+  .capa-grade{position:relative;grid-template-columns:50% 50%;gap:0;align-items:end}
+  .capa-selo-topo{grid-column:1 / -1;justify-content:center;white-space:nowrap;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;gap:7px;margin:0 0 14px}
   .capa-selo-topo .check{width:18px;height:18px} .capa-selo-topo .check svg{width:10px;height:10px}
-  .capa h1{font-size:2.1rem;line-height:1}
-  .capa-frase{font-size:.84rem;line-height:1.55;max-width:320px;margin:14px auto 10px}
-  .capa-numeros{white-space:nowrap;font-size:.78rem;font-weight:600;margin:0 0 6px}
-  .capa-numeros span{margin:0 6px}
-  .capa-foto,.capa-botoes{grid-row:5;grid-column:1}
-  .capa-foto{width:66%;max-width:260px;margin:0 auto;justify-self:center;align-self:end}
-  .capa-foto img{height:300px;object-fit:cover;object-position:top} /* só a parte de cima da foto */
-  .capa-botoes{position:relative;z-index:3;justify-self:start;align-self:center;flex-direction:column;align-items:flex-start;gap:12px;margin-top:40px}
-  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:11px 14px;font-size:.74rem;border-radius:9px;box-shadow:0 10px 22px -10px rgba(140,29,36,.6)}
-  .capa-botoes .link-seta{margin:0;font-size:.72rem;background:rgba(244,238,230,.92);padding:6px 10px;border-radius:99px;border-bottom:0}
-  .rede-ig,.rede-tt{right:-46px;width:34px;height:34px} .rede-ig{top:42%} .rede-tt{top:calc(42% + 46px)}
-  .rede svg{width:17px;height:17px} .rede-tt svg{width:15px;height:15px}
+  .capa-texto{display:contents}
+  .capa h1,.capa-frase,.capa-numeros,.capa-botoes{grid-column:1;position:relative;z-index:2}
+  .capa h1{font-size:1.65rem;line-height:1;align-self:end}
+  .capa h1 .h1-linha,.capa h1 em{white-space:normal}
+  .frase-longa{display:none} .frase-curta{display:inline}
+  .capa-frase{font-size:.74rem;line-height:1.5;margin:10px 0 10px}
+  .capa-numeros{display:flex;flex-direction:column;gap:2px;white-space:normal;font-size:.72rem;font-weight:600;margin:0 0 14px}
+  .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
+  .capa-botoes{align-self:start;gap:12px;padding-bottom:70px}
+  .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;padding:11px 14px;font-size:.74rem;border-radius:9px}
+  .capa-botoes .link-seta{display:none}
+  .capa-foto{grid-column:2;grid-row:2 / span 4;position:static;max-width:none;width:auto;margin:0 -16px 0 -14px;justify-self:stretch;align-self:end}
+  /* Instagram e TikTok pequenos, numa linha embaixo do botão (longe da foto) */
+  .rede{position:absolute;z-index:3;bottom:26px;top:auto;right:auto;width:34px;height:34px;animation:none}
+  .rede-ig{left:16px} .rede-tt{left:58px}
+  .rede svg{width:16px;height:16px} .rede-tt svg{width:14px;height:14px}
+  .rede::after{display:none}
 
   /* Sobre mim: foto à esquerda e texto à direita */
   #sobre{padding-top:40px}
@@ -755,7 +760,7 @@ p{margin:0 0 1em}
           <span class="h1-forte"><span class="h1-linha">Criando conteúdo</span> <span class="h1-linha">que gera</span></span>
           <em>conexão e vendas</em>
         </h1>
-        <p class="capa-frase revelar">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</p>
+        <p class="capa-frase revelar"><span class="frase-longa">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</span><span class="frase-curta">Do roteiro ao CTA, conteúdo que parece recomendação de amiga e vende como anúncio.</span></p>
         <p class="capa-numeros revelar">+50 vídeos <span aria-hidden="true">|</span> +40 marcas parceiras <span aria-hidden="true">|</span> +1,5M views</p>
         <div class="capa-botoes revelar">
           <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
@@ -1818,6 +1823,7 @@ const EN = {
   "que gera": "that drives",
   "conexão e vendas": "connection and sales",
   "Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.": "From script to CTA, every second is designed to make your brand feel like a friend's recommendation and sell like an ad.",
+  "Do roteiro ao CTA, conteúdo que parece recomendação de amiga e vende como anúncio.": "From script to CTA, content that feels like a friend's recommendation and sells like an ad.",
   "+50 vídeos": "+50 videos",
   "+40 marcas parceiras": "+40 partner brands",
   "+1,5M views": "+1.5M views",
