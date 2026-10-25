@@ -41,27 +41,14 @@
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 
   /* hero */
-  .hero { display: grid; gap: 36px; padding: 24px 0 48px; }
-  @media (min-width: 860px) {
-    .hero { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 64px; padding-top: 40px; }
-  }
-  .foto-box { position: relative; max-width: 420px; margin: 0 auto; width: 100%; }
+  .hero { max-width: 560px; margin: 0 auto; padding: 40px 0 48px; text-align: center; }
   .foto {
-    border-radius: 28px; overflow: hidden; aspect-ratio: 4/5;
-    background: var(--destaque); box-shadow: var(--sombra);
+    width: 156px; height: 156px; margin: 0 auto; border-radius: 50%; overflow: hidden;
+    background: var(--destaque); border: 4px solid var(--papel);
+    box-shadow: 0 0 0 2px var(--nude), var(--sombra);
   }
-  .foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-  .nome-tag {
-    position: absolute; left: -8px; bottom: 28px;
-    background: var(--vinho); color: #fff; border-radius: 16px;
-    padding: 12px 20px 14px; box-shadow: var(--sombra); transform: rotate(-3deg);
-  }
-  .nome-tag strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1; }
-  .nome-tag strong em { font-style: italic; }
-  .nome-tag span {
-    display: inline-block; margin-top: 6px; background: var(--destaque); color: var(--vinho-escuro);
-    font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
-  }
+  .foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+  .quem { margin: 16px 0 36px; font-size: 16px; font-weight: 600; color: var(--tinta-2); }
 
   .chip {
     display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
@@ -73,7 +60,7 @@
   }
   .rotulo-hero::before { content: ""; width: 28px; height: 1.5px; background: currentColor; }
   h1 {
-    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(44px, 10vw, 76px);
+    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(40px, 10vw, 60px);
     line-height: .98; letter-spacing: -.05em; word-spacing: .08em; margin: 16px 0 28px;
   }
   h1 em {
@@ -81,7 +68,7 @@
     font-size: 1.06em; letter-spacing: -.04em; color: var(--vinho);
   }
 
-  .botoes { display: grid; gap: 12px; }
+  .botoes { display: grid; gap: 12px; text-align: left; }
   .botao {
     display: flex; align-items: center; gap: 14px; padding: 14px 18px;
     border-radius: var(--raio); transition: transform .2s, box-shadow .2s;
@@ -176,15 +163,10 @@
 
 
   <section class="hero">
-    <div class="foto-box">
-      <div class="foto">
-        <img src="../imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo">
-      </div>
-      <div class="nome-tag">
-        <strong>Oi, eu sou a <em>Tati</em></strong>
-        <span>UGC &amp; Influencer em Curitiba</span>
-      </div>
+    <div class="foto">
+      <img src="../imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo">
     </div>
+    <p class="quem">UGC &amp; Influencer em Curitiba</p>
 
     <div>
       <span class="rotulo-hero">Meu trabalho</span>
