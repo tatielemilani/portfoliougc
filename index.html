@@ -654,11 +654,14 @@ p{margin:0 0 1em}
   .capa-grade{grid-template-columns:30% 70%;gap:0;align-items:end}
   .capa-texto{padding:6px 0 30px;align-self:center;position:relative;z-index:2}
   .capa-texto{width:150px} /* a coluna de texto avança um pouco sobre o fundo da foto, sem tocar em você */
-  .capa-selo-topo{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;gap:6px;margin:0 0 14px;line-height:1.3;color:var(--vinho)}
+  .capa-selo-topo{font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;gap:8px;margin:0 0 14px;line-height:1.3;color:var(--tinta-2)}
+  .capa-selo-topo .check{display:none}
+  .capa-selo-topo::before{content:"";width:16px;height:1.5px;background:var(--vinho);flex-shrink:0} /* tracinho no lugar do ✓ */
   .capa-selo-topo .check{width:14px;height:14px} .capa-selo-topo .check svg{width:8px;height:8px}
-  .capa h1{font-size:1.32rem;line-height:1.02}
+  .capa h1{font-size:1rem;line-height:1.12}
+  .capa h1 .h1-forte{text-transform:uppercase;letter-spacing:-.01em}
   .capa h1 .h1-linha{white-space:normal}
-  .capa h1 em{white-space:normal;font-size:1.5rem;line-height:1.02;margin-top:.12em}
+  .capa h1 em{white-space:normal;font-size:1.75rem;line-height:.98;margin-top:.14em}
   .frase-longa{display:none} .frase-curta{display:inline}
   .capa-frase{font-size:.72rem;line-height:1.55;margin:12px 0 14px;max-width:140px}
   .capa-numeros{display:flex;flex-direction:column;gap:5px;white-space:normal;font-size:.68rem;font-weight:700;margin:0 0 16px;padding-left:10px;border-left:2px solid var(--vinho);max-width:112px}
@@ -795,7 +798,7 @@ p{margin:0 0 1em}
         <p class="capa-frase revelar"><span class="frase-longa">Do roteiro ao CTA, cada segundo pensado para a sua marca parecer recomendação de amiga e vender como anúncio.</span><span class="frase-curta">Do roteiro ao CTA, conteúdo que parece recomendação de amiga e vende como anúncio.</span></p>
         <p class="capa-numeros revelar">+50 vídeos <span aria-hidden="true">|</span> +40 marcas parceiras <span aria-hidden="true">|</span> +1,5M views</p>
         <div class="capa-botoes revelar">
-          <a href="#contato" class="btn btn-primario">Quero criar com a Tati</a>
+          <a href="#contato" class="btn btn-primario"><span class="frase-longa">Quero criar com a Tati</span><span class="frase-curta">Vamos criar!</span></a>
           <a href="#destaques" class="link-seta">Ver meus conteúdos <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -1861,6 +1864,7 @@ const EN = {
   "+40 marcas parceiras": "+40 partner brands",
   "+1,5M views": "+1.5M views",
   "Quero criar com a Tati": "I want to create with Tati",
+  "Vamos criar!": "Let's create!",
   "Ver meus conteúdos": "See my content",
   "Publi post": "Sponsored post",
   "Criativos de alta performance": "High-performance creatives",
