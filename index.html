@@ -1714,7 +1714,7 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
     const dt = antes ? Math.min(agora - antes, 100) : 0;
     antes = agora;
     if (Math.abs(faixa.scrollLeft - pos) > 2) pos = faixa.scrollLeft; // a pessoa arrastou
-    if (!parado && agora > esperaAte) {
+    if (!parado && agora > esperaAte && agora > animandoAte) {
       pos += direcao * VELOCIDADE * dt / 1000;
       if (pos >= volta() * 2) pos -= volta();
       if (pos < volta()) pos += volta();
@@ -1725,14 +1725,15 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
   if (!reduzMovimento) requestAnimationFrame(andar);
 
   const segura = (ms) => { esperaAte = performance.now() + ms; };
-  faixa.addEventListener('mouseenter', () => { parado = true; });
-  faixa.addEventListener('mouseleave', () => { parado = false; });
-  faixa.addEventListener('touchstart', () => segura(4000), { passive: true });
-  faixa.addEventListener('focusin', () => segura(6000));
+  // Só para enquanto o mouse está em cima (computador) ou o dedo está encostado; soltou, volta a andar na hora
+  faixa.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') parado = true; });
+  faixa.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') parado = false; });
+  faixa.addEventListener('touchstart', () => { parado = true; }, { passive: true });
+  faixa.addEventListener('touchend', () => { parado = false; segura(400); }, { passive: true });
+  faixa.addEventListener('touchcancel', () => { parado = false; }, { passive: true });
 
   const passo = () => { const c = faixa.querySelector(seletorItem); return c ? c.offsetWidth + vao : 300; };
   function mover(sentido) {
-    segura(5000);
     if (faixa.scrollLeft < volta()) faixa.scrollLeft += volta(); // dá a volta sem emenda
     else if (faixa.scrollLeft >= volta() * 2) faixa.scrollLeft -= volta();
     pos = faixa.scrollLeft;
