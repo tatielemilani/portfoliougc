@@ -681,11 +681,13 @@ p{margin:0 0 1em}
 
   /* Sobre mim: foto alta à esquerda e texto pequeno à direita */
   #sobre{padding-top:48px}
-  .sobre-grade{grid-template-columns:48% 1fr;gap:12px;align-items:stretch}
+  .sobre-grade{grid-template-columns:46% 1fr;gap:0 10px;align-items:start}
+  .sobre-texto{display:contents} /* "Sobre mim" e a linha ficam numa faixa acima da foto */
+  .sobre-texto .sobre-rotulo{grid-column:2;grid-row:1;margin:0 0 12px;font-size:1.2rem;line-height:1.2}
+  .sobre-texto h2,.sobre-texto p:not(.sobre-rotulo),.sobre-texto .selos{grid-column:2}
+  .sobre-foto{grid-column:1;grid-row:2 / span 4;align-self:stretch}
   .sobre-foto{max-width:none;margin:0 0 0 -10px} /* foto um pouquinho mais para a esquerda */
-  .sobre-texto{z-index:3} /* a linha do "Sobre mim" passa por cima da foto */
   .sobre-foto .midia{aspect-ratio:auto;height:100%}
-  .sobre-rotulo{font-size:.85rem;margin-bottom:4px}
   .sobre-texto h2{font-size:1.25rem;margin-bottom:8px}
   .sobre-texto h2 em{font-size:1.8rem}
   .sobre-texto p{font-size:.68rem;line-height:1.5;margin:0 0 8px}
@@ -706,15 +708,14 @@ p{margin:0 0 1em}
   /* Nichos: três vídeos por vez */
   .nicho-trilho{grid-auto-columns:calc((100% - 34px) / 3.3);gap:12px;margin-right:-22px;padding-right:22px} /* um pedacinho do próximo vídeo aparece na borda */
   .nicho-setas{display:none}
-  .filtros{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0 0 22px;padding:0;gap:8px} /* nichos em 3 colunas, todos à vista */
-  .filtro{padding:9px 3px;font-size:.64rem;line-height:1.2;text-align:center;white-space:nowrap}
+  .filtros{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;justify-items:start;overflow:visible;margin:0 0 22px;padding:0;gap:8px 5px} /* nichos no jeito antigo, 3 por linha */
+  .filtro{padding:7px clamp(5px,1.9vw,10px);font-size:clamp(.7rem,3.4vw,.8rem);white-space:nowrap} /* letra do jeito antigo, diminuindo um tiquinho só em celular bem pequeno */
   .trabalho-link .play{background:rgba(140,29,36,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* play mais clarinho */
   .play.play-p{width:42px;height:42px} .play.play-p svg{width:16px;height:16px}
   .nicho-mais{display:none;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
   .nicho-mais svg{width:16px;height:16px}
   .nicho-mais[disabled]{opacity:0;pointer-events:none}
   .trabalho-marca{font-size:.56rem;padding:5px 8px}
-  .filtro{font-size:.8rem}
 
   /* Fotos: cartões menores passando */
   .foto-card{height:300px;min-width:0} /* a foto aparece inteira, sem corte */
