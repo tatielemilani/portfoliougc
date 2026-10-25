@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coisas que eu indico · Tatiele Milani</title>
+<meta name="description" content="Produtos que a Tati usa e indica, da Shopee e do Magalu, num lugar só.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --creme: #f4eee6;
+    --creme-2: #ebe3d8;
+    --papel: #ffffff;
+    --tinta: #2a1a18;
+    --tinta-2: #5e4b47;
+    --vinho: #8c1d24;
+    --vinho-escuro: #6c141a;
+    --destaque: #f1d6c4;
+    --nude: #d9a79c;
+    --nude-texto: #a14a45;
+    --linha: rgba(42,26,24,.12);
+    --sombra: 0 1px 2px rgba(42,26,24,.04), 0 12px 32px -12px rgba(42,26,24,.14);
+    --raio: 18px;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --shopee: #ee4d2d;
+    --magalu: #0086ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--creme); color: var(--tinta); font-family: var(--sans); line-height: 1.5; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+  .topo { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--vinho); }
+  .btn-topo { background: var(--papel); border: 1px solid var(--linha); font-weight: 600; font-size: 14px; padding: 9px 16px; border-radius: 999px; }
+  .btn-topo:hover { background: var(--destaque); }
+
+  .layout { display: grid; gap: 32px; padding: 8px 0 56px; }
+  @media (min-width: 900px) {
+    .layout { grid-template-columns: 340px 1fr; gap: 48px; align-items: start; }
+    .lateral { position: sticky; top: 24px; }
+  }
+
+  .voltar { font-size: 14px; font-weight: 600; color: var(--vinho); }
+  .voltar:hover { text-decoration: underline; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 8vw, 54px); line-height: 1.02; margin: 12px 0 12px; }
+  h1 em { font-style: italic; color: var(--vinho); }
+  .intro { color: var(--tinta-2); }
+  .aviso { background: var(--destaque); color: var(--vinho-escuro); border-radius: 14px; padding: 12px 14px; font-size: 13px; margin: 18px 0 24px; }
+
+  .rotulo { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto); margin: 0 0 10px; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .filtro {
+    display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--linha); background: var(--papel);
+    border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600; transition: background .2s, color .2s;
+  }
+  .filtro:hover { background: var(--destaque); }
+  .filtro[aria-pressed="true"] { background: var(--vinho); border-color: var(--vinho); color: #fff; }
+  .bolinha { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+  .lista-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+  .lista-topo h2 { font-family: var(--serif); font-weight: 400; font-size: 32px; }
+  .lista-topo span { font-size: 14px; color: var(--tinta-2); }
+
+  .grade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 640px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+  .card {
+    background: var(--papel); border-radius: var(--raio); padding: 10px; box-shadow: var(--sombra);
+    display: flex; flex-direction: column; transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card .foto { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--creme-2); }
+  .card .foto img { width: 100%; height: 100%; object-fit: cover; }
+  .selo-loja { position: absolute; top: 8px; right: 8px; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+  .queridinho { position: absolute; top: 8px; left: 8px; background: var(--vinho); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; transform: rotate(-4deg); }
+  .card .cat { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto); margin: 12px 4px 2px; }
+  .card h3 { font-family: var(--serif); font-weight: 500; font-size: 17px; line-height: 1.2; margin: 0 4px; }
+  .card .detalhe { font-size: 13px; color: var(--tinta-2); margin: 4px 4px 0; }
+  .card .ver {
+    margin-top: auto; display: block; text-align: center; background: var(--vinho); color: #fff;
+    font-size: 14px; font-weight: 600; padding: 10px; border-radius: 12px; transition: background .2s;
+  }
+  .card .espaco { flex: 1; min-height: 12px; }
+  .card .ver:hover { background: var(--vinho-escuro); }
+  .vazio { grid-column: 1 / -1; text-align: center; color: var(--tinta-2); padding: 40px 0; }
+
+  footer { text-align: center; font-size: 13px; color: var(--tinta-2); padding: 0 0 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topo">
+    <a class="logo" href="../">Tatiele Milani</a>
+    <a class="btn-topo" href="https://www.instagram.com/tatielemilani" target="_blank" rel="noopener">@tatielemilani</a>
+  </header>
+
+  <div class="layout">
+    <aside class="lateral">
+      <a class="voltar" href="../">← voltar pra bio</a>
+      <h1>Coisas que eu <em>indico</em></h1>
+      <p class="intro">O que eu uso, amo e indico, tudo num lugar só. Se quiser, filtra pela sua loja preferida.</p>
+      <p class="aviso">Alguns links são de afiliada: se você comprar por eles, eu ganho uma comissão e você não paga nada a mais. Preço e estoque mudam direto na loja, então confere lá antes de comprar.</p>
+
+      <span class="rotulo">Loja</span>
+      <div class="filtros" id="filtro-loja"></div>
+
+      <span class="rotulo">Categoria</span>
+      <div class="filtros" id="filtro-categoria"></div>
+    </aside>
+
+    <main>
+      <div class="lista-topo">
+        <h2 id="titulo-lista">Tudo</h2>
+        <span id="contagem"></span>
+      </div>
+      <div class="grade" id="grade"></div>
+    </main>
+  </div>
+
+  <footer>Tatiele Milani · Curitiba/PR · feito com ♡</footer>
+</div>
+
+<script>
+  // Pra adicionar um produto, copia um bloco abaixo e troca os dados.
+  // loja: "Shopee" ou "Magalu" · foto: arquivo em imagens/bio/ ou um link de imagem
+  // queridinho: true mostra o selinho em cima da foto
+  var produtos = [
+    {
+      nome: "Secador Gokoco 5 em 1",
+      detalhe: "alta velocidade, com escova e modeladores",
+      categoria: "Beleza",
+      loja: "Shopee",
+      foto: "../../imagens/bio/secador-gokoco.jpg",
+      link: "https://s.shopee.com.br/1BRXxwut7",
+      queridinho: false
+    },
+    {
+      nome: "Microfone de lapela Hollyland Lark M2",
+      detalhe: "sem fio, pra celular e câmera",
+      categoria: "Gravação",
+      loja: "Shopee",
+      foto: "../../imagens/bio/microfone-hollyland-lark-m2.jpg",
+      link: "https://s.shopee.com.br/LoHwhfM57",
+      queridinho: false
+    },
+    {
+      nome: "Kit 2 Softbox 50x70 + tripé 2,10m",
+      detalhe: "luz suave pra gravar em casa",
+      categoria: "Gravação",
+      loja: "Shopee",
+      foto: "../../imagens/bio/kit-softbox.jpg",
+      link: "https://s.shopee.com.br/LoHxmVkcw",
+      queridinho: false
+    },
+    {
+      nome: "Luz de LED RGB Ulanzi VL49",
+      detalhe: "pequena e magnética",
+      categoria: "Gravação",
+      loja: "Shopee",
+      foto: "../../imagens/bio/luz-ulanzi-vl49.jpg",
+      link: "https://s.shopee.com.br/qkYYnjA0k",
+      queridinho: false
+    },
+    {
+      nome: "Tripé selfie Basike",
+      detalhe: "160cm, com controle remoto",
+      categoria: "Gravação",
+      loja: "Shopee",
+      foto: "../../imagens/bio/tripe-basike.jpg",
+      link: "https://s.shopee.com.br/7Aec6adLTB",
+      queridinho: false
+    },
+    {
+      nome: "Fone de ouvido Basike",
+      detalhe: "bluetooth, encaixe aberto na orelha",
+      categoria: "Acessórios",
+      loja: "Shopee",
+      foto: "../../imagens/bio/fone-basike.jpg",
+      link: "https://s.shopee.com.br/2BFw8QKssT",
+      queridinho: false
+    },
+    {
+      nome: "Sanduicheira e Grill HQ",
+      detalhe: "750W, antiaderente",
+      categoria: "Cozinha",
+      loja: "Magalu",
+      foto: "../../imagens/bio/sanduicheira-magalu.jpg",
+      link: "https://www.magazinevoce.com.br/magazinetatielemilani/sanduicheira-e-grill-hq-750w-antiaderente-inox-hq-sg001-127v/p/gk5h0hadg5/ep/gset/",
+      queridinho: false
+    }
+  ];
+
+  var cores = { Shopee: "var(--shopee)", Magalu: "var(--magalu)" };
+  var filtro = { loja: "Todas", categoria: "Todas" };
+
+  function unicos(campo) {
+    var vistos = [];
+    produtos.forEach(function (p) { if (vistos.indexOf(p[campo]) === -1) vistos.push(p[campo]); });
+    return ["Todas"].concat(vistos.sort());
+  }
+
+  function montaFiltros(id, campo) {
+    var caixa = document.getElementById(id);
+    caixa.innerHTML = "";
+    unicos(campo).forEach(function (valor) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "filtro";
+      b.setAttribute("aria-pressed", filtro[campo] === valor ? "true" : "false");
+      if (campo === "loja" && cores[valor]) {
+        var dot = document.createElement("span");
+        dot.className = "bolinha";
+        dot.style.background = cores[valor];
+        b.appendChild(dot);
+      }
+      b.appendChild(document.createTextNode(valor));
+      b.addEventListener("click", function () {
+        filtro[campo] = valor;
+        desenha();
+      });
+      caixa.appendChild(b);
+    });
+  }
+
+  function desenha() {
+    montaFiltros("filtro-loja", "loja");
+    montaFiltros("filtro-categoria", "categoria");
+
+    var lista = produtos.filter(function (p) {
+      return (filtro.loja === "Todas" || p.loja === filtro.loja) &&
+             (filtro.categoria === "Todas" || p.categoria === filtro.categoria);
+    });
+
+    var partes = [filtro.loja, filtro.categoria].filter(function (v) { return v !== "Todas"; });
+    document.getElementById("titulo-lista").textContent = partes.length ? partes.join(" · ") : "Tudo";
+    document.getElementById("contagem").textContent = lista.length + (lista.length === 1 ? " produto" : " produtos");
+
+    var grade = document.getElementById("grade");
+    grade.innerHTML = "";
+    if (!lista.length) {
+      grade.innerHTML = '<p class="vazio">Nada por aqui com esse filtro ainda.</p>';
+      return;
+    }
+    lista.forEach(function (p) {
+      var card = document.createElement("article");
+      card.className = "card";
+
+      var foto = document.createElement("div");
+      foto.className = "foto";
+      var img = document.createElement("img");
+      img.src = p.foto;
+      img.alt = p.nome;
+      img.loading = "lazy";
+      foto.appendChild(img);
+      if (p.queridinho) {
+        var q = document.createElement("span");
+        q.className = "queridinho";
+        q.textContent = "queridinho";
+        foto.appendChild(q);
+      }
+      var s = document.createElement("span");
+      s.className = "selo-loja";
+      s.style.background = cores[p.loja] || "var(--tinta)";
+      s.textContent = p.loja;
+      foto.appendChild(s);
+      card.appendChild(foto);
+
+      var cat = document.createElement("span");
+      cat.className = "cat";
+      cat.textContent = p.categoria;
+      card.appendChild(cat);
+
+      var h = document.createElement("h3");
+      h.textContent = p.nome;
+      card.appendChild(h);
+
+      if (p.detalhe) {
+        var d = document.createElement("p");
+        d.className = "detalhe";
+        d.textContent = p.detalhe;
+        card.appendChild(d);
+      }
+
+      var esp = document.createElement("span");
+      esp.className = "espaco";
+      card.appendChild(esp);
+
+      var a = document.createElement("a");
+      a.className = "ver";
+      a.href = p.link;
+      a.target = "_blank";
+      a.rel = "noopener sponsored";
+      a.textContent = (p.loja === "Shopee" ? "ver na " : "ver no ") + p.loja + " ↗";
+      card.appendChild(a);
+
+      grade.appendChild(card);
+    });
+  }
+
+  desenha();
+</script>
+</body>
+</html>

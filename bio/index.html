@@ -60,15 +60,6 @@
     background: var(--destaque); box-shadow: var(--sombra);
   }
   .foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-  .selo {
-    position: absolute; top: -18px; right: -6px; width: 104px; height: 104px;
-    animation: gira 18s linear infinite;
-  }
-  .selo-centro {
-    position: absolute; top: -18px; right: -6px; width: 104px; height: 104px;
-    display: grid; place-items: center; font-size: 26px; color: var(--vinho);
-  }
-  @keyframes gira { to { transform: rotate(360deg); } }
   .nome-tag {
     position: absolute; left: -8px; bottom: 28px;
     background: var(--vinho); color: #fff; border-radius: 16px;
@@ -123,27 +114,11 @@
   .b3 { background: var(--nude); color: var(--tinta); }
   .b4 { background: var(--papel); border: 1px solid var(--linha); }
 
-  /* números */
-  .numeros {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-    border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha);
-    padding: 24px 0; text-align: center;
-  }
-  .numeros b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 6vw, 44px); color: var(--vinho); line-height: 1; }
-  .numeros span { font-size: 13px; color: var(--tinta-2); }
-
-  /* marcas */
   .secao { padding: 56px 0 0; }
   .secao-titulo { text-align: center; margin-bottom: 24px; }
   .secao-titulo h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin-top: 6px; }
   .secao-titulo h2 em { font-style: italic; color: var(--vinho); }
   .secao-titulo p { color: var(--tinta-2); margin-top: 8px; }
-
-  .faixa { overflow: hidden; background: var(--vinho); color: var(--creme); padding: 16px 0; transform: rotate(-1.2deg); margin: 8px -16px 0; }
-  .faixa-trilho { display: flex; gap: 36px; width: max-content; animation: corre 40s linear infinite; }
-  .faixa-trilho span { font-family: var(--serif); font-size: 22px; white-space: nowrap; }
-  .faixa-trilho i { font-style: normal; color: var(--nude); }
-  @keyframes corre { to { transform: translateX(-50%); } }
 
   /* cupons */
   .grade { display: grid; gap: 16px; }
@@ -205,10 +180,6 @@
   .contato .acoes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
   footer { text-align: center; font-size: 13px; color: var(--tinta-2); padding: 32px 0 40px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .selo, .faixa-trilho { animation: none; }
-  }
 </style>
 </head>
 <body>
@@ -224,14 +195,6 @@
       <div class="foto">
         <img src="../imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo">
       </div>
-      <svg class="selo" viewBox="0 0 120 120" aria-hidden="true">
-        <circle cx="60" cy="60" r="58" fill="#f1d6c4"/>
-        <defs><path id="circulo" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
-        <text font-family="Plus Jakarta Sans, sans-serif" font-size="8.6" font-weight="700" letter-spacing="1.1" fill="#8c1d24">
-          <textPath href="#circulo" textLength="262" lengthAdjust="spacing">CONECTANDO MARCAS • AO CORAÇÃO DAS PESSOAS •</textPath>
-        </text>
-      </svg>
-      <div class="selo-centro" aria-hidden="true">♡</div>
       <div class="nome-tag">
         <strong>Oi, eu sou a <em>Tati</em></strong>
         <span>UGC creator em Curitiba/PR</span>
@@ -283,24 +246,6 @@
     </div>
   </section>
 
-  <section class="numeros" aria-label="Números">
-    <div><b>+50</b><span>vídeos criados</span></div>
-    <div><b>+40</b><span>marcas parceiras</span></div>
-    <div><b>+1,5M</b><span>views num vídeo só</span></div>
-  </section>
-
-  <section class="secao">
-    <div class="secao-titulo">
-      <span class="chip">marcas com quem já trabalhei</span>
-    </div>
-    <div class="faixa" aria-label="Shopee, L'Oréal Paris, Natura, Coca-Cola, Mercado Livre, Magalu, Pantene, L'Occitane au Brésil, Saint Germain, Vitao, Downy, 3 Corações, Dr. Oetker, Monange, Maria Margarida">
-      <div class="faixa-trilho" aria-hidden="true">
-        <span>Shopee</span><i>♡</i><span>L'Oréal Paris</span><i>♡</i><span>Natura</span><i>♡</i><span>Coca-Cola</span><i>♡</i><span>Mercado Livre</span><i>♡</i><span>Magalu</span><i>♡</i><span>Pantene</span><i>♡</i><span>L'Occitane au Brésil</span><i>♡</i><span>Saint Germain</span><i>♡</i><span>Vitao</span><i>♡</i><span>Downy</span><i>♡</i><span>3 Corações</span><i>♡</i><span>Dr. Oetker</span><i>♡</i><span>Monange</span><i>♡</i><span>Maria Margarida</span><i>♡</i>
-        <span>Shopee</span><i>♡</i><span>L'Oréal Paris</span><i>♡</i><span>Natura</span><i>♡</i><span>Coca-Cola</span><i>♡</i><span>Mercado Livre</span><i>♡</i><span>Magalu</span><i>♡</i><span>Pantene</span><i>♡</i><span>L'Occitane au Brésil</span><i>♡</i><span>Saint Germain</span><i>♡</i><span>Vitao</span><i>♡</i><span>Downy</span><i>♡</i><span>3 Corações</span><i>♡</i><span>Dr. Oetker</span><i>♡</i><span>Monange</span><i>♡</i><span>Maria Margarida</span><i>♡</i>
-      </div>
-    </div>
-  </section>
-
   <section class="secao" id="cupons">
     <div class="secao-titulo">
       <span class="chip">cupons</span>
@@ -334,12 +279,12 @@
       <div>
         <span class="chip">vitrine da Tati</span>
         <h2>Coisas que eu <em>indico</em></h2>
-        <p>Produtos que eu uso de verdade e recomendo, num lugar só.</p>
-        <a class="btn" href="https://www.magazinevoce.com.br/magazinetatielemilani/" target="_blank" rel="noopener">ver minha lojinha Magalu →</a>
+        <p>Produtos que eu uso de verdade e recomendo, da Shopee e do Magalu, num lugar só.</p>
+        <a class="btn" href="indicacoes/">ver a vitrine →</a>
       </div>
-      <a class="produto" href="https://www.magazinevoce.com.br/magazinetatielemilani/sanduicheira-e-grill-hq-750w-antiaderente-inox-hq-sg001-127v/p/gk5h0hadg5/ep/gset/" target="_blank" rel="noopener">
-        <img src="../imagens/bio/sanduicheira-magalu.jpg" alt="Sanduicheira Grill">
-        <span><strong>Sanduicheira e Grill HQ</strong><small>no Magalu · ver produto →</small></span>
+      <a class="produto" href="indicacoes/">
+        <img src="../imagens/bio/microfone-hollyland-lark-m2.jpg" alt="Microfone Hollyland Lark M2">
+        <span><strong>Beleza, gravação e casa</strong><small>filtra por loja e categoria →</small></span>
       </a>
     </div>
   </section>
