@@ -178,7 +178,9 @@ p{margin:0 0 1em}
 .capa h1 .h1-linha{display:block;white-space:nowrap} /* "Criando conteúdo" sempre na mesma linha */
 .capa h1 em{display:block;font-family:var(--italico);font-style:italic;font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--vinho);margin-top:.04em;white-space:nowrap}
 .frase-curta{display:none} /* versão curta da frase, só no celular */
-.dica-deslize{display:none} /* aviso de deslizar, só no celular */
+.nicho-carrossel{position:relative}
+.nicho-mais{display:none} /* seta sutil por cima dos vídeos, só no celular */
+.card-marca{display:none} /* nome da marca em cima dos destaques, só no celular */
 .capa-frase{font-size:.98rem;line-height:1.7;color:var(--tinta-2);max-width:500px;margin:26px 0 12px}
 .capa-numeros{font-size:1.02rem;font-weight:500;color:var(--tinta);margin:0 0 34px}
 .capa-numeros span{color:var(--tinta-2);font-weight:300;margin:0 8px}
@@ -384,12 +386,16 @@ p{margin:0 0 1em}
 #fotos .secao-cabeca h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-kerning:none;line-height:1;font-size:min(3.9rem,calc(5.3vw - 4px));white-space:nowrap}
 @media (max-width:600px){#fotos .secao-cabeca h2{font-size:clamp(2.4rem,5.5vw,4.25rem);white-space:normal;text-wrap:balance}}
 #fotos .secao-cabeca h2 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em}
-.fotos-faixa{overflow:hidden} /* sem esmaecer nas pontas, igual aos depoimentos */
+.fotos-carrossel{position:relative}
+.fotos-faixa{overflow-x:auto;scrollbar-width:none} /* passa sozinha, com o dedo e com as setas */
+.fotos-faixa::-webkit-scrollbar{display:none}
 .fotos-trilho{display:flex}
-.fotos-trilho.andando{width:max-content;padding:6px 0 12px;animation:desliza 70s linear infinite}
-.fotos-faixa:hover .fotos-trilho.andando{animation-play-state:paused}
+.fotos-trilho.andando{width:max-content;padding:6px 0 12px}
 .fotos-grupo{display:flex;gap:18px}
 .fotos-trilho.andando .fotos-grupo{padding-right:18px}
+.fotos-seta{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--creme);color:var(--tinta);border:1px solid rgba(140,29,36,.2);box-shadow:var(--sombra)}
+.fotos-seta:hover{background:var(--vinho);border-color:var(--vinho);color:#fff}
+#fotos-anterior{left:14px} #fotos-proximo{right:14px}
 .foto-card{position:relative;margin:0;height:420px;min-width:200px;flex-shrink:0;border-radius:18px;overflow:hidden;background:var(--creme-2);box-shadow:var(--sombra);transition:transform .35s ease}
 .foto-card:hover{transform:translateY(-4px)}
 .foto-card img{height:100%;width:auto;display:block}
@@ -658,7 +664,7 @@ p{margin:0 0 1em}
   .capa-selo-topo .check{display:none}
   .capa-selo-topo::before{content:"";width:16px;height:1.5px;background:var(--vinho);flex-shrink:0} /* tracinho no lugar do ✓ */
   .capa-selo-topo .check{width:14px;height:14px} .capa-selo-topo .check svg{width:8px;height:8px}
-  .capa h1{font-size:1rem;line-height:1.12}
+  .capa h1{font-size:1.14rem;line-height:1.1}
   .capa h1 .h1-forte{text-transform:uppercase;letter-spacing:-.01em}
   .capa h1 .h1-linha{white-space:normal}
   .capa h1 em{white-space:normal;font-size:1.75rem;line-height:.98;margin-top:.14em}
@@ -667,7 +673,7 @@ p{margin:0 0 1em}
   .capa-numeros{display:flex;flex-direction:column;gap:5px;white-space:normal;font-size:.68rem;font-weight:700;margin:0 0 16px;padding-left:10px;border-left:2px solid var(--vinho);max-width:112px}
   .capa-numeros span{display:block;height:0;margin:0;font-size:0;overflow:hidden} /* o tracinho vira quebra de linha */
   .capa-botoes{gap:0}
-  .capa-botoes{width:110px;margin-top:14px}
+  .capa-botoes{width:104px;margin-top:34px}
   .capa-botoes .btn,.capa-botoes .btn-primario{flex:none;width:100%;justify-content:center;text-align:center;padding:11px 8px;font-size:.68rem;line-height:1.25;border-radius:9px}
   .capa-botoes .link-seta{display:none}
   .capa-foto{max-width:none;width:auto;margin:0 -22px 0 -6px;justify-self:stretch;align-self:end}
@@ -691,19 +697,25 @@ p{margin:0 0 1em}
   /* Destaques: os vídeos primeiro e o texto embaixo */
   .destaques-grade{grid-template-columns:1fr;gap:28px}
   .destaques-texto{margin-bottom:4px}
+  .palco-controles{display:none} /* sem setas e bolinhas: arrasta com o dedo e passa sozinho */
+  .card-marca{display:block;position:absolute;top:12px;left:12px;z-index:3;background:rgba(255,255,255,.92);color:var(--tinta);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
   .destaques-texto h2{font-size:1.7rem;margin-bottom:16px}
   .destaques-texto p{font-size:1rem}
 
   /* Nichos: três vídeos por vez */
   .nicho-trilho{grid-auto-columns:calc((100% - 24px) / 3);gap:12px}
-  .secao-cabeca .dica-deslize,.dica-deslize{display:block;margin:-14px 0 18px;font-size:.78rem;font-weight:600;color:var(--vinho)}
-  .nicho-setas{display:flex} .nicho-setas .palco-seta{width:34px;height:34px} .nicho-setas .palco-seta svg{width:16px;height:16px}
-  .filtros{-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)} /* esmaece no fim para mostrar que tem mais nichos */
+  .nicho-setas{display:none}
+  .filtros{flex-wrap:wrap;overflow:visible;margin:0 0 22px;padding:0;gap:8px} /* todos os nichos à vista para tocar direto */
+  .filtro{flex-shrink:1;padding:7px 11px;font-size:.72rem}
+  .nicho-mais{display:grid;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
+  .nicho-mais svg{width:16px;height:16px}
+  .nicho-mais[disabled]{opacity:0;pointer-events:none}
   .trabalho-marca{font-size:.56rem;padding:5px 8px}
   .filtro{font-size:.8rem}
 
   /* Fotos: cartões menores passando */
   .foto-card{height:300px;min-width:0} /* a foto aparece inteira, sem corte */
+  .fotos-seta{width:38px;height:38px} .fotos-seta svg{width:18px;height:18px} #fotos-anterior{left:8px} #fotos-proximo{right:8px}
   #fotos .secao-cabeca h2{font-size:1.72rem;white-space:normal;text-wrap:balance} /* título das fotos em duas linhas */
 
   /* Serviços: um cartão por linha, compacto */
@@ -752,7 +764,7 @@ p{margin:0 0 1em}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
   .js .revelar{opacity:1;transform:none}
   .faixa-trilho{animation:none;flex-wrap:wrap}
-  .fotos-trilho.andando{animation:none;width:auto;overflow-x:auto} .fotos-trilho.andando .fotos-grupo[aria-hidden]{display:none}
+  .fotos-trilho.andando .fotos-grupo[aria-hidden]{display:none}
   .depo-grupo[aria-hidden]{display:none}
   .marcas-trilho{animation:none;width:auto;justify-content:center;flex-wrap:wrap} .marcas-grupo{flex-wrap:wrap;justify-content:center;padding:0} .marcas-grupo[aria-hidden]{display:none} .marcas-faixa{-webkit-mask-image:none;mask-image:none}
 }
@@ -885,7 +897,6 @@ p{margin:0 0 1em}
         <p class="sobretitulo revelar">Nichos</p>
         <h2 id="titulo-trabalhos" class="revelar">Que tipo de <em>conteúdo</em> você busca hoje?</h2>
         <p class="revelar">Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.</p>
-        <p class="dica-deslize revelar">Deslize para o lado para ver mais nichos <span aria-hidden="true">→</span></p>
       </div>
       <!-- Os vídeos e os nichos vêm dos arrays TRABALHOS e NICHOS no script -->
       <div class="filtros revelar" id="filtros" role="group" aria-label="Escolher nicho"></div>
@@ -898,7 +909,10 @@ p{margin:0 0 1em}
           <button type="button" class="palco-seta" id="nicho-proximo" aria-label="Próximos vídeos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
       </div>
-      <div class="nicho-trilho" id="trabalhos-grade" aria-live="polite"></div>
+      <div class="nicho-carrossel">
+        <div class="nicho-trilho" id="trabalhos-grade" aria-live="polite"></div>
+        <button type="button" class="nicho-mais" id="nicho-mais" aria-label="Mais vídeos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -911,7 +925,11 @@ p{margin:0 0 1em}
       </div>
     </div>
     <!-- As fotos vêm do array FOTOS no script -->
-    <div class="fotos-faixa revelar"><div class="fotos-trilho" id="fotos-trilho"></div></div>
+    <div class="fotos-carrossel revelar">
+      <button type="button" class="palco-seta fotos-seta" id="fotos-anterior" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="fotos-faixa"><div class="fotos-trilho" id="fotos-trilho"></div></div>
+      <button type="button" class="palco-seta fotos-seta" id="fotos-proximo" aria-label="Próximas fotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
   </section>
 
   <!-- ======================= 5. COMO EU TE AJUDO ======================= -->
@@ -1184,11 +1202,11 @@ const FAIXA = [
 // video: arquivo .mp4 na pasta imagens | capa: imagem vertical 9:16 | link: post no Instagram
 // views: número que aparece com o olhinho, igual ao Instagram | titulo: descrição para leitores de tela
 const DESTAQUES = [
-  { video: 'imagens/destaque-1.mp4', capa: 'imagens/destaque-1-capa.jpg', link: 'https://www.instagram.com/p/DZX2uoKh4nt/',
+  { marca: 'Sterily', video: 'imagens/destaque-1.mp4', capa: 'imagens/destaque-1-capa.jpg', link: 'https://www.instagram.com/p/DZX2uoKh4nt/',
     views: '1,5 mi', titulo: 'Canjica cremosa com a esponja Magic Clean, da Sterily, 1,5 milhão de views' },
-  { video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
+  { marca: 'Wellhub', video: 'imagens/destaque-2.mp4', capa: 'imagens/destaque-2-capa.jpg', link: 'https://www.instagram.com/p/DceyrdbSQa7/',
     views: '28,5 mil', titulo: 'Tour pela academia para o Wellhub, 28,5 mil views' },
-  { video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
+  { marca: 'Brigadeiro saudável', video: 'imagens/destaque-3.mp4', capa: 'imagens/destaque-3-capa.jpg', link: 'https://www.instagram.com/p/DU_FdXPDTU3/',
     views: '23,2 mil', titulo: 'Receita de brigadeiro saudável, 23,2 mil views' }
 ];
 
@@ -1359,8 +1377,11 @@ function midia(capa, legenda, alt, extra = '') {
   if (FOTOS.length >= 4) {
     trilho.classList.add('andando');
     trilho.innerHTML = `<div class="fotos-grupo">${itens}</div><div class="fotos-grupo" aria-hidden="true">${itens.replace(/alt="[^"]*"/g, 'alt=""')}</div>`;
+    // passa sozinha devagar, com o dedo e com as setas, igual aos depoimentos
+    carrosselAndando($('.fotos-faixa'), trilho.querySelector('.fotos-grupo'), '.foto-card', $('#fotos-anterior'), $('#fotos-proximo'), 18);
   } else {
     trilho.innerHTML = `<div class="fotos-grupo container">${itens}</div>`;
+    document.querySelectorAll('.fotos-seta').forEach(b => b.hidden = true);
   }
 })();
 
@@ -1378,11 +1399,12 @@ function midia(capa, legenda, alt, extra = '') {
   const iconeMudo = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
   const iconeSom = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
   const iconePlay = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
-  let atual = 0, visivel = false, comSom = false;
+  let atual = 0, visivel = false, comSom = false, esperaAuto = 0;
 
   palco.innerHTML = DESTAQUES.map((d, i) => `
     <figure class="card-video" data-i="${i}">
       <video src="${esc(d.video)}" poster="${esc(d.capa)}" muted loop playsinline preload="none" aria-label="${esc(d.titulo)}"></video>
+      ${d.marca ? `<span class="card-marca">${esc(d.marca)}</span>` : ''}
       <span class="card-rotulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>${esc(d.views)}</span>
       <button type="button" class="card-som" aria-label="Ligar o som">${iconeMudo}</button>
       <button type="button" class="card-play" aria-label="Assistir">${iconePlay}</button>
@@ -1413,6 +1435,7 @@ function midia(capa, legenda, alt, extra = '') {
   }
 
   palco.addEventListener('click', (e) => {
+    esperaAuto = Date.now() + 15000; // a pessoa mexeu: espera antes de passar sozinho
     const card = e.target.closest('.card-video'); if (!card) return;
     const i = +card.dataset.i;
     if (i !== atual) { mostrar(i); return; }
@@ -1425,6 +1448,19 @@ function midia(capa, legenda, alt, extra = '') {
   $('#palco-anterior').addEventListener('click', () => mostrar(atual - 1));
   $('#palco-proximo').addEventListener('click', () => mostrar(atual + 1));
   pontos.addEventListener('click', (e) => { const p = e.target.closest('.palco-ponto'); if (p) mostrar(+p.dataset.i); });
+  // No celular: arrastar com o dedo para o lado troca o vídeo, e os vídeos passam sozinhos
+  const celular = window.matchMedia('(max-width:600px)');
+  let toqueX = null;
+  palco.addEventListener('touchstart', (e) => { toqueX = e.touches[0].clientX; }, { passive: true });
+  palco.addEventListener('touchend', (e) => {
+    if (toqueX === null) return;
+    const dx = e.changedTouches[0].clientX - toqueX;
+    toqueX = null;
+    if (Math.abs(dx) > 40) { mostrar(atual + (dx < 0 ? 1 : -1)); esperaAuto = Date.now() + 12000; }
+  });
+  setInterval(() => {
+    if (celular.matches && visivel && !comSom && !reduzMovimento && Date.now() > esperaAuto) mostrar(atual + 1);
+  }, 6000);
 
   // Só toca quando a seção aparece na tela (economiza internet no celular)
   if ('IntersectionObserver' in window) {
@@ -1471,6 +1507,7 @@ function midia(capa, legenda, alt, extra = '') {
     const fim = trilho.scrollWidth - trilho.clientWidth - 2;
     $('#nicho-anterior').disabled = trilho.scrollLeft <= 2;
     $('#nicho-proximo').disabled = trilho.scrollLeft >= fim;
+    $('#nicho-mais').disabled = trilho.scrollLeft >= fim;
   }
 
   filtros.innerHTML = NICHOS.map(n =>
@@ -1487,6 +1524,7 @@ function midia(capa, legenda, alt, extra = '') {
   const passo = () => { const c = trilho.querySelector('.trabalho'); return c ? (c.offsetWidth + 20) * 2 : 300; };
   $('#nicho-anterior').addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
   $('#nicho-proximo').addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
+  $('#nicho-mais').addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: reduzMovimento ? 'auto' : 'smooth' }));
   trilho.addEventListener('scroll', atualizarSetas, { passive: true });
   window.addEventListener('resize', atualizarSetas);
 
@@ -1624,8 +1662,12 @@ const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : 
   const faixa = $('#depoimentos-trilho');
   faixa.innerHTML = `<div class="depoimentos"><div class="depo-grupo">${cards}</div><div class="depo-grupo" aria-hidden="true">${copia}</div></div>`;
 
-  // Passa sozinho bem devagar; para com o mouse em cima, no toque e por um tempo depois das setas
-  const grupo = faixa.querySelector('.depo-grupo');
+  carrosselAndando(faixa, faixa.querySelector('.depo-grupo'), '.depoimento', $('#depo-anterior'), $('#depo-proximo'), 20);
+})();
+
+// Carrossel que passa sozinho bem devagar, com setas e com o dedo (depoimentos e fotos)
+// Para com o mouse em cima, no toque e por um tempo depois das setas; o grupo vem repetido para o giro não ter emenda
+function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao) {
   const VELOCIDADE = 30; // pixels por segundo
   let pos = 0, parado = false, esperaAte = 0, antes = 0;
   const volta = () => grupo.offsetWidth; // largura de um giro completo
@@ -1648,7 +1690,7 @@ const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : 
   faixa.addEventListener('touchstart', () => segura(4000), { passive: true });
   faixa.addEventListener('focusin', () => segura(6000));
 
-  const passo = () => { const c = faixa.querySelector('.depoimento'); return c ? c.offsetWidth + 20 : 300; };
+  const passo = () => { const c = faixa.querySelector(seletorItem); return c ? c.offsetWidth + vao : 300; };
   function mover(sentido) {
     segura(5000);
     if (sentido < 0 && faixa.scrollLeft < passo()) faixa.scrollLeft += volta(); // dá a volta sem emenda
@@ -1656,9 +1698,9 @@ const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : 
     pos = faixa.scrollLeft;
     faixa.scrollBy({ left: sentido * passo(), behavior: reduzMovimento ? 'auto' : 'smooth' });
   }
-  $('#depo-anterior').addEventListener('click', () => mover(-1));
-  $('#depo-proximo').addEventListener('click', () => mover(1));
-})();
+  if (anterior) anterior.addEventListener('click', () => mover(-1));
+  if (proximo) proximo.addEventListener('click', () => mover(1));
+}
 
 // Contatos e rodapé
 (function contatos() {
@@ -1908,7 +1950,6 @@ const EN = {
   "conteúdo": "content",
   "você busca hoje?": "are you looking for today?",
   "Navegue pelos nichos e descubra como cada marca ganhou vida nos meus vídeos.": "Browse the niches and see how each brand came to life in my videos.",
-  "Deslize para o lado para ver mais nichos": "Swipe sideways to see more niches",
   "UGC Creator · Curitiba/PR": "UGC Creator · Curitiba, Brazil",
   "Casa & Decor": "Home & Decor",
   "Gastronomia": "Food",
@@ -2038,6 +2079,10 @@ const EN = {
   "Escolher nicho": "Choose a niche",
   "Vídeos anteriores": "Previous videos",
   "Próximos vídeos": "Next videos",
+  "Mais vídeos": "More videos",
+  "Fotos anteriores": "Previous photos",
+  "Próximas fotos": "Next photos",
+  "Brigadeiro saudável": "Healthy brigadeiro",
   "Depoimento anterior": "Previous testimonial",
   "Próximo depoimento": "Next testimonial",
   "Vídeo": "Video",
