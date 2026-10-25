@@ -132,13 +132,13 @@ p{margin:0 0 1em}
 
 /* Faixa de Black Friday acima do menu: parada, só a frase do meio troca */
 .aviso{position:fixed;top:0;left:0;right:0;height:var(--aviso);z-index:101;background:var(--vinho);color:#fff;font-size:.86rem;line-height:1.2}
-.aviso-linha{display:flex;align-items:center;justify-content:center;gap:14px;height:100%;max-width:1400px}
+.aviso-linha{display:flex;align-items:center;justify-content:center;gap:12px;height:100%;max-width:1400px}
 .aviso-selo{flex-shrink:0;background:var(--destaque);color:var(--vinho);font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:99px}
 .aviso-contagem{font-weight:700;white-space:nowrap}
 .aviso-ponto{opacity:.45}
-.aviso-frase{display:inline-block;color:rgba(255,255,255,.82);white-space:nowrap;transition:opacity .35s ease} /* a largura vem do script: a da maior frase */
+.aviso-frase{display:inline-block;text-align:center;color:rgba(255,255,255,.82);white-space:nowrap;transition:opacity .35s ease} /* a largura vem do script: a da maior frase */
 .aviso-frase.trocando{opacity:0}
-.aviso-link{margin-left:14px;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1px solid rgba(241,214,196,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
+.aviso-link{margin-left:0;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1px solid rgba(241,214,196,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
 .aviso-link:hover{color:var(--destaque);border-color:var(--destaque)}
 .aviso-link::after{content:"";position:absolute;inset:0} /* clicar em qualquer parte da faixa leva pro contato */
 .aviso:hover .aviso-link{color:var(--destaque);border-color:var(--destaque)}
@@ -154,9 +154,9 @@ p{margin:0 0 1em}
   :root{--aviso:42px}
   .aviso{font-size:.72rem}
   .aviso-linha{flex-wrap:nowrap;gap:9px}
-  .aviso-ponto,.aviso-frase,.aviso-link-extra{display:none}
+  .aviso-ponto,.aviso-frase{display:none}
 }
-@media (max-width:370px){ .aviso{font-size:.66rem} .aviso-link-extra{display:none} } /* celular bem estreito: só "reservar →" */
+@media (max-width:370px){ .aviso{font-size:.66rem} .aviso-linha{gap:7px} }
 .topo nav{flex:1}
 .marca-nome{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:var(--vinho);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .marca-nome em{font-style:normal;color:var(--vinho)}
@@ -858,7 +858,7 @@ p{margin:0 0 1em}
     <strong class="aviso-contagem" id="aviso-contagem">Black Friday chegando</strong>
     <span class="aviso-ponto" aria-hidden="true">·</span>
     <span class="aviso-frase" id="aviso-frase">vídeos que vendem no dia da oferta</span>
-    <a class="aviso-link" href="#contato">reservar <span class="aviso-link-extra">agenda</span> <span aria-hidden="true">→</span></a>
+    <a class="aviso-link" href="#contato">reservar <span class="aviso-link-extra">sua agenda</span> <span aria-hidden="true">→</span></a>
   </div>
 </div>
 
@@ -2096,7 +2096,7 @@ const EN = {
   "roteiros pensados pra converter": "scripts built to convert",
   "agenda de novembro quase fechada": "November calendar almost full",
   "reservar": "book",
-  "agenda": "a slot",
+  "sua agenda": "your slot",
   // Topo e menu
   "Pular para o conteúdo": "Skip to content",
   "Sobre": "About",
