@@ -681,7 +681,8 @@ p{margin:0 0 1em}
   .rede{display:none}
 
   /* Sobre mim: foto alta à esquerda e texto pequeno à direita */
-  #sobre{padding-top:48px}
+  #sobre{padding-top:48px;padding-bottom:20px}
+  #destaques{padding-top:24px} /* destaques mais perto das marcas */
   .sobre-grade{grid-template-columns:46% 1fr;gap:0 10px;align-items:start}
   .sobre-texto{display:contents} /* "Sobre mim" e a linha ficam numa faixa acima da foto */
   .sobre-texto .sobre-rotulo{grid-column:2;grid-row:1;margin:0 0 12px;font-size:1.2rem;line-height:1.2}
@@ -718,7 +719,7 @@ p{margin:0 0 1em}
   .filtro[data-filtro="casa"]{order:1} .filtro[data-filtro="gastronomia"]{order:2} .filtro[data-filtro="cabelo"]{order:3}
   .filtro[data-filtro="beleza"]{order:5} .filtro[data-filtro="lifestyle"]{order:6} .filtro[data-filtro="moda"]{order:7}
   .filtro[data-filtro="ecommerce"]{order:9} .filtro[data-filtro="acessorios"]{order:10} .filtro[data-filtro="casal"]{order:11} .filtro[data-filtro="estudo"]{order:12}
-  .trabalho-link .play{background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* rodinha transparente */
+  .trabalho-link .play{background:rgba(255,255,255,.28);border:0;box-shadow:none;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)} /* rodinha transparente */
   .trabalho-link .play svg{fill:var(--vinho);color:var(--vinho)} /* triângulo vinho no meio */
   .play.play-p{width:42px;height:42px} .play.play-p svg{width:16px;height:16px}
   .nicho-mais{display:none;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.8);color:var(--vinho);box-shadow:0 6px 16px -8px rgba(42,26,24,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer;transition:opacity .25s}
@@ -737,7 +738,7 @@ p{margin:0 0 1em}
   .serv-texto > *{order:1}
   .servicos-grade{order:2;margin-top:28px}
   .serv-texto > p.serv-chamada{order:3;margin-top:28px}
-  .serv-texto .btn{order:4;justify-self:start;margin-top:20px}
+  .serv-texto .btn{order:4;justify-self:center;margin-top:20px} /* Bora conversar no meio */
   .servicos-grade{grid-template-columns:1fr;gap:14px;padding-top:0}
   .servico{text-align:left;padding:16px 18px}
   .secao-vinho .servico h3{position:static;transform:none;display:inline-block;margin:0 0 8px;font-size:.66rem;padding:6px 12px}
@@ -1695,16 +1696,28 @@ const sufixoIdioma = (suf) => (idioma === 'en' && suf.trim() === 'mil') ? 'K' : 
 // Para com o mouse em cima, no toque e por um tempo depois das setas; o grupo vem repetido para o giro não ter emenda
 function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, direcao = 1) { // direcao -1 passa para o outro lado
   const VELOCIDADE = 30; // pixels por segundo
-  let pos = 0, parado = false, esperaAte = 0, antes = 0;
+  let pos = 0, parado = false, esperaAte = 0, antes = 0, animandoAte = 0;
   const volta = () => grupo.offsetWidth; // largura de um giro completo
+  // Infinito: uma terceira cópia e a faixa sempre no meio, então dá para arrastar para os dois lados sem chegar no fim
+  const copia = grupo.parentNode.lastElementChild.cloneNode(true);
+  copia.setAttribute('aria-hidden', 'true');
+  grupo.parentNode.appendChild(copia);
+  function noMeio() {
+    const v = volta();
+    if (!v || performance.now() < animandoAte) return;
+    if (faixa.scrollLeft < v * .5) faixa.scrollLeft += v;
+    else if (faixa.scrollLeft > v * 2) faixa.scrollLeft -= v;
+  }
+  faixa.addEventListener('scroll', noMeio, { passive: true });
+  requestAnimationFrame(() => { faixa.scrollLeft = pos = volta(); });
   function andar(agora) {
     const dt = antes ? Math.min(agora - antes, 100) : 0;
     antes = agora;
     if (Math.abs(faixa.scrollLeft - pos) > 2) pos = faixa.scrollLeft; // a pessoa arrastou
     if (!parado && agora > esperaAte) {
       pos += direcao * VELOCIDADE * dt / 1000;
-      if (pos >= volta()) pos -= volta();
-      if (pos < 0) pos += volta();
+      if (pos >= volta() * 2) pos -= volta();
+      if (pos < volta()) pos += volta();
       faixa.scrollLeft = pos;
     }
     requestAnimationFrame(andar);
@@ -1720,9 +1733,10 @@ function carrosselAndando(faixa, grupo, seletorItem, anterior, proximo, vao, dir
   const passo = () => { const c = faixa.querySelector(seletorItem); return c ? c.offsetWidth + vao : 300; };
   function mover(sentido) {
     segura(5000);
-    if (sentido < 0 && faixa.scrollLeft < passo()) faixa.scrollLeft += volta(); // dá a volta sem emenda
-    if (sentido > 0 && faixa.scrollLeft + passo() > volta() * 2 - faixa.clientWidth) faixa.scrollLeft -= volta();
+    if (faixa.scrollLeft < volta()) faixa.scrollLeft += volta(); // dá a volta sem emenda
+    else if (faixa.scrollLeft >= volta() * 2) faixa.scrollLeft -= volta();
     pos = faixa.scrollLeft;
+    animandoAte = performance.now() + 800;
     faixa.scrollBy({ left: sentido * passo(), behavior: reduzMovimento ? 'auto' : 'smooth' });
   }
   if (anterior) anterior.addEventListener('click', () => mover(-1));
