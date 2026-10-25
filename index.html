@@ -249,9 +249,9 @@ p{margin:0 0 1em}
 .divisor{border:0;height:1px;margin:48px auto 0;background:linear-gradient(90deg,transparent,rgba(140,29,36,.28) 20%,rgba(140,29,36,.28) 80%,transparent)}
 .marcas-titulo{display:flex;align-items:center;justify-content:center;gap:18px;font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-2);text-align:center;margin:0 0 34px}
 .marcas-titulo::before,.marcas-titulo::after{content:none} /* sem os tracinhos dos lados */
-.marcas-faixa{overflow:hidden} /* sem esmaecer nas pontas, igual aos depoimentos */
-.marcas-trilho{display:flex;width:max-content;padding:10px 0;animation:desliza 110s linear infinite}
-.marcas-faixa:hover .marcas-trilho{animation-play-state:paused}
+.marcas-faixa{overflow-x:auto;scrollbar-width:none} /* passa sozinha e dá para puxar com o dedo */
+.marcas-faixa::-webkit-scrollbar{display:none}
+.marcas-trilho{display:flex;width:max-content;padding:10px 0}
 .marcas-grupo{display:flex;gap:22px;padding-right:22px}
 .marca-circ{width:96px;height:96px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 10px 24px -14px rgba(42,26,24,.35);transition:transform .3s ease} /* só a logo, sem rodinha branca em volta */
 .marca-circ:hover{transform:translateY(-4px)}
@@ -1401,6 +1401,7 @@ function midia(capa, legenda, alt, extra = '') {
   const circulo = (m) => `<div class="marca-circ"><img src="imagens/${esc(m.logo)}?v=${VERSAO_LOGOS}" alt="${esc(m.nome || 'Marca parceira')}" width="96" height="96" loading="lazy" decoding="async"></div>`;
   const itens = MARCAS_PARCEIRAS.map(circulo).join('');
   $('#marcas-trilho').innerHTML = `<div class="marcas-grupo">${itens}</div><div class="marcas-grupo" aria-hidden="true">${itens.replace(/alt="[^"]*"/g, 'alt=""')}</div>`;
+  carrosselAndando($('.marcas-faixa'), $('#marcas-trilho .marcas-grupo'), '.marca-circ', null, null, 22); // sem setas: passa sozinha e a pessoa pode puxar
 })();
 
 // Destaques: carrossel com o vídeo do centro tocando sem som (o som liga no botão)
