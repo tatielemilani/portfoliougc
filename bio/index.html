@@ -7,7 +7,7 @@
 <meta name="description" content="UGC creator e influenciadora em Curitiba/PR. Portfólio, parcerias, cupons e o que eu indico.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter+Tight:wght@800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter+Tight:wght@800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     --creme: #f4eee6;
@@ -67,14 +67,20 @@
     display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
     letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto);
   }
+  .rotulo-hero {
+    display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--nude-texto);
+  }
+  .rotulo-hero::before { content: ""; width: 28px; height: 1.5px; background: currentColor; }
   h1 {
-    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(40px, 8.5vw, 64px);
-    line-height: 1; letter-spacing: -.045em; word-spacing: .08em; margin: 14px 0 20px;
+    font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(44px, 10vw, 76px);
+    line-height: .98; letter-spacing: -.05em; word-spacing: .08em; margin: 16px 0 18px;
   }
   h1 em {
-    font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 500;
-    letter-spacing: -.03em; color: var(--vinho);
+    font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: 1.06em; letter-spacing: -.04em; color: var(--vinho);
   }
+  .sub { color: var(--tinta-2); font-size: 17px; max-width: 40ch; }
 
   .redes { display: flex; gap: 10px; margin: 20px 0 24px; }
   .redes a {
@@ -191,8 +197,9 @@
     </div>
 
     <div>
-      <span class="chip">UGC Creator &amp; Influencer</span>
+      <span class="rotulo-hero">UGC Creator &amp; Influencer</span>
       <h1>Conectando marcas ao <em>coração das pessoas&nbsp;♡</em></h1>
+      <p class="sub">Vídeos UGC e publis que fazem a sua marca ser lembrada e escolhida.</p>
 
       <nav class="redes" aria-label="Minhas redes">
         <a href="https://www.instagram.com/tatielemilani" target="_blank" rel="noopener" aria-label="Instagram">
