@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tatiele Milani · links</title>
+<meta name="description" content="UGC creator e influenciadora em Curitiba/PR. Portfólio, parcerias, cupons e o que eu indico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --creme: #f4eee6;
+    --creme-2: #ebe3d8;
+    --papel: #ffffff;
+    --tinta: #2a1a18;
+    --tinta-2: #5e4b47;
+    --vinho: #8c1d24;
+    --vinho-escuro: #6c141a;
+    --destaque: #f1d6c4;
+    --nude: #d9a79c;
+    --nude-texto: #a14a45;
+    --linha: rgba(42,26,24,.12);
+    --sombra: 0 1px 2px rgba(42,26,24,.04), 0 12px 32px -12px rgba(42,26,24,.14);
+    --raio: 18px;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--creme);
+    color: var(--tinta);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* topo */
+  .topo { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--vinho); }
+  .btn-topo {
+    background: var(--vinho); color: #fff; font-weight: 600; font-size: 14px;
+    padding: 10px 18px; border-radius: 999px; transition: background .2s;
+  }
+  .btn-topo:hover { background: var(--vinho-escuro); }
+
+  /* hero */
+  .hero { display: grid; gap: 40px; padding: 12px 0 48px; }
+  @media (min-width: 860px) {
+    .hero { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 64px; padding-top: 32px; }
+  }
+  .foto-box { position: relative; max-width: 420px; margin: 0 auto; width: 100%; }
+  .foto {
+    border-radius: 28px; overflow: hidden; aspect-ratio: 4/5;
+    background: var(--destaque); box-shadow: var(--sombra);
+  }
+  .foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .selo {
+    position: absolute; top: -18px; right: -6px; width: 104px; height: 104px;
+    animation: gira 18s linear infinite;
+  }
+  .selo-centro {
+    position: absolute; top: -18px; right: -6px; width: 104px; height: 104px;
+    display: grid; place-items: center; font-size: 26px; color: var(--vinho);
+  }
+  @keyframes gira { to { transform: rotate(360deg); } }
+  .nome-tag {
+    position: absolute; left: -8px; bottom: 28px;
+    background: var(--vinho); color: #fff; border-radius: 16px;
+    padding: 12px 20px 14px; box-shadow: var(--sombra); transform: rotate(-3deg);
+  }
+  .nome-tag strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1; }
+  .nome-tag strong em { font-style: italic; }
+  .nome-tag span {
+    display: inline-block; margin-top: 6px; background: var(--destaque); color: var(--vinho-escuro);
+    font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto);
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 7vw, 56px);
+    line-height: 1.05; letter-spacing: -.01em; margin: 12px 0 16px;
+  }
+  h1 em { font-style: italic; color: var(--vinho); }
+  .intro { color: var(--tinta-2); max-width: 46ch; }
+
+  .redes { display: flex; gap: 10px; margin: 20px 0 24px; }
+  .redes a {
+    width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--papel); border: 1px solid var(--linha); color: var(--vinho);
+    transition: transform .2s, background .2s;
+  }
+  .redes a:hover { transform: translateY(-2px); background: var(--destaque); }
+  .redes svg { width: 19px; height: 19px; }
+
+  .botoes { display: grid; gap: 12px; }
+  .botao {
+    display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+    border-radius: var(--raio); transition: transform .2s, box-shadow .2s;
+  }
+  .botao:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
+  .botao .ic {
+    width: 40px; height: 40px; flex: none; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(255,255,255,.55);
+  }
+  .botao .ic svg { width: 20px; height: 20px; }
+  .botao .txt { flex: 1; min-width: 0; }
+  .botao strong { display: block; font-weight: 700; font-size: 15px; }
+  .botao small { display: block; font-size: 13px; opacity: .75; }
+  .botao .seta { font-size: 18px; transition: transform .2s; }
+  .botao:hover .seta { transform: translateX(4px); }
+  .b1 { background: var(--vinho); color: #fff; }
+  .b1 .ic { background: rgba(255,255,255,.14); }
+  .b2 { background: var(--destaque); color: var(--vinho-escuro); }
+  .b3 { background: var(--nude); color: var(--tinta); }
+  .b4 { background: var(--papel); border: 1px solid var(--linha); }
+
+  /* números */
+  .numeros {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha);
+    padding: 24px 0; text-align: center;
+  }
+  .numeros b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 6vw, 44px); color: var(--vinho); line-height: 1; }
+  .numeros span { font-size: 13px; color: var(--tinta-2); }
+
+  /* marcas */
+  .secao { padding: 56px 0 0; }
+  .secao-titulo { text-align: center; margin-bottom: 24px; }
+  .secao-titulo h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin-top: 6px; }
+  .secao-titulo h2 em { font-style: italic; color: var(--vinho); }
+  .secao-titulo p { color: var(--tinta-2); margin-top: 8px; }
+
+  .faixa { overflow: hidden; background: var(--vinho); color: var(--creme); padding: 16px 0; transform: rotate(-1.2deg); margin: 8px -16px 0; }
+  .faixa-trilho { display: flex; gap: 36px; width: max-content; animation: corre 40s linear infinite; }
+  .faixa-trilho span { font-family: var(--serif); font-size: 22px; white-space: nowrap; }
+  .faixa-trilho i { font-style: normal; color: var(--nude); }
+  @keyframes corre { to { transform: translateX(-50%); } }
+
+  /* cupons */
+  .grade { display: grid; gap: 16px; }
+  @media (min-width: 700px) { .grade { grid-template-columns: repeat(2, 1fr); } }
+  .cupom {
+    background: var(--papel); border-radius: var(--raio); padding: 18px; box-shadow: var(--sombra);
+    display: flex; gap: 16px; align-items: center;
+  }
+  .cupom img { width: 76px; height: 76px; border-radius: 14px; object-fit: cover; flex: none; background: var(--creme-2); }
+  .cupom .info { flex: 1; min-width: 0; }
+  .cupom .marca { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--nude-texto); }
+  .cupom h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.2; margin: 2px 0 10px; }
+  .codigo {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    border: 1.5px dashed var(--nude); border-radius: 10px; padding: 6px 6px 6px 12px; background: var(--creme);
+  }
+  .codigo code { font-family: ui-monospace, Consolas, monospace; font-weight: 700; font-size: 14px; color: var(--vinho); overflow-wrap: anywhere; }
+  .codigo button {
+    border: 0; background: var(--vinho); color: #fff; font: 600 13px var(--sans);
+    padding: 7px 12px; border-radius: 8px; cursor: pointer; flex: none;
+  }
+  .codigo button.ok { background: #3c7a4a; }
+  .ir { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--vinho); }
+  .ir:hover { text-decoration: underline; }
+
+  /* vitrine */
+  .vitrine {
+    background: var(--destaque); border-radius: 28px; padding: 32px 20px; display: grid; gap: 24px; align-items: center;
+  }
+  @media (min-width: 760px) { .vitrine { grid-template-columns: 1fr 1fr; padding: 40px; } }
+  .vitrine h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; margin: 6px 0 10px; }
+  .vitrine h2 em { font-style: italic; color: var(--vinho); }
+  .vitrine p { color: var(--tinta-2); margin-bottom: 18px; }
+  .produto {
+    background: var(--papel); border-radius: var(--raio); padding: 14px; display: flex; gap: 14px; align-items: center;
+    box-shadow: var(--sombra); transition: transform .2s;
+  }
+  .produto:hover { transform: translateY(-2px); }
+  .produto img { width: 64px; height: 64px; object-fit: cover; border-radius: 12px; flex: none; }
+  .produto strong { display: block; font-size: 15px; }
+  .produto small { color: var(--tinta-2); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--vinho); color: #fff;
+    font-weight: 600; padding: 12px 22px; border-radius: 999px; transition: background .2s;
+  }
+  .btn:hover { background: var(--vinho-escuro); }
+  .btn.claro { background: var(--papel); color: var(--vinho); }
+  .btn.claro:hover { background: var(--destaque); }
+
+  /* contato */
+  .contato {
+    margin: 56px 0 0; background: var(--vinho); color: #fff; border-radius: 28px;
+    padding: 40px 20px; text-align: center;
+  }
+  .contato h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 8px 0 12px; }
+  .contato h2 em { font-style: italic; color: var(--destaque); }
+  .contato p { opacity: .85; max-width: 44ch; margin: 0 auto 24px; }
+  .contato .chip { color: var(--destaque); }
+  .contato .acoes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+  footer { text-align: center; font-size: 13px; color: var(--tinta-2); padding: 32px 0 40px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .selo, .faixa-trilho { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topo">
+    <a class="logo" href="../">Tatiele Milani</a>
+    <a class="btn-topo" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">Bora conversar</a>
+  </header>
+
+  <section class="hero">
+    <div class="foto-box">
+      <div class="foto">
+        <img src="../imagens/tatiele-capa.webp" alt="Tatiele Milani sorrindo">
+      </div>
+      <svg class="selo" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="58" fill="#f1d6c4"/>
+        <defs><path id="circulo" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
+        <text font-family="Plus Jakarta Sans, sans-serif" font-size="8.6" font-weight="700" letter-spacing="1.1" fill="#8c1d24">
+          <textPath href="#circulo" textLength="262" lengthAdjust="spacing">CONECTANDO MARCAS • AO CORAÇÃO DAS PESSOAS •</textPath>
+        </text>
+      </svg>
+      <div class="selo-centro" aria-hidden="true">♡</div>
+      <div class="nome-tag">
+        <strong>Oi, eu sou a <em>Tati</em></strong>
+        <span>UGC creator em Curitiba/PR</span>
+      </div>
+    </div>
+
+    <div>
+      <span class="chip">UGC Creator &amp; Influencer</span>
+      <h1>Conteúdo que parece <em>recomendação de amiga</em> e vende como anúncio.</h1>
+      <p class="intro">Minha rotina de beleza, moda, lifestyle e gastronomia vira conteúdo que conecta de verdade com quem assiste.</p>
+
+      <nav class="redes" aria-label="Minhas redes">
+        <a href="https://www.instagram.com/tatielemilani" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@tatielemilani" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@tatielemilanii" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg>
+        </a>
+        <a href="mailto:ugctatielemilani@gmail.com" aria-label="E-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+      </nav>
+
+      <div class="botoes">
+        <a class="botao b1" href="../" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></span>
+          <span class="txt"><strong>Meu portfólio UGC</strong><small>vídeos que criei pra marcas</small></span>
+          <span class="seta">→</span>
+        </a>
+        <a class="botao b2" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg></span>
+          <span class="txt"><strong>Parcerias UGC e publis</strong><small>fala comigo no WhatsApp</small></span>
+          <span class="seta">→</span>
+        </a>
+        <a class="botao b3" href="#cupons">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v14" stroke-dasharray="2 2"/></svg></span>
+          <span class="txt"><strong>Meus cupons</strong><small>desconto nas marcas que eu uso</small></span>
+          <span class="seta">↓</span>
+        </a>
+        <a class="botao b4" href="mailto:ugctatielemilani@gmail.com">
+          <span class="ic" style="background:var(--creme)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="txt"><strong>Mandar um e-mail</strong><small>ugctatielemilani@gmail.com</small></span>
+          <span class="seta">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="numeros" aria-label="Números">
+    <div><b>+50</b><span>vídeos criados</span></div>
+    <div><b>+40</b><span>marcas parceiras</span></div>
+    <div><b>+1,5M</b><span>views num vídeo só</span></div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-titulo">
+      <span class="chip">marcas com quem já trabalhei</span>
+    </div>
+    <div class="faixa" aria-label="Shopee, L'Oréal Paris, Natura, Coca-Cola, Mercado Livre, Magalu, Pantene, L'Occitane au Brésil, Saint Germain, Vitao, Downy, 3 Corações, Dr. Oetker, Monange, Maria Margarida">
+      <div class="faixa-trilho" aria-hidden="true">
+        <span>Shopee</span><i>♡</i><span>L'Oréal Paris</span><i>♡</i><span>Natura</span><i>♡</i><span>Coca-Cola</span><i>♡</i><span>Mercado Livre</span><i>♡</i><span>Magalu</span><i>♡</i><span>Pantene</span><i>♡</i><span>L'Occitane au Brésil</span><i>♡</i><span>Saint Germain</span><i>♡</i><span>Vitao</span><i>♡</i><span>Downy</span><i>♡</i><span>3 Corações</span><i>♡</i><span>Dr. Oetker</span><i>♡</i><span>Monange</span><i>♡</i><span>Maria Margarida</span><i>♡</i>
+        <span>Shopee</span><i>♡</i><span>L'Oréal Paris</span><i>♡</i><span>Natura</span><i>♡</i><span>Coca-Cola</span><i>♡</i><span>Mercado Livre</span><i>♡</i><span>Magalu</span><i>♡</i><span>Pantene</span><i>♡</i><span>L'Occitane au Brésil</span><i>♡</i><span>Saint Germain</span><i>♡</i><span>Vitao</span><i>♡</i><span>Downy</span><i>♡</i><span>3 Corações</span><i>♡</i><span>Dr. Oetker</span><i>♡</i><span>Monange</span><i>♡</i><span>Maria Margarida</span><i>♡</i>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="cupons">
+    <div class="secao-titulo">
+      <span class="chip">cupons</span>
+      <h2>Meus <em>cupons</em> de desconto</h2>
+      <p>Copia o código e usa na finalização da compra, no site da marca.</p>
+    </div>
+    <div class="grade">
+      <article class="cupom">
+        <img src="../imagens/bio/relogio-saint-germain.jpg" alt="Relógio Saint Germain">
+        <div class="info">
+          <span class="marca">Saint Germain</span>
+          <h3>Relógios</h3>
+          <div class="codigo"><code>A-TATIELEMISGPA</code><button type="button" data-copiar="A-TATIELEMISGPA">copiar</button></div>
+          <a class="ir" href="https://links.parceirando.com.br/tatielemilani/1649" target="_blank" rel="noopener">ir pro site →</a>
+        </div>
+      </article>
+      <article class="cupom">
+        <img src="../imagens/bio/fixador-maria-margarida.jpg" alt="Fixador Maria Margarida">
+        <div class="info">
+          <span class="marca">Maria Margarida</span>
+          <h3>Fixador de maquiagem</h3>
+          <div class="codigo"><code>TATIELEMILANI</code><button type="button" data-copiar="TATIELEMILANI">copiar</button></div>
+          <a class="ir" href="https://www.mariamargarida.com.br/fixador-ate-embaixo-da-agua?variation=26836806&amp;utm_source=flipnet&amp;utm_campaign=tatielemilani" target="_blank" rel="noopener">ir pro site →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="vitrine">
+      <div>
+        <span class="chip">vitrine da Tati</span>
+        <h2>Coisas que eu <em>indico</em></h2>
+        <p>Produtos que eu uso de verdade e recomendo, num lugar só.</p>
+        <a class="btn" href="https://www.magazinevoce.com.br/magazinetatielemilani/" target="_blank" rel="noopener">ver minha lojinha Magalu →</a>
+      </div>
+      <a class="produto" href="https://www.magazinevoce.com.br/magazinetatielemilani/sanduicheira-e-grill-hq-750w-antiaderente-inox-hq-sg001-127v/p/gk5h0hadg5/ep/gset/" target="_blank" rel="noopener">
+        <img src="../imagens/bio/sanduicheira-magalu.jpg" alt="Sanduicheira Grill">
+        <span><strong>Sanduicheira e Grill HQ</strong><small>no Magalu · ver produto →</small></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="contato">
+    <span class="chip">para marcas</span>
+    <h2>Vamos criar algo <em>incrível</em> juntos?</h2>
+    <p>UGC, publi post, clips e TikTok Shop. Me conta da sua marca que eu respondo em até 24 horas úteis.</p>
+    <div class="acoes">
+      <a class="btn claro" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">chamar no WhatsApp</a>
+      <a class="btn claro" href="../" target="_blank" rel="noopener">ver portfólio</a>
+    </div>
+  </section>
+
+  <footer>Tatiele Milani · Curitiba/PR · feito com ♡</footer>
+</div>
+
+<script>
+  document.querySelectorAll('[data-copiar]').forEach(function (botao) {
+    botao.addEventListener('click', function () {
+      var codigo = botao.getAttribute('data-copiar');
+      var pronto = function () {
+        botao.textContent = 'copiado!';
+        botao.classList.add('ok');
+        setTimeout(function () { botao.textContent = 'copiar'; botao.classList.remove('ok'); }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(codigo).then(pronto, function () { copiaAntiga(codigo); pronto(); });
+      } else {
+        copiaAntiga(codigo); pronto();
+      }
+    });
+  });
+  function copiaAntiga(texto) {
+    var campo = document.createElement('textarea');
+    campo.value = texto;
+    campo.style.position = 'fixed';
+    campo.style.opacity = '0';
+    document.body.appendChild(campo);
+    campo.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(campo);
+  }
+</script>
+</body>
+</html>
