@@ -488,7 +488,8 @@ p{margin:0 0 1em}
 .depo-cabeca h3{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.4rem,5.5vw,4.25rem)}
 .depo-cabeca h3 em{font-family:var(--italico);font-weight:600;letter-spacing:-.02em;color:var(--vinho)}
 .depo-cabeca > p{max-width:300px;font-size:.92rem;color:var(--tinta-2);margin:0}
-.depo-carrossel{position:relative;margin-top:28px}
+.depo-carrossel{position:relative;margin:28px calc(50% - 50vw) 0} /* de ponta a ponta da tela, igual às fotos */
+#numeros{overflow-x:clip} /* a faixa larga não cria rolagem para o lado */
 .depo-faixa{overflow-x:auto;scrollbar-width:none} /* sem esmaecer nas pontas: os cards ficam sólidos na frente do sombreado */
 .depo-faixa::-webkit-scrollbar{display:none}
 .depoimentos{display:flex;width:max-content;padding:40px 0 18px}
