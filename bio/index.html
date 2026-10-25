@@ -83,6 +83,7 @@
     letter-spacing: .18em; text-transform: uppercase; color: var(--nude-texto);
   }
   .rotulo-hero::before { content: ""; width: 28px; height: 1.5px; background: currentColor; }
+  .rotulo-hero.sem-traco::before { display: none; }
   h1 {
     font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(34px, 8.6vw, 52px);
     line-height: .98; letter-spacing: -.05em; word-spacing: .08em; margin: 12px 0 24px;
@@ -112,6 +113,8 @@
   .b1 .ic { background: rgba(255,255,255,.14); }
   .b3 { background: var(--nude); color: var(--tinta); }
   .b4 { background: var(--papel); border: 1px solid var(--linha); }
+  .b2 { background: var(--destaque); color: var(--vinho-escuro); }
+  @media (min-width: 860px) { .so-celular { display: none; } }
 
   .secao { padding: 56px 0 0; }
   #cupons { padding-top: 16px; }
@@ -162,8 +165,6 @@
     font-weight: 600; padding: 12px 22px; border-radius: 999px; transition: background .2s;
   }
   .btn:hover { background: var(--vinho-escuro); }
-  .btn.claro { background: var(--papel); color: var(--vinho); }
-  .btn.claro:hover { background: var(--destaque); }
 
   /* contato */
   .contato {
@@ -173,7 +174,16 @@
   .contato .titulo em { color: var(--destaque); }
   .contato p { opacity: .85; max-width: 44ch; margin: 0 auto 24px; }
   .contato .rotulo-hero { color: var(--destaque); }
-  .contato .acoes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .contato .acoes { display: grid; gap: 12px; max-width: 420px; margin: 0 auto; }
+  .opcao {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 20px; border-radius: 999px; font-weight: 700; font-size: 16px;
+    border: 1.5px solid rgba(255,255,255,.35); color: #fff; transition: background .2s, transform .2s;
+  }
+  .opcao:hover { background: rgba(255,255,255,.08); transform: translateY(-2px); }
+  .opcao svg { width: 20px; height: 20px; }
+  .opcao.principal { background: var(--destaque); border-color: var(--destaque); color: var(--vinho-escuro); }
+  .opcao.principal:hover { background: #fff; }
 
   footer { text-align: center; font-size: 13px; color: var(--tinta-2); padding: 32px 0 40px; }
 </style>
@@ -213,14 +223,18 @@
           <span class="txt"><strong>Mandar um e-mail</strong><small>ugctatielemilani@gmail.com</small></span>
           <span class="seta">→</span>
         </a>
+        <a class="botao b2 so-celular" href="indicacoes/">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+          <span class="txt"><strong>Indicações</strong><small>coisas que eu uso e recomendo</small></span>
+          <span class="seta">→</span>
+        </a>
       </div>
     </div>
   </section>
 
   <section class="secao" id="cupons">
     <div class="secao-titulo">
-      <span class="rotulo-hero">Cupons</span>
-      <p>Copia o código e usa na finalização da compra, no site da marca.</p>
+      <span class="rotulo-hero">Meus cupons</span>
     </div>
     <div class="grade">
       <article class="cupom">
@@ -247,7 +261,7 @@
   <section class="secao">
     <div class="vitrine">
       <div>
-        <span class="rotulo-hero">Vitrine da Tati</span>
+        <span class="rotulo-hero sem-traco">Vitrine da Tati</span>
         <h2 class="titulo">Coisas que eu <em>indico</em></h2>
         <p>Produtos que eu uso de verdade e recomendo num lugar só.</p>
         <a class="btn" href="indicacoes/">ver a vitrine →</a>
@@ -260,12 +274,16 @@
   </section>
 
   <section class="contato">
-    <span class="rotulo-hero">Para marcas</span>
-    <h2 class="titulo">Vamos criar algo <em>incrível</em> juntos?</h2>
+    <span class="rotulo-hero sem-traco">Para marcas</span>
+    <h2 class="titulo">Bora <em>conversar?</em></h2>
     <p>UGC, publi post, clips e TikTok Shop. Me conta da sua marca que eu respondo em até 24 horas úteis.</p>
     <div class="acoes">
-      <a class="btn claro" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">chamar no WhatsApp</a>
-      <a class="btn claro" href="../" target="_blank" rel="noopener">ver portfólio</a>
+      <a class="opcao principal" href="https://wa.me/message/PPURUBOARLAKD1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+        Chamar no WhatsApp
+      </a>
+      <a class="opcao" href="https://ig.me/m/tatielemilani" target="_blank" rel="noopener">Mandar DM no Instagram</a>
+      <a class="opcao" href="mailto:ugctatielemilani@gmail.com">Mandar e-mail</a>
     </div>
   </section>
 
