@@ -122,7 +122,6 @@
   .b3 { background: var(--nude); color: var(--tinta); }
   .b4 { background: var(--papel); border: 1px solid var(--linha); }
   .b2 { background: var(--destaque); color: var(--vinho-escuro); }
-  @media (min-width: 860px) { .so-celular { display: none; } }
 
   .secao { padding: 56px 0 0; }
   #cupons { padding-top: 16px; }
@@ -162,17 +161,8 @@
   .vitrine {
     background: var(--destaque); border-radius: 28px; padding: 32px 20px; display: grid; gap: 24px; align-items: center;
   }
-  @media (min-width: 760px) { .vitrine { grid-template-columns: 1fr 1fr; padding: 40px; } }
+  @media (min-width: 760px) { .vitrine { padding: 36px 40px; } }
   .vitrine p { color: var(--tinta-2); margin-bottom: 18px; }
-  .produto {
-    background: var(--papel); border-radius: var(--raio); padding: 14px; display: flex; gap: 14px; align-items: center;
-    box-shadow: var(--sombra); transition: transform .2s;
-  }
-  .produto:hover { transform: translateY(-2px); }
-  @media (max-width: 759px) { .vitrine .produto { display: none; } }
-  .produto img { width: 64px; height: 64px; object-fit: cover; border-radius: 12px; flex: none; }
-  .produto strong { display: block; font-size: 15px; }
-  .produto small { color: var(--tinta-2); }
   .btn {
     display: inline-flex; align-items: center; gap: 8px; background: var(--vinho); color: #fff;
     font-weight: 600; padding: 12px 22px; border-radius: 999px; transition: background .2s;
@@ -238,7 +228,7 @@
           <span class="txt"><strong>Mandar um e-mail</strong><small>ugctatielemilani@gmail.com</small></span>
           <span class="seta">→</span>
         </a>
-        <a class="botao b3 so-celular" href="indicacoes/">
+        <a class="botao b3" href="indicacoes/">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
           <span class="txt"><strong>Indicações</strong><small>coisas que eu uso e recomendo</small></span>
           <span class="seta">→</span>
@@ -300,10 +290,6 @@
         <p>Produtos que eu uso de verdade e recomendo num lugar só.</p>
         <a class="btn" href="indicacoes/">ver a vitrine →</a>
       </div>
-      <a class="produto" href="indicacoes/">
-        <img src="../imagens/bio/microfone-hollyland-lark-m2.jpg" alt="Microfone Hollyland Lark M2">
-        <span><strong>Beleza, gravação e acessórios</strong><small>filtra por loja e categoria →</small></span>
-      </a>
     </div>
   </section>
 
