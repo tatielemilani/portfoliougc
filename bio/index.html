@@ -169,8 +169,13 @@
   .vitrine {
     background: var(--destaque); border-radius: 28px; padding: 32px 20px; display: grid; gap: 24px; align-items: center;
   }
-  @media (min-width: 760px) { .vitrine { padding: 36px 40px; } }
-  .vitrine p { color: var(--tinta-2); margin-bottom: 18px; }
+  .vitrine p { color: var(--tinta-2); }
+  .vitrine-btn { justify-self: start; margin-top: -6px; }
+  /* no computador o botão vai pro lado direito do texto */
+  @media (min-width: 760px) {
+    .vitrine { padding: 36px 40px; grid-template-columns: auto 1fr; }
+    .vitrine-btn { justify-self: center; margin-top: 0; }
+  }
   .btn {
     display: inline-flex; align-items: center; gap: 8px; background: var(--vinho); color: #fff;
     font-weight: 600; padding: 12px 22px; border-radius: 999px; transition: background .2s;
@@ -301,8 +306,8 @@
         <span class="rotulo-hero sem-traco">Vitrine da Tati</span>
         <h2 class="titulo">Coisas que eu <em>indico</em></h2>
         <p>Produtos que eu uso de verdade e recomendo num lugar só.</p>
-        <a class="btn" href="indicacoes/">ver a vitrine →</a>
       </div>
+      <a class="btn vitrine-btn" href="indicacoes/">ver a vitrine →</a>
     </div>
   </section>
 
