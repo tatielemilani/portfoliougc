@@ -86,7 +86,6 @@
   .card:hover { transform: translateY(-3px); }
   .card .foto { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--creme-2); }
   .card .foto img { width: 100%; height: 100%; object-fit: cover; }
-  .selo-loja { position: absolute; top: 8px; right: 8px; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
   .queridinho { position: absolute; top: 8px; left: 8px; background: var(--vinho); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; transform: rotate(-4deg); }
   .card .cat { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--nude-texto); margin: 12px 4px 2px; }
   .card h3 { font-family: var(--sans); font-weight: 700; font-size: 15px; line-height: 1.25; color: var(--tinta); margin: 0 4px; }
@@ -274,11 +273,6 @@
         q.textContent = "queridinho";
         foto.appendChild(q);
       }
-      var s = document.createElement("span");
-      s.className = "selo-loja";
-      s.style.background = cores[p.loja] || "var(--tinta)";
-      s.textContent = p.loja;
-      foto.appendChild(s);
       card.appendChild(foto);
 
       var cat = document.createElement("span");
