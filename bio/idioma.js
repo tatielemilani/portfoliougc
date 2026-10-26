@@ -43,6 +43,7 @@
     // vitrine
     '← voltar pra bio': '← back to bio',
     'O que eu uso, amo e indico, tudo num lugar só.': 'What I use, love and recommend, all in one place.',
+    'O que eu uso, amo e indico.': 'What I use, love and recommend.',
     'Preço e estoque mudam direto na loja, então dá uma conferida antes de comprar.': 'Prices and stock change all the time, so double-check before you buy.',
     'Loja': 'Store',
     'Categoria': 'Category',
