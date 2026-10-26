@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coisas que eu indico · Tatiele Milani</title>
+<title>Tatiele Milani · Indicações</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../imagens/icone-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../../imagens/icone-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../imagens/icone-180.png">
 <meta name="description" content="Produtos que a Tati usa e indica, num lugar só.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,6 +100,11 @@
   .vazio { grid-column: 1 / -1; text-align: center; color: var(--tinta-2); padding: 40px 0; }
 
   .rodape { margin: 0 0 32px; background: var(--vinho); border-radius: 20px; padding: 18px 16px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--destaque); }
+  /* Cursor do mouse: setinha arredondada vinho (no computador); em cima de algo clicável ela fica rosinha */
+  @media (pointer:fine){
+    html{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M3.5 2.8l13.6 6.9c.9.45.75 1.75-.22 2l-5.3 1.35-2.45 4.95c-.45.9-1.75.75-2-.22L3.5 2.8z' fill='%238C1D24' stroke='%23fff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto}
+    a,button,select,label,summary{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M3.5 2.8l13.6 6.9c.9.45.75 1.75-.22 2l-5.3 1.35-2.45 4.95c-.45.9-1.75.75-2-.22L3.5 2.8z' fill='%23E8B4B0' stroke='%238C1D24' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer !important}
+  }
 </style>
 </head>
 <body>
