@@ -47,6 +47,12 @@
     .lateral { position: sticky; top: 24px; }
   }
 
+  /* Botão de idioma PT | EN (igual ao do portfólio) */
+  .idioma { display: inline-flex; padding: 3px; border: 1px solid rgba(140,29,36,.22); border-radius: 99px; background: rgba(255,255,255,.55); }
+  .idioma button { border: 0; background: transparent; font: inherit; font-size: .72rem; font-weight: 700; letter-spacing: .08em; line-height: 1; color: var(--tinta-2); padding: 6px 10px; border-radius: 99px; cursor: pointer; transition: background .2s, color .2s; }
+  .idioma button:hover { color: var(--vinho); }
+  .idioma button[aria-pressed="true"] { background: var(--vinho); color: #fff; }
+  .linha-voltar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .voltar { font-size: 14px; font-weight: 600; color: var(--vinho); }
   .voltar:hover { text-decoration: underline; }
   h1 { font-family: "Inter Tight", var(--sans); font-weight: 800; font-size: clamp(38px, 9vw, 52px); line-height: .98; letter-spacing: -.05em; word-spacing: .08em; margin: 12px 0 14px; }
@@ -107,7 +113,7 @@
 
   <div class="layout">
     <aside class="lateral">
-      <a class="voltar" href="../">← voltar pra bio</a>
+      <div class="linha-voltar"><a class="voltar" href="../">← voltar pra bio</a><div class="idioma" role="group" aria-label="Idioma / Language"><button type="button" data-lang="pt" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div></div>
       <h1>Coisas que eu <em>indico</em></h1>
       <p class="intro">O que eu uso, amo e indico, tudo num lugar só.</p>
       <p class="aviso">Preço e estoque mudam direto na loja, então dá uma conferida antes de comprar.</p>
@@ -310,5 +316,6 @@
 
   desenha();
 </script>
+<script src="../idioma.js"></script>
 </body>
 </html>
