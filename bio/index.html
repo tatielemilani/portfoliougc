@@ -50,11 +50,16 @@
   .hero { display: grid; gap: 28px; padding: 12px 0 20px; max-width: 920px; margin: 0 auto; }
   @media (min-width: 860px) {
     /* no computador a foto alinha com a borda dos cupons, e o PT | EN desce um pouco */
-    .hero { grid-template-columns: 390px 1fr; align-items: center; gap: 56px; padding-top: 16px; max-width: none; margin: 0; }
+    .hero { grid-template-columns: 390px 1fr; align-items: stretch; gap: 56px; padding-top: 16px; max-width: none; margin: 0; }
     .topo-idioma { padding-top: 40px; }
   }
   .foto-box { position: relative; max-width: 280px; margin: 0 auto; width: 100%; }
-  @media (min-width: 860px) { .foto-box { max-width: 390px; } }
+  @media (min-width: 860px) {
+    /* a foto estica do "Meu trabalho" até o último botão */
+    .foto-box { max-width: 390px; height: 100%; }
+    .foto-box .foto { aspect-ratio: auto; height: 100%; position: relative; }
+    .foto-box .foto img { position: absolute; inset: 0; }
+  }
   .foto {
     border-radius: 24px; overflow: hidden; aspect-ratio: 4/5;
     background: var(--destaque); box-shadow: var(--sombra);
