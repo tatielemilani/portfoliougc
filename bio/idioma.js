@@ -43,7 +43,9 @@
     // vitrine
     '← voltar pra bio': '← back to bio',
     'O que eu uso, amo e indico, tudo num lugar só.': 'What I use, love and recommend, all in one place.',
-    'Recomendação de amiga: só entra aqui o que eu uso de verdade.': "A friend's recommendation: only what I truly use makes it here.",
+    'Recomendações de': 'Recommendations from a',
+    'amiga': 'friend',
+    'Só entra aqui o que eu uso de verdade.': 'Only what I truly use makes it here.',
     'Preço e estoque mudam direto na loja, então dá uma conferida antes de comprar.': 'Prices and stock change all the time, so double-check before you buy.',
     'Loja': 'Store',
     'Categoria': 'Category',
